@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://www.botkube.io/"
 languageCode = "en-us"
 title = "BotKube"
 theme = "kube"
