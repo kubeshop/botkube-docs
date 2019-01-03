@@ -1,0 +1,25 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "BotKube"
+theme = "kube"
+description = "BotKube is your Kubernetes bot"
+Paginate = 4
+[Params]
+  RSSLink = "/index.xml"
+  author = "InfraCloud" # add your company name
+  github = "https://github.com/infracloudio/botkube" # add your github profile name
+  twitter = "infracloudio" # add your twitter profile
+  email = "info@infracloud.io"
+
+[[menu.main]]
+    name = "Docs"
+    weight = -100
+    url = "/docs/"
+#[[menu.main]]
+#    name = "Blog"
+#    weight = -100
+#    url = "/blog/"
+[[menu.main]]
+    name = "Faq"
+    weight = -100
+    url = "/faq/"

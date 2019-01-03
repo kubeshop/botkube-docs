@@ -1,0 +1,36 @@
+{{ define "title"}} {{ .Site.Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main"}}
+
+<div id="main">
+  <div id="hero">
+    <h1>{{.Title}}</h1>
+    <p>{{.Description}}</p>
+  </div>
+  <div id="action-buttons">
+    <a class="button outline big" href="https://github.com/infracloudio/botkube" onclick="_gaq.push(['_trackEvent', 'kube', 'github']);">View on Github</a>
+    <p>The Kubernetes Bot</p>
+  </div>
+  <div class="message focus" data-component="message"> <span class="close small"></span>
+    Kubernetes bot watches your cluster and notifies of events that you should pay attention to. It also allows you to fire simple commands and get information about resources in cluster.
+  </div>
+  <div id="bot-kube-features">
+    <div class="row gutters">
+      <div class="col col-4 item">
+        <h3>Configurable</h3>
+        <p>BotKube is configurable so you can watch only objects that you care for with level of severity that you want for events.</p>
+      </div>
+      <div class="col col-4 item">
+        <h3>Built for Slack</h3>
+        <p>You don't have to leave slack to interact with the Kubernetes cluster</p>
+      </div>
+      <div class="col col-4 item">
+        <h3>Open Source</h3>
+        <p>BotKube is open source and we welcome your requirements and contributions.</p>
+      </div>
+    </div>
+</div>
+</div>
+{{ end }}
+{{ define "footer"}} {{ partial "footer" .}} {{end}}
+
