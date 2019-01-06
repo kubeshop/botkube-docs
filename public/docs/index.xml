@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on BotKube</title>
+    <link>https://www.botkube.io/docs/</link>
+    <description>Recent content in Docs on BotKube</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Jan 2019 12:51:56 +0530</lastBuildDate>
+    
+	<atom:link href="https://www.botkube.io/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://www.botkube.io/docs/intro/</link>
+      <pubDate>Thu, 03 Jan 2019 12:51:56 +0530</pubDate>
+      
+      <guid>https://www.botkube.io/docs/intro/</guid>
+      <description>BotKube is your Kubernetes bot.</description>
+    </item>
+    
+  </channel>
+</rss>

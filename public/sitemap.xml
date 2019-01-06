@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.botkube.io/docs/intro/</loc>
+    <lastmod>2019-01-03T12:51:56+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.botkube.io/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.botkube.io/faq/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.botkube.io/</loc>
+    <lastmod>2019-01-03T12:51:56+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.botkube.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.botkube.io/docs/</loc>
+    <lastmod>2019-01-03T12:51:56+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.botkube.io/company/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.botkube.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
