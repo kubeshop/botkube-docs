@@ -1,25 +1,45 @@
 baseURL = "https://www.botkube.io/"
 languageCode = "en-us"
 title = "BotKube"
-theme = "kube"
+theme = "hugo-theme-learn"
 description = "BotKube is your Kubernetes bot"
 Paginate = 4
-[Params]
-  RSSLink = "/index.xml"
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[params]
   author = "InfraCloud" # add your company name
   github = "https://github.com/infracloudio/botkube" # add your github profile name
-  twitter = "infracloudio" # add your twitter profile
   email = "info@infracloud.io"
+  showVisitedLinks = false
+  disableBreadcrumb = false
+  disableNextPrev = false
+  disableLanguageSwitchingButton = true
+  themeVariant = "blue"
 
-[[menu.main]]
-    name = "Docs"
-    weight = -100
-    url = "/docs/"
-#[[menu.main]]
-#    name = "Blog"
-#    weight = -100
-#    url = "/blog/"
-[[menu.main]]
-    name = "Faq"
-    weight = -100
-    url = "/faq/"
+[[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-slack-hash'></i> Add to slack"
+url = "https://slack.com/oauth/authorize?scope=bot&client_id=12637824912.515475697794"
+weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> Github repo"
+identifier = "ds"
+url = "https://github.com/infracloudio/botkube"
+weight = 20
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-bookmark'></i> Privacy Policy"
+url = "/privacy"
+weight = 30
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-file-contract '></i> License"
+url = "/license"
+weight = 40
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-twitter'></i> Twitter"
+url = "https://twitter.com/infracloudio"
+weight = 50
