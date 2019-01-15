@@ -46,8 +46,16 @@ The configuration file contains,
     slack:
       channel: 'SLACK_CHANNEL'
       token: 'SLACK_API_TOKEN'
+
+  # Setting to support multiple clusters
+  settings:
+    # Cluster name to differentiate incoming messages
+    clustername: not-configured
+    # Set true to enable kubectl commands execution by BotKube on the cluster
+    allowkubectl: false
 ```
 The default configuration can be found at:
+https://github.com/infracloudio/botkube/blob/master/config.yaml
 
 
 As of now, BotKube can watch following types of resources:
@@ -70,3 +78,11 @@ As of now, BotKube can watch following types of resources:
 - rolebindings
 - clusterroles
 - clusterrolebindings
+
+### Updating the configuration at runtime
+If you have installed the BotKube controller using helm, you can modify the controller configuration at runtime. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
+
+```bash
+$ kubectl edit configmap botkube-configmap -n botkube
+```
+This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
