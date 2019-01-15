@@ -4,5 +4,5 @@ title = "Support"
 
 ## Need help with BotKube? 
 
-Reach us out at *kubeops@infracloud.io*
+Reach us out at *botkube@infracloud.io*
 
