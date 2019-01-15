@@ -50,7 +50,7 @@ title: "BotKube"
 }
 </style>
 
-<h1><center>BotKube</center></h1>
+<img src="/botkube-title.jpg" width=70% height=70%>
 The BotKube app for slack helps to monitor your kubernetes cluster, debugging deployments and run specific checks on resource specs.
 
 <h2>What can BotKube do?</h2>
