@@ -1,6 +1,9 @@
 ---
 title: "BotKube"
 ---
+<img src="/botkube-title.jpg" width=50% height=50%>
+The BotKube app for slack helps to monitor your kubernetes cluster, debugging deployments and run specific checks on resource specs.
+
 <style>
 .leftimage {
   width: 48%; float:left; display:inline-block;
@@ -49,9 +52,6 @@ title: "BotKube"
   }
 }
 </style>
-
-<img src="/botkube-title.jpg" width=70% height=70%>
-The BotKube app for slack helps to monitor your kubernetes cluster, debugging deployments and run specific checks on resource specs.
 
 <h2>What can BotKube do?</h2>
 <div style="overflow: auto;">
@@ -119,12 +119,12 @@ The BotKube app for slack helps to monitor your kubernetes cluster, debugging de
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-cogs"></i> Debug Anywhere, Anytime</h4>
+    <h4><i class="fas fa-cogs"></i>  Debug Anywhere, Anytime</h4>
 With @BotKube you can monitor and debug kubernetes deployments without a terminal.
 You can even ask @BotKube to execute kubectl commands from mobile slack app.
   </div>
   <div class="rightfeature">
-    <h4><i class="fas fa-cogs"></i> Easy to configure</h4> You can configure BotKube to get notifications only about the resources and events you are interested in.
+    <h4><i class="fas fa-cogs"></i>  Easy to configure</h4> You can configure BotKube to get notifications only about the resources and events you are interested in.
 BotKube notifications can be configured at following levels:
 Resource kinds, Resources namespaces, Events types
   </div>
@@ -132,19 +132,19 @@ Resource kinds, Resources namespaces, Events types
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-cloud"></i> Deploy on any k8s cluster</h4> You can deploy BotKube controller on any kubernetes cluster, irrespective of whether it is running locally (minikube) or managed by any cloud providers.
+    <h4><i class="fas fa-cloud"></i>  Deploy on any k8s cluster</h4> You can deploy BotKube controller on any kubernetes cluster, irrespective of whether it is running locally (minikube) or managed by any cloud providers.
   </div>
   <div class="rightfeature">
-    <h4><i class="fas fa-plug"></i> Add custom filters</h4> It is very easy to write your own filters and registering them to FilterEngine. Follow <a href=/filters>this</a> guide to know more about it.
+    <h4><i class="fas fa-plug"></i>  Add custom filters</h4> It is very easy to write your own filters and registering them to FilterEngine. Follow <a href=/filters>this</a> guide to know more about it.
   </div>
 </div>
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-shield-alt"></i> Security</h4> Since BotKube controller is installed with the READONLY service account, only READONLY kubectl commands are allowed to execute via BotKube.
+    <h4><i class="fas fa-shield-alt"></i>  Security</h4> Since BotKube controller is installed with the READONLY service account, only READONLY kubectl commands are allowed to execute via BotKube.
   </div>
   <div class="rightfeature">
-    <h4><i class="fab fa-github"></i> Open source</h4> BotKube controller is open source and we welcome your requirements and contributions.
+    <h4><i class="fab fa-github"></i>  Open source</h4> BotKube controller is open source and we welcome your requirements and contributions.
   </div>
 </div>
 </center>
