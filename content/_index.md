@@ -1,7 +1,7 @@
 ---
 title: "BotKube"
 ---
-<img src="/botkube-title.jpg" width=50% height=50%>
+<img src="/images/botkube-title.jpg">
 The BotKube app for slack helps to monitor your kubernetes cluster, debugging deployments and run specific checks on resource specs.
 
 <style>
@@ -56,7 +56,7 @@ The BotKube app for slack helps to monitor your kubernetes cluster, debugging de
 <h2>What can BotKube do?</h2>
 <div style="overflow: auto;">
   <div class="leftimage">
-    <img src="/monitor.gif" style="border-radius:3%;">
+    <img src="/images/monitor.gif" style="border-radius:3%;">
   </div>
   <div class="rightimage">
     <h1>Monitor</h1>
@@ -70,7 +70,7 @@ The BotKube app for slack helps to monitor your kubernetes cluster, debugging de
 
 <div class="visiblemobile">
   <div class="leftimage">
-    <img src="/exec.gif" style="border-radius:2%;">
+    <img src="/images/exec.gif" style="border-radius:2%;">
   </div>
   <div class="rightimage" style="padding-top:10%;">
     <h1>Debug</h1>
@@ -89,13 +89,13 @@ The BotKube app for slack helps to monitor your kubernetes cluster, debugging de
     </ul>
   </div>
   <div class="rightimage">
-    <img src="/exec.gif" style="border-radius:2%;">
+    <img src="/images/exec.gif" style="border-radius:2%;">
   </div>
 </div>
 
 <div style="overflow: auto;">
   <div class="leftimage">
-    <img src="/checks.gif" style="border-radius:2%;">
+    <img src="/images/checks.gif" style="border-radius:2%;">
   </div>
   <div class="rightimage">
     <h1>Run Checks</h1>

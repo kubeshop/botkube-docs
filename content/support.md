@@ -1,4 +1,8 @@
 +++
 title = "Support"
-description = "TBD"
 +++
+
+## Need help with BotKube? 
+
+Reach us out at *kubeops@infracloud.io*
+

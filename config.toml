@@ -40,6 +40,11 @@ url = "/license"
 weight = 40
 
 [[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-question-circle'></i> Support"
+url = "/support"
+weight = 50
+
+[[menu.shortcuts]]
 name = "<i class='fab fa-fw fa-twitter'></i> Twitter"
 url = "https://twitter.com/infracloudio"
-weight = 50
+weight = 60
