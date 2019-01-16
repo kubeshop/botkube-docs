@@ -3,16 +3,16 @@ title: "Adding a custom filter"
 menutitle: "Adding a custom filter"
 date: 2019-01-08T17:58:08+05:30
 draft: false
-weight: 30
+weight: 70
 ---
 
-You can extend BotKube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a slack notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct. 
+You can extend BotKube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a Slack notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct. 
 
-We have already defined a filter to add suggestions in the slack message if container image in pod specs is using **latest** tag.
+We have already defined a filter to add suggestions in the Slack message if container image in pod specs is using **latest** tag.
 
-![tag_filter](/tag_filter.png)
+![tag_filter](/images/tag_filter.png)
 
-**Let's see, how we can write filter like this.**
+**Let's see, how we can write a filter like this.**
 
 ### A. Writing a filter
 Prerequisites:

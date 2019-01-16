@@ -6,6 +6,6 @@ title = "Privacy Policy"
 
 We don't store your data, period. 
 
-You host backend for BotKube slack application in your own kubernetes cluster. We do not collect or send any kind of information.
+You host backend for BotKube Slack application in your own kubernetes cluster. We do not collect or send any kind of information.
 
 Any future changes to this document will be posted on this page. 

@@ -13,7 +13,7 @@ The configuration file contains,
 - resource list you want to watch
 - the type of events you want to get notifications about
 - way to skip filter runs
-- and slack access configuration
+- and Slack access configuration
 
 ```
   ## Resources you want to watch
