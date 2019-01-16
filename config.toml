@@ -19,7 +19,7 @@ home = [ "HTML", "RSS", "JSON"]
   themeVariant = "blue"
 
 [[menu.shortcuts]]
-name = "<i class='fab fa-fw fa-slack-hash'></i> Add to slack"
+name = "<i class='fab fa-fw fa-slack-hash'></i> Add to Slack"
 url = "https://slack.com/oauth/authorize?scope=bot&client_id=12637824912.515475697794"
 weight = 10
 

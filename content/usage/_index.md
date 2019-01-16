@@ -7,17 +7,17 @@ weight: 40
 
 <h3 class="section-head" id="h-show-help"><a href="#h-show-help">Debugging deployments using BotKube</a></h3>
 @BotKube allows you to execute kubectl commands on your kubernetes cluster.
-Send **@BotKube help** in the slack channel or directly to the BotKube user to find more information about the supported commands.
+Send **@BotKube help** in the Slack channel or directly to the BotKube user to find more information about the supported commands.
 ![help](/images/help.png)
-As suggested in help message, to execute kubectl commands, send message in following format in the slack chennel where BotKube is already added or as a direct message to BotKube.
+As suggested in help message, to execute kubectl commands, send message in following format in the Slack chennel where BotKube is already added or as a direct message to BotKube.
 ```
 @BotKube <kubectl command without `kubectl` prefix>
 ```
 See [Examples](/examples/#h-examples) for the use cases.
 
-<h3 class="section-head" id="h-manage-notif"><a href="#h-manage-notif">Managing slack notifications</a></h3>
-Depending upon your configuration, you will receive slack notifications about kubernetes resources lifecycle events and their health.
-BotKube bot allows you to enable/disable notifications using direct messages. Send **@BotKube help** in the slack channel where the bot is added or as a direct message to the BotKube, the bot will reply with the help message about the supported message formats.
+<h3 class="section-head" id="h-manage-notif"><a href="#h-manage-notif">Managing Slack notifications</a></h3>
+Depending upon your configuration, you will receive Slack notifications about kubernetes resources lifecycle events and their health.
+BotKube bot allows you to enable/disable notifications using direct messages. Send **@BotKube help** in the Slack channel where the bot is added or as a direct message to the BotKube, the bot will reply with the help message about the supported message formats.
 
 ![BotKube_help](/images/help.png)
 
@@ -26,26 +26,35 @@ Send **@BotKube notifier showconfig** message on a channel where BotKube is adde
 
 If you wish to change the configuration, you can update config section in **helm/botkube/values.yaml** and then run **helm upgrade**.
 ```bash
-$ helm upgrade BotKube --set config.communications.slack.channel={SLACK_CHANNEL_NAME} --set config.communications.slack.token={SLACK_API_TOKEN_FOR_THE_BOT} helm/BotKube/
+$ helm upgrade botkube --set config.communications.slack.channel=<SLACK_CHANNEL_NAME>,config.communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT>,config.settings.clustername=<CLUSTER_NAME>,config.settings.allowkubectl=<ALLOW_KUBECTL> helm/botkube/
 ```
+OR
+
+You can also modify the controller configuration at runtime. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
+
+```bash
+$ kubectl edit configmap botkube-configmap -n botkube
+```
+This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
+
 
 <h4 class="section-head" id="h-check-health"><a href="#h-check-health">Check BotKube health</a></h4>
-Send **@BotKube ping** to the slack channel where BotKube is added. The BotKube will respond you with message **PONG** if it is running. Else check the deployment in kubernetes cluster in the **botkube** namespace.
+Send **@BotKube ping** to the Slack channel where BotKube is added. The BotKube will respond you with message **PONG** if it is running. Else check the deployment in kubernetes cluster in the **botkube** namespace.
 
 ![ping](/images/ping.png)
 
 
-<h4 class="section-head" id="h-notifer-stop"><a href="#h-notifier-stop">Disable slack notifications</a></h4>
-If you want to stop receiving slack notifications from BotKube, send
+<h4 class="section-head" id="h-notifer-stop"><a href="#h-notifier-stop">Disable Slack notifications</a></h4>
+If you want to stop receiving Slack notifications from BotKube, send
 **@BotKube notifier stop**
-to the slack channel where BotKube is added. You will no longer receive notifications from the BotKube
+to the Slack channel where BotKube is added. You will no longer receive notifications from the BotKube
 
 ![notifier_stop](/images/notifier_stop.png)
 
-<h4 class="section-head" id="h-notifer-start"><a href="#h-notifier-start">Enable slack notifications</a></h4>
-If you want to receice slack notifications from BotKube again, send
+<h4 class="section-head" id="h-notifer-start"><a href="#h-notifier-start">Enable Slack notifications</a></h4>
+If you want to receice Slack notifications from BotKube again, send
 **@BotKube notifier start**
-to the slack channel where BotKube is added.
+to the Slack channel where BotKube is added.
 
 ![notifier_start](/images/notifier_start.png)
 
