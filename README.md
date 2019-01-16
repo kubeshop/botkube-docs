@@ -1,1 +1,1 @@
-# botkube-docs
+# BotKube Docs (https://www.botkube.io/)
