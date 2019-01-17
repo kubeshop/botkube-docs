@@ -6,7 +6,7 @@ weight: 40
 ---
 
 <h3 class="section-head" id="h-show-help"><a href="#h-show-help">Debugging deployments using BotKube</a></h3>
-@BotKube allows you to execute kubectl commands on your kubernetes cluster.
+@BotKube allows you to execute kubectl commands on your Kubernetes cluster.
 Send **@BotKube help** in the Slack channel or directly to the BotKube user to find more information about the supported commands.
 ![help](/images/help.png)
 As suggested in help message, to execute kubectl commands, send message in following format in the Slack chennel where BotKube is already added or as a direct message to BotKube.
@@ -16,7 +16,7 @@ As suggested in help message, to execute kubectl commands, send message in follo
 See [Examples](/examples/#h-examples) for the use cases.
 
 <h3 class="section-head" id="h-manage-notif"><a href="#h-manage-notif">Managing Slack notifications</a></h3>
-Depending upon your configuration, you will receive Slack notifications about kubernetes resources lifecycle events and their health.
+Depending upon your configuration, you will receive Slack notifications about Kubernetes resources lifecycle events and their health.
 BotKube bot allows you to enable/disable notifications using direct messages. Send **@BotKube help** in the Slack channel where the bot is added or as a direct message to the BotKube, the bot will reply with the help message about the supported message formats.
 
 ![BotKube_help](/images/help.png)
@@ -39,7 +39,7 @@ This command will open configmap specs in vim editor. Do the required changes, s
 
 
 <h4 class="section-head" id="h-check-health"><a href="#h-check-health">Check BotKube health</a></h4>
-Send **@BotKube ping** to the Slack channel where BotKube is added. The BotKube will respond you with message **PONG** if it is running. Else check the deployment in kubernetes cluster in the **botkube** namespace.
+Send **@BotKube ping** to the Slack channel where BotKube is added. The BotKube will respond you with message **PONG** if it is running. Else check the deployment in Kubernetes cluster in the **botkube** namespace.
 
 ![ping](/images/ping.png)
 

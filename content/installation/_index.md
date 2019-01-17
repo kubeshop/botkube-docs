@@ -14,19 +14,19 @@ BotKube has two components that need to be installed.
 
 <p>Follow the following steps to install BotKube Slack app to your Slack workspace.</p>
 
-<h4>Install BotKube Slack app to your Slack workspace</h4>
+<h4 id="h-install-BotKube-slackapp"><a href="#h-install-BotKube-slackapp">Install BotKube Slack app to your Slack workspace</a></h4>
 
 Click the **Add to Slack** button provided to install BotKube Slack application to your workspace. Once you authorized the application, you will be provided a BOT Access token. Kindly note down that token which will be required while deploying BotKube controller to your cluster.
 <a href="https://slack.com/oauth/authorize?scope=bot&client_id=12637824912.515475697794"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
 
 Alternetively, you can install BotKube Slack app from Slack app directory.
 
-<h4>Add BotKube user to a Slack channel</h4>
+<h4 id="h-add-botkube-slackchannel"><a href="#h-add-botkube-slackchannel">Add BotKube user to a Slack channel</a></h4>
 
-After installing BotKube app to your Slack workspace, you could see new bot user with name 'BotKube' added in your workspace. Add that bot to a Slack channel you want to receive notification in.<br>
+After installing BotKube app to your Slack workspace, you could see new bot user with name "BotKube" added in your workspace. Add that bot to a Slack channel you want to receive notification in.<br>
 (You can add it by inviting posting **@BotKube** message in a channel)
 
-<h3 class="section-head" id="h-install-BotKube-k8s"><a href="#h-install-BotKube-k8s">Install BotKube controller to the kubernetes cluster</a></h3>
+<h3 class="section-head" id="h-install-BotKube-k8s"><a href="#h-install-BotKube-k8s">Install BotKube controller to the Kubernetes cluster</a></h3>
 
 <h4>Using helm</h4>
 
@@ -55,7 +55,7 @@ where,<br>
 <br>
 <h4>Using kubectl</h4>
 
-- Make sure that you have kubectl cli installed and have access to kubernetes cluster
+- Make sure that you have kubectl cli installed and have access to Kubernetes cluster
 - Download deployment specs yaml
 
 ```bash
@@ -87,7 +87,7 @@ $ kubectl create ns botkube && kubectl create -f deploy-all-in-one.yaml -n botku
 - Goto Slack <a href="https://slack.com/apps/manage">manage apps</a> page<br>
 - Click on "BotKube" and click on "Remove App" button
 
-<h3 class="section-head" id="h-uninstall-BotKube-k8s"><a href="#h-uninstall-BotKube-k8s">Remove BotKube controller from kubernetes cluster</a></h3>
+<h3 class="section-head" id="h-uninstall-BotKube-k8s"><a href="#h-uninstall-BotKube-k8s">Remove BotKube controller from Kubernetes cluster</a></h3>
 <h4>Using helm</h4>
 <p>If you have installed BotKube controller using **helm**, execute following command to completely remove BotKube and related resources from your cluster</p>
 
