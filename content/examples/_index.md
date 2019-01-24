@@ -4,7 +4,7 @@ date = 2019-01-04T16:59:38+05:30
 weight = 50
 +++
 
-<h3 class="section-head" id="h-notif-sc"><a href="#h-notif-sc">Notification screenshots</a></h3>
+<h3 class="section-head" id="h-notif-sc"><a href="#h-notif-sc">Sample Notifications</a></h3>
 <h4>1. Resource created</h4>
 ![created](/images/create.png)
 

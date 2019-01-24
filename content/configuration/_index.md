@@ -10,10 +10,10 @@ BotKube controller reads configurations from **config.yaml** file placed at **CO
 ## config.yaml syntax
 The configuration file contains, 
 
-- resource list you want to watch
-- the type of events you want to get notifications about
-- way to skip filter runs
-- and Slack access configuration
+- Resource list you want to watch
+- The type of events you want to get notifications about
+- Way to skip filter runs
+- Slack access configuration
 
 ```
   ## Resources you want to watch
@@ -80,9 +80,12 @@ As of now, BotKube can watch following types of resources:
 - clusterrolebindings
 
 ### Updating the configuration at runtime
-If you have installed the BotKube controller using helm, you can modify the controller configuration at runtime. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
+
+You can update the configuration and use `helm upgrade` to update configuration values for the BotKube. 
+
+You can also change values directly in ConfigMap - which is not reccomended but is great for quick experimentation. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
 
 ```bash
 $ kubectl edit configmap botkube-configmap -n botkube
 ```
-This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
+This command will open configmap specs in an editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
