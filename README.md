@@ -1,6 +1,6 @@
 # BotKube
 
-[![Build Status](https://travis-ci.org/infracloudio/botkube.svg?branch=master)](https://travis-ci.org/infracloudio/botkube) [![Go Report Card](https://goreportcard.com/badge/github.com/infracloudio/botkube)](https://goreportcard.com/report/github.com/infracloudio/botkube)
+![](/static/images/botkube-title.jpg)
 
 For complete documentation visit www.botkube.io
 
