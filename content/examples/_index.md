@@ -20,11 +20,11 @@ weight = 50
 <h4>Readiness probe failed for the pod</h4>
 ![readiness](/images/readiness.png)
 
-<h3 class="section-head" id="h-examples"><a href="#h-examples">Debugging use-cases</a></h3>
-<h4>List pods in "jx" namespace</h4>
+<h3 class="section-head" id="h-debug-uc"><a href="#h-debug-uc">Debugging use-cases</a></h3>
+<h4>List pods in "fission" namespace</h4>
 ![get_pods](/images/get_pods.png)
 
-<h4>Get logs of "jenkins-6dd96c8f8d-dgh8c" pod in "jx" namespace</h4>
+<h4>Get logs of "controller-676f97f45-pjmv2" pod in "fission" namespace</h4>
 ![logs](/images/logs.png)
 
 <h4>Show cluster health</h4>
@@ -33,5 +33,14 @@ weight = 50
 <h4>Describe a node</h4>
 ![desc_node](/images/desc_node.png)
 
-<h4>List top pods in default namespace</h4>
+<h4>List top pods in "fission" namespace</h4>
 ![top_pods](/images/top_pods.png)
+
+<h4>Check connection status of "gke-stg" cluster</h4>
+![flag_clustername](/images/flag_clustername_ping.png)
+
+<h4>List services in a "gke-dev" cluster</h4>
+![get_services](/images/get_services.png)
+
+<h4>Describe deployment in a "gke-stg" cluster</h4>
+![describe_deployment](/images/desc_deployment.png)
