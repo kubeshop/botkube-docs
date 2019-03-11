@@ -19,8 +19,8 @@ home = [ "HTML", "RSS", "JSON"]
   themeVariant = "blue"
 
 [[menu.shortcuts]]
-name = "<i class='fab fa-fw fa-slack-hash'></i> Add to Slack"
-url = "https://slack.com/oauth/authorize?client_id=12637824912.569770799590&scope=commands,bot"
+name = "<i class='fab fa-fw fa-slack'></i> Community Slack"
+url = "http://join.botkube.io"
 weight = 10
 
 [[menu.shortcuts]]
