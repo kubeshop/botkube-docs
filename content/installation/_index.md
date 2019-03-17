@@ -50,7 +50,7 @@ where,<br>
 - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
 - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-	Configuration syntax is explained [here](/configuration).
+   Configuration syntax is explained [here](/configuration).
 
 - Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
@@ -66,13 +66,14 @@ $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/master/deploy-a
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
 Set *SLACK_CHANNEL*, *SLACK_API_TOKEN*, *clustername*, *allowkubectl* and update the resource events configuration you want to receive notifications for in the configmap.<br>
+
 where,<br>
 - **SLACK_CHANNEL** is the channel name where @BotKube is added<br>
 - **SLACK_API_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br>
 - **clustername** is the cluster name set in the incoming messages<br>
 - **allowkubectl** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-	Configuration syntax is explained [here](/configuration).
+   Configuration syntax is explained [here](/configuration).
 
 - Create **botkube** namespace and deploy resources
 
