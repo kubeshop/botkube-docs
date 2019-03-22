@@ -42,7 +42,12 @@ If you are not interested in events about particular resource, just remove its e
 - Deploy BotKube controller using **helm install** in your cluster.
 
 ```bash
-$ helm install --name botkube --namespace botkube --set config.communications.slack.channel=<SLACK_CHANNEL_NAME>,config.communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT>,config.settings.clustername=<CLUSTER_NAME>,config.settings.allowkubectl=<ALLOW_KUBECTL> helm/botkube/
+$ helm install --name botkube --namespace botkube \
+--set config.communications.slack.channel=<SLACK_CHANNEL_NAME> \
+--set config.communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
+--set config.settings.clustername=<CLUSTER_NAME> \
+--set config.settings.allowkubectl=<ALLOW_KUBECTL> \
+helm/botkube
 ```
 where,<br>
 - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added<br>
