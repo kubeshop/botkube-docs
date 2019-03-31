@@ -26,6 +26,7 @@ weight = 50
 
 <h4>Get logs of "controller-676f97f45-pjmv2" pod in "fission" namespace</h4>
 ![logs](/images/logs.png)
+![logs](/images/mm_logs.png)
 
 <h4>Show cluster health</h4>
 ![cluster-health](/images/cluster-health.png)
@@ -44,3 +45,4 @@ weight = 50
 
 <h4>Describe deployment in a "gke-stg" cluster</h4>
 ![describe_deployment](/images/desc_deployment.png)
+![describe_deployment](/images/mm_describe.png)
