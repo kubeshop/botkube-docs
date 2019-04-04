@@ -6,9 +6,9 @@ draft: false
 weight: 70
 ---
 
-You can extend BotKube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a Slack notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct. 
+You can extend BotKube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct. 
 
-We have already defined a filter to add suggestions in the Slack message if container image in pod specs is using **latest** tag.
+We have already defined a filter to add suggestions in the notifications if container image in pod specs is using **latest** tag.
 
 ![tag_filter](/images/tag_filter.png)
 
@@ -118,8 +118,8 @@ func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 		filters.NewImageTagChecker(),   // Register image tag filter
 }
 
-### C. Rebuild and deploy the BotKube controller
+### C. Rebuild and deploy the BotKube backend
 
-- Build the BotKube controller docker image with `build/docker.sh <docker-repo> <tag>`.
+- Build the BotKube backend docker image with `make`.
 - Push the image to Dockerhub registry.
 - Install/Upgrade your BotKube deployment (Steps are provided [here](/installation)).

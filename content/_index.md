@@ -29,6 +29,10 @@ title: "BotKube"
   width: 48%; float:left; display:inline-block;
 }
 
+.centerfeature {
+  width: 48%; float:center; display:inline-block;
+}
+
 .rightfeature {
   width: 48%; float:right; display:inline-block;
 }
@@ -150,7 +154,7 @@ Even while you are camping without a laptop, you can use Slack mobile app and ge
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-cloud"></i>  Deploy on any Kubernetes cluster</h4> You can deploy BotKube controller on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
+    <h4><i class="fas fa-cloud"></i>  Deploy on any Kubernetes cluster</h4> You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
   </div>
   <div class="rightfeature">
     <h4><i class="fas fa-plug"></i>  Add custom filters</h4> It is very easy to write your own filters and registering them to FilterEngine. Follow <a href=/filters>this</a> guide to know more.
@@ -162,7 +166,14 @@ Even while you are camping without a laptop, you can use Slack mobile app and ge
     <h4><i class="fas fa-shield-alt"></i>  Security</h4> By default Botkube uses a READONLY service account, you can customize this to your needs.
   </div>
   <div class="rightfeature">
-    <h4><i class="fab fa-github"></i>  Open source</h4> BotKube controller is open source and we welcome your requirements and contributions.
+    <h4><i class="fab fa-github"></i>  Open source</h4> BotKube backend is open source and we welcome your requirements and contributions.
   </div>
 </div>
+
+<div style="overflow: auto;">
+  <div class="centerfeature">
+    <h4><i class="fas fa-tasks"></i>  Support for multiple interfaces</h4> Like Slack, BotKube can also be integrated with Mattermost and ElasticSearch. See <a href=/configuration>configuration</a> syntax for details.
+  </div>
+</div>
+
 </center>
