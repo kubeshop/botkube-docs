@@ -75,7 +75,7 @@ title: "BotKube"
 }
 </style>
 
-The BotKube Slack app helps you monitor your Kubernetes cluster, debug deployments and run specific checks on resources in the cluster.
+BotKube integration with Slack or Mattermost helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
 
 <h2>What can BotKube do?</h2>
 <div style="overflow: auto;">
@@ -85,7 +85,7 @@ The BotKube Slack app helps you monitor your Kubernetes cluster, debug deploymen
   <div class="rightimage">
     <h1>Monitor</h1>
     <ul>
-      <li>BotKube watches Kubernetes resources and sends a notification to the Slack channel if any event occurs for example a ImagePullBackOff error.</li>
+      <li>BotKube watches Kubernetes resources and sends a notification to the channel if any event occurs for example a ImagePullBackOff error.</li>
       <li>You can customize the objects and level of events you want to get from Kubernetes cluster.</li>
       <li>You can turn on/off notifications simply by sending a message to @BotKube</li>
     </ul>
@@ -100,7 +100,7 @@ The BotKube Slack app helps you monitor your Kubernetes cluster, debug deploymen
     <h1>Debug</h1>
     <ul>
     <li>Botkube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
-    <li>With BotKube you can debug your deployment, services or anything about your cluster right from your Slack terminal ;) </li>
+    <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
     </ul>
   </div>
 </div>
@@ -109,7 +109,7 @@ The BotKube Slack app helps you monitor your Kubernetes cluster, debug deploymen
     <h1>Debug</h1>
     <ul>
     <li>Botkube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
-    <li>With BotKube you can debug your deployment, services or anything about your cluster right from your Slack terminal ;) </li>
+    <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
     </ul>
   </div>
   <div class="rightimage">
@@ -134,7 +134,7 @@ The BotKube Slack app helps you monitor your Kubernetes cluster, debug deploymen
 <h2>Features</h2>
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-fw fa-user-secret"></i> Privacy</h4> The backend for the Slack app runs in your Kubernetes cluster - thus you have complete control on your data and software.
+    <h4><i class="fas fa-fw fa-user-secret"></i> Privacy</h4> The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
   <div class="rightfeature">
   <h4><i class="fas fa-terminal"></i> Execute kubectl commands</h4> Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
@@ -145,7 +145,7 @@ The BotKube Slack app helps you monitor your Kubernetes cluster, debug deploymen
   <div class="leftfeature">
     <h4><i class="fas fa-cogs"></i>  Debug Anywhere, Anytime</h4>
 With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
-Even while you are camping without a laptop, you can use Slack mobile app and get crucial information.
+Even while you are camping without a laptop, you can use Slack or Mattermost mobile app and get crucial information.
   </div>
   <div class="rightfeature">
     <h4><i class="fas fa-cogs"></i>  Easy to configure</h4> Get notifications about things that you really care for. You can configure events or objects or namespaces that you want to be informed about.
