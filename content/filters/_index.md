@@ -24,16 +24,17 @@ Create a new file (e.g image_tag_checker.go) in **botkube/pkg/filterengine/filte
 
 Set package name as "filters" and import required packages
 
-```
+```go
 package filters
 
 import (
-	"strings"
+        "strings"
 
-	"github.com/infracloudio/botkube/pkg/events"
-	log "github.com/infracloudio/botkube/pkg/logging"
+        "github.com/infracloudio/botkube/pkg/events"
+        "github.com/infracloudio/botkube/pkg/filterengine"
+        log "github.com/infracloudio/botkube/pkg/logging"
 
-	apiV1 "k8s.io/api/core/v1"
+        apiV1 "k8s.io/api/core/v1"
 )
 ```
 
@@ -54,11 +55,6 @@ So, the Run function should have **func(interface{}, *events.Event)** signature 
 type ImageTagChecker struct {
 }
 
-// NewImageTagChecker creates new ImageTagChecker object
-func NewImageTagChecker() *ImageTagChecker {
-	return &ImageTagChecker{}
-}
-
 // Run filer and modifies event struct
 func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 
@@ -69,6 +65,7 @@ func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 
 #### 3. Add your logic in the Run() function
 Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/infracloudio/botkube/blob/master/pkg/events/events.go#L31).
+
 ```
 // Run filers and modifies event struct
 func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
@@ -107,18 +104,18 @@ func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 	log.Logger.Info("Image tag filter successful!")
 }
 ```
-### B. Register your filter to filterengine
+#### 4. Register your filter to filterengine
+You can call **Register()** method implemented by filterengine to register the filter in at startup
 
-- Once your Run() function is completed, you can run go build to check for any compilation error.
-- After that, open **botkube/pkg/filterengine/filterengine.go** and register your filter by adding the struct to **Filters** list
-	// Filters contains the lists of available filters
-	// TODO: load this dynamically
-	Filters = []Filter{
-		filters.NewIngressValidator(),
-		filters.NewImageTagChecker(),   // Register image tag filter
+```
+// Register the filter
+func init() {
+        filterengine.DefaultFilterEngine.Register(ImageTagChecker{})
 }
 
-### C. Rebuild and deploy the BotKube backend
+```
+
+### B. Rebuild and deploy the BotKube backend
 
 - Build the BotKube backend docker image with `make`.
 - Push the image to Dockerhub registry.
