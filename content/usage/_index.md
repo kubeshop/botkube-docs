@@ -8,6 +8,8 @@ weight: 40
 <h3 class="section-head" id="h-show-help"><a href="#h-show-help">Debugging deployments using BotKube</a></h3>
 @BotKube allows you to execute kubectl commands on your Kubernetes cluster.
 Run **/botkubehelp** to find more information about the supported commands.
+
+TODO: update help
 ![help](/images/help.png)
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where BotKube is already added or as a direct message to BotKube.
 ```
@@ -19,6 +21,7 @@ See [Examples](/examples/#h-examples) for the use cases.
 Depending upon your configuration, you will receive notifications about Kubernetes resources lifecycle events and their health.
 BotKube bot allows you to enable/disable notifications only from the configured channel. Run **/botkubehelp**, the bot will reply with the help message about the supported message formats.
 
+TODO: update help
 ![BotKube_help](/images/mm_help.png)
 
 <h3 class="section-head" id="h-view-config"><a href="#h-view-config">View BotKube configuration</a></h3>
@@ -69,6 +72,22 @@ Run **@BotKube notifier status** to check status of notifier if running or stopp
 
 ![notifier_status](/images/notifier_status.png)
 ![notifier_status](/images/mm_notifier_status.png)
+
+<h3 class="section-head" id="h-manage-filters"><a href="#h-manage-filters">Manage filters</a></h3>
+BotKube allows you to manage filters using @BotKube commands
+  <h4>List available filters</h4>
+  Run **@BotKube filters list** to get list of available filters and their running status
+  ![](/images/filters_list.png)
+
+  <h4>Disable filter</h4>
+  Run **@BotKube filters disable {filter-name}** to disable perticular filter to skip checks on resource specs
+  ![](/images/filters_disable.png)
+
+  <h4>Enable filter</h4>
+  Run **@BotKube filters enable {filter-name}** to enable perticular filter to run checks on resource specs
+  ![](/images/filters_enable.png)
+
+
 
 <h3 class="section-head" id="h-kubectl-pods"><a href="#h-kubectl-pods">Run Kubectl commands</a></h3>
 Run **@BotKube < kubectl command without kubectl prefix >** to get kubectl response from the cluster configured with the channel.
