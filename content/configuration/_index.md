@@ -21,21 +21,17 @@ The configuration file contains,
     - name: NAME_OF_THE_RESOURCE   # Name of the resources e.g pods, deployments, ingresses, etc. (Resource name must be in plural form)
       namespaces:                  # List of namespaces, "all" will watch all the namespaces
         - all
-      events:                      # List of lifecycle events you want to receive, e.g create, update, delete OR all
+      events:                      # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
         - create
         - delete
-    - name: secrets
+        - error
+    - name: pods
       namespaces:
         - kube-system
       events:
         - create
         - delete
-
-  # K8S error/warning events you want to receive for the configured resources
-  events:
-    types:
-      - normal
-      - warning
+        - error
 
   # Check true if you want to receive recommendations
   # about the best practices for the created resource
