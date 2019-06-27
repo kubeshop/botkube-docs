@@ -42,7 +42,7 @@ The configuration file contains,
     # Settings for Slack
     slack:
       enabled: false
-      channel: 'SLACK_CHANNEL'
+      channel: 'SLACK_CHANNEL'                    # Slack channel name without '#' prefix where you have added BotKube and want to receive notifications in
       token: 'SLACK_API_TOKEN'
   
     # Settings for Mattermost
@@ -70,8 +70,10 @@ The configuration file contains,
   settings:
     # Cluster name to differentiate incoming messages
     clustername: not-configured
-    # Set false to disable kubectl commands execution
+    # Set true to enable kubectl commands execution
     allowkubectl: false
+    # Set false to disable upgrade notification
+    upgradeNotifier: true
 ```
 The default configuration can be found at:
 
