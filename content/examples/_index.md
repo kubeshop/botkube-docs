@@ -5,20 +5,23 @@ weight = 50
 +++
 
 <h3 class="section-head" id="h-notif-sc"><a href="#h-notif-sc">Sample Notifications</a></h3>
-<h4>1. Resource created</h4>
+<h4>Resource created</h4>
 ![created](/images/create.png)
 
-<h4>2. Resource deleted</h4>
+<h4>Resource deleted</h4>
 ![deleted](/images/delete.png)
 
-<h4>3. Failed to pull image</h4>
+<h4>Failed to pull image</h4>
 ![image_failed](/images/image-failed.png)
 
-<h4>4. Error in pod</h4>
+<h4>Error in pod</h4>
 ![error](/images/error.png)
 
 <h4>Readiness probe failed for the pod</h4>
 ![readiness](/images/readiness.png)
+
+<h4>Job succeeded</h4>
+![job](/images/job_success.png)
 
 <h3 class="section-head" id="h-debug-uc"><a href="#h-debug-uc">Debugging use-cases</a></h3>
 <h4>List pods in "fission" namespace</h4>
