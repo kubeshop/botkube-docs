@@ -9,7 +9,6 @@ weight: 40
 @BotKube allows you to execute kubectl commands on your Kubernetes cluster.
 Run **/botkubehelp** to find more information about the supported commands.
 
-TODO: update help
 ![help](/images/help.png)
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where BotKube is already added or as a direct message to BotKube.
 ```
@@ -21,8 +20,7 @@ See [Examples](/examples/#h-examples) for the use cases.
 Depending upon your configuration, you will receive notifications about Kubernetes resources lifecycle events and their health.
 BotKube bot allows you to enable/disable notifications only from the configured channel. Run **/botkubehelp**, the bot will reply with the help message about the supported message formats.
 
-TODO: update help
-![BotKube_help](/images/mm_help.png)
+![help](/images/help.png)
 
 <h3 class="section-head" id="h-view-config"><a href="#h-view-config">View BotKube configuration</a></h3>
 Run **@BotKube notifier showconfig** message from the configured channel where BotKube is added. The bot will reply you with the configuration with which the controller is running.
