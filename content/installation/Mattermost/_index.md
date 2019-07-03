@@ -13,7 +13,7 @@ toc = true
 <h4>1. Enable Personal Access Token</h4>
 Login with System Admin account, and in the Menu proceed to System console -> Integrations -> Custom Integrations and enable Personal Access Token.
 <h4>2. Create BotKube user</h4>
-To create a Botkube user, if not already created, proceed to menu and Get team invite link. Logout from admin account and paste the link in the address bar and create a user with the username BotKube.
+To create a BotKube user, if not already created, proceed to menu and Get team invite link. Logout from admin account and paste the link in the address bar and create a user with the username BotKube.
 <h4>3. Manage Roles for BotKube user</h4>
 Login as System Admin, in the Menu proceed to System console -> Users. For BotKube user, Manage Roles and allow tokens and post_all access.
 <h4>4. Create Token for BotKube user</h4> 
