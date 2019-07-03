@@ -47,7 +47,7 @@ $ helm install --name botkube --namespace botkube \
 helm/botkube
 ```
 where,<br>
-- **SLACK_ENABLED** set true to enable Slack support for Botkube<br>
+- **SLACK_ENABLED** set true to enable Slack support for BotKube<br>
 - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added<br>
 - **SLACK_API_TOKEN_FOR_THE_BOT** is the Token you received after installing BotKube app to your Slack workspace<br>
 - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
@@ -71,7 +71,7 @@ $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/master/deploy-a
 Set *SLACK_ENABLED*, *SLACK_CHANNEL*, *SLACK_API_TOKEN*, *clustername*, *allowkubectl* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
 where,<br>
-- **SLACK_ENABLED** set true to enable Slack support for Botkube<br>
+- **SLACK_ENABLED** set true to enable Slack support for BotKube<br>
 - **SLACK_CHANNEL** is the channel name where @BotKube is added<br>
 - **SLACK_API_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br>
 - **clustername** is the cluster name set in the incoming messages<br>

@@ -99,7 +99,7 @@ BotKube integration with Slack or Mattermost helps you monitor your Kubernetes c
   <div class="rightimage" style="padding-top:10%;">
     <h1>Debug</h1>
     <ul>
-    <li>Botkube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
+    <li>BotKube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
     <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
     </ul>
   </div>
@@ -108,7 +108,7 @@ BotKube integration with Slack or Mattermost helps you monitor your Kubernetes c
   <div class="leftimage" style="padding-top:10%;">
     <h1>Debug</h1>
     <ul>
-    <li>Botkube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
+    <li>BotKube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
     <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
     </ul>
   </div>
@@ -163,7 +163,7 @@ Even while you are camping without a laptop, you can use Slack or Mattermost mob
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-shield-alt"></i>  Security</h4> By default Botkube uses a READONLY service account, you can customize this to your needs.
+    <h4><i class="fas fa-shield-alt"></i>  Security</h4> By default BotKube uses a READONLY service account, you can customize this to your needs.
   </div>
   <div class="rightfeature">
     <h4><i class="fab fa-github"></i>  Open source</h4> BotKube backend is open source and we welcome your requirements and contributions.

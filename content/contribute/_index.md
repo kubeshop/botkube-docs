@@ -31,10 +31,11 @@ dependencies.
 [`docker`](https://docs.docker.com/install/) installed on your
 machine.
 * Clone the source code
-   ```sh
-   $ git clone https://github.com/infracloudio/botkube.git $GOPATH/src/github.com/infracloudio/botkube
-   $ cd $GOPATH/src/github.com/infracloudio/botkube
-   ```
+
+  ```sh
+  $ git clone https://github.com/infracloudio/botkube.git $GOPATH/src/github.com/infracloudio/botkube
+  $ cd $GOPATH/src/github.com/infracloudio/botkube
+  ```
 
 Now you can build and run BotKube by one of the following ways
 ### Build the container image
