@@ -18,13 +18,14 @@ We have already defined a filter to add suggestions in the notifications if cont
 Prerequisites:
 
 - As of now, you can write filters only using Go language. So you need to be familiar with it.
+- Understanding of Kubernetes Objects needed (https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 
 #### 1. Create a new .go file
 Create a new file (e.g image_tag_checker.go) in **botkube/pkg/filterengine/filters/** directory
 
 Set package name as "filters" and import required packages
 
-```go
+```
 package filters
 
 import (
@@ -38,17 +39,19 @@ import (
 )
 ```
 
-#### 2. Create a structure and implement "Run()" function for the struct.
+#### 2. Create a structure and implement "Run() and Describe()" methods for the struct.
 
 FilterEngine has an interface Filter defined for the filters
 
 ```
-// Filter has function to run filter
+// Filter has method to run filter
 type Filter interface {
-	Run(interface{}, *events.Event)
+        Run(interface{}, *events.Event)
+        Describe() string
 }
 ```
-So, the Run function should have **func(interface{}, *events.Event)** signature to satisfy the Filter interface
+
+To implement the Filter interface, your struct should have **Run(interface{}, *events.Event)** and **Describe() string** methods
 
 ```
 // ImageTagChecker add recommendations to the event object if latest image tag is used in pod containers
@@ -60,6 +63,11 @@ func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 
 	// your logic goes here
 
+}
+
+// Describe filter
+func (f ImageTagChecker) Describe() string {
+        return "Checks and adds recommendation if 'latest' image tag is used for container image."
 }
 ```
 
@@ -117,6 +125,8 @@ func init() {
 
 ### B. Rebuild and deploy the BotKube backend
 
-- Build the BotKube backend docker image with `make`.
+- Build the BotKube backend docker image with `make container-image`.
 - Push the image to Dockerhub registry.
 - Install/Upgrade your BotKube deployment (Steps are provided [here](/installation)).
+
+_The implementation of built in filters can be found at: https://github.com/infracloudio/botkube/tree/develop/pkg/filterengine/filters_
