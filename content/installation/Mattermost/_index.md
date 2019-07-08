@@ -8,16 +8,52 @@ toc = true
 
 <h3 class="section-head" id="h-install-BotKube-mattermost"><a href="#h-install-BotKube-mattermost">Install BotKube to the Mattermost team</a></h3>
 
-<p>Follow the steps below to install BotKube in your Mattermost Team.</p>
+<p>Follow the steps below to install BotKube in your Mattermost Team (v5.11.1). </p>
 
-<h4>1. Enable Personal Access Token</h4>
-Login with System Admin account, and in the Menu proceed to System console -> Integrations -> Custom Integrations and enable Personal Access Token.
-<h4>2. Create BotKube user</h4>
+#### 1. Enable Personal Access Token
+Login with System Admin account, and in the Menu proceed to **System console > Integrations > Custom Integrations** and enable **Personal Access Token**.
+
+![mm_token_access](/images/mm_token_access.png)
+
+#### 2. Create BotKube user
 To create a BotKube user, if not already created, proceed to menu and Get team invite link. Logout from admin account and paste the link in the address bar and create a user with the username BotKube.
-<h4>3. Manage Roles for BotKube user</h4>
-Login as System Admin, in the Menu proceed to System console -> Users. For BotKube user, Manage Roles and allow tokens and post_all access.
-<h4>4. Create Token for BotKube user</h4> 
-Login as BotKube user, in the Menu proceed to Account Settings -> Security -> Personal Access Token -> Create and save the token.
+
+![mm_botkube_user](/images/mm_botkube_user.png)
+
+#### 3. Manage Roles for BotKube user
+Login as System Admin, in the Menu proceed to **System console > Users**. For BotKube user, Manage Roles and allow tokens and post_all access.
+
+![mm_botkube_roles](/images/mm_botkube_roles.png)
+
+#### 4. Create Token for BotKube user
+Login as BotKube user, in the Menu proceed to **Account Settings > Security > Personal Access Token > Create** and save the token.
+
+![mm_botkube_token](/images/mm_botkube_token.png)
+
+#### 5. Add BotKube to a channel
+Add BotKube user created to the channel you want to receive notifications in.
+
+<h3 class="section-head" id="h-install-BotKube-slashcommand"><a href="#h-install-BotKube-slashcommand">Configure /botkubehelp Slash Command</a></h3>
+
+**1.** First, go to **Main Menu > Integrations > Slash Commands**. (If you don’t have the Integrations option in your Main Menu, slash commands may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from System Console > Integrations > Custom Integrations in prior versions)
+
+**2.** Click **Add Slash Command** and add following details for the command and click **Save**.
+
+Field | Value
+--- | ---
+Title | BotKube 
+Description | Show BotKube help
+Command Trigger Word | botkubehelp
+Request URL | https://botkube.herokuapp.com/help
+Request Method | POST
+Autocomplete | True
+
+![mm_botkube_slash_cmd](/images/mm_botkube_slash_cmd.png)
+
+**3.** Verify executing **/botkubehelp** in a channel.
+
+![mm_botkube_help](/images/mm_botkube_help.png)
+
 
 <h3 class="section-head" id="h-install-BotKube-k8s"><a href="#h-install-BotKube-k8s">Install BotKube in Kubernetes cluster</a></h3>
 
