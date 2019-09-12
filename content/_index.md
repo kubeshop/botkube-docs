@@ -1,14 +1,46 @@
 ---
 title: "BotKube"
 ---
+
+<div class="visibledesktop">
+  <div class="lefttitle">
+    <a href="/installation" class="linkhighlight">
+      <i class="fas fa-rocket"></i>
+      Try Now
+    </a>
+  </div>
+
+  <div class="righttitle">
+    <a href="https://github.com/infracloudio/botkube" class="linkhighlight">
+      <i class="fab fa-github"></i>
+      View Source
+  </div>
+<br>
+</div>
+
 <div class="mobiletitle">
 <a href="/"><img src="/images/botkube-title.jpg"></a>
 </div>
+
 <div class="desktoptitle">
+
 <a href="/"><img src="/images/botkube-title.jpg" width="486px" height="96px"></a>
 </div>
 
 <style>
+
+#body a.linkhighlight:hover {
+  color: #ffffff;
+}
+
+#body a.linkhighlight {
+  color: inherit;
+}
+
+#body a.linkhighlight:hover:after, #body a.linkhighlight:focus:after {
+  width: 0 !important;
+}
+
 .desktoptitle {
   float: center;
 }
@@ -35,6 +67,29 @@ title: "BotKube"
 
 .rightfeature {
   width: 48%; float:right; display:inline-block;
+}
+
+.lefttitle {
+  float: left;
+  border: 1px solid #1C90F3;
+  padding: 10px;
+}
+
+.righttitle {
+  float:right;
+  border: 1px solid #1C90F3;
+  padding: 10px;
+
+}
+
+.lefttitle i, .righttitle i {
+  padding: 0 5px;
+}
+
+.lefttitle:hover, .righttitle:hover {
+  background-color: #1C90F3;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .visibledesktop {
@@ -75,7 +130,7 @@ title: "BotKube"
 }
 </style>
 
-BotKube integration with Slack or Mattermost helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
+BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
 
 <h2>What can BotKube do?</h2>
 <div style="overflow: auto;">
@@ -134,45 +189,72 @@ BotKube integration with Slack or Mattermost helps you monitor your Kubernetes c
 <h2>Features</h2>
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-fw fa-user-secret"></i> Privacy</h4> The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
+    <h4><i class="fas fa-fw fa-user-secret"></i>
+      Privacy
+    </h4>
+    The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
+
   <div class="rightfeature">
-  <h4><i class="fas fa-terminal"></i> Execute kubectl commands</h4> Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
+    <h4> <i class="fas fa-terminal"> </i>
+      Execute kubectl commands
+    </h4>
+    Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
   </div>
 </div>
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-cogs"></i>  Debug Anywhere, Anytime</h4>
-With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
-Even while you are camping without a laptop, you can use Slack or Mattermost mobile app and get crucial information.
+    <h4><i class="fas fa-cogs"></i>
+      Debug Anywhere, Anytime
+    </h4>
+    With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
+    Even while you are camping without a laptop, you can use Slack or Mattermost mobile app and get crucial information.
   </div>
   <div class="rightfeature">
-    <h4><i class="fas fa-cogs"></i>  Easy to configure</h4> Get notifications about things that you really care for. You can configure events or objects or namespaces that you want to be informed about.
+    <h4> <i class="fas fa-cogs"> </i>
+	Easy to configure
+    </h4>
+    Get notifications about things that you really care for. You can configure events or objects or namespaces that you want to be informed about.
   </div>
 </div>
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-cloud"></i>  Deploy on any Kubernetes cluster</h4> You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
+    <h4> <i class="fas fa-cloud"> </i>
+      Deploy on any Kubernetes cluster
+    </h4>
+    You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
   </div>
   <div class="rightfeature">
-    <h4><i class="fas fa-plug"></i>  Add custom filters</h4> It is very easy to write your own filters and registering them to FilterEngine. Follow <a href=/filters>this</a> guide to know more.
+    <h4> <i class="fas fa-plug"> </i>
+      Add custom filters
+    </h4>
+    It is very easy to write your own filters and registering them to FilterEngine. Follow <a href=/filters>this</a> guide to know more.
   </div>
 </div>
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-shield-alt"></i>  Security</h4> By default BotKube uses a READONLY service account, you can customize this to your needs.
+    <h4> <i class="fas fa-shield-alt"> </i>
+      Security
+    </h4>
+    By default BotKube uses a READONLY service account, you can customize this to your needs.
   </div>
   <div class="rightfeature">
-    <h4><i class="fab fa-github"></i>  Open source</h4> BotKube backend is open source and we welcome your requirements and contributions.
+    <h4><i class="fab fa-github"> </i>
+      Open source
+    </h4>
+    BotKube backend is open source and we welcome your requirements and contributions.
   </div>
 </div>
 
 <div style="overflow: auto;">
   <div class="centerfeature">
-    <h4><i class="fas fa-tasks"></i>  Support for multiple interfaces</h4> Like Slack, BotKube can also be integrated with Mattermost and ElasticSearch. See <a href=/configuration>configuration</a> syntax for details.
+    <h4> <i class="fas fa-tasks"> </i>
+      Support for multiple interfaces
+    </h4>
+    Like Slack, BotKube can also be integrated with Mattermost and ElasticSearch. See <a href=/configuration>configuration</a> syntax for details.
   </div>
 </div>
 
