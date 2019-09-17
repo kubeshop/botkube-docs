@@ -1,23 +1,6 @@
 ---
 title: "BotKube"
 ---
-
-<div class="visibledesktop">
-  <div class="lefttitle">
-    <a href="/installation" class="linkhighlight">
-      <i class="fas fa-rocket"></i>
-      Try Now
-    </a>
-  </div>
-
-  <div class="righttitle">
-    <a href="https://github.com/infracloudio/botkube" class="linkhighlight">
-      <i class="fab fa-github"></i>
-      View Source
-  </div>
-<br>
-</div>
-
 <div class="mobiletitle">
 <a href="/"><img src="/images/botkube-title.jpg"></a>
 </div>
@@ -29,15 +12,15 @@ title: "BotKube"
 
 <style>
 
-#body a.linkhighlight:hover {
+a.linkhighlight:hover {
   color: #ffffff;
 }
 
-#body a.linkhighlight {
+a.linkhighlight {
   color: inherit;
 }
 
-#body a.linkhighlight:hover:after, #body a.linkhighlight:focus:after {
+a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   width: 0 !important;
 }
 
@@ -47,6 +30,10 @@ title: "BotKube"
 
 .mobiletitle {
   display: none;
+}
+
+.centerimage {
+  width: 60%; float:center;
 }
 
 .leftimage {
@@ -79,7 +66,6 @@ title: "BotKube"
   float:right;
   border: 1px solid #1C90F3;
   padding: 10px;
-
 }
 
 .lefttitle i, .righttitle i {
@@ -94,7 +80,7 @@ title: "BotKube"
 
 .visibledesktop {
   overflow: auto;
-  display: block;
+  display: flex;
 }
 
 .visiblemobile {
@@ -107,6 +93,9 @@ title: "BotKube"
   }
   .mobiletitle {
     display: block;
+  }
+  .centerimage {
+    width: 100%;
   }
   .leftimage {
     width: 100%;
@@ -130,10 +119,33 @@ title: "BotKube"
 }
 </style>
 
+<p style="font-size:18px;font-weight:400;">
 BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
+</p>
+
+<div>
+  <img class="centerimage" src="/images/botkube_multicluster.png" style="border-radius:3%;">
+</div>
+
+<div class="visibledesktop" style="display: block;">
+  <div class="lefttitle">
+    <a href="/installation" class="linkhighlight">
+      <i class="fas fa-rocket"></i>
+      Try Now
+    </a>
+  </div>
+  <div class="righttitle">
+    <a href="https://github.com/infracloudio/botkube" class="linkhighlight">
+      <i class="fab fa-github"></i>
+      View Source
+    </a>
+  </div>
+</div>
+
+
 
 <h2>What can BotKube do?</h2>
-<div style="overflow: auto;">
+<div class="visibledesktop">
   <div class="leftimage">
     <img src="/images/monitor.gif" style="border-radius:3%;">
   </div>
@@ -146,7 +158,19 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
     </ul>
   </div>
 </div>
-
+<div class="visiblemobile">
+  <div class="leftimage">
+    <img src="/images/monitor.gif" style="border-radius:3%;">
+  </div>
+  <div class="rightimage">
+    <h1>Monitor</h1>
+    <ul>
+      <li>BotKube watches Kubernetes resources and sends a notification to the channel if any event occurs for example a ImagePullBackOff error.</li>
+      <li>You can customize the objects and level of events you want to get from Kubernetes cluster.</li>
+      <li>You can turn on/off notifications simply by sending a message to @BotKube</li>
+    </ul>
+  </div>
+</div>
 <div class="visiblemobile">
   <div class="leftimage">
     <img src="/images/exec.gif" style="border-radius:2%;">
@@ -160,7 +184,7 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
   </div>
 </div>
 <div class="visibledesktop">
-  <div class="leftimage" style="padding-top:10%;">
+  <div class="leftimage" style="padding-top:5%;">
     <h1>Debug</h1>
     <ul>
     <li>BotKube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
@@ -171,7 +195,6 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
     <img src="/images/exec.gif" style="border-radius:2%;">
   </div>
 </div>
-
 <div style="overflow: auto;">
   <div class="leftimage">
     <img src="/images/checks.gif" style="border-radius:2%;">
