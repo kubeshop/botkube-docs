@@ -4,24 +4,37 @@ date = 2019-01-04T16:59:38+05:30
 weight = 50
 +++
 
+{{% notice note %}}
+You can change notification format to - **long** or **short** through settings based on your requirement. Check [configuration](/configuration) for more details.<br>
+The default notification type is **short**
+{{% /notice%}}
+
+
+
 <h3 class="section-head" id="h-notif-sc"><a href="#h-notif-sc">Sample Notifications</a></h3>
 <h4>Resource created</h4>
-![created](/images/create.png)
+![](/images/create_sh.png "Slack notiftype=short")
+![](/images/create.png "Slack notiftype=long")
 
 <h4>Resource deleted</h4>
-![deleted](/images/delete.png)
+![](/images/mm_delete_sh.png "Mattermost notiftype=short")
+![](/images/delete.png "Slack notiftype=long")
 
 <h4>Failed to pull image</h4>
-![image_failed](/images/image-failed.png)
+![](/images/image_failed_sh.png "Slack notiftype=short")
+![](/images/mm_image_failed_sh.png "Mattermost notiftype=short")
+![](/images/image-failed.png "Slack notiftype=long")
 
 <h4>Error in pod</h4>
-![error](/images/error.png)
+![](/images/error_sh.png "Slack notiftype=short")
 
 <h4>Readiness probe failed for the pod</h4>
-![readiness](/images/readiness.png)
+![](/images/readiness_sh.png "Slack notiftype=short")
+![](/images/mm_readiness_sh.png "Mattermost notiftype=short")
 
 <h4>Job succeeded</h4>
-![job](/images/job_success.png)
+![](/images/job_success_sh.png "Slack notiftype=short")
+![](/images/job_success.png "Slack notiftype=long")
 
 <h3 class="section-head" id="h-debug-uc"><a href="#h-debug-uc">Debugging use-cases</a></h3>
 <h4>List pods in "fission" namespace</h4>

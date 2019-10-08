@@ -30,6 +30,11 @@ url = "https://github.com/infracloudio/botkube"
 weight = 20
 
 [[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+url = "/credits"
+weight = 30
+
+[[menu.shortcuts]]
 name = "<i class='fas fa-fw fa-bookmark'></i> Privacy Policy"
 url = "/privacy"
 weight = 30

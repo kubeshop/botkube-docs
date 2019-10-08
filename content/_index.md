@@ -180,6 +180,7 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
     <ul>
     <li>BotKube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
     <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
+    <li>BotKube can talk to multiple cluster, you just need to deploy BotKube backend in each cluster with the same token. That's it! </li>
     </ul>
   </div>
 </div>
@@ -189,6 +190,7 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
     <ul>
     <li>BotKube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
     <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
+    <li>BotKube can talk to multiple cluster, you just need to deploy BotKube backend in each cluster with the same token. That's it! </li>
     </ul>
   </div>
   <div class="rightimage">
