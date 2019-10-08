@@ -10,7 +10,7 @@ toc = true
 
 <p>Follow the steps below to install BotKube Slack app to your Slack workspace.</p>
 
-<h4 id="h-install-BotKube-slackapp"><a href="#h-install-BotKube-slackapp">Install BotKube Slack app to your Slack workspace</a></h4>
+<h4 id="h-install-BotKube-slackapp">Install BotKube Slack app to your Slack workspace</h4>
 
 Click the **Add to Slack** button provided to install BotKube Slack application to your workspace. Once you have authorized the application, you will be provided a BOT Access token. Kindly note down that token as it will be required while deploying BotKube backend to your Kubernetes cluster.
 
@@ -18,36 +18,34 @@ Click the **Add to Slack** button provided to install BotKube Slack application 
 
 Alternetively, you can install BotKube Slack app [from Slack app directory](https://slack.com/apps/AF5DZLHPC-botkube).
 
-<h4 id="h-add-botkube-slackchannel"><a href="#h-add-botkube-slackchannel">Add BotKube user to a Slack channel</a></h4>
+<h4 id="h-add-botkube-slackchannel">Add BotKube user to a Slack channel</h4>
 
 After installing BotKube app to your Slack workspace, you could see new bot user with name "BotKube" added in your workspace. Add that bot to a Slack channel you want to receive notification in.<br> (You can add it by inviting **@BotKube** in a channel)
 
-<h3 class="section-head" id="h-install-BotKube-k8s"><a href="#h-install-BotKube-k8s">Install BotKube for Slack in Kubernetes cluster</a></h3>
+<h3 class="section-head" id="h-install-BotKube-k8s"><a href="#h-install-BotKube-k8s">Install BotKube Backend in Kubernetes cluster</a></h3>
 
-<h4>BotKube install: Using helm</h4>
+<h4>Using helm</h4>
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already
-- Clone the BotKube github repository.
+- Add **infracloudio** chart repository
 
 ```bash
-$ git clone https://github.com/infracloudio/botkube.git
+$ helm repo add infracloudio https://infracloudio.github.io/charts
 ```
 
-- Update default **config** in **helm/botkube/values.yaml** to watch the resources you want (by default you will receive **create**, **delete** and **error** events for all the resources in all the namespaces).
-If you are not interested in events about particular resource, just remove its entry from the config file.
 - Deploy BotKube backend using **helm install** in your cluster.
 
 ```bash
-$ helm install --name botkube --namespace botkube \
+$ helm repo update
+$ helm install --version v0.9.0 --name botkube --namespace botkube \
 --set config.communications.slack.enabled=true \
 --set config.communications.slack.channel=<SLACK_CHANNEL_NAME> \
 --set config.communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
---set config.settings.clustername=<CLUSTER_NAME> \
---set config.settings.allowkubectl=<ALLOW_KUBECTL> \
-helm/botkube
+--set image.repository=infracloudio/botkube \
+--set image.tag=v0.9.0 \
+infracloudio/botkube
 ```
 where,<br>
-- **SLACK_ENABLED** set true to enable Slack support for BotKube<br>
 - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added<br>
 - **SLACK_API_TOKEN_FOR_THE_BOT** is the Token you received after installing BotKube app to your Slack workspace<br>
 - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
@@ -55,9 +53,53 @@ where,<br>
 
    Configuration syntax is explained [here](/configuration).
 
-- Send **@BotKube ping** in the channel to see if BotKube is running and responding.
+Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
-<br>
+{{% notice note %}}
+  With default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  If you wish to monitor only specific resources, follow the steps given below:
+{{% /notice%}}
+
+  - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
+
+    (You can refer sample config from https://github.com/infracloudio/botkube/tree/develop/helm/botkube/sample-res-config.yaml)
+
+    ```
+    config:
+      ## Resources you want to watch
+      resources:
+        - name: pod                # Name of the resources e.g pod, deployment, ingress, etc.
+          namespaces:              # List of namespaces, "all" will watch all the namespaces
+            include:
+              - all
+            ignore:
+              - kube-system
+          events:                  # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
+            - create
+            - delete
+            - error
+        - name: job
+          namespaces:
+            include:
+              - all
+            ignore:
+              - dev
+          events:
+            - create
+            - update
+            - delete
+            - error
+    ```
+  - Pass the yaml file as a flag to `helm install` command.
+    e.g
+
+    ```
+    helm install --version v0.9.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    ```
+
+  Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
+
+
 <h4>Using kubectl</h4>
 
 - Make sure that you have kubectl cli installed and have access to Kubernetes cluster

@@ -8,15 +8,15 @@ toc = true
 
 <h3 class="section-head" id="h-install-BotKube-mattermost"><a href="#h-install-BotKube-mattermost">Install BotKube to the Mattermost team</a></h3>
 
-<p>Follow the steps below to install BotKube in your Mattermost Team (v5.11.1). </p>
+<p>Follow the steps below to install BotKube in your Mattermost Team (v5.14.0). </p>
 
 #### 1. Enable Personal Access Token
-Login with System Admin account, and in the Menu proceed to **System console > Integrations > Custom Integrations** and enable **Personal Access Token**.
+Login with System Admin account, and in the Menu proceed to **System console > Integrations > Integration Management** and enable **Personal Access Token**.
 
 ![mm_token_access](/images/mm_token_access.png)
 
 #### 2. Create BotKube user
-To create a BotKube user, if not already created, proceed to menu and Get team invite link. Logout from admin account and paste the link in the address bar and create a user with the username BotKube.
+To create a BotKube user, if not already created, proceed to menu and Get team invite link. Logout from admin account and paste the link in the address bar and create a user with the username **BotKube**.
 
 ![mm_botkube_user](/images/mm_botkube_user.png)
 
@@ -60,18 +60,17 @@ Autocomplete | True
 <h4>BotKube install: Using helm</h4>
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already
-- Clone the BotKube github repository.
+- Add **infracloudio** chart repository
 
 ```bash
-$ git clone https://github.com/infracloudio/botkube.git
+$ helm repo add infracloudio https://infracloudio.github.io/charts
 ```
 
-- Update default **config** in **helm/botkube/values.yaml** to watch the resources you want (by default you will receive **create**, **delete** and **error** events for all the resources in all the namespaces).
-If you are not interested in events about particular resource, just remove its entry from the config file.
 - Deploy BotKube backend using **helm install** in your cluster.
 
 ```bash
-$ helm install --name botkube --namespace botkube \
+$ helm repo update
+$ helm install --version v0.9.0 --name botkube --namespace botkube \
 --set config.communications.mattermost.enabled=true \
 --set config.communications.mattermost.url=<MATTERMOST_SERVER_URL> \
 --set config.communications.mattermost.cert=<MATTERMOST_CERT> \
@@ -80,11 +79,13 @@ $ helm install --name botkube --namespace botkube \
 --set config.communications.mattermost.channel=<MATTERMOST_CHANNEL> \
 --set config.settings.clustername=<CLUSTER_NAME> \
 --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
-helm/botkube
+--set image.repository=infracloudio/botkube \
+--set image.tag=v0.9.0 \
+infracloudio/botkube
 ```
+
 where,<br>
-- **MATTERMOST_ENABLED** set true to enable Mattermost support for BotKube<br>
-- **MATTERMOST_SERVER_URL** is the URL where Mattermost is running<br>
+- **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running<br>
 - **MATTERMOST_CERT** is the SSL certificate file for HTTPS connection. Place it in Helm directory and specify the path<br>
 - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for BotKube user<br>
 - **MATTERMOST_TEAM** is the Team name where BotKube is added<br>
@@ -96,9 +97,53 @@ where,<br>
 
    Configuration syntax is explained [here](/configuration).
 
-- Send **@BotKube ping** in the channel to see if BotKube is running and responding.
+Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
-<br>
+{{% notice note %}}
+  With default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  If you wish to monitor only specific resources, follow the steps given below:
+{{% /notice%}}
+
+  - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
+
+    (You can refer sample config from https://github.com/infracloudio/botkube/tree/develop/helm/botkube/sample-res-config.yaml)
+
+    ```
+    config:
+      ## Resources you want to watch
+      resources:
+        - name: pod                # Name of the resources e.g pod, deployment, ingress, etc.
+          namespaces:              # List of namespaces, "all" will watch all the namespaces
+            include:
+              - all
+            ignore:
+              - kube-system
+          events:                  # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
+            - create
+            - delete
+            - error
+        - name: job
+          namespaces:
+            include:
+              - all
+            ignore:
+              - dev
+          events:
+            - create
+            - update
+            - delete
+            - error
+    ```
+  - Pass the yaml file as a flag to `helm install` command.
+    e.g
+
+    ```
+    helm install --version v0.9.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    ```
+
+  Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
+
+
 <h4>Using kubectl</h4>
 
 - Make sure that you have kubectl cli installed and have access to Kubernetes cluster
@@ -154,4 +199,3 @@ $ helm delete --purge botkube
 ```bash
 $ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/master/deploy-all-in-one.yaml -n botkube
 ```
-
