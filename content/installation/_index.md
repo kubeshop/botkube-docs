@@ -10,6 +10,11 @@ BotKube has two components that need to be installed.
 1. BotKube App Integration in your Slack/Mattermost
 2. BotKube backend for the App in your Kubernetes cluster
 
+{{% notice note %}}
+You can use single BotKube backend to serve all the interfaces - Slack, Mattermost, and ElasticSearch. <br>
+You just need to enable required mediums through the settings and add necessary configuration.<br>
+_see the [configuration](/configuration) section for more information_
+{{% /notice%}}
 
 <style>
 
