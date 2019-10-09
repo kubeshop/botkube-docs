@@ -113,7 +113,7 @@ func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 }
 ```
 #### 4. Register your filter to filterengine
-You can call **Register()** method implemented by filterengine to register the filter in at startup
+You can call **Register()** method implemented by filterengine to register the filter at startup
 
 ```
 // Register the filter

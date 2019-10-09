@@ -23,9 +23,9 @@ This command needs to be executed from configured channel else use `--cluster-na
 ![get_pods](/images/mm_get_ns.png)
 
 <h4 class="section-head" id="h-specify-cluster-name">Specify cluster name</h4>
-If you have installed BotKube backend on the multiple cluster, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
+If you have installed BotKube backend on multiple clusters, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
 
-To get the list of all cluster's configured in botkube, you can use the ping command.
+To get the list of all clusters configured in botkube, you can use the ping command.
 
 ![ping](/images/ping.png)
 
