@@ -16,17 +16,17 @@ Login with System Admin account, and in the Menu proceed to **System console > I
 ![mm_token_access](/images/mm_token_access.png)
 
 #### 2. Create BotKube user
-To create a BotKube user, if not already created, proceed to menu and Get team invite link. Logout from admin account and paste the link in the address bar and create a user with the username **BotKube**.
+To create a BotKube user, if not already created, proceed to the menu and Get a team invite link. Logout from the admin account and paste the link in the address bar and create a user with the username **BotKube**.
 
 ![mm_botkube_user](/images/mm_botkube_user.png)
 
 #### 3. Manage Roles for BotKube user
-Login as System Admin, in the Menu proceed to **System console > Users**. For BotKube user, Manage Roles and allow tokens and post_all access.
+Login as System Admin, in the Menu, proceed to **System console > Users**. For BotKube user, Manage Roles and allow tokens and post_all access.
 
 ![mm_botkube_roles](/images/mm_botkube_roles.png)
 
-#### 4. Create Token for BotKube user
-Login as BotKube user, in the Menu proceed to **Account Settings > Security > Personal Access Token > Create** and save the token.
+#### 4. Create a Token for BotKube user
+Login as BotKube user, in the Menu, proceed to **Account Settings > Security > Personal Access Token > Create** and save the token.
 
 ![mm_botkube_token](/images/mm_botkube_token.png)
 
@@ -35,9 +35,9 @@ Add BotKube user created to the channel you want to receive notifications in.
 
 <h3 class="section-head" id="h-install-BotKube-slashcommand"><a href="#h-install-BotKube-slashcommand">Configure /botkubehelp Slash Command</a></h3>
 
-**1.** First, go to **Main Menu > Integrations > Slash Commands**. (If you don’t have the Integrations option in your Main Menu, slash commands may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from System Console > Integrations > Custom Integrations in prior versions)
+**1.** First, go to **Main Menu > Integrations > Slash Commands**. (If you don’t have the Integrations option in your Main Menu, slash commands may not be enabled on your Mattermost server or maybe disabled for non-admins. Enable them from System Console > Integrations > Custom Integrations in prior versions)
 
-**2.** Click **Add Slash Command** and add following details for the command and click **Save**.
+**2.** Click **Add Slash Command** and add the following details for the command and click **Save**.
 
 Field | Value
 --- | ---
@@ -93,14 +93,14 @@ where,<br>
 - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
 - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-- To deploy with TLS, replace **MATTERMOST_CERT** with the location of SSL certificate file placed in Helm directory. Leave this value to None if deploying without TLS.
+- To deploy with TLS, replace **MATTERMOST_CERT** with the location of the SSL certificate file placed in Helm directory. Leave this value to None if deploying without TLS.
 
    Configuration syntax is explained [here](/configuration).
 
 Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
 {{% notice note %}}
-  With default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
   If you wish to monitor only specific resources, follow the steps given below:
 {{% /notice%}}
 
@@ -173,7 +173,7 @@ where,<br>
 $ kubectl create ns botkube && kubectl create -f deploy-all-in-one.yaml -n botkube
 ```
 
-- Check pod status in botkube namespace. Once running, send **@BotKube ping** in the Slack channel to confirm if BotKube is responding correctly.
+- Check pod status in botkube namespace. Once running, send **@BotKube ping** in the configured channel to confirm if BotKube is responding correctly.
 
 - To deploy with TLS, download and use deploy-all-in-one-tls.yaml. Replace **ENCODED_CERTIFICATE** with your base64 encoded certificate value in the secret. To get a base64 encoded value of your certificate, use below command and replace <YOUR_CERTIFICATE> with the certificate name.
 
@@ -183,7 +183,7 @@ $ cat <YOUR_CERTIFICATE> | base64 -w 0
 
 <br>
 <h3 class="section-head" id="h-uninstall-BotKube-mattermost"><a href="#h-uninstall-BotKube-mattermost">Remove BotKube from Mattermost Team</a></h3>
-- Deactive or remove BotKube user from Mattermost Team. Login as System Admin, in the Menu proceed to System console -> Users ->  Deactivate<br>
+- Deactivate or remove BotKube user from Mattermost Team. Login as System Admin, in the Menu proceed to System console -> Users -> botkube -> Deactivate<br>
 - Archive Channel created for BotKube communication if required.
 
 <h3 class="section-head" id="h-uninstall-BotKube-k8s"><a href="#h-uninstall-BotKube-k8s">Remove BotKube from Kubernetes cluster</a></h3>

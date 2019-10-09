@@ -16,11 +16,11 @@ Click the **Add to Slack** button provided to install BotKube Slack application 
 
 <a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=12637824912.515475697794"><img alt=""Add to Slack"" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
 
-Alternetively, you can install BotKube Slack app [from Slack app directory](https://slack.com/apps/AF5DZLHPC-botkube).
+Alternatively, you can install BotKube Slack app [from Slack app directory](https://slack.com/apps/AF5DZLHPC-botkube).
 
 <h4 id="h-add-botkube-slackchannel">Add BotKube user to a Slack channel</h4>
 
-After installing BotKube app to your Slack workspace, you could see new bot user with name "BotKube" added in your workspace. Add that bot to a Slack channel you want to receive notification in.<br> (You can add it by inviting **@BotKube** in a channel)
+After installing BotKube app to your Slack workspace, you could see a new bot user with the name "BotKube" added in your workspace. Add that bot to a Slack channel you want to receive notification in.<br> (You can add it by inviting **@BotKube** in a channel)
 
 <h3 class="section-head" id="h-install-BotKube-k8s"><a href="#h-install-BotKube-k8s">Install BotKube Backend in Kubernetes cluster</a></h3>
 
@@ -41,6 +41,8 @@ $ helm install --version v0.9.0 --name botkube --namespace botkube \
 --set config.communications.slack.enabled=true \
 --set config.communications.slack.channel=<SLACK_CHANNEL_NAME> \
 --set config.communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
+--set config.settings.clustername=<CLUSTER_NAME> \
+--set config.settings.allowkubectl=<ALLOW_KUBECTL> \
 --set image.repository=infracloudio/botkube \
 --set image.tag=v0.9.0 \
 infracloudio/botkube
@@ -56,7 +58,7 @@ where,<br>
 Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
 {{% notice note %}}
-  With default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
   If you wish to monitor only specific resources, follow the steps given below:
 {{% /notice%}}
 

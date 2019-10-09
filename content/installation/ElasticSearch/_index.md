@@ -37,7 +37,7 @@ infracloudio/botkube
 where,<br>
 - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br>
 - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br>
-- **ELASTICSEARCH_PASSWORD** is the username for the username to authenticate to Els server<br>
+- **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br>
 - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which BotKube events will be stored _(default: botkube)_<br>
 - **ELASTICSEARCH_INDEX_TYPE** _(optional)_ contains type for the BotKube index _(default: botkube-event)_<br>
 - **ELASTICSEARCH_INDEX_SHARDS** _(optional)_ denotes number of shards for BotKube index _(default: 1)_<br>
@@ -47,7 +47,7 @@ where,<br>
    Configuration syntax is explained [here](/configuration).
 
 {{% notice note %}}
-  With default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
   If you wish to monitor only specific resources, follow the steps given below:
 {{% /notice%}}
 
@@ -107,7 +107,7 @@ Set *ELASTICSEARCH_ENABLED*=true, *ELASTICSEARCH_USERNAME*, *ELASTICSEARCH_PASSW
 where,<br>
 - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br>
 - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br>
-- **ELASTICSEARCH_PASSWORD** is the username for the username to authenticate to Els server<br>
+- **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br>
 
 - Create **botkube** namespace and deploy resources
 

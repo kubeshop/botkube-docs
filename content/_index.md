@@ -178,9 +178,9 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
   <div class="rightimage" style="padding-top:10%;">
     <h1>Debug</h1>
     <ul>
-    <li>BotKube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
+    <li>BotKube can execute kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
     <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
-    <li>BotKube can talk to multiple cluster, you just need to deploy BotKube backend in each cluster with the same token. That's it! </li>
+    <li>BotKube can talk to multiple clusters, you just need to deploy BotKube backend in each cluster with the same token. That's it! </li>
     </ul>
   </div>
 </div>
@@ -188,9 +188,9 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
   <div class="leftimage" style="padding-top:5%;">
     <h1>Debug</h1>
     <ul>
-    <li>BotKube can execute a kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
+    <li>BotKube can execute kubectl commands on Kubernetes cluster without giving access to Kubeconfig or underlying infrastructure.</li>
     <li>With BotKube you can debug your deployment, services or anything about your cluster right from your messaging window ;) </li>
-    <li>BotKube can talk to multiple cluster, you just need to deploy BotKube backend in each cluster with the same token. That's it! </li>
+    <li>BotKube can talk to multiple clusters, you just need to deploy BotKube backend in each cluster with the same token. That's it! </li>
     </ul>
   </div>
   <div class="rightimage">
@@ -205,7 +205,7 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
     <h1>Run Checks</h1>
     <ul>
     <li>Some checks are built in but you can define and add additional checks for specific resources or events.</li>
-    <li>Filters allow you to more things for a specific event - such as adding a new message.</li>
+    <li>Filters allow you to do more things for a specific event - such as adding a new message.</li>
     </ul>
   </div>
 </div>

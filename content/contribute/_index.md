@@ -8,7 +8,7 @@ weight: 80
 
 We'd love your help!
 
-BotKube is [MIT Licensed](LICENSE) and accepts contributions via
+BotKube is [MIT Licensed](/license) and accepts contributions via
 GitHub pull requests. This document outlines some of the conventions
 on development workflow, commit message formatting, contact points and
 other resources to make it easier to get your contributions accepted.
