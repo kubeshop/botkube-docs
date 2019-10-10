@@ -3,13 +3,6 @@ title: "BotKube"
 ---
 <style>
 
-.body {
-  padding-top: 0rem;
-  padding-right: 6rem;
-  padding-bottom: 3rem;
-  padding-left: 6rem;
-}
-
 a.linkhighlight:hover {
   color: #ffffff;
 }
@@ -85,6 +78,17 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   display: none;
 }
 
+.fitscreen {
+  height: 100vh;
+}
+
+@media screen and (max-width: 1400px) {
+  .fitscreen {
+    height: 100vh;
+    margin-top: -25px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .desktoptitle {
     display: none;
@@ -120,31 +124,33 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div class="mobiletitle">
 <a href="/"><img src="/images/botkube-title.jpg"></a>
 </div>
-<div class="desktoptitle">
-<a href="/"><img src="/images/botkube-title.jpg" width="486px" style="margin: auto;"></a>
-</div>
-<p style="font-size:16px;font-weight:400;margin-top:0.5rem;">
-BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
-</p>
-<div>
-  <img class="centerimage" src="/images/botkube_multicluster.png" style="margin: auto;">
-</div>
 
-<div class="visibledesktop" style="display: block;">
-  <div class="lefttitle">
-    <a href="/installation" class="linkhighlight">
-      <i class="fas fa-rocket"></i>
-      Try Now
-    </a>
+<div class="fitscreen">
+  <div class="desktoptitle">
+  <a href="/"><img src="/images/botkube-title.jpg" width="486px" style="margin: auto;"></a>
   </div>
-  <div class="righttitle">
-    <a href="https://github.com/infracloudio/botkube" class="linkhighlight">
-      <i class="fab fa-github"></i>
-      View Source
-    </a>
+  <p style="font-size:16px;font-weight:400;margin-top:0.5rem;">
+  BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
+  </p>
+  <div>
+    <img class="centerimage" src="/images/botkube_multicluster.png" style="margin: auto;">
+  </div>
+
+  <div class="visibledesktop" style="display: block;">
+    <div class="lefttitle">
+      <a href="/installation" class="linkhighlight">
+        <i class="fas fa-rocket"></i>
+        Try Now
+      </a>
+    </div>
+    <div class="righttitle">
+      <a href="https://github.com/infracloudio/botkube" class="linkhighlight">
+        <i class="fab fa-github"></i>
+        View Source
+      </a>
+    </div>
   </div>
 </div>
-
 
 
 <h2>What can BotKube do?</h2>
