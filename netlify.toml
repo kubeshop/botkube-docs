@@ -28,3 +28,10 @@ HUGO_VERSION = "0.49"
 
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
+
+[[redirects]]
+  from = "https://join.botkube.io"
+  to = "https://botkube-slack.herokuapp.com"
+
+  # The default HTTP status code is 301, but you can define a different one.
+  status = 302
