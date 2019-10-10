@@ -1,16 +1,14 @@
 ---
 title: "BotKube"
 ---
-<div class="mobiletitle">
-<a href="/"><img src="/images/botkube-title.jpg"></a>
-</div>
-
-<div class="desktoptitle">
-
-<a href="/"><img src="/images/botkube-title.jpg" width="486px" height="96px"></a>
-</div>
-
 <style>
+
+.body {
+  padding-top: 0rem;
+  padding-right: 6rem;
+  padding-bottom: 3rem;
+  padding-left: 6rem;
+}
 
 a.linkhighlight:hover {
   color: #ffffff;
@@ -33,7 +31,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 }
 
 .centerimage {
-  width: 60%; float:center;
+  width: 55%; float:center;
 }
 
 .leftimage {
@@ -119,12 +117,17 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 }
 </style>
 
-<p style="font-size:18px;font-weight:400;">
+<div class="mobiletitle">
+<a href="/"><img src="/images/botkube-title.jpg"></a>
+</div>
+<div class="desktoptitle">
+<a href="/"><img src="/images/botkube-title.jpg" width="486px" style="margin: auto;"></a>
+</div>
+<p style="font-size:16px;font-weight:400;margin-top:0.5rem;">
 BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
 </p>
-
 <div>
-  <img class="centerimage" src="/images/botkube_multicluster.png" style="border-radius:3%;">
+  <img class="centerimage" src="/images/botkube_multicluster.png" style="margin: auto;">
 </div>
 
 <div class="visibledesktop" style="display: block;">
@@ -282,5 +285,4 @@ BotKube can be integrated with multiple messaging platforms like - Slack, Matter
     Like Slack, BotKube can also be integrated with Mattermost and ElasticSearch. See <a href=/configuration>configuration</a> syntax for details.
   </div>
 </div>
-
 </center>
