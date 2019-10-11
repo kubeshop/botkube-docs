@@ -82,10 +82,10 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   height: 100vh;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-height: 780px) {
   .fitscreen {
     height: 100vh;
-    margin-top: -25px;
+    margin-top: -45px;
   }
 }
 
@@ -130,7 +130,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   <a href="/"><img src="/images/botkube-title.jpg" width="486px" style="margin: auto;"></a>
   </div>
   <p style="font-size:16px;font-weight:400;margin-top:0.5rem;">
-  BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
+  BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
   </p>
   <div>
     <img class="centerimage" src="/images/botkube_multicluster.png" style="margin: auto;">
