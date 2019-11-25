@@ -37,14 +37,14 @@ $ helm repo add infracloudio https://infracloudio.github.io/charts
 
 ```bash
 $ helm repo update
-$ helm install --version v0.9.0 --name botkube --namespace botkube \
+$ helm install --version v0.9.1 --name botkube --namespace botkube \
 --set config.communications.slack.enabled=true \
 --set config.communications.slack.channel=<SLACK_CHANNEL_NAME> \
 --set config.communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
 --set config.settings.clustername=<CLUSTER_NAME> \
 --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
 --set image.repository=infracloudio/botkube \
---set image.tag=v0.9.0 \
+--set image.tag=v0.9.1 \
 infracloudio/botkube
 ```
 where,<br>
@@ -96,7 +96,7 @@ Send **@BotKube ping** in the channel to see if BotKube is running and respondin
     e.g
 
     ```
-    helm install --version v0.9.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    helm install --version v0.9.1 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
