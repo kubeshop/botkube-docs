@@ -17,7 +17,7 @@ BotKube has two components that need to be installed.
 - For Kubernetes < 1.14, BotKube won't be able to monitor _Ingress_ resources
 {{% /notice%}}
 
-You can use a single BotKube backend to serve all the interfaces - Slack, Mattermost, and ElasticSearch. <br>
+You can use a single BotKube backend to serve all the interfaces - Slack, Mattermost, ElasticSearch and Webhook. <br>
 You just need to enable required mediums through the settings and add a necessary configuration.<br>
 _see the [configuration](/configuration) section for more information_
 
@@ -144,6 +144,16 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       <div class="text">
         <a href="elasticsearch" class="linkhighlight">
           Integrate with ElasticSearch
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="installbox">
+    <img src="/images/webhook.png" alt="Avatar" class="image">
+    <div class="middle">
+      <div class="text">
+        <a href="webhook" class="linkhighlight">
+          Configure Outgoing Webhook
         </a>
       </div>
     </div>

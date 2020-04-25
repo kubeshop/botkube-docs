@@ -11,54 +11,70 @@ The default notification type is **short**
 
 
 
-<h3 class="section-head" id="h-notif-sc"><a href="#h-notif-sc">Sample Notifications</a></h3>
-<h4>Resource created</h4>
+### Sample Notifications
+
+#### Resource created
+
 ![](/images/create_sh.png "Slack notiftype=short")
 ![](/images/create.png "Slack notiftype=long")
 
-<h4>Resource deleted</h4>
+#### Resource deleted
+
 ![](/images/mm_delete_sh.png "Mattermost notiftype=short")
 ![](/images/delete.png "Slack notiftype=long")
 
-<h4>Failed to pull image</h4>
+#### Failed to pull image
+
 ![](/images/image_failed_sh.png "Slack notiftype=short")
 ![](/images/mm_image_failed_sh.png "Mattermost notiftype=short")
 ![](/images/image-failed.png "Slack notiftype=long")
 
-<h4>Error in pod</h4>
+#### Error in pod
+
 ![](/images/error_sh.png "Slack notiftype=short")
 
-<h4>Readiness probe failed for the pod</h4>
+#### Readiness probe failed for the pod
+
 ![](/images/readiness_sh.png "Slack notiftype=short")
 ![](/images/mm_readiness_sh.png "Mattermost notiftype=short")
 
-<h4>Job succeeded</h4>
+#### Job succeeded
+
 ![](/images/job_success_sh.png "Slack notiftype=short")
 ![](/images/job_success.png "Slack notiftype=long")
 
-<h3 class="section-head" id="h-debug-uc"><a href="#h-debug-uc">Debugging use-cases</a></h3>
-<h4>List pods in "fission" namespace</h4>
+### Debugging use-cases
+
+#### List pods in "fission" namespace
+
 ![get_pods](/images/get_pods.png)
 
-<h4>Get logs of "controller-676f97f45-pjmv2" pod in "fission" namespace</h4>
+#### Get logs of "controller-676f97f45-pjmv2" pod in "fission" namespace
+
 ![logs](/images/logs.png)
 ![logs](/images/mm_logs.png)
 
-<h4>Show cluster health</h4>
+#### Show cluster health
+
 ![cluster-health](/images/cluster-health.png)
 
-<h4>Describe a node</h4>
+#### Describe a node
+
 ![desc_node](/images/desc_node.png)
 
-<h4>List top pods in "fission" namespace</h4>
+#### List top pods in "fission" namespace
+
 ![top_pods](/images/top_pods.png)
 
-<h4>Check connection status of "gke-stg" cluster</h4>
+#### Check connection status of "gke-stg" cluster
+
 ![flag_clustername](/images/flag_clustername_ping.png)
 
-<h4>List services in a "gke-dev" cluster</h4>
+#### List services in a "gke-dev" cluster
+
 ![get_services](/images/get_services.png)
 
-<h4>Describe deployment in a "gke-stg" cluster</h4>
+#### Describe deployment in a "gke-stg" cluster
+
 ![describe_deployment](/images/desc_deployment.png)
 ![describe_deployment](/images/mm_describe.png)

@@ -5,47 +5,85 @@ draft: false
 weight: 20
 ---
 
-BotKube backend reads configurations from **config.yaml** file placed at **CONFIG_PATH**
+BotKube backend reads resource configurations from **resource_config.yaml** and
+communication settings from **comm_config.yaml** placed at **CONFIG_PATH**
 
-## config.yaml syntax
-The configuration file contains, 
+## resource_config.yaml syntax
+
+The resource configuration file contains, 
 
 - Resource list you want to watch
+- Namespaces you want to filter
 - The type of events you want to get notifications about
+- updateSettings to monitor change in the specific resource field
 - Way to skip filter runs
+
+{{< highlight yaml >}}
+
+## Resources you want to watch
+resources:
+  - name: NAME_OF_THE_RESOURCE         # Name of the resources e.g pod, deployment, ingress, etc. (Resource name must be in singular form)
+    namespaces:         
+      include:
+        - all
+      ignore:                          # List of namespaces to be ignored (omitempty), used only with include: all
+        -                              # example : include [all], ignore [x,y,z]
+    events:                            # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
+      - create
+      - update
+      - delete
+      - error
+    updateSetting:                     # To include diff in update event about the changes in specific fields
+                                       # updateSettings are ignored if `update` events are not configured for the resource
+      includeDiff: true
+      fields:
+        - JSONPath                     # List of JSONPath expressions to monitor changes in specific fields
+  - name: pod
+    namespaces:
+      include:
+        - dev
+        - qa
+        - default
+      ignore:
+        - kube-system
+        - prod
+    updateSetting:
+      includeDiff: true
+      fields:
+        - spec.template.spec.containers[*].image
+        - status.availableReplicas
+    events:
+      - all
+
+# Check true if you want to receive recommendations
+# about the best practices for the created resource
+recommendations: true
+
+# Cluster Setting to manage command execution access
+settings:
+  # Unique cluster name to differentiate incoming messages
+  clustername: not-configured
+  # Set true to enable kubectl commands execution
+  allowkubectl: false
+  # Set true to enable commands execution from configured channel only
+  restrictAccess: false
+  # Set true to enable config watcher
+  configwatcher: true
+  # Set false to disable upgrade notification
+  upgradeNotifier: true
+
+{{< / highlight >}}
+
+
+## comm_config.yaml syntax
+
+The communication configuration file contains, 
+
 - Communication mediums configuration
 - Toggle notification type to short or long
 
-```
-  ## Resources you want to watch
-  resources:
-    - name: NAME_OF_THE_RESOURCE         # Name of the resources e.g pod, deployment, ingress, etc. (Resource name must be in singular form)
-      namespaces:         
-        include:
-          - all
-        ignore:                          # List of namespaces to be ignored (omitempty), used only with include: all
-          -                              # example : include [all], ignore [x,y,z]
-      events:                            # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
-        - create
-        - update
-        - delete
-        - error
-    - name: pod
-      namespaces:
-        include:
-          - dev
-          - qa
-          - default
-        ignore:
-          - kube-system
-          - prod
-      events:
-        - all
+{{< highlight yaml >}}
 
-  # Check true if you want to receive recommendations
-  # about the best practices for the created resource
-  recommendations: true
-  
   # Communcation mediums configuration
   communications:
     # Settings for Slack
@@ -81,19 +119,9 @@ The configuration file contains,
     # Settings for Webhook
     webhook:
       enabled: false
-      url: 'WEBHOOK_URL'                      # e.g https://example.com:80
-  
-  # Setting to support multiple clusters
-  settings:
-    # Cluster name to differentiate incoming messages
-    clustername: not-configured
-    # Set true to enable kubectl commands execution
-    allowkubectl: false
-    # Set true to enable config watcher
-    configwatcher: true
-    # Set false to disable upgrade notification
-    upgradeNotifier: true
-```
+      url: 'WEBHOOK_URL'                      # e.g https://example.com:80 
+
+{{< / highlight >}}
 
 The default configuration can be found at:
 
@@ -126,7 +154,7 @@ As of now, BotKube can watch following types of resources:
 
 You can update the configuration and use `helm upgrade` to update configuration values for the BotKube. 
 
-You can also change values directly in ConfigMap - which is not reccomended but is great for quick experimentation. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
+You can also change resource configuration directly in ConfigMap - which is not reccomended but is great for quick experimentation. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
 
 ```bash
 $ kubectl edit configmap botkube-configmap -n botkube
