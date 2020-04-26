@@ -79,7 +79,7 @@ toc = true
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://github.com/infracloudio/botkube/tree/master/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.10.0/helm/botkube/sample-res-config.yaml)
 
     ```
     config:
@@ -128,7 +128,7 @@ toc = true
 - Download deployment specs yaml
 
 ```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/master/deploy-all-in-one.yaml
+$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.10.0/deploy-all-in-one.yaml
 ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
@@ -161,6 +161,6 @@ $ helm delete --purge botkube
 #### BotKube install: Using kubectl
 
 ```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/master/deploy-all-in-one.yaml -n botkube
+$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.10.0/deploy-all-in-one.yaml
 ```
 
