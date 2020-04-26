@@ -55,11 +55,11 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br>
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
 
-     Configuration syntax is explained [here](/configuration).
+   Configuration syntax is explained [here](/configuration).
 
   {{% notice note %}}
-    With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
-    If you wish to monitor only specific resources, follow the steps given below:
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  If you wish to monitor only specific resources, follow the steps given below:
   {{% /notice%}}
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
@@ -101,7 +101,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
     e.g
 
     ```
-    helm install --version v0.10.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.10.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -127,7 +127,7 @@ where,<br>
 - Deploy the resources
 
 ```bash
-$ kubectl create -f deploy-all-in-one.yaml -n botkube
+$ kubectl create -f deploy-all-in-one.yaml
 ```
 
 - Check pod status in botkube namespace.
