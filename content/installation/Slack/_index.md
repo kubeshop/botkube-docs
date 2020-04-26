@@ -75,13 +75,13 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-     Configuration syntax is explained [here](/configuration).
+   Configuration syntax is explained [here](/configuration).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
   {{% notice note %}}
-    With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
-    If you wish to monitor only specific resources, follow the steps given below:
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  If you wish to monitor only specific resources, follow the steps given below:
   {{% /notice %}}
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
@@ -123,7 +123,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
     e.g
 
     ```
-    helm install --version v0.10.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.10.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
