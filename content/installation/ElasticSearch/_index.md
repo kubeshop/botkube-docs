@@ -24,14 +24,14 @@ toc = true
 
   ```bash
   $ helm install --version v0.10.0 botkube --namespace botkube \
-  --set config.communications.elasticsearch.enabled=true \
-  --set config.communications.elasticsearch.server=<ELASTICSEARCH_ADDRESS> \
-  --set config.communications.elasticsearch.username=<ELASTICSEARCH_USERNAME> \
-  --set config.communications.elasticsearch.password=<ELASTICSEARCH_PASSWORD> \
-  --set config.communications.elasticsearch.index.name=<ELASTICSEARCH_INDEX_NAME> \
-  --set config.communications.elasticsearch.index.type=<ELASTICSEARCH_INDEX_TYPE> \
-  --set config.communications.elasticsearch.index.shards=<ELASTICSEARCH_INDEX_SHARDS> \
-  --set config.communications.elasticsearch.index.replicas=<ELASTICSEARCH_INDEX_REPLICAS> \
+  --set communications.elasticsearch.enabled=true \
+  --set communications.elasticsearch.server=<ELASTICSEARCH_ADDRESS> \
+  --set communications.elasticsearch.username=<ELASTICSEARCH_USERNAME> \
+  --set communications.elasticsearch.password=<ELASTICSEARCH_PASSWORD> \
+  --set communications.elasticsearch.index.name=<ELASTICSEARCH_INDEX_NAME> \
+  --set communications.elasticsearch.index.type=<ELASTICSEARCH_INDEX_TYPE> \
+  --set communications.elasticsearch.index.shards=<ELASTICSEARCH_INDEX_SHARDS> \
+  --set communications.elasticsearch.index.replicas=<ELASTICSEARCH_INDEX_REPLICAS> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set image.repository=infracloudio/botkube \
   --set image.tag=v0.10.0 \
