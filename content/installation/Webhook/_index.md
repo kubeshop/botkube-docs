@@ -27,8 +27,8 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
   ```bash
   $ helm install --version v0.10.0 botkube --namespace botkube \
-  --set config.communications.webhook.enabled=true \
-  --set config.communications.webhook.url=<WEBHOOK_URL> \
+  --set communications.webhook.enabled=true \
+  --set communications.webhook.url=<WEBHOOK_URL> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set image.repository=infracloudio/botkube \
   --set image.tag=v0.10.0 \
