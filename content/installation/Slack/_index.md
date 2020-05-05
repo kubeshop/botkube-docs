@@ -56,9 +56,9 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
   ```bash
   $ helm install --version v0.10.0 --name botkube --namespace botkube \
-  --set config.communications.slack.enabled=true \
-  --set config.communications.slack.channel=<SLACK_CHANNEL_NAME> \
-  --set config.communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
+  --set communications.slack.enabled=true \
+  --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
+  --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
   --set image.repository=infracloudio/botkube \
