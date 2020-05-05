@@ -92,12 +92,12 @@ Autocomplete | True
 
   ```bash
   $ helm install --version v0.10.0 --name botkube --namespace botkube \
-  --set config.communications.mattermost.enabled=true \
-  --set config.communications.mattermost.url=<MATTERMOST_SERVER_URL> \
-  --set config.communications.mattermost.cert=<MATTERMOST_CERT> \
-  --set config.communications.mattermost.token=<MATTERMOST_TOKEN> \
-  --set config.communications.mattermost.team=<MATTERMOST_TEAM> \
-  --set config.communications.mattermost.channel=<MATTERMOST_CHANNEL> \
+  --set communications.mattermost.enabled=true \
+  --set communications.mattermost.url=<MATTERMOST_SERVER_URL> \
+  --set communications.mattermost.cert=<MATTERMOST_CERT> \
+  --set communications.mattermost.token=<MATTERMOST_TOKEN> \
+  --set communications.mattermost.team=<MATTERMOST_TEAM> \
+  --set communications.mattermost.channel=<MATTERMOST_CHANNEL> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
   --set image.repository=infracloudio/botkube \
