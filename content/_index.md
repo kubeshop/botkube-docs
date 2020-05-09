@@ -82,6 +82,14 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   height: 100vh;
 }
 
+#body-inner {
+  margin-bottom: 0px !important;
+}
+
+#body .padding {
+  padding-bottom: 1rem !important;
+}
+
 @media screen and (max-height: 780px) {
   .fitscreen {
     height: 100vh;
