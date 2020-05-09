@@ -24,7 +24,12 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 }
 
 .centerimage {
-  width: 55%; float:center;
+  height: 50%;
+  display: block;
+  text-align:center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .leftimage {
@@ -82,6 +87,11 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   height: 100vh;
 }
 
+.fitscreenmargin {
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
 #body-inner {
   margin-bottom: 0px !important;
 }
@@ -93,7 +103,12 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 @media screen and (max-height: 780px) {
   .fitscreen {
     height: 100vh;
-    margin-top: -55px;
+    margin-top: -40px;
+  }
+
+  .fitscreenmargin {
+    margin-top: 1%;
+    margin-bottom: 1%;
   }
 }
 
@@ -106,6 +121,11 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   }
   .centerimage {
     width: 100%;
+    display: block;
+    text-align:center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
   }
   .leftimage {
     width: 100%;
@@ -135,17 +155,19 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div class="fitscreen">
   <div class="desktoptitle">
-    <a href="/"><img src="/images/botkube-title.jpg" width="486px" style="margin: auto;"></a>
+    <a href="/"><img src="/images/botkube-title.jpg" width="400px" style="margin: auto;"></a>
   </div>
-  <p style="font-size:16px;font-weight:400;margin-top:0.1rem; margin-bottom: 0px;">
+  <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
   Botkube is a messaging bot for monitoring and debugging Kubernetes clusters. It's built and maintained with <i class="fas fa-heart fa-fw"></i> by <a href="https://infracloud.io">InfraCloud</a>
   </p>
-  <div>
-    <img class="centerimage" src="/images/botkube_multicluster.png" style="margin: auto;">
+  <div class="centerimage">
+    <img src="/images/botkube_multicluster.png" style="max-height:100%;max-width:100%;">
   </div>
-  <p style="font-size:16px;font-weight:400;margin-top:0.3rem;">
+  <div>
+  <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
   BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
   </p>
+  </div>
 
   <div class="visibledesktop" style="display: block;">
     <div class="lefttitle">
