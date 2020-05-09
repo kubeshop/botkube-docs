@@ -138,7 +138,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <a href="/"><img src="/images/botkube-title.jpg" width="486px" style="margin: auto;"></a>
   </div>
   <p style="font-size:16px;font-weight:400;margin-top:0.1rem; margin-bottom: 0px;">
-  Botkube is a messaging bot for monitoring and debugging Kubernetes clusters. It's built and maintained with <i class="fas fa-heart"></i> by InfraCloud
+  Botkube is a messaging bot for monitoring and debugging Kubernetes clusters. It's built and maintained with <i class="fas fa-heart fa-fw"></i> by InfraCloud
   </p>
   <div>
     <img class="centerimage" src="/images/botkube_multicluster.png" style="margin: auto;">
@@ -234,14 +234,14 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <h2>Features</h2>
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-fw fa-user-secret"></i>
+    <h4><i class="fas fa-fw fa-user-secret fa-fw"></i>
       Privacy
     </h4>
     The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
 
   <div class="rightfeature">
-    <h4> <i class="fas fa-terminal"> </i>
+    <h4> <i class="fas fa-terminal fa-fw"> </i>
       Execute kubectl commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
@@ -250,14 +250,14 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i class="fas fa-cogs"></i>
+    <h4><i class="fas fa-cogs fa-fw"></i>
       Debug Anywhere, Anytime
     </h4>
     With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
     Even while you are camping without a laptop, you can use Slack or Mattermost mobile app and get crucial information.
   </div>
   <div class="rightfeature">
-    <h4> <i class="fas fa-cogs"> </i>
+    <h4> <i class="fas fa-cogs fa-fw"> </i>
 	Easy to configure
     </h4>
     Get notifications about things that you really care for. You can configure events or objects or namespaces that you want to be informed about.
@@ -266,13 +266,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4> <i class="fas fa-cloud"> </i>
+    <h4> <i class="fas fa-cloud fa-fw"> </i>
       Deploy on any Kubernetes cluster
     </h4>
     You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
   </div>
   <div class="rightfeature">
-    <h4> <i class="fas fa-plug"> </i>
+    <h4> <i class="fas fa-plug fa-fw"> </i>
       Add custom filters
     </h4>
     It is very easy to write your own filters and registering them to FilterEngine. Follow <a href=/filters>this</a> guide to know more.
@@ -281,7 +281,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4> <i class="fas fa-shield-alt"> </i>
+    <h4> <i class="fas fa-shield-alt fa-fw"> </i>
       Security
     </h4>
     By default BotKube uses a READONLY service account, you can customize this to your needs.
@@ -296,7 +296,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div style="overflow: auto;">
   <div class="centerfeature">
-    <h4> <i class="fas fa-tasks"> </i>
+    <h4> <i class="fas fa-tasks fa-fw"> </i>
       Support for multiple interfaces
     </h4>
     Like Slack, BotKube can also be integrated with Mattermost, ElasticSearch and outgoing webhook. See <a href=/configuration>configuration</a> syntax for details.
