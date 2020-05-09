@@ -1,8 +1,8 @@
 baseURL = "https://www.botkube.io/"
 languageCode = "en-us"
-title = "BotKube"
+title = "Messaging bot for monitoring and debugginh Kubernetes clusters"
 theme = "hugo-theme-learn"
-description = "BotKube is your Kubernetes bot"
+description = "Botkube helps you monitor your Kubernetes clusters, debug critical deployments, and give recommendations on the Kubernetes resources."
 Paginate = 4
 # For search functionality
 [outputs]
@@ -11,7 +11,7 @@ home = [ "HTML", "RSS", "JSON"]
 [params]
   author = "InfraCloud" # add your company name
   github = "https://github.com/infracloudio/botkube" # add your github profile name
-  email = "info@infracloud.io"
+  email = "botkube@infracloud.io"
   showVisitedLinks = false
   disableBreadcrumb = false
   disableNextPrev = false
