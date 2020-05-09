@@ -292,3 +292,9 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
 </div>
 </center>
+
+---
+
+<center>
+An open source project by <a href="https://infracloud.io"><img src="/images/infracloud-logo.png" height="30px" alt="InfraCloud" style="margin:auto; display:inline-block; vertical-align:middle;"></a>
+</center>
