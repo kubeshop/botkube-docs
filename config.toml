@@ -1,8 +1,8 @@
 baseURL = "https://www.botkube.io/"
 languageCode = "en-us"
-title = "BotKube"
+title = "Messaging bot for monitoring and debugginh Kubernetes clusters"
 theme = "hugo-theme-learn"
-description = "BotKube is your Kubernetes bot"
+description = "Botkube helps you monitor your Kubernetes clusters, debug critical deployments, and give recommendations on the Kubernetes resources."
 Paginate = 4
 # For search functionality
 [outputs]
@@ -11,7 +11,7 @@ home = [ "HTML", "RSS", "JSON"]
 [params]
   author = "InfraCloud" # add your company name
   github = "https://github.com/infracloudio/botkube" # add your github profile name
-  email = "info@infracloud.io"
+  email = "botkube@infracloud.io"
   showVisitedLinks = false
   disableBreadcrumb = false
   disableNextPrev = false
@@ -30,26 +30,26 @@ url = "https://github.com/infracloudio/botkube"
 weight = 20
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+name = "<i class='fas fa-fw fa-bullhorn fa-fw'></i> Credits"
 url = "/credits"
 weight = 30
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bookmark'></i> Privacy Policy"
+name = "<i class='fas fa-fw fa-bookmark fa-fw'></i> Privacy Policy"
 url = "/privacy"
 weight = 30
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-file-contract '></i> License"
+name = "<i class='fas fa-fw fa-file-contract fa-fw'></i> License"
 url = "/license"
 weight = 40
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-question-circle'></i> Support"
+name = "<i class='fas fa-fw fa-question-circle fa-fw'></i> Support"
 url = "/support"
 weight = 50
 
 [[menu.shortcuts]]
-name = "<i class='fab fa-fw fa-twitter'></i> Twitter"
+name = "<i class='fab fa-fw fa-twitter fa-fw'></i> Twitter"
 url = "https://twitter.com/infracloudio"
 weight = 60
