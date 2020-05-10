@@ -31,7 +31,7 @@ HUGO_ENABLEGITINFO = "true"
 
 [[redirects]]
   from = "https://join.botkube.io"
-  to = "https://botkube-slack.herokuapp.com"
+  to = "https://botkube.slack.com/join/shared_invite/zt-eatzbnas-a5SQLu~Hapa_YdbIG3KxaQ#/"
 
   # The default HTTP status code is 301, but you can define a different one.
   status = 302
