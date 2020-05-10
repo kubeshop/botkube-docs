@@ -113,6 +113,11 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 }
 
 @media screen and (max-width: 600px) {
+  .fitscreen {
+    height: auto;
+    overflow: auto;
+    display: block;
+  }
   .desktoptitle {
     display: none;
   }
@@ -147,13 +152,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     display: block;
   }
 }
+
 </style>
 
-<div class="mobiletitle">
-<a href="/"><img src="/images/botkube-title.jpg"></a>
-</div>
-
 <div class="fitscreen">
+  <div class="mobiletitle">
+  <a href="/"><img src="/images/botkube-title.jpg"></a>
+  </div>
   <div class="desktoptitle">
     <a href="/"><img src="/images/botkube-title.jpg" width="400px" style="margin: auto;"></a>
   </div>
@@ -169,7 +174,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </p>
   </div>
 
-  <div class="visibledesktop" style="display: block;">
+  <div>
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
         <i class="fas fa-rocket"></i>
