@@ -2,10 +2,15 @@
 title = "Support"
 +++
 
+We would love to hear more about your story and usage of BotKube, please comment on BotKube issue: https://github.com/infracloudio/botkube/issues/202 
+
 ## Need help with BotKube? 
 
-Reach us out at *botkube@infracloud.io* 
+If you have questions related to using or contributing to BotKube the best ways is to join slack and ask questions: [join.botkube.io](https://join.botkube.io)
 
-or
+You can also reach out via email at *botkube@infracloud.io* 
 
-join our Slack workspace [join.botkube.io](https://join.botkube.io)
+
+## Commercial Support
+
+If you are looking for specific implementation and enterprise support for BotKube then please check out the enterprise support offering by InfraCloud here: https://www.infracloud.io/botkube-enterprise 
