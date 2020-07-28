@@ -41,7 +41,7 @@ We will use "App Studio" to register and install Bot to MS Teams. Please follow 
     | Privacy statement | https://botkube.io/privacy |
     | Terms of use    | https://botkube.io/license |
 
-    Click checkbox on "Loading indicator" 
+    Click checkbox on "Loading indicator" (optional)
 
 4. Download BotKube icons from https://github.com/infracloudio/botkube/tree/develop/branding/logos and update Branding icons.
    ![](/images/teams_app_details.png "Teams BotKube App Details")
@@ -63,7 +63,7 @@ Go to Capabilities > Bots and fill in the info
 
 5. Set **Messaging Endpoint**.
    Messaging endpoint is the URL on which BotKube backend listens for incoming requests from Teams. While deploying BotKube backend you can give option to expose BotKube via Ingress.
-   ![](/images/teams_app_details.png "Teams BotKube Bot")
+   ![](/images/teams_bot.png "Teams BotKube Bot")
 
 #### Install Bot to Teams
 
