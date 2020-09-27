@@ -8,18 +8,8 @@ toc = true
 
 BotKube has two components that need to be installed.
 
-1. BotKube App Integration in your Slack/Mattermost
+1. BotKube App Integration in your Slack/Mattermost/Microsoft Teams
 2. BotKube backend for the App in your Kubernetes cluster
-
-{{% notice note %}}
-**Prerequisites:**<br>
-- Kubernetes 1.14 or higher is recommended<br>
-- For Kubernetes < 1.14, BotKube won't be able to monitor _Ingress_ resources
-{{% /notice%}}
-
-You can use a single BotKube backend to serve all the interfaces - Slack, Mattermost, ElasticSearch and Webhook. <br>
-You just need to enable required mediums through the settings and add a necessary configuration.<br>
-_see the [configuration](/configuration) section for more information_
 
 <style>
 
@@ -117,6 +107,15 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 }
 </style>
 
+#### Feature map
+
+| Feature  | Slack | Mattermost | Microsoft Teams | Elastic Search | Webhook |
+| -------- | ----- | -----------| --------------- | -------------- | ------- |
+| K8s Event push | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Kubectl commands | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA | NA | 
+| Multi cluster support | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: |
+| Restrict command execution to a channel | :heavy_check_mark: | :heavy_check_mark: | :x: | NA | NA |
+
 <div style="display: flex;justify-content: space-around;">
   <div class="installbox">
     <img src="/images/slack.png" alt="Avatar" class="image">
@@ -134,6 +133,16 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       <div class="text">
         <a href="mattermost" class="linkhighlight">
           Integrate with Mattermost
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="installbox">
+    <img src="/images/msteams.png" alt="Avatar" class="image">
+    <div class="middle">
+      <div class="text">
+        <a href="teams" class="linkhighlight">
+          Integrate with Microsoft Teams
         </a>
       </div>
     </div>
@@ -159,3 +168,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     </div>
   </div>
 </div>
+
+{{% notice note %}}
+You can use a single BotKube backend to serve all the interfaces - Slack, Mattermost, Microsoft Teams, ElasticSearch and Webhook. <br>
+You just need to enable required mediums through the settings and add a necessary configuration.<br>
+_see the [configuration](/configuration) section for more information_
+
+{{% /notice%}}
+
+
+

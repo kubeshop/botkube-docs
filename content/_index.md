@@ -170,7 +170,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
   <div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
-  BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost to help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
+  BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost, Microsoft Teams to help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
   </p>
   </div>
 
@@ -266,12 +266,27 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     </h4>
     The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
-
   <div class="rightfeature">
     <h4> <i class="fas fa-terminal fa-fw"> </i>
       Execute kubectl commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
+    Plus you can configure which Kubectl commands BotKube can executes. See <a href=/configuration>configuration</a> for details.
+  </div>
+</div>
+
+<div style="overflow: auto;">
+  <div class="leftfeature">
+    <h4> <i class="fas fa-tasks fa-fw"> </i>
+      Support for multiple interfaces
+    </h4>
+    Like Slack, BotKube can also be integrated with Mattermost, ElasticSearch and outgoing webhook. See <a href=/configuration>configuration</a> syntax for details.
+  </div>
+  <div class="rightfeature">
+    <h4> <i class="fas fa-puzzle-piece"></i>
+      Supports Custom Resources
+    </h4>
+    BotKube can monitor literally any Kubernetes resource including Custom Resource. This enables you to configure alerts on some interesting events like - certificate issue/expiry if you are using cert-manager or backup failure in case you are using backup tools like Velero or Kanister.
   </div>
 </div>
 
@@ -281,7 +296,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       Debug Anywhere, Anytime
     </h4>
     With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
-    Even while you are camping without a laptop, you can use Slack or Mattermost mobile app and get crucial information.
+    Even while you are camping without a laptop, you can use Slack, Mattermost or MS Teams mobile app and get crucial information.
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-cogs fa-fw"> </i>
@@ -321,14 +336,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
 </div>
 
-<div style="overflow: auto;">
-  <div class="centerfeature">
-    <h4> <i class="fas fa-tasks fa-fw"> </i>
-      Support for multiple interfaces
-    </h4>
-    Like Slack, BotKube can also be integrated with Mattermost, ElasticSearch and outgoing webhook. See <a href=/configuration>configuration</a> syntax for details.
-  </div>
-</div>
 </center>
 
 ---

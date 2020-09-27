@@ -4,6 +4,7 @@ title = "Messaging bot for monitoring and debugging Kubernetes clusters"
 theme = "hugo-theme-learn"
 description = "Botkube helps you monitor your Kubernetes clusters, debug critical deployments, and give recommendations on the Kubernetes resources."
 Paginate = 4
+enableEmoji = true
 # For search functionality
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
