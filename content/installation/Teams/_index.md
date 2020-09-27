@@ -110,7 +110,7 @@ We will use this TLS secret while deploying BotKube backend.
   --set communications.teams.appID=<APPLICATION_ID> \
   --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
   --set config.settings.clustername=<CLUSTER_NAME> \
-  --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
+  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set ingress.create=true \
   --set ingress.host=<HOST> \
   --set ingress.urlPath=<URLPATH> \
@@ -128,7 +128,7 @@ We will use this TLS secret while deploying BotKube backend.
   --set communications.teams.appID=<APPLICATION_ID> \
   --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
   --set config.settings.clustername=<CLUSTER_NAME> \
-  --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
+  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set ingress.create=true \
   --set ingress.host=<HOST> \
   --set ingress.urlPath=<URLPATH> \
@@ -150,6 +150,7 @@ We will use this TLS secret while deploying BotKube backend.
   - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
 
    Configuration syntax is explained [here](/configuration).
+   Complete list of helm options is documented [here](/configuration/#helm-install-options)
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
@@ -231,6 +232,7 @@ where,<br>
 - **settings.kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
 
    Configuration syntax is explained [here](/configuration).
+   Complete list of helm options is documented [here](/configuration/#helm-install-options)
 
 - Deploy the resources
 
@@ -275,7 +277,7 @@ If you have installed BotKube backend using **helm**, execute following command 
 $ helm delete --purge botkube
 ```
 
-#### BotKube install: Using kubectl
+#### Using kubectl
 
 ```bash
 $ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/deploy-all-in-one.yaml

@@ -175,6 +175,3 @@ You just need to enable required mediums through the settings and add a necessar
 _see the [configuration](/configuration) section for more information_
 
 {{% /notice%}}
-
-
-
