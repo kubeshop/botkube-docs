@@ -73,7 +73,7 @@ Autocomplete | True
   {{% tab name="Helm 3" %}}
 
   ```bash
-  $ helm install --version v0.10.0 botkube --namespace botkube \
+  $ helm install --version v0.11.0 botkube --namespace botkube \
   --set communications.mattermost.enabled=true \
   --set communications.mattermost.url=<MATTERMOST_SERVER_URL> \
   --set communications.mattermost.cert=<MATTERMOST_CERT> \
@@ -81,9 +81,9 @@ Autocomplete | True
   --set communications.mattermost.team=<MATTERMOST_TEAM> \
   --set communications.mattermost.channel=<MATTERMOST_CHANNEL> \
   --set config.settings.clustername=<CLUSTER_NAME> \
-  --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
+  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.10.0 \
+  --set image.tag=v0.11.0 \
   infracloudio/botkube
   ```
 
@@ -91,7 +91,7 @@ Autocomplete | True
   {{% tab name="Helm 2" %}}
 
   ```bash
-  $ helm install --version v0.10.0 --name botkube --namespace botkube \
+  $ helm install --version v0.11.0 --name botkube --namespace botkube \
   --set communications.mattermost.enabled=true \
   --set communications.mattermost.url=<MATTERMOST_SERVER_URL> \
   --set communications.mattermost.cert=<MATTERMOST_CERT> \
@@ -99,9 +99,9 @@ Autocomplete | True
   --set communications.mattermost.team=<MATTERMOST_TEAM> \
   --set communications.mattermost.channel=<MATTERMOST_CHANNEL> \
   --set config.settings.clustername=<CLUSTER_NAME> \
-  --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
+  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.10.0 \
+  --set image.tag=v0.11.0 \
   infracloudio/botkube
   ```
 
@@ -119,7 +119,8 @@ Autocomplete | True
 
   - To deploy with TLS, replace **MATTERMOST_CERT** with the location of the SSL certificate file placed in Helm directory. Leave this value to None if deploying without TLS.
 
-     Configuration syntax is explained [here](/configuration).
+    Configuration syntax is explained [here](/configuration).
+    Complete list of helm options is documented [here](/configuration/#helm-install-options).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
@@ -130,44 +131,47 @@ Autocomplete | True
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.10.0/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/helm/botkube/sample-res-config.yaml)
 
-    ```
-    config:
-      ## Resources you want to watch
-      resources:
-        - name: pod                # Name of the resources e.g pod, deployment, ingress, etc.
-          namespaces:              # List of namespaces, "all" will watch all the namespaces
-            include:
-              - all
-            ignore:
-              - kube-system
-          events:                  # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
-            - create
-            - delete
-            - error
-        - name: job
-          namespaces:
-            include:
-              - all
-            ignore:
-              -
-          events:
-            - create
-            - update
-            - delete
-            - error
-          updateSetting:
-            includeDiff: true
-            fields:
-              - spec.template.spec.containers[*].image
-              - status.conditions[*].type
-    ```
+  ```
+  config:
+    ## Resources you want to watch
+    resources:
+    - name: v1/pods        # Name of the resource. Resource name must be in 
+                           # group/version/resource (G/V/R) format
+                           # resource name should be plural
+                           # (e.g apps/v1/deployments, v1/pods)
+      namespaces:          # List of namespaces, "all" will watch all the namespaces
+        include:
+        - all
+        ignore:            # List of namespaces to be ignored, used only with include: all
+        - kube-system      # example : include [all], ignore [x,y,z]
+      events:              # List of lifecycle events you want to receive,
+                           # e.g create, update, delete, error OR all
+      - create
+      - delete
+      - error
+    - name: batch/v1/jobs
+      namespaces:
+        include:
+        - ns1
+        - ns2
+      events:
+      - create
+      - update
+      - delete
+      - error
+      updateSetting:
+        includeDiff: true
+        fields:
+        - spec.template.spec.containers[*].image
+        - status.conditions[*].type
+  ```
   - Pass the yaml file as a flag to `helm install` command.
     e.g
 
     ```
-    $ helm install --version v0.10.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.11.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -179,11 +183,11 @@ Autocomplete | True
 - Download deployment specs yaml
 
 ```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.10.0/deploy-all-in-one.yaml
+$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/deploy-all-in-one.yaml
 ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-Set *MATTERMOST_ENABLED*, *MATTERMOST_SERVER_URL*, *MATTERMOST_TOKEN*, *MATTERMOST_TEAM*, *MATTERMOST_CHANNEL*, *clustername*, *allowkubectl* and update the resource events configuration you want to receive notifications for in the configmap.<br>
+Set *MATTERMOST_ENABLED*, *MATTERMOST_SERVER_URL*, *MATTERMOST_TOKEN*, *MATTERMOST_TEAM*, *MATTERMOST_CHANNEL*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
 where,<br>
 - **MATTERMOST_ENABLED** set true to enable Mattermost support for BotKube<br>
@@ -192,7 +196,7 @@ where,<br>
 - **MATTERMOST_TEAM** is the Team name where BotKube is added<br>
 - **MATTERMOST_CHANNEL** is the Channel name where BotKube is added and used for communication<br>
 - **clustername** is the cluster name set in the incoming messages<br>
-- **allowkubectl** set true to allow kubectl command execution by BotKube on the cluster<br>
+- **kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
 
    Configuration syntax is explained [here](/configuration).
 
@@ -225,8 +229,8 @@ If you have installed BotKube backend using **helm**, execute following command 
 $ helm delete --purge botkube
 ```
 
-#### BotKube install: Using kubectl
+#### Using kubectl
 
 ```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.10.0/deploy-all-in-one.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/deploy-all-in-one.yaml
 ```
