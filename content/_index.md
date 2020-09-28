@@ -280,7 +280,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <h4> <i class="fas fa-tasks fa-fw"> </i>
       Support for multiple interfaces
     </h4>
-    Like Slack, BotKube can also be integrated with Mattermost, ElasticSearch and outgoing webhook. See <a href=/configuration>configuration</a> syntax for details.
+    Like Slack, BotKube can also be integrated with Mattermost, Microsoft Teams, ElasticSearch and outgoing webhook. See <a href=/configuration>configuration</a> syntax for details.
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-puzzle-piece"></i>
