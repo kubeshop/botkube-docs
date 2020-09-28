@@ -10,9 +10,11 @@ weight: 40
 @BotKube allows you to execute kubectl commands on your Kubernetes cluster.
 Run **/botkubehelp** to find more information about the supported commands.
 
-By default, kubectl command execution is disabled. To enable this feature, set `settings.kubectl.enabled: true` in <a href=/configuration/#resource-config-yaml-syntax>resource_config</a>.
 
 ![help](/images/help.png)
+
+By default, kubectl command execution is disabled. To enable this feature, set `settings.kubectl.enabled: true` in <a href=/configuration/#resource-config-yaml-syntax>resource_config</a>.
+
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where BotKube is already added or as a direct message to BotKube.
 ```
 @BotKube <kubectl command without `kubectl` prefix> [--cluster-name <cluster_name>]
