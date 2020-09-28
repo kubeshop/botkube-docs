@@ -4,7 +4,7 @@ draft: false
 weight: 75
 ---
 
-BotKube backend communicates with Kubernetes API Server to monitor Kubernetes events and forwards them to communication mediums like Slack, Mattermost. It also reads messages from users and sends response accordingly.
+BotKube backend communicates with Kubernetes API Server to monitor Kubernetes events and forwards them to communication mediums like Slack/Mattermost/MS Teams. It also reads messages from users and sends response accordingly.
 
 ## BotKube Backend Architecture
 ![architecture](/images/architecture.png)
@@ -17,6 +17,6 @@ BotKube backend communicates with Kubernetes API Server to monitor Kubernetes ev
 
 **Event Notifier:** Finally, notifier sends BotKube event over the configured communication channel.
 
-**Bot Interface:** Bot interface takes care of authenticating and managing connections with communication mediums like Slack, Mattermost. It reads/sends messages from/to commucation mediums. 
+**Bot Interface:** Bot interface takes care of authenticating and managing connections with communication mediums like Slack/Mattermost/MS Teams. It reads/sends messages from/to commucation mediums. 
 
 **Executor:** Executes BotKube or kubectl command and sends back the result to the Bot interface.

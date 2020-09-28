@@ -25,7 +25,7 @@ We will use "App Studio" to register and install Bot to MS Teams. Please follow 
     | Short name | BotKube     |
     | Package name | botkube.io |
     | App ID       | \<Click on Generate\> |
-    | Version      | 9.99.9 |
+    | Version      | 0.11.0 |
     | Short Description | BotKube is a bot for your Kubernetes cluster |
     | Full Description | App that helps you monitor your Kubernetes cluster, debug critical deployments & gives recommendations for standard practices. |
     | Developer/Company Name | BotKube |
