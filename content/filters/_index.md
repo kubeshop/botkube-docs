@@ -78,16 +78,17 @@ Now, put your logic in the **Run()** function to parse resource object, run vali
 // Run filers and modifies event struct
 func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 
-	// Run checks only for Pod resource kind
-	if event.Kind != "Pod" {
+	// Run checks only for Pod resource kind and when event type is CreateEvent
+	if event.Kind != "Pod" || event.Type != config.CreateEvent {
 		return
 	}
 
-	// Parse resource specs object
+	// Convert Unstructured object into K8s typed object
 	// https://godoc.org/k8s.io/api/core/v1#Pod
-	podObj, ok := object.(*apiV1.Pod)
-	if !ok {
-		return
+	var podObj coreV1.Pod
+	err := utils.TransformIntoTypedObject(object.(*unstructured.Unstructured), &podObj)
+	if err != nil {
+		log.Errorf("Unable to tranform object type: %v, into type: %v", reflect.TypeOf(object), reflect.TypeOf(podObj))
 	}
 
 	// Check image tag in initContainers

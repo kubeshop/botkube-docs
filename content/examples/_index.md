@@ -43,6 +43,32 @@ The default notification type is **short**
 ![](/images/job_success_sh.png "Slack notiftype=short")
 ![](/images/job_success.png "Slack notiftype=long")
 
+#### Monitor Velero backups
+
+Add following configuration resource_config to monitor Velero backups resource.
+
+```bash
+    - name: velero.io/v1/backups
+      namespaces:
+        include:
+          - all
+        ignore:
+          -
+      events:
+        - create
+        - update
+        - delete
+        - error
+      updateSetting:
+        includeDiff: true
+        fields:
+          - status.phase
+```
+
+With this configuration, BotKube will monitor create/delete/error events and updates in _status.phase_ fields in _velero.io/v1/backups_ resource.
+
+![](/images/velero_backup.png "Velero backup")
+
 ### Debugging use-cases
 
 #### List pods in "fission" namespace
