@@ -5,5 +5,5 @@ One can reach **BotKube team** either at [Slack workspace](https://join.botkube.
 
 ## Links Below 
 
-Email: *botkube@infracloud.io* 
+Email: *botkube@infracloud.io*  
 Slack workspace: [join.botkube.io](https://join.botkube.io)
