@@ -1,6 +1,4 @@
-+++
-title = "License"
-+++
+# License
 
 MIT License
 
