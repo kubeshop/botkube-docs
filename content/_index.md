@@ -1,4 +1,4 @@
-# "BotKube"
+# BotKube
 <style>
 
 a.linkhighlight:hover {
