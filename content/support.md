@@ -1,6 +1,4 @@
-+++
-title = "Support"
-+++
+# Support #
 
 ## Need help with BotKube? 
 
