@@ -1,6 +1,4 @@
-+++
-title = "Privacy Policy"
-+++
+# Privacy Policy
 
 *Last Updated on December 8, 2019*
 
