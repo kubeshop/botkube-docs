@@ -194,13 +194,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
         <i class="fas fa-rocket"></i>
-        Try Now
+        Try Now!
       </a>
     </div>
     <div class="righttitle">
       <a href="https://github.com/kubeshop/botkube" class="linkhighlight">
         <i class="fab fa-github"></i>
-        View Source
+        View Source Code
       </a>
     </div>
   </div>
@@ -278,13 +278,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4><i class="fas fa-fw fa-user-secret fa-fw"></i>
-      Privacy
+      &nbsp Privacy
     </h4>
     The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-terminal fa-fw"> </i>
-      Execute kubectl commands
+      &nbsp &nbsp  Execute kubectl commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
     Plus you can configure which Kubectl commands BotKube can executes. See <a href=/configuration>configuration</a> for details.
@@ -294,13 +294,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4> <i class="fas fa-tasks fa-fw"> </i>
-      Support for multiple interfaces
+      &nbsp &nbsp  Support for multiple interfaces
     </h4>
     Like Slack, BotKube can also be integrated with Mattermost, Microsoft Teams, ElasticSearch and outgoing webhook. See <a href=/configuration>configuration</a> syntax for details.
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-puzzle-piece"></i>
-      Supports Custom Resources
+       &nbsp &nbsp  Supports Custom Resources
     </h4>
     BotKube can monitor literally any Kubernetes resource including Custom Resource. This enables you to configure alerts on some interesting events like - certificate issue/expiry if you are using cert-manager or backup failure in case you are using backup tools like Velero or Kanister.
   </div>
@@ -309,14 +309,14 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4><i class="fas fa-cogs fa-fw"></i>
-      Debug Anywhere, Anytime
+     &nbsp &nbsp  Debug Anywhere, Anytime
     </h4>
     With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
     Even while you are camping without a laptop, you can use Slack, Mattermost or MS Teams mobile app and get crucial information.
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-cogs fa-fw"> </i>
-	Easy to configure
+	&nbsp &nbsp  Easy to configure
     </h4>
     Get notifications about things that you really care for. You can configure events or objects or namespaces that you want to be informed about.
   </div>
@@ -325,13 +325,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4> <i class="fas fa-cloud fa-fw"> </i>
-      Deploy on any Kubernetes cluster
+      &nbsp &nbsp  Deploy on any Kubernetes cluster
     </h4>
     You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-plug fa-fw"> </i>
-      Add custom filters
+      &nbsp  Add custom filters
     </h4>
     It is very easy to write your own filters and registering them to FilterEngine. Follow <a href=/filters>this</a> guide to know more.
   </div>
@@ -340,13 +340,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4> <i class="fas fa-shield-alt fa-fw"> </i>
-      Security
+      &nbsp &nbsp Security
     </h4>
     By default BotKube uses a READONLY service account, you can customize this to your needs.
   </div>
   <div class="rightfeature">
     <h4><i class="fab fa-github"> </i>
-      Open source
+      &nbsp &nbsp  Open source
     </h4>
     BotKube backend is open source and we welcome your requirements and contributions.
   </div>
