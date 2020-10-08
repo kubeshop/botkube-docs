@@ -194,7 +194,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
         <i class="fas fa-rocket"></i>
-        Try Now !
+        Try Now!
       </a>
     </div>
     <div class="righttitle">
@@ -278,13 +278,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4><i class="fas fa-fw fa-user-secret fa-fw"></i>
-       &nbsp Privacy
+       Privacy
     </h4>
     The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-terminal fa-fw"> </i>
-      &nbsp &nbsp  Execute kubectl commands
+      &nbsp  Execute kubectl commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
     Plus you can configure which Kubectl commands BotKube can executes. See <a href=/configuration>configuration</a> for details.
@@ -300,7 +300,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
   <div class="rightfeature">
     <h4> <i class="fas fa-puzzle-piece"></i>
-       &nbsp &nbsp  Supports Custom Resources
+       &nbsp  Supports Custom Resources
     </h4>
     BotKube can monitor literally any Kubernetes resource including Custom Resource. This enables you to configure alerts on some interesting events like - certificate issue/expiry if you are using cert-manager or backup failure in case you are using backup tools like Velero or Kanister.
   </div>
