@@ -194,7 +194,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
         <i class="fas fa-rocket"></i>
-        Try Now!
+        Try Now !
       </a>
     </div>
     <div class="righttitle">
@@ -278,7 +278,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4><i class="fas fa-fw fa-user-secret fa-fw"></i>
-      &nbsp Privacy
+       &nbsp Privacy
     </h4>
     The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
