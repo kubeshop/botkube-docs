@@ -194,7 +194,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
         <i class="fas fa-rocket"></i>
-        Try Now !
+        Try Now!
       </a>
     </div>
     <div class="righttitle">
