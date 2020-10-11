@@ -200,7 +200,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <div class="righttitle">
       <a href="https://github.com/kubeshop/botkube" class="linkhighlight">
         <i class="fab fa-github"></i>
-        View Source Code
+        View Source
       </a>
     </div>
   </div>
