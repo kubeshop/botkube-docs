@@ -8,7 +8,7 @@ toc = true
 
 BotKube has two components that need to be installed.
 
-1. BotKube App Integration in your Slack/Mattermost/Microsoft Teams
+1. BotKube App Integration in your Slack/Mattermost/Microsoft Teams/Discord
 2. BotKube backend for the App in your Kubernetes cluster
 
 <style>
@@ -109,12 +109,12 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 #### Feature map
 
-| Feature  | Slack | Mattermost | Microsoft Teams | Elastic Search | Webhook |
-| -------- | ----- | -----------| --------------- | -------------- | ------- |
+| Feature  | Slack | Mattermost | Microsoft Teams | Discord | Elastic Search | Webhook |
+| -------- | ----- | -----------| --------------- | -------------- | ------- | ------- |
 | K8s Event push | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Kubectl commands | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA | NA | 
-| Multi cluster support | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: |
-| Restrict command execution to a channel | :heavy_check_mark: | :heavy_check_mark: | :x: | NA | NA |
+| Kubectl commands | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
+| Multi cluster support | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Restrict command execution to a channel | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | NA | NA |
 
 <div style="display: flex;justify-content: space-around;">
   <div class="installbox">
@@ -163,6 +163,16 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       <div class="text">
         <a href="webhook" class="linkhighlight">
           Configure Outgoing Webhook
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="installbox">
+    <img src="/images/discord.png" alt="Avatar" class="image">
+    <div class="middle">
+      <div class="text">
+        <a href="discord" class="linkhighlight">
+          Integrate with Discord
         </a>
       </div>
     </div>
