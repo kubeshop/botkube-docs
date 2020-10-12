@@ -147,6 +147,14 @@ The communication configuration file contains,
       appPassword: 'APPLICATION_PASSWORD'
       notiftype: short
       port: 3978
+    
+    # Settings for Discord
+    discord:
+      enabled: false
+      token: 'DISCORD_TOKEN'	        # BotKube Bot Token 
+      botid: 'DISCORD_BOT_ID'         # BotKube Application Client ID 
+      channel: 'DISCORD_CHANNEL_ID'   # Discord Channel id for receiving BotKube alerts 
+      notiftype: short                # Change notification type short/long you want to receive. notiftype is optional and Default notification type is short (if not specified)
 
     # Settings for ELS
     elasticsearch:
@@ -201,6 +209,9 @@ This command will open configmap specs in an editor. Do the required changes, sa
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| communications.discord.token | string | `DISCORD_TOKEN` |
+| communications.discord.botid | string | `DISCORD_BOT_ID` |
+| communications.discord.channel | string | `DISCORD_CHANNEL_ID` |
 | communications.elasticsearch.awsSigning.awsRegion | string | `"us-east-1"` |  |
 | communications.elasticsearch.awsSigning.enabled | bool | `false` |  |
 | communications.elasticsearch.awsSigning.roleArn | string | `""` |  |
