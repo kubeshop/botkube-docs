@@ -325,7 +325,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4> <i class="fas fa-cloud fa-fw"> </i>
-      &nbsp &nbsp  Deploy on any Kubernetes cluster
+      &nbsp Deploy on any Kubernetes cluster
     </h4>
     You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
   </div>
