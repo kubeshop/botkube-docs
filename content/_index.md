@@ -284,7 +284,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
   <div class="rightfeature">
     <h4><i class="fas fa-terminal fa-fw"></i>
-       &nbsp   Execute Kubectl commands
+        Execute Kubectl commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
     Plus you can configure which Kubectl commands BotKube can executes. See <a href=/configuration>configuration</a> for details.
@@ -340,13 +340,13 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4> <i class="fas fa-shield-alt fa-fw"> </i>
-      &nbsp &nbsp Security
+      &nbsp Security
     </h4>
     By default BotKube uses a READONLY service account, you can customize this to your needs.
   </div>
   <div class="rightfeature">
     <h4><i class="fab fa-github"> </i>
-      &nbsp &nbspOpen source
+      &nbsp Open source
     </h4>
     BotKube backend is open source and we welcome your requirements and contributions.
   </div>
