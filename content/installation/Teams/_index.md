@@ -6,15 +6,30 @@ toc = true
 +++
 
 1. Register BotKube as a bot with Microsoft Bot Framework.
-2. Deploy BotKube controller.
-3. Add BotKube app to a channel and enable notifications.
+2. Deploy the BotKube controller.
+3. Add the BotKube app to a channel and enable notifications.
+
+#### Prerequisites
+
+Unlike Slack/Mattermost, MS Teams apps communicate with backends by sending POST requests to the public endpoints. So to establish communications between Teams app and respective backend, it needs to be reachable from the outside world.
+
+Now there are few different ways to enable access to the K8s Service from the outside cluster.
+We will be discussing the most common way i.e exposing using [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources.
+
+ Before we start, make sure you have -
+
+- a domain name with the ability to configure DNS
+- TLS cert and key for the registered domain name to configure SSL termination
+- nginx-ingress controller deployed on your cluster
+
+If you are new to Ingress and don't know how to set up an ingress controller, please follow [this](https://www.infracloud.io/blogs/deep-dive-ingress-kubernetes/) blog by InfraCloud.
 
 ### A. Register BotKube as a bot with Microsoft Bot Framework.
 
 We will use "App Studio" to register and install Bot to MS Teams. Please follow the steps below to create and install BotKube App to your Team.
 
-1. Install App Studio from marketplace.
-   Search for "App Studio" in Apps section and add to the Teams
+1. Install App Studio from the marketplace.
+   Search for "App Studio" in the Apps section and add to the Teams
 
 2. Open App Studio, Go to "Manifest editor" and choose "Create a new app"
 
@@ -33,7 +48,7 @@ We will use "App Studio" to register and install Bot to MS Teams. Please follow 
     | Privacy statement | https://botkube.io/privacy |
     | Terms of use    | https://botkube.io/license |
 
-    Click checkbox on "Loading indicator" (optional)
+    Click the checkbox on "Loading indicator" (optional)
 
 4. Download BotKube icons from https://github.com/infracloudio/botkube/tree/develop/branding/logos and update Branding icons.
    ![](/images/teams_app_details.png "Teams BotKube App Details")
@@ -49,45 +64,46 @@ Go to Capabilities > Bots and fill in the info
     - Scope: **[x] Personal** & **[x] Team**
     And Create bot.
 
-3. On "Bots" page, click on **Generate a new password**. Note down the password required while installing BotKube backend. 
+3. On the "Bots" page, click on **Generate a new password**. Note down the password required while installing BotKube backend. 
 
-4. **Copy App ID displayed below Bot name in the heading. Note that Bot App ID is different than the one we generate in "Apps Details" page.**
+4. **Copy App ID displayed below Bot name in the heading. Note that Bot App ID is different than the one we generate on the "Apps Details" page.**
 
 5. Set **Messaging Endpoint**.
-   Messaging endpoint is the URL on which BotKube backend listens for incoming requests from Teams. While deploying BotKube backend you can give option to expose BotKube via Ingress.
+   The messaging endpoint is the URL on which BotKube backend listens for incoming requests from Teams. While deploying the BotKube backend you can give an option to expose BotKube via Ingress. Please check the [prerequisites](/installation/teams/#prerequisites) for more details.
+
    ![](/images/teams_bot.png "Teams BotKube Bot")
 
 #### Install Bot to Teams
 
-Go to Finish >> Test and distribute and click on Install to install BotKube app on teams.
+Go to Finish >> Test and distribute and click on **Install** to install the BotKube app on teams.
 
    {{% notice note %}}
    If you face "You don't have permissions to add BotKube to this team.", contact your admin to provide an access to install apps on teams.<br>
-   If you are using free version of teams which does not have admin center, you can click on **Download** to download the app manifest and then choose **Upload a custom app** option in App center to install the app.
+   If you are using a free version of teams which does not have an admin center, you can click on **Download** to download the app manifest and then choose **Upload a custom app** option in the App center to install the app.
    {{% /notice%}}
 
 ### B. Deploy BotKube controller
 
-BotKube app we created on Teams sends messages to endpoint we provided while configuring the app. To POST the requests to BotKube controller, it  needs to be reachable from the outside world.
+The BotKube app we created on Teams sends messages to the endpoint we provided while configuring the app. To POST the requests to the BotKube controller, it needs to be reachable from the outside world.
 
-Now there are few different ways to enable access to the K8s Service from the outside cluster. But we will be discussing about the most common way i.e exposing using [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resource.
+Now there are few different ways to enable access to the K8s Service from the outside cluster. But we will be discussing the most common way i.e exposing using [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources.
 
 #### Prerequisites
 
- Before we start, make sure you have - 
+ Before we start, make sure you have -
 
 - a domain name with the ability to configure DNS
 - TLS cert and key for the registered domain name to configure SSL termination
 - nginx-ingress controller deployed on your cluster
 
-If you new to Ingress and don't know how to setup ingress controller, please follow [this](https://www.infracloud.io/blogs/deep-dive-ingress-kubernetes/) blog by InfraCloud.
+If you are new to Ingress and don't know how to set up an ingress controller, please follow [this](https://www.infracloud.io/blogs/deep-dive-ingress-kubernetes/) blog by InfraCloud.
 
 Create a K8s TLS secret from cert and key for the SSL termination in botkube namespace
 
 ```bash
 $ kubectl create secret tls botkube-tls -n botkube --cert=/path/to/cert.pem --key=/path/to/privatekey.pem
 ```
-We will use this TLS secret while deploying BotKube backend.
+We will use this TLS secret while deploying the BotKube backend.
 
 #### Using helm
 
@@ -150,7 +166,7 @@ We will use this TLS secret while deploying BotKube backend.
   - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
 
    Configuration syntax is explained [here](/configuration).
-   Complete list of helm options is documented [here](/configuration/#helm-install-options)
+   A complete list of helm options is documented [here](/configuration/#helm-install-options)
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
@@ -210,7 +226,7 @@ We will use this TLS secret while deploying BotKube backend.
 
 #### Using kubectl
 
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster
+- Make sure that you have kubectl cli installed and have access to the Kubernetes cluster
 - Download deployment specs yaml
 
     ```bash
@@ -245,23 +261,23 @@ $ kubectl create -f deploy-all-in-one.yaml
 
 #### Verify if BotKube endpoint is reachable
 
-Curl on the endpoint to confirm that BotKube endpoint is reachable and serving the requests.
+Curl on the endpoint to confirm that the BotKube endpoint is reachable and serving the requests.
 
 ```bash
 $ curl -k https://<HOST>/<URLPATH>
 Authentication headers are missing in the request # Expected response
 ```
 
-If you get 404, please check ingress configuration or endpoind you configured while registering app.
+If you get 404, please check the ingress configuration or endpoint you configured while registering the app.
 
 ### Add BotKube to a channel
 
 1. Go to Apps and select BotKube.
 
-2. Click drop-down option besides "Open" button. That should show "Add to a team" option.
+2. Click the drop-down option besides the "Open" button. That should show "Add to a team" option.
    ![](/images/teams_add_to_team.png "Teams BotKube add to teams")
 
-3. Type and select the channel name in which you to receive notification.
+3. Type and select the channel name in which you want to receive notifications.
 
 4. Once added, browse to the channel and type `@BotKube ping` to make sure BotKube is responding.
    If BotKube responds, send `@BotKube notifier start` to enable notifications.
@@ -271,7 +287,7 @@ If you get 404, please check ingress configuration or endpoind you configured wh
 
 #### Using helm
 
-If you have installed BotKube backend using **helm**, execute following command to completely remove BotKube and related resources from your cluster.
+If you have installed BotKube backend using **helm**, execute the following command to completely remove BotKube and related resources from your cluster.
 
 ```bash
 $ helm delete --purge botkube
