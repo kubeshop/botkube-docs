@@ -138,6 +138,16 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     </div>
   </div>
   <div class="installbox">
+    <img src="/images/discord.png" alt="Avatar" class="image">
+    <div class="middle">
+      <div class="text">
+        <a href="discord" class="linkhighlight">
+          Integrate with Discord
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="installbox">
     <img src="/images/msteams.png" alt="Avatar" class="image">
     <div class="middle">
       <div class="text">
@@ -163,16 +173,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       <div class="text">
         <a href="webhook" class="linkhighlight">
           Configure Outgoing Webhook
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="installbox">
-    <img src="/images/discord.png" alt="Avatar" class="image">
-    <div class="middle">
-      <div class="text">
-        <a href="discord" class="linkhighlight">
-          Integrate with Discord
         </a>
       </div>
     </div>

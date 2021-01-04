@@ -2,7 +2,7 @@
 title = "Discord"
 date = 2020-10-02T15:46:02+05:30
 draft = false
-weight = 10
+weight = 25
 toc = true
 +++
 
@@ -12,74 +12,81 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
 #### Create BotKube app at your Discord Server
 
-1. Reach https://discordapp.com/developers/applications 
+1. Reach https://discordapp.com/developers/applications.
 
-![discord_applications_portal](/images/discord_applications_portal.png)
+    ![discord_applications_portal](/images/discord_applications_portal.png)
 
-2. Create New Application named Botkube and add a bot named **Botkube** into the Application
+2. Create a "New Application" named BotKube and add a bot named **BotKube** into the Application.
 
-![discord_create_new](/images/discord_create_new.png)
+    ![discord_create_new](/images/discord_create_new.png)
 
-3. Copy the Application **CLIENT ID** and place it under _Dischord.botid_ in comm-config.yaml
+3. Copy the Application **CLIENT ID** and place it under ``discord.botid`` in comm-config.yaml.
 
-![discord_copy_client_id](/images/discord_copy_client_id.png)
+    Add a description - `BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. Visit https://www.botkube.io/usage for help.`.
 
+    And set the BotKube icon (BotKube icon can be downloaded from [this link](https://github.com/infracloudio/botkube/raw/develop/branding/logos/botkube_192x192.png)).
 
-4. Now Reach the **Bot** page and Click **Add Bot** to add a Discord Bot to your application.
+    Click on Save Changes to update the Bot.
 
-
-![discord_add_bot](/images/discord_add_bot.png)
-
-5. Autoring Bot creation, now you can see a bot being added to your application. Copy Bot **TOKEN** and place it under _Dischord.token_ in comm-config.yaml
-
-![discord_bot_created](/images/discord_bot_created.png)
+    ![discord_copy_client_id](/images/discord_copy_client_id.png)
 
 
-6. Now Reach the **OAuth2** page. Generate the URL with suitable permissions using the **OAuth2 URL Generator** available under OAuth2 section to the add bot to your Discord server
+4. Now, reach the **Bot** page and Click **Add Bot** to add a Discord Bot to your application.
 
-![discord_bot_scope](/images/discord_bot_scope.png)
+    ![discord_add_bot](/images/discord_add_bot.png)
 
-the generated URL contains **YOUR_CLIENT_ID**, Scope and permission details
+5. After Bot creation, now you can see a bot is added to your application. Click on **Reveal Token**, copy and place Bot it under ``discord.token`` in comm-config.yaml.
 
-```
-https://discordapp.com/oauth2/authorize?&client_id=<YOUR_CLIENT_ID>&scope=bot&permissions=<SET_OF_PERMISSIONS>
-```
-
-6. Copy and Paste the generated URL in a new tab, select the discord sever to which you want to add the bot, click Continue and Authorise Bot addition.
-
-![discord_bot_auth](/images/discord_bot_auth.png)
-
-![discord_bot_auth_2](/images/discord_bot_auth_2.png)
+    ![discord_bot_created](/images/discord_bot_created.png)
 
 
-Kudos to you..!!, you have successfully added botkube bot to you server
+6. Go to the **OAuth2** page. Generate the URL with suitable permissions using the **OAuth2 URL Generator** available under the OAuth2 section to add bot to your Discord server.
 
-![discord_new_channel](/images/discord_new_channel.png)
+    ![discord_bot_scope](/images/discord_bot_scope.png)
 
-7. Create a new channel and/or copy the  **CHANNEL ID** of an existing one that you want to use frome the dicrod url https://discord.com/channels/XXXX/CHANNEL_ID and place it under _Dischord.channel_
+    the generated URL contains **YOUR_CLIENT_ID**, Scope and permission details.
+    
+    ```
+    https://discordapp.com/oauth2/authorize?&client_id=<YOUR_CLIENT_ID>&scope=bot&permissions=<SET_OF_PERMISSIONS>
+    ```
 
-```yaml
-  # Settings for Discord
-  discord:
-    enabled: true
-    token: 'DISCORD_TOKEN'	    # BotKube Bot Token 
-    botid: 'DISCORD_BOT_ID'         # BotKube Application Client ID 
-    channel: 'DISCORD_CHANNEL_ID'   # Discord Channel id for receiving BotKube alerts 
-    notiftype: short                # Change notification type short/long you want to receive. notiftype is optional and Default notification type is short (if not specified)
-```
+7. Copy and Paste the generated URL in a new tab, select the discord server to which you want to add the bot, click Continue and Authorise Bot addition.
 
-8. start the botkube app ( if already installed ), and have fun..!!
+    ![discord_bot_auth](/images/discord_bot_auth.png)
 
+    ![discord_bot_auth_2](/images/discord_bot_auth_2.png)
 
+    Kudos to you..!!, you have successfully added BotKube bot to your server.
+    
+    ![discord_new_channel](/images/discord_new_channel.png)
 
-#####  Note: Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) to understand the process visually.
+8. Create a new channel and/or copy the  **CHANNEL ID** of an existing one.
+   To get the channel ID, right-click on a channel you want to receive notification in and click on **Copy ID**. Place the channel ID under ``discord.channel`` in comm-config.yaml.
+
+    ```yaml
+      # Settings for Discord
+      discord:
+        enabled: true
+        token: 'DISCORD_TOKEN'	    # BotKube Bot Token 
+        botid: 'DISCORD_BOT_ID'         # BotKube Application Client ID 
+        channel: 'DISCORD_CHANNEL_ID'   # Discord Channel id for receiving BotKube alerts 
+        notiftype: short                # Change notification type short/long you want to receive. notiftype is optional and Default notification type is short (if not specified)
+    ```
+
+9. Now, go ahead and install the BotKube backend on your Kubernetes cluster.
+
+{{% notice note %}}
+
+Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) to understand the process visually.
+
+{{% /notice%}}
 
 
 ### Install BotKube Backend in Kubernetes cluster
 
 #### Using helm
 
-- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already
+- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **infracloudio** chart repository
 
   ```bash
@@ -87,7 +94,7 @@ Kudos to you..!!, you have successfully added botkube bot to you server
   $ helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster.
+- Deploy BotKube backend using **helm install** in your cluster
 
   {{< tabs >}}
   {{% tab name="Helm 3" %}}
@@ -125,8 +132,8 @@ Kudos to you..!!, you have successfully added botkube bot to you server
   {{< /tabs >}}
 
   where,<br>
-  - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notidications<br>
-  - **DISCORD_BOT_ID** is the BotKube Application Client ID
+  - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br>
+  - **DISCORD_BOT_ID** is the BotKube Application Client ID<br>
   - **DISCORD_TOKEN** is the Token you received after adding BotKube bot to your Discord Application<br>
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
@@ -202,8 +209,8 @@ $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/deploy-
 Set *DISCORD_ENABLED*, *DISCORD_BOTID*,  *DISCORD_CHANNEL*, *DISCORD_TOKEN*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
 where,<br>
-- **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notidications<br>
-  - **DISCORD_BOT_ID** is the BotKube Application Client ID
+  - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br>
+  - **DISCORD_BOT_ID** is the BotKube Application Client ID<br>
   - **DISCORD_TOKEN** is the Token you received after adding BotKube bot to your Discord Application<br>
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
