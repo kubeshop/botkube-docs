@@ -40,14 +40,14 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   {{% tab name="Helm 3" %}}
 
   ```bash
-  $ helm install --version v0.11.0 botkube --namespace botkube \
+  $ helm install --version v0.12.0 botkube --namespace botkube \
   --set communications.slack.enabled=true \
   --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
   --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.11.0 \
+  --set image.tag=v0.12.0 \
   infracloudio/botkube
   ```
 
@@ -55,14 +55,14 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   {{% tab name="Helm 2" %}}
 
   ```bash
-  $ helm install --version v0.11.0 --name botkube --namespace botkube \
+  $ helm install --version v0.12.0 --name botkube --namespace botkube \
   --set communications.slack.enabled=true \
   --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
   --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.11.0 \
+  --set image.tag=v0.12.0 \
   infracloudio/botkube
   ```
 
@@ -87,7 +87,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.0/helm/botkube/sample-res-config.yaml)
 
   ```
   config:
@@ -127,7 +127,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
     e.g
 
     ```
-    $ helm install --version v0.11.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.12.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -139,7 +139,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 - Download deployment specs yaml
 
 ```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/deploy-all-in-one.yaml
+$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.0/deploy-all-in-one.yaml
 ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
@@ -181,6 +181,6 @@ $ helm delete --purge botkube
 #### Using kubectl
 
 ```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.11.0/deploy-all-in-one.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.0/deploy-all-in-one.yaml
 ```
 
