@@ -174,9 +174,22 @@ $ kubectl create -f deploy-all-in-one.yaml
 
 If you have installed BotKube backend using **helm**, execute following command to completely remove BotKube and related resources from your cluster.
 
+{{< tabs >}}
+{{% tab name="Helm 3" %}}
+
 ```bash
-$ helm delete --purge botkube
+$ helm uninstall botkube --namespace botkube
 ```
+
+{{% /tab %}}
+{{% tab name="Helm 2" %}}
+
+```bash
+$ helm delete --purge botkube --namespace botkube
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 #### Using kubectl
 
