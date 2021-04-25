@@ -23,7 +23,7 @@ toc = true
   {{% tab name="Helm 3" %}}
 
   ```bash
-  $ helm install --version v0.12.0 botkube --namespace botkube \
+  $ helm install --version v0.12.1 botkube --namespace botkube \
   --set communications.elasticsearch.enabled=true \
   --set communications.elasticsearch.server=<ELASTICSEARCH_ADDRESS> \
   --set communications.elasticsearch.username=<ELASTICSEARCH_USERNAME> \
@@ -34,7 +34,7 @@ toc = true
   --set communications.elasticsearch.index.replicas=<ELASTICSEARCH_INDEX_REPLICAS> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.12.0 \
+  --set image.tag=v0.12.1 \
   infracloudio/botkube
   ```
 
@@ -42,7 +42,7 @@ toc = true
   {{% tab name="Helm 2" %}}
 
   ```bash
-  $ helm install --version v0.12.0 --name botkube --namespace botkube \
+  $ helm install --version v0.12.1 --name botkube --namespace botkube \
   --set communications.elasticsearch.enabled=true \
   --set communications.elasticsearch.server=<ELASTICSEARCH_ADDRESS> \
   --set communications.elasticsearch.username=<ELASTICSEARCH_USERNAME> \
@@ -53,7 +53,7 @@ toc = true
   --set communications.elasticsearch.index.replicas=<ELASTICSEARCH_INDEX_REPLICAS> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.12.0 \
+  --set image.tag=v0.12.1 \
   infracloudio/botkube
   ```
 
@@ -80,7 +80,7 @@ toc = true
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.0/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.1/helm/botkube/sample-res-config.yaml)
 
   ```
   config:
@@ -120,7 +120,7 @@ toc = true
     e.g
 
     ```
-    $ helm install --version v0.12.0 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.12.1 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -132,7 +132,7 @@ toc = true
 - Download deployment specs yaml
 
 ```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.0/deploy-all-in-one.yaml
+$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.1/deploy-all-in-one.yaml
 ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
@@ -165,6 +165,6 @@ $ helm delete --purge botkube
 #### Using kubectl
 
 ```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.0/deploy-all-in-one.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.1/deploy-all-in-one.yaml
 ```
 
