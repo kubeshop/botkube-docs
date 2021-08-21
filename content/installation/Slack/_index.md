@@ -76,7 +76,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
    Configuration syntax is explained [here](/configuration).
-   Complete list of helm options is documented [here](/configuration/#helm-install-options).
+   Complete list of helm options is documented [here](/configuration/helm-options).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 

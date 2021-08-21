@@ -120,7 +120,7 @@ Autocomplete | True
   - To deploy with TLS, replace **MATTERMOST_CERT** with the location of the SSL certificate file placed in Helm directory. Leave this value to None if deploying without TLS.
 
     Configuration syntax is explained [here](/configuration).
-    Complete list of helm options is documented [here](/configuration/#helm-install-options).
+    Complete list of helm options is documented [here](/configuration/helm-options).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 

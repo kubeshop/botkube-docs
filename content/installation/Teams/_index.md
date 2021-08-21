@@ -166,7 +166,7 @@ We will use this TLS secret while deploying the BotKube backend.
   - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
 
    Configuration syntax is explained [here](/configuration).
-   A complete list of helm options is documented [here](/configuration/#helm-install-options)
+   A complete list of helm options is documented [here](/configuration/helm-options)
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
@@ -248,7 +248,7 @@ where,<br>
 - **settings.kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
 
    Configuration syntax is explained [here](/configuration).
-   Complete list of helm options is documented [here](/configuration/#helm-install-options)
+   Complete list of helm options is documented [here](/configuration/helm-options)
 
 - Deploy the resources
 

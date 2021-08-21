@@ -139,7 +139,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
    Configuration syntax is explained [here](/configuration).
-   Complete list of helm options is documented [here](/configuration/#helm-install-options).
+   Complete list of helm options is documented [here](/configuration/helm-options).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
