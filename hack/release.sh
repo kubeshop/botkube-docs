@@ -46,6 +46,8 @@ git_tag() {
     
     echo "Creating a git tag"
     git add content/history/_index.md
+    git add content/installation/*
+    git add content/configuration/helm-options.md
     git commit -m "Release ${version}"
     git tag ${version}
     git push --tags origin develop
