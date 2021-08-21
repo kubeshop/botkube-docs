@@ -35,7 +35,7 @@ update_helm_options() {
     echo "title: Advanced Helm Options" >> content/configuration/helm-options.md
     echo "---" >> content/configuration/helm-options.md
     cat helm-options.md >> content/configuration/helm-options.md
-    #rm helm-options.md
+    rm helm-options.md
 }
 
 git_tag() {
@@ -57,8 +57,8 @@ find_prev_release
 update_image_tags
 update_changelogs
 update_helm_options
-#echo "Tagging release ${version}"
-#git_tag
+echo "Tagging release ${version}"
+git_tag
 
 echo "=========================== Done ============================="
 echo "Congratulations!! Release ${version} tagged."
