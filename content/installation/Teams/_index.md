@@ -121,7 +121,7 @@ We will use this TLS secret while deploying the BotKube backend.
   {{% tab name="Helm 3" %}}
 
   ```bash
-  $ helm install --version v0.12.3 botkube --namespace botkube \
+  $ helm install --version v0.12.4 botkube --namespace botkube \
   --set communications.teams.enabled=true \
   --set communications.teams.appID=<APPLICATION_ID> \
   --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
@@ -139,7 +139,7 @@ We will use this TLS secret while deploying the BotKube backend.
   {{% tab name="Helm 2" %}}
 
   ```bash
-  $ helm install --version v0.12.3 --name botkube --namespace botkube \
+  $ helm install --version v0.12.4 --name botkube --namespace botkube \
   --set communications.teams.enabled=true \
   --set communications.teams.appID=<APPLICATION_ID> \
   --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
@@ -177,7 +177,7 @@ We will use this TLS secret while deploying the BotKube backend.
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.3/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
   ```bash
   config:
@@ -218,7 +218,7 @@ We will use this TLS secret while deploying the BotKube backend.
     e.g
 
     ```
-    $ helm install --version v0.12.3 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.12.4 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -230,7 +230,7 @@ We will use this TLS secret while deploying the BotKube backend.
 - Download deployment specs yaml
 
     ```bash
-    $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.3/deploy-all-in-one.yaml
+    $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
     ```
 - Uncomment BotKube service and ingress resource manifest.<br>
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
@@ -296,6 +296,6 @@ $ helm delete --purge botkube
 #### Using kubectl
 
 ```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.3/deploy-all-in-one.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
 ```
 
