@@ -50,7 +50,7 @@ git_tag() {
     git add content/configuration/helm-options.md
     git commit -m "Release ${version}"
     git tag ${version}
-    git push --tags origin develop
+    git push --tags origin master
     echo 'Git tag pushed successfully'
 }
 
@@ -64,5 +64,4 @@ git_tag
 
 echo "=========================== Done ============================="
 echo "Congratulations!! Release ${version} tagged."
-echo "Now go and merge develop to master."
 echo "=============================================================="
