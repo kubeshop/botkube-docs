@@ -156,23 +156,25 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 </style>
 
+<div class="fitscreen">
   <div class="mobiletitle">
-  <a href="/"><img src="/images/botkube-title.jpg" widt="400px"></a>
+  <a href="/"><img src="/images/botkube-title.jpg"></a>
   </div>
   <div class="desktoptitle">
-    <a href="/"><img src="/images/botkube-title.jpg" width="400px" style="margin: auto;"></a>
+    <a href="/"><img src="/images/botkube-title.jpg" width="auto" style="margin: auto;"></a>
   </div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
   BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. It's built and maintained with <i class="fas fa-heart fa-fw"></i> by <a href="https://infracloud.io">InfraCloud</a>
   </p>
-
-{{< figure class="centered" src="/images/botkube_multicluster.png" width="400px" >}}
-
+  <div class="centerimage">
+    <img src="/images/botkube_multicluster.png" width="auto" style="max-height:100%;max-width:100%;">
+  </div>
   <div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
   BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost, Microsoft Teams to help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
   </p>
   </div>
+
   <div>
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
@@ -187,7 +189,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       </a>
     </div>
   </div>
-  <br/>
+</div>
 
 <h2>What can BotKube do?</h2>
 <div class="visibledesktop">
