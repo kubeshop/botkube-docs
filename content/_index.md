@@ -168,13 +168,12 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </p>
 </div>
   {{< figure class="centered" src="/images/botkube_multicluster.png" height="50%" width="50%" >}}
-<div class="fitscreen">
+
   <div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
   BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost, Microsoft Teams to help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.
   </p>
   </div>
-
   <div>
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
@@ -189,7 +188,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       </a>
     </div>
   </div>
-</div>
 
 <h2>What can BotKube do?</h2>
 <div class="visibledesktop">
