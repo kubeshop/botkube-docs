@@ -1,6 +1,7 @@
 ---
 title: "BotKube"
 ---
+
 <style>
 
 a.linkhighlight:hover {
@@ -157,7 +158,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div class="fitscreen">
   <div class="mobiletitle">
-  <a href="/"><img src="/images/botkube-title.jpg"></a>
+  <a href="/"><img src="/images/botkube-title.jpg" widt="400px"></a>
   </div>
   <div class="desktoptitle">
     <a href="/"><img src="/images/botkube-title.jpg" width="400px" style="margin: auto;"></a>
@@ -189,7 +190,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     </div>
   </div>
 </div>
-
 
 <h2>What can BotKube do?</h2>
 <div class="visibledesktop">
