@@ -25,7 +25,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 }
 
 .centerimage {
-  height: 50%;
   display: block;
   text-align:center;
   display:flex;
@@ -126,7 +125,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     display: block;
   }
   .centerimage {
-    width: 100%;
     display: block;
     text-align:center;
     display:flex;
@@ -168,7 +166,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </p>
   <div>
   <center>
-    <img src="/images/botkube_multicluster.png" width="50%">
+    <img src="/images/botkube_multicluster.png" width="20%">
     </center>
   </div>
   <div>
