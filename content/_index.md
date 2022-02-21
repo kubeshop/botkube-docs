@@ -156,7 +156,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 </style>
 
-<div class="fitscreen">
   <div class="mobiletitle">
   <a href="/"><img src="/images/botkube-title.jpg" widt="400px"></a>
   </div>
@@ -166,8 +165,8 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
   BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. It's built and maintained with <i class="fas fa-heart fa-fw"></i> by <a href="https://infracloud.io">InfraCloud</a>
   </p>
-</div>
-  {{< figure class="centered" src="/images/botkube_multicluster.png" height="50%" width="50%" >}}
+
+{{< figure class="centered" src="/images/botkube_multicluster.png" width="400px" >}}
 
   <div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
@@ -188,6 +187,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
       </a>
     </div>
   </div>
+  <br/>
 
 <h2>What can BotKube do?</h2>
 <div class="visibledesktop">
