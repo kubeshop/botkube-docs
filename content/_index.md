@@ -157,7 +157,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 </style>
 
   <div class="mobiletitle">
-  <a href="/"><img src="/images/botkube-title.jpg" widt="100px"></a>
+  <a href="/"><img src="/images/botkube-title.jpg" width="100px"></a>
   </div>
   <div class="desktoptitle">
     <a href="/"><img src="/images/botkube-title.jpg" width="100px" style="margin: auto;"></a>
