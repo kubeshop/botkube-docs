@@ -161,13 +161,15 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   <a href="/"><img src="/images/botkube-title.jpg"></a>
   </div>
   <div class="desktoptitle">
-    <a href="/"><img src="/images/botkube-title.jpg" width="auto"></a>
+    <a href="/"><img src="/images/botkube-title.jpg" width="20%"></a>
   </div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
   BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. It's built and maintained with <i class="fas fa-heart fa-fw"></i> by <a href="https://infracloud.io">InfraCloud</a>
   </p>
-  <div class="centerimage">
-    <img src="/images/botkube_multicluster.png" width="auto">
+  <div>
+  <center>
+    <img src="/images/botkube_multicluster.png" width="50%">
+    </center>
   </div>
   <div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
@@ -341,5 +343,5 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 ---
 
 <center>
-An open source project by <a href="https://infracloud.io"><img src="/images/infracloud-logo.png" height="30px" alt="InfraCloud"></a>
+An open source project by <a href="https://infracloud.io"><img src="/images/infracloud-logo.png" height="30px" alt="InfraCloud" style="margin:auto; display:inline-block; vertical-align:middle;"></a>
 </center>
