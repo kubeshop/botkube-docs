@@ -21,10 +21,6 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
 - Deploy BotKube backend using **helm install** in your cluster.
 
-
-  {{< tabs >}}
-  {{% tab name="Helm 3" %}}
-
   ```bash
   $ helm install --version v0.12.4 botkube --namespace botkube \
   --set communications.webhook.enabled=true \
@@ -34,22 +30,6 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   --set image.tag=v0.12.4 \
   infracloudio/botkube
   ```
-
-  {{% /tab %}}
-  {{% tab name="Helm 2" %}}
-
-  ```bash
-  $ helm install --version v0.12.4 --name botkube --namespace botkube \
-  --set communications.webhook.enabled=true \
-  --set communications.webhook.url=<WEBHOOK_URL> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
-  --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.12.4 \
-  infracloudio/botkube
-  ```
-
-  {{% /tab %}}
-  {{< /tabs >}}
 
   where,<br>
   - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br>

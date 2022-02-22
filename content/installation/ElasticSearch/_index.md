@@ -19,9 +19,6 @@ toc = true
 
 - Deploy BotKube backend using **helm install** in your cluster.
 
-  {{< tabs >}}
-  {{% tab name="Helm 3" %}}
-
   ```bash
   $ helm install --version v0.12.4 botkube --namespace botkube \
   --set communications.elasticsearch.enabled=true \
@@ -37,28 +34,6 @@ toc = true
   --set image.tag=v0.12.4 \
   infracloudio/botkube
   ```
-
-  {{% /tab %}}
-  {{% tab name="Helm 2" %}}
-
-  ```bash
-  $ helm install --version v0.12.4 --name botkube --namespace botkube \
-  --set communications.elasticsearch.enabled=true \
-  --set communications.elasticsearch.server=<ELASTICSEARCH_ADDRESS> \
-  --set communications.elasticsearch.username=<ELASTICSEARCH_USERNAME> \
-  --set communications.elasticsearch.password=<ELASTICSEARCH_PASSWORD> \
-  --set communications.elasticsearch.index.name=<ELASTICSEARCH_INDEX_NAME> \
-  --set communications.elasticsearch.index.type=<ELASTICSEARCH_INDEX_TYPE> \
-  --set communications.elasticsearch.index.shards=<ELASTICSEARCH_INDEX_SHARDS> \
-  --set communications.elasticsearch.index.replicas=<ELASTICSEARCH_INDEX_REPLICAS> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
-  --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.12.4 \
-  infracloudio/botkube
-  ```
-
-  {{% /tab %}}
-  {{< /tabs >}}
 
   where,<br>
   - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br>
