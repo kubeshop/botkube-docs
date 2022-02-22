@@ -11,6 +11,16 @@ BotKube has two components that need to be installed.
 1. BotKube App Integration in your Slack/Mattermost/Microsoft Teams/Discord
 2. BotKube backend for the App in your Kubernetes cluster
 
+#### Feature map
+
+| Feature  | Slack | Mattermost | Microsoft Teams | Discord | Elastic Search | Webhook |
+| -------- | ----- | -----------| --------------- | -------------- | ------- | ------- |
+| K8s Event push | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Kubectl commands | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
+| Multi cluster support | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Restrict command execution to a channel | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | NA | NA |
+
+{{< raw_html >}}
 <style>
 
 a.linkhighlight:hover {
@@ -54,7 +64,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 .image {
   opacity: 1;
   display: block;
-  width: 60%;
+  width: 60% !important;
   height: auto;
   transition: .5s ease;
   backface-visibility: hidden;
@@ -107,14 +117,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 }
 </style>
 
-#### Feature map
 
-| Feature  | Slack | Mattermost | Microsoft Teams | Discord | Elastic Search | Webhook |
-| -------- | ----- | -----------| --------------- | -------------- | ------- | ------- |
-| K8s Event push | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Kubectl commands | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
-| Multi cluster support | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Restrict command execution to a channel | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | NA | NA |
 
 <div style="display: flex;justify-content: space-around;">
   <div class="installbox">
@@ -178,6 +181,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     </div>
   </div>
 </div>
+{{< /raw_html >}}
 
 {{% notice note %}}
 You can use a single BotKube backend to serve all the interfaces - Slack, Mattermost, Microsoft Teams, ElasticSearch and Webhook. <br>

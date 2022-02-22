@@ -96,9 +96,6 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
 - Deploy BotKube backend using **helm install** in your cluster
 
-  {{< tabs >}}
-  {{% tab name="Helm 3" %}}
-
   ```bash
   $ helm install --version v0.12.4 botkube --namespace botkube \
   --set communications.discord.enabled=true \
@@ -111,25 +108,6 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   --set image.tag=v0.12.4 \
   infracloudio/botkube
   ```
-
-  {{% /tab %}}
-  {{% tab name="Helm 2" %}}
-
-  ```bash
-  $ helm install --version v0.12.4 --name botkube --namespace botkube \
-  --set communications.discord.enabled=true \
-  --set communications.discord.channel=<DISCORD_CHANNEL_ID> \
-  --set communications.discord.botid=<DISCORD_BOT_ID> \
-  --set communications.discord.token=<DISCORD_TOKEN> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
-  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
-  --set image.repository=infracloudio/botkube \
-  --set image.tag=v0.12.4 \
-  infracloudio/botkube
-  ```
-
-  {{% /tab %}}
-  {{< /tabs >}}
 
   where,<br>
   - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br>

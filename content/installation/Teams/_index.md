@@ -117,9 +117,6 @@ We will use this TLS secret while deploying the BotKube backend.
 
 - Deploy BotKube backend using **helm install** in your cluster.
 
-  {{< tabs >}}
-  {{% tab name="Helm 3" %}}
-
   ```bash
   $ helm install --version v0.12.4 botkube --namespace botkube \
   --set communications.teams.enabled=true \
@@ -134,27 +131,6 @@ We will use this TLS secret while deploying the BotKube backend.
   --set ingress.tls.secretName=<TLS_SECRET_NAME> \
   infracloudio/botkube
   ```
-
-  {{% /tab %}}
-  {{% tab name="Helm 2" %}}
-
-  ```bash
-  $ helm install --version v0.12.4 --name botkube --namespace botkube \
-  --set communications.teams.enabled=true \
-  --set communications.teams.appID=<APPLICATION_ID> \
-  --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
-  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
-  --set ingress.create=true \
-  --set ingress.host=<HOST> \
-  --set ingress.urlPath=<URLPATH> \
-  --set ingress.tls.enabled=true \
-  --set ingress.tls.secretName=<TLS_SECRET_NAME> \
-  infracloudio/botkube
-  ```
-
-  {{% /tab %}}
-  {{< /tabs >}}
 
   where,<br>
   - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
