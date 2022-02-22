@@ -228,8 +228,7 @@ title: "BotKube"
       </a>
     </div>
   </div>
-</div>
-
+<br />
 <h2>What can BotKube do?</h2>
 <div class="visibledesktop">
   <div class="leftimage">
