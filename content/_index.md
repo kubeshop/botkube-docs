@@ -195,16 +195,12 @@ title: "BotKube"
     It's built and maintained with <i class="fas fa-heart fa-fw"></i> by
     <a href="https://infracloud.io">InfraCloud</a>
   </p>
-  <p style="line-height: 4" class="fitscreenmargin">&nbsp;</p>
   <div class="centerimage">
     <img
       src="/images/botkube_multicluster_v2.svg"
-      style="max-height: 100%; max-width: 100%"
+      style="max-height: 70%; max-width: 70%"
     />
   </div>
-</div>
-<br />
-<div class="fitscreen">
   <div>
     <p style="font-size: 16px; font-weight: 400" class="fitscreenmargin">
       BotKube can be integrated with multiple messaging platforms like - Slack,
@@ -213,9 +209,6 @@ title: "BotKube"
       standard practices by running checks on the Kubernetes resources.
     </p>
   </div>
-
-<br/>
-
   <div>
     <div class="lefttitle">
       <a href="/installation" class="linkhighlight">
