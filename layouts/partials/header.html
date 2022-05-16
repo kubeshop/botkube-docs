@@ -14,7 +14,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{ .Hugo.Generator }}
+    {{ hugo.Generator }}
     {{ partial "meta.html" . }}
     {{ partial "favicon.html" . }}
     {{ template "_internal/twitter_cards.html" . }}
@@ -114,7 +114,7 @@
         {{define "breadcrumb"}}
           {{$parent := .page.Parent }}
           {{ if $parent }}
-            {{ $value := (printf "<a href='%s'>%s</a> > %s" $parent.URL $parent.Title .value) }}
+            {{ $value := (printf "<a href='%s'>%s</a> > %s" $parent.RelPermalink $parent.Title .value) }}
             {{ template "breadcrumb" dict "page" $parent "value" $value }} 
           {{else}}
             {{.value|safeHTML}}
