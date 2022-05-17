@@ -81,11 +81,11 @@ This document describes how to prepare and publish a new Botkube release.
 1. Clone and navigate to the root of the `botkube` repository.
 1. Run the release script:
 
-    > **NOTE**: You can customize source repository by setting GITHUB_ORG, GITHUB_REPO and REPO_BRANCH environment variables.
-
     ```bash
     ./hack/release.sh
     ```
+
+    You can customize the source repository by setting `GITHUB_ORG`, `GITHUB_REPO` and `REPO_BRANCH` environment variables.
 
     This script:
     - Updates Docker image versions in the documentation,
