@@ -9,7 +9,7 @@ This document describes how to prepare and publish a new Botkube release.
 - Obtain a GitHub Personal Access token with `repo` and `write:packages` permissions.
 - Install the following applications:
 
-    - [Goreleaser](https://goreleaser.com/install/) 1.1.0
+    - [Goreleaser](https://goreleaser.com/install/) 1.8.3
     - [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator#installation) 1.16.4
 
 ## Instruction
@@ -20,8 +20,8 @@ This document describes how to prepare and publish a new Botkube release.
 1. Export required environment variables:
 
     ```bash
-    GITHUB_USERNAME="{username}" # GitHub username
-    GITHUB_TOKEN="{token}" # GitHub personal access token
+    export GITHUB_USERNAME="{username}" # GitHub username
+    export GITHUB_TOKEN="{token}" # GitHub personal access token
     ```
 
 1. Log in to Docker
