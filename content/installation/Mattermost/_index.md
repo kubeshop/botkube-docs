@@ -18,6 +18,10 @@ Login with System Admin account, and in the Menu proceed to **System console > I
 #### 2. Create BotKube user
 To create a BotKube user, if not already created, proceed to the menu and Get a team invite link. Logout from the admin account and paste the link in the address bar and create a user with the username **BotKube**.
 
+{{% notice note %}}
+You can also use a custom username for your bot. However, it needs to be passed during BotKube installation in one of the further steps.
+{{% /notice%}}
+
 ![mm_botkube_user](/images/mm_botkube_user.png)
 
 #### 3. Manage Roles for BotKube user
@@ -77,6 +81,7 @@ Autocomplete | True
   --set communications.mattermost.token=<MATTERMOST_TOKEN> \
   --set communications.mattermost.team=<MATTERMOST_TEAM> \
   --set communications.mattermost.channel=<MATTERMOST_CHANNEL> \
+  --set communications.mattermost.botName=<MATTERMOST_BOT_NAME> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.repository=infracloudio/botkube \
@@ -90,6 +95,7 @@ Autocomplete | True
   - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for BotKube user<br>
   - **MATTERMOST_TEAM** is the Team name where BotKube is added<br>
   - **MATTERMOST_CHANNEL** is the Channel name where BotKube is added and used for communication<br>
+  - **MATTERMOST_BOT_NAME** is the Mattermost bot username (usually it is `BotKube`)<br>
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
