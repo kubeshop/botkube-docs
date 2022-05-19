@@ -20,7 +20,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
     ![discord_create_new](/images/discord_create_new.png)
 
-3. Copy the Application **CLIENT ID** and place it under ``discord.botid`` in comm-config.yaml.
+3. Copy the Application **APPLICATION ID** and place it under ``discord.botid`` in comm-config.yaml.
 
     Add a description - `BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. Visit https://www.botkube.io/usage for help.`.
 
@@ -28,14 +28,14 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
     Click on Save Changes to update the Bot.
 
-    ![discord_copy_client_id](/images/discord_copy_client_id.png)
+    ![discord_copy_client_id](/images/discord_copy_application_id.png)
 
 
 4. Now, reach the **Bot** page and Click **Add Bot** to add a Discord Bot to your application.
 
     ![discord_add_bot](/images/discord_add_bot.png)
 
-5. After Bot creation, now you can see a bot is added to your application. Click on **Reveal Token**, copy and place Bot it under ``discord.token`` in comm-config.yaml.
+5. After Bot creation, now you can see a bot is added to your application. Click on the **Reset Token** button, copy and place Bot it under ``discord.token`` in comm-config.yaml.
 
     ![discord_bot_created](/images/discord_bot_created.png)
 
@@ -47,7 +47,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
     the generated URL contains **YOUR_CLIENT_ID**, Scope and permission details.
     
     ```
-    https://discordapp.com/oauth2/authorize?&client_id=<YOUR_CLIENT_ID>&scope=bot&permissions=<SET_OF_PERMISSIONS>
+    https://discord.com/api/oauth2/authorize?client_id=<YOUR_CLIENT_ID>&permissions=<SET_OF_PERMISSIONS>&scope=bot
     ```
 
 7. Copy and Paste the generated URL in a new tab, select the discord server to which you want to add the bot, click Continue and Authorise Bot addition.
@@ -60,7 +60,14 @@ Follow the steps below to install BotKube Discord app to your Discord server.
     
     ![discord_new_channel](/images/discord_new_channel.png)
 
-8. Create a new channel and/or copy the  **CHANNEL ID** of an existing one.
+8. Switch to Discord app. Navigate to **User settings** and select **Advanced** tab.
+
+    Enable the **Developer Mode**.
+
+    ![discord_developer_mode](/images/discord_developer_mode.png)
+
+8. Create a new channel or select an existing one and copy the **CHANNEL ID**.
+
    To get the channel ID, right-click on a channel you want to receive notification in and click on **Copy ID**. Place the channel ID under ``discord.channel`` in comm-config.yaml.
 
     ```yaml
