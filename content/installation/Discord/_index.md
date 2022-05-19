@@ -62,7 +62,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
     ![discord_developer_mode](/images/discord_developer_mode.png)
 
-8. Create a new channel or select an existing one and copy the **CHANNEL ID**.
+9. Create a new channel or select an existing one and copy the **CHANNEL ID**.
 
    To get the channel ID, right-click on a channel you want to receive notification in and click on **Copy ID**.
 
@@ -70,7 +70,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
    Note the copied channel ID as it is required for BotKube installation.
 
-9. Now, go ahead and install the BotKube backend on your Kubernetes cluster.
+10. Now, go ahead and install the BotKube backend on your Kubernetes cluster.
 
 {{% notice note %}}
 
