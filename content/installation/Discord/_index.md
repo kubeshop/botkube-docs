@@ -20,25 +20,25 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
     ![discord_create_new](/images/discord_create_new.png)
 
-3. Copy the Application **APPLICATION ID** and place it under ``discord.botid`` in comm-config.yaml.
-
-    Add a description - `BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. Visit https://www.botkube.io/usage for help.`.
-
-    And set the BotKube icon (BotKube icon can be downloaded from [this link](https://github.com/infracloudio/botkube/raw/develop/branding/logos/botkube_192x192.png)).
-
-    Click on Save Changes to update the Bot.
+3. Copy the Application **APPLICATION ID** and note it as it is required for BotKube installation.
 
     ![discord_copy_client_id](/images/discord_copy_application_id.png)
 
+    Add a description - `BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. Visit https://www.botkube.io/usage for help.`.
+
+    Set the BotKube icon (BotKube icon can be downloaded from [this link](https://github.com/infracloudio/botkube/raw/develop/branding/logos/botkube_192x192.png)).
+
+    Click on Save Changes to update the Bot.
 
 4. Now, reach the **Bot** page and Click **Add Bot** to add a Discord Bot to your application.
 
     ![discord_add_bot](/images/discord_add_bot.png)
 
-5. After Bot creation, now you can see a bot is added to your application. Click on the **Reset Token** button, copy and place Bot it under ``discord.token`` in comm-config.yaml.
+5. After Bot creation, now you can see a bot is added to your application. Click on the **Reset Token** button.
 
     ![discord_bot_created](/images/discord_bot_created.png)
 
+    Note the token as it is required for BotKube installation.
 
 6. Go to the **OAuth2** page. Generate the URL with suitable permissions using the **OAuth2 URL Generator** available under the OAuth2 section to add bot to your Discord server.
 
@@ -50,15 +50,11 @@ Follow the steps below to install BotKube Discord app to your Discord server.
     https://discord.com/api/oauth2/authorize?client_id=<YOUR_CLIENT_ID>&permissions=<SET_OF_PERMISSIONS>&scope=bot
     ```
 
-7. Copy and Paste the generated URL in a new tab, select the discord server to which you want to add the bot, click Continue and Authorise Bot addition.
+7. Copy and Paste the generated URL in a new tab, select the discord server to which you want to add the bot, click Continue and Authorize Bot addition.
 
     ![discord_bot_auth](/images/discord_bot_auth.png)
 
     ![discord_bot_auth_2](/images/discord_bot_auth_2.png)
-
-    Kudos to you..!!, you have successfully added BotKube bot to your server.
-    
-    ![discord_new_channel](/images/discord_new_channel.png)
 
 8. Switch to Discord app. Navigate to **User settings** and select **Advanced** tab.
 
@@ -68,17 +64,11 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
 8. Create a new channel or select an existing one and copy the **CHANNEL ID**.
 
-   To get the channel ID, right-click on a channel you want to receive notification in and click on **Copy ID**. Place the channel ID under ``discord.channel`` in comm-config.yaml.
+   To get the channel ID, right-click on a channel you want to receive notification in and click on **Copy ID**.
 
-    ```yaml
-      # Settings for Discord
-      discord:
-        enabled: true
-        token: 'DISCORD_TOKEN'	    # BotKube Bot Token 
-        botid: 'DISCORD_BOT_ID'         # BotKube Application Client ID 
-        channel: 'DISCORD_CHANNEL_ID'   # Discord Channel id for receiving BotKube alerts 
-        notiftype: short                # Change notification type short/long you want to receive. notiftype is optional and Default notification type is short (if not specified)
-    ```
+   ![discord_copy_channel_id.png](/images/discord_copy_channel_id.png)
+
+   Note the copied channel ID as it is required for BotKube installation.
 
 9. Now, go ahead and install the BotKube backend on your Kubernetes cluster.
 
