@@ -23,7 +23,7 @@ more details).
 
 ### Build the site locally
 Make sure you have installed
-[Hugo](https://gohugo.io/getting-started/installing/) on your
+[Hugo](https://gohugo.io) 0.98.0 on your
 system. Follow the instructions to clone this repository and build the
 docs locally.
 
