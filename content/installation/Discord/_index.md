@@ -56,7 +56,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
     ![discord_bot_auth_2](/images/discord_bot_auth_2.png)
 
-8. Switch to Discord app. Navigate to **User settings** and select **Advanced** tab.
+8. Switch to the Discord app. Navigate to **User settings** and select **Advanced** tab.
 
     Enable the **Developer Mode**.
 
