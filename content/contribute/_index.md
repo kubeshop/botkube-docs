@@ -1,5 +1,6 @@
 ---
 menutitle: "Contribute"
+title: "Contribute"
 draft: false
 weight: 80
 ---

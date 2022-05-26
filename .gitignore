@@ -11,3 +11,12 @@ hugo.linux
 
 # Temporary lock file while building
 /.hugo_build.lock
+
+# Temp files
+*.bak
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
