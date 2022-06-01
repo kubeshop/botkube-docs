@@ -43,14 +43,14 @@ Add BotKube user created to the channel you want to receive notifications in.
 
 **2.** Click **Add Slash Command** and add the following details for the command and click **Save**.
 
-Field | Value
---- | ---
-Title | BotKube 
-Description | Show BotKube help
-Command Trigger Word | botkubehelp
-Request URL | https://botkube.herokuapp.com/help
-Request Method | POST
-Autocomplete | True
+| Field                | Value                              |
+|----------------------|------------------------------------|
+| Title                | BotKube                            |
+| Description          | Show BotKube help                  |
+| Command Trigger Word | botkubehelp                        |
+| Request URL          | https://botkube.herokuapp.com/help |
+| Request Method       | POST                               |
+| Autocomplete         | True                               |
 
 ![mm_botkube_slash_cmd](/images/mm_botkube_slash_cmd.png)
 
@@ -63,18 +63,18 @@ Autocomplete | True
 
 #### BotKube install: Using helm
 
-- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already
-- Add **infracloudio** chart repository
+- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- Add **infracloudio** chart repository:
 
   ```bash
   $ helm repo add infracloudio https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster.
+- Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube \
+  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace \
   --set communications.mattermost.enabled=true \
   --set communications.mattermost.url=<MATTERMOST_SERVER_URL> \
   --set communications.mattermost.cert=<MATTERMOST_CERT> \
@@ -115,11 +115,11 @@ Autocomplete | True
 
     (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
-  ```
+  ```yaml
   config:
     ## Resources you want to watch
     resources:
-    - name: v1/pods        # Name of the resource. Resource name must be in 
+    - name: v1/pods        # Name of the resource. Resource name must be in
                            # group/version/resource (G/V/R) format
                            # resource name should be plural
                            # (e.g apps/v1/deployments, v1/pods)
@@ -149,11 +149,10 @@ Autocomplete | True
         - spec.template.spec.containers[*].image
         - status.conditions[*].type
   ```
-  - Pass the yaml file as a flag to `helm install` command.
-    e.g
+  - Pass the YAML file as a flag to `helm install` command, e.g.:
 
-    ```
-    $ helm install --version v0.12.4 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    ```bash
+    $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -161,40 +160,40 @@ Autocomplete | True
 
 #### Using kubectl
 
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster
-- Download deployment specs yaml
+- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
+- Download deployment specs YAML:
 
-```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-```
+  ```bash
+  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+  ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-Set *MATTERMOST_ENABLED*, *MATTERMOST_SERVER_URL*, *MATTERMOST_TOKEN*, *MATTERMOST_TEAM*, *MATTERMOST_CHANNEL*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
+  Set *MATTERMOST_ENABLED*, *MATTERMOST_SERVER_URL*, *MATTERMOST_TOKEN*, *MATTERMOST_TEAM*, *MATTERMOST_CHANNEL*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
-where,<br>
-- **MATTERMOST_ENABLED** set true to enable Mattermost support for BotKube<br>
-- **MATTERMOST_SERVER_URL** is the URL where Mattermost is running<br>
-- **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for BotKube user<br>
-- **MATTERMOST_TEAM** is the Team name where BotKube is added<br>
-- **MATTERMOST_CHANNEL** is the Channel name where BotKube is added and used for communication<br>
-- **clustername** is the cluster name set in the incoming messages<br>
-- **kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
+  where,<br>
+  - **MATTERMOST_ENABLED** set true to enable Mattermost support for BotKube<br>
+  - **MATTERMOST_SERVER_URL** is the URL where Mattermost is running<br>
+  - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for BotKube user<br>
+  - **MATTERMOST_TEAM** is the Team name where BotKube is added<br>
+  - **MATTERMOST_CHANNEL** is the Channel name where BotKube is added and used for communication<br>
+  - **clustername** is the cluster name set in the incoming messages<br>
+  - **kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-   Configuration syntax is explained [here](/configuration).
+     Configuration syntax is explained [here](/configuration).
 
-- Deploy the resources
+- Deploy the resources:
 
-```bash
-$ kubectl create -f deploy-all-in-one.yaml
-```
+  ```bash
+  $ kubectl create -f deploy-all-in-one.yaml
+  ```
 
 - Check pod status in botkube namespace. Once running, send **@BotKube ping** in the configured channel to confirm if BotKube is responding correctly.
 
 - To deploy with TLS, download and use deploy-all-in-one-tls.yaml. Replace **ENCODED_CERTIFICATE** with your base64 encoded certificate value in the secret. To get a base64 encoded value of your certificate, use below command and replace <YOUR_CERTIFICATE> with the certificate name.
 
-```bash
-$ cat <YOUR_CERTIFICATE> | base64 -w 0 
-```
+  ```bash
+  $ cat <YOUR_CERTIFICATE> | base64 -w 0
+  ```
 
 ### Remove BotKube from Mattermost Team
 

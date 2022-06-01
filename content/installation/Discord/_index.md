@@ -45,7 +45,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
     ![discord_bot_scope](/images/discord_bot_scope.png)
 
     the generated URL contains **YOUR_CLIENT_ID**, Scope and permission details.
-    
+
     ```
     https://discord.com/api/oauth2/authorize?client_id=<YOUR_CLIENT_ID>&permissions=<SET_OF_PERMISSIONS>&scope=bot
     ```
@@ -84,17 +84,17 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 #### Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **infracloudio** chart repository
+- Add **infracloudio** chart repository:
 
   ```bash
   $ helm repo add infracloudio https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster
+- Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube \
+  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace \
   --set communications.discord.enabled=true \
   --set communications.discord.channel=<DISCORD_CHANNEL_ID> \
   --set communications.discord.botid=<DISCORD_BOT_ID> \
@@ -127,11 +127,11 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
     (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
-  ```
+  ```yaml
   config:
     ## Resources you want to watch
     resources:
-    - name: v1/pods        # Name of the resource. Resource name must be in 
+    - name: v1/pods        # Name of the resource. Resource name must be in
                            # group/version/resource (G/V/R) format
                            # resource name should be plural
                            # (e.g apps/v1/deployments, v1/pods)
@@ -161,11 +161,11 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
         - spec.template.spec.containers[*].image
         - status.conditions[*].type
     ```
-  - Pass the yaml file as a flag to `helm install` command.
+  - Pass the YAML file as a flag to `helm install` command.
     e.g
 
     ```
-    $ helm install --version v0.12.4 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -173,30 +173,30 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
 #### Using kubectl
 
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster
-- Download deployment specs yaml
+- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
+- Download deployment specs YAML:
 
-```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-```
+  ```bash
+  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+  ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-Set *DISCORD_ENABLED*, *DISCORD_BOTID*,  *DISCORD_CHANNEL*, *DISCORD_TOKEN*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
+  Set *DISCORD_ENABLED*, *DISCORD_BOTID*,  *DISCORD_CHANNEL*, *DISCORD_TOKEN*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
-where,<br>
-  - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br>
-  - **DISCORD_BOT_ID** is the BotKube Application Client ID<br>
-  - **DISCORD_TOKEN** is the Token you received after adding BotKube bot to your Discord Application<br>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
+  where,<br>
+    - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br>
+    - **DISCORD_BOT_ID** is the BotKube Application Client ID<br>
+    - **DISCORD_TOKEN** is the Token you received after adding BotKube bot to your Discord Application<br>
+    - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
+    - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-Configuration syntax is explained [here](/configuration).
+  Configuration syntax is explained [here](/configuration).
 
-- Deploy the resources
+- Deploy the resources:
 
-```bash
-$ kubectl create -f deploy-all-in-one.yaml
-```
+  ```bash
+  $ kubectl create -f deploy-all-in-one.yaml
+  ```
 
 - Check pod status in botkube namespace. Once running, send **@BotKube ping** in the Discord channel to confirm if BotKube is responding correctly.
 

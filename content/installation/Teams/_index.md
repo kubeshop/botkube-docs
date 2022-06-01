@@ -35,18 +35,18 @@ We will use "App Studio" to register and install Bot to MS Teams. Please follow 
 
 3. Fill in the App details
 
-    | Field      | Value |
-    | ---------- | -------- |
-    | Short name | BotKube     |
-    | Package name | botkube.io |
-    | App ID       | \<Click on Generate\> |
-    | Version      | 0.11.0 |
-    | Short Description | BotKube is a bot for your Kubernetes cluster |
-    | Full Description | App that helps you monitor your Kubernetes cluster, debug critical deployments & gives recommendations for standard practices. |
-    | Developer/Company Name | BotKube |
-    | Website    | https://botkube.io |
-    | Privacy statement | https://botkube.io/privacy |
-    | Terms of use    | https://botkube.io/license |
+    | Field                  | Value                                                                                                                          |
+    |------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+    | Short name             | BotKube                                                                                                                        |
+    | Package name           | botkube.io                                                                                                                     |
+    | App ID                 | \<Click on Generate\>                                                                                                          |
+    | Version                | 0.11.0                                                                                                                         |
+    | Short Description      | BotKube is a bot for your Kubernetes cluster                                                                                   |
+    | Full Description       | App that helps you monitor your Kubernetes cluster, debug critical deployments & gives recommendations for standard practices. |
+    | Developer/Company Name | BotKube                                                                                                                        |
+    | Website                | https://botkube.io                                                                                                             |
+    | Privacy statement      | https://botkube.io/privacy                                                                                                     |
+    | Terms of use           | https://botkube.io/license                                                                                                     |
 
     Click the checkbox on "Loading indicator" (optional)
 
@@ -64,7 +64,7 @@ Go to Capabilities > Bots and fill in the info
     - Scope: **[x] Personal** & **[x] Team**
     And Create bot.
 
-3. On the "Bots" page, click on **Generate a new password**. Note down the password required while installing BotKube backend. 
+3. On the "Bots" page, click on **Generate a new password**. Note down the password required while installing BotKube backend.
 
 4. **Copy App ID displayed below Bot name in the heading. Note that Bot App ID is different than the one we generate on the "Apps Details" page.**
 
@@ -98,27 +98,28 @@ Now there are few different ways to enable access to the K8s Service from the ou
 
 If you are new to Ingress and don't know how to set up an ingress controller, please follow [this](https://www.infracloud.io/blogs/deep-dive-ingress-kubernetes/) blog by InfraCloud.
 
-Create a K8s TLS secret from cert and key for the SSL termination in botkube namespace
+Create a K8s TLS secret from cert and key for the SSL termination in botkube namespace:
 
 ```bash
+$ kubectl create namespace botkube
 $ kubectl create secret tls botkube-tls -n botkube --cert=/path/to/cert.pem --key=/path/to/privatekey.pem
 ```
 We will use this TLS secret while deploying the BotKube backend.
 
 #### Using helm
 
-- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already
-- Add **infracloudio** chart repository
+- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- Add **infracloudio** chart repository:
 
   ```bash
   $ helm repo add infracloudio https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster.
+- Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube \
+  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace\
   --set communications.teams.enabled=true \
   --set communications.teams.appID=<APPLICATION_ID> \
   --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
@@ -155,11 +156,11 @@ We will use this TLS secret while deploying the BotKube backend.
 
     (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
-  ```bash
+  ```yaml
   config:
     ## Resources you want to watch
     resources:
-    - name: v1/pods        # Name of the resource. Resource name must be in 
+    - name: v1/pods        # Name of the resource. Resource name must be in
                            # group/version/resource (G/V/R) format
                            # resource name should be plural
                            # (e.g apps/v1/deployments, v1/pods)
@@ -190,11 +191,10 @@ We will use this TLS secret while deploying the BotKube backend.
         - status.conditions[*].type
   ```
 
-  - Pass the yaml file as a flag to `helm install` command.
-    e.g
+  - Pass the YAML file as a flag to `helm install` command, e.g.:
 
-    ```
-    $ helm install --version v0.12.4 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    ```bash
+    $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -202,38 +202,35 @@ We will use this TLS secret while deploying the BotKube backend.
 
 #### Using kubectl
 
-- Make sure that you have kubectl cli installed and have access to the Kubernetes cluster
-- Download deployment specs yaml
+- Make sure that you have kubectl cli installed and have access to the Kubernetes cluster.
+- Download deployment specs YAML:
 
     ```bash
     $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
     ```
 - Uncomment BotKube service and ingress resource manifest.<br>
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-Set *teams.enabled*, *APPLICATION_ID*, *APPLICATION_PASSWORD*, *HOST*, *URLPATH*, *TLS_SECRET_NAME* and update the resource events configuration you want to receive notifications for in the configmap.<br>
+  Set *teams.enabled*, *APPLICATION_ID*, *APPLICATION_PASSWORD*, *HOST*, *URLPATH*, *TLS_SECRET_NAME* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
-where,<br>
+  where,<br>
 
-- **communications.teams.enabled** set true to enable Teams support for BotKube<br>
-- **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
-- **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br>
-- **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br>
-- **URLPATH** is the path in endpoint URL provided while registering BotKube to Teams<br>
-- **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
-- **settings.clustername** is the cluster name set in the incoming messages<br>
-- **settings.kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
+  - **communications.teams.enabled** set true to enable Teams support for BotKube<br>
+  - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
+  - **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br>
+  - **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br>
+  - **URLPATH** is the path in endpoint URL provided while registering BotKube to Teams<br>
+  - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
+  - **settings.clustername** is the cluster name set in the incoming messages<br>
+  - **settings.kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-   Configuration syntax is explained [here](/configuration).
-   Complete list of helm options is documented [here](/configuration/helm-options)
+     Configuration syntax is explained [here](/configuration).
+     Complete list of helm options is documented [here](/configuration/helm-options)
 
-- Deploy the resources
+- Deploy the resources:
 
-```bash
-$ kubectl create -f deploy-all-in-one.yaml
-```
-
-
-
+  ```bash
+  $ kubectl create -f deploy-all-in-one.yaml
+  ```
 
 #### Verify if BotKube endpoint is reachable
 

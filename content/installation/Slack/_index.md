@@ -28,18 +28,18 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
 #### Using helm
 
-- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already
-- Add **infracloudio** chart repository
+- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- Add **infracloudio** chart repository:
 
   ```bash
   $ helm repo add infracloudio https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster.
+- Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube \
+  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace \
   --set communications.slack.enabled=true \
   --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
   --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
@@ -70,11 +70,11 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
     (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
-  ```
+  ```yaml
   config:
     ## Resources you want to watch
     resources:
-    - name: v1/pods        # Name of the resource. Resource name must be in 
+    - name: v1/pods        # Name of the resource. Resource name must be in
                            # group/version/resource (G/V/R) format
                            # resource name should be plural
                            # (e.g apps/v1/deployments, v1/pods)
@@ -104,11 +104,10 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
         - spec.template.spec.containers[*].image
         - status.conditions[*].type
     ```
-  - Pass the yaml file as a flag to `helm install` command.
-    e.g
+  - Pass the YAML file as a flag to `helm install` command, e.g.:
 
-    ```
-    $ helm install --version v0.12.4 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    ```bash
+    $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -116,30 +115,30 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
 #### Using kubectl
 
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster
-- Download deployment specs yaml
+- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
+- Download deployment specs YAML:
 
-```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-```
+  ```bash
+  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+  ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-Set *SLACK_ENABLED*, *SLACK_CHANNEL*, *SLACK_API_TOKEN*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
+  Set *SLACK_ENABLED*, *SLACK_CHANNEL*, *SLACK_API_TOKEN*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
-where,<br>
-- **SLACK_ENABLED** set true to enable Slack support for BotKube<br>
-- **SLACK_CHANNEL** is the channel name where @BotKube is added<br>
-- **SLACK_API_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br>
-- **clustername** is the cluster name set in the incoming messages<br>
-- **kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
+  where,<br>
+  - **SLACK_ENABLED** set true to enable Slack support for BotKube<br>
+  - **SLACK_CHANNEL** is the channel name where @BotKube is added<br>
+  - **SLACK_API_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br>
+  - **clustername** is the cluster name set in the incoming messages<br>
+  - **kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
 
-   Configuration syntax is explained [here](/configuration).
+     Configuration syntax is explained [here](/configuration).
 
-- Deploy the resources
+- Deploy the resources:
 
-```bash
-$ kubectl create -f deploy-all-in-one.yaml
-```
+  ```bash
+  $ kubectl create -f deploy-all-in-one.yaml
+  ```
 
 - Check pod status in botkube namespace. Once running, send **@BotKube ping** in the Slack channel to confirm if BotKube is responding correctly.
 

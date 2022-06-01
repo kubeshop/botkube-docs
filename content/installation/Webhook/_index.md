@@ -11,18 +11,18 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
 #### Using helm
 
-- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already
-- Add **infracloudio** chart repository
+- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- Add **infracloudio** chart repository:
 
   ```bash
   $ helm repo add infracloudio https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster.
+- Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube \
+  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace \
   --set communications.webhook.enabled=true \
   --set communications.webhook.url=<WEBHOOK_URL> \
   --set config.settings.clustername=<CLUSTER_NAME> \
@@ -47,11 +47,11 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
     (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
-  ```
+  ```yaml
   config:
     ## Resources you want to watch
     resources:
-    - name: v1/pods        # Name of the resource. Resource name must be in 
+    - name: v1/pods        # Name of the resource. Resource name must be in
                            # group/version/resource (G/V/R) format
                            # resource name should be plural
                            # (e.g apps/v1/deployments, v1/pods)
@@ -81,11 +81,10 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
         - spec.template.spec.containers[*].image
         - status.conditions[*].type
   ```
-  - Pass the yaml file as a flag to `helm install` command.
-    e.g
+  - Pass the YAML file as a flag to `helm install` command, e.g.:
 
-    ```
-    $ helm install --version v0.12.4 --name botkube --namespace botkube -f /path/to/config.yaml --set=...other args..
+    ```bash
+    $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
@@ -93,26 +92,26 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
 #### Using kubectl
 
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster
-- Download deployment specs yaml
+- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
+- Download deployment specs YAML:
 
-```bash
-$ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-```
+  ```bash
+  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+  ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
 
-Set *WEBHOOK_ENABLED*=true, *WEBHOOK_URL*, *clustername* and update the resource events configuration you want to receive notifications for in the configmap.<br>
+  Set *WEBHOOK_ENABLED*=true, *WEBHOOK_URL*, *clustername* and update the resource events configuration you want to receive notifications for in the configmap.<br>
 
-where,<br>
-- **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br>
-- **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
+  where,<br>
+  - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br>
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
 
-- Deploy the resources
+- Deploy the resources:
 
-```bash
-$ kubectl create -f deploy-all-in-one.yaml
-```
+  ```bash
+  $ kubectl create -f deploy-all-in-one.yaml
+  ```
 
 - Check pod status in botkube namespace.
 
