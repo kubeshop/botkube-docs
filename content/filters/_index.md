@@ -23,81 +23,84 @@ Prerequisites:
 #### 1. Create a new .go file
 Create a new file (e.g image_tag_checker.go) in **botkube/pkg/filterengine/filters/** directory
 
-Set package name as "filters" and import required packages
+Set package name as "filters" and import required packages:
 
-```
+```go
 package filters
 
 import (
-        "strings"
+	"strings"
 
-        "github.com/infracloudio/botkube/pkg/events"
-        "github.com/infracloudio/botkube/pkg/filterengine"
-        log "github.com/infracloudio/botkube/pkg/logging"
+	"github.com/sirupsen/logrus"
+	apiV1 "k8s.io/api/core/v1"
 
-        apiV1 "k8s.io/api/core/v1"
+	"github.com/infracloudio/botkube/pkg/events"
 )
 ```
 
 #### 2. Create a structure and implement "Run() and Describe()" methods for the struct.
 
-FilterEngine has an interface Filter defined for the filters
+FilterEngine has an interface Filter defined for the filters:
 
-```
-// Filter has method to run filter
+```go
 type Filter interface {
-        Run(interface{}, *events.Event)
-        Describe() string
+	Run(context.Context, interface{}, *events.Event)
+	Name() string
+	Describe() string
 }
 ```
 
-To implement the Filter interface, your struct should have **Run(interface{}, *events.Event)** and **Describe() string** methods
+Create a struct which implements the Filter interface. Use logger instance taken as an argument from the constructor:
 
-```
+```go
 // ImageTagChecker add recommendations to the event object if latest image tag is used in pod containers
 type ImageTagChecker struct {
+	log logrus.FieldLogger
+}
+
+// NewImageTagChecker creates a new ImageTagChecker instance
+func NewImageTagChecker(log logrus.FieldLogger) *ImageTagChecker {
+	return &ImageTagChecker{log: log}
 }
 
 // Run filer and modifies event struct
-func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
+func (f *ImageTagChecker) Run(ctx context.Context, object interface{}, event *events.Event) {
 
 	// your logic goes here
 
 }
 
-// Describe filter
-func (f ImageTagChecker) Describe() string {
-        return "Checks and adds recommendation if 'latest' image tag is used for container image."
+// Name returns the filter's name
+func (f *ImageTagChecker) Name() string {
+	return "ImageTagChecker"
+}
+
+// Describe describes the filter
+func (f *ImageTagChecker) Describe() string {
+	return "Checks and adds recommendation if 'latest' image tag is used for container image."
 }
 ```
 
 #### 3. Add your logic in the Run() function
-Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/infracloudio/botkube/blob/master/pkg/events/events.go#L31).
+Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/infracloudio/botkube/blob/develop/pkg/events/events.go).
 
-```
+```go
 // Run filers and modifies event struct
-func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
-
-	// Run checks only for Pod resource kind and when event type is CreateEvent
-	if event.Kind != "Pod" || event.Type != config.CreateEvent {
-		return
+func (f *ImageTagChecker) Run(_ context.Context, object interface{}, event *events.Event) error {
+	if event.Kind != "Pod" || event.Type != config.CreateEvent || utils.GetObjectTypeMetaData(object).Kind == "Event" {
+		return nil
 	}
-
-	// Convert Unstructured object into K8s typed object
-	// https://godoc.org/k8s.io/api/core/v1#Pod
 	var podObj coreV1.Pod
 	err := utils.TransformIntoTypedObject(object.(*unstructured.Unstructured), &podObj)
 	if err != nil {
-		log.Errorf("Unable to tranform object type: %v, into type: %v", reflect.TypeOf(object), reflect.TypeOf(podObj))
+		return fmt.Errorf("while transforming object type %T into type: %T: %w", object, podObj, err)
 	}
 
 	// Check image tag in initContainers
 	for _, ic := range podObj.Spec.InitContainers {
 		images := strings.Split(ic.Image, ":")
 		if len(images) == 1 || images[1] == "latest" {
-
-			// Add messages in the Recommedations list
-			event.Recommendations = append(event.Recommendations, ":latest tag used in image '"+ic.Image+"' of initContainer '"+ic.Name+"' should be avoided.\n")
+			event.Recommendations = append(event.Recommendations, fmt.Sprintf(":latest tag used in image '%s' of initContainer '%s' should be avoided.", ic.Image, ic.Name))
 		}
 	}
 
@@ -105,23 +108,32 @@ func (f *ImageTagChecker) Run(object interface{}, event *events.Event) {
 	for _, c := range podObj.Spec.Containers {
 		images := strings.Split(c.Image, ":")
 		if len(images) == 1 || images[1] == "latest" {
-
-			// Add messages in the Recommedations list
-			event.Recommendations = append(event.Recommendations, ":latest tag used in image '"+c.Image+"' of Container '"+c.Name+"' should be avoided.\n")
+			event.Recommendations = append(event.Recommendations, fmt.Sprintf(":latest tag used in image '%s' of Container '%s' should be avoided.", c.Image, c.Name))
 		}
 	}
-	log.Logger.Info("Image tag filter successful!")
+	f.log.Debug("Image tag filter successful!")
+	return nil
 }
 ```
-#### 4. Register your filter to filterengine
-You can call **Register()** method implemented by filterengine to register the filter at startup
 
-```
-// Register the filter
-func init() {
-        filterengine.DefaultFilterEngine.Register(ImageTagChecker{})
+#### 4. Register your filter in the Filter Engine
+
+Open [**pkg/filterengine/with_all_filters.go**](https://github.com/infracloudio/botkube/blob/develop/pkg/filterengine/with_all_filters.go) file and call the constructor of your new filter in the `WithAllFilters` method:
+
+```go
+// WithAllFilters returns new DefaultFilterEngine instance with all filters registered.
+func WithAllFilters(logger *logrus.Logger, dynamicCli dynamic.Interface, mapper meta.RESTMapper, conf *config.Config) *DefaultFilterEngine {
+	filterEngine := New(logger.WithField(componentLogFieldKey, "Filter Engine"))
+	filterEngine.Register([]Filter{
+		filters.NewIngressValidator(logger.WithField(filterLogFieldKey, "Ingress Validator"), dynamicCli),
+		// ...
+
+		// Your filter goes here:
+		filters.NewImageTagChecker(logger.WithField(filterLogFieldKey, "Image Tag Checker")), // make sure to use `logger.WithField`
+	}...)
+
+	return filterEngine
 }
-
 ```
 
 ### B. Rebuild and deploy the BotKube backend
