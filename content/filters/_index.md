@@ -25,16 +25,16 @@ Create a new file (e.g image_tag_checker.go) in **botkube/pkg/filterengine/filte
 
 Set package name as "filters" and import required packages:
 
-```
+```go
 package filters
 
 import (
-        "strings"
+	"strings"
 
-		"github.com/sirupsen/logrus"        
-		apiV1 "k8s.io/api/core/v1"
+	"github.com/sirupsen/logrus"
+	apiV1 "k8s.io/api/core/v1"
 
-        "github.com/infracloudio/botkube/pkg/events"
+	"github.com/infracloudio/botkube/pkg/events"
 )
 ```
 
@@ -44,9 +44,9 @@ FilterEngine has an interface Filter defined for the filters:
 
 ```go
 type Filter interface {
-        Run(context.Context, interface{}, *events.Event)
-		Name() string
-        Describe() string
+	Run(context.Context, interface{}, *events.Event)
+	Name() string
+	Describe() string
 }
 ```
 
@@ -82,7 +82,7 @@ func (f *ImageTagChecker) Describe() string {
 ```
 
 #### 3. Add your logic in the Run() function
-Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/infracloudio/botkube/blob/master/pkg/events/events.go).
+Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/infracloudio/botkube/blob/develop/pkg/events/events.go).
 
 ```go
 // Run filers and modifies event struct
