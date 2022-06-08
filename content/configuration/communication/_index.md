@@ -6,13 +6,15 @@ weight: 30
 
 BotKube backend reads communication settings from two sources:
 - the [comm_config.yaml](#file-syntax) file placed in the directory specified by the **CONFIG_PATH** environment variable,
-- the exported [environment variables](#environment-variables). It takes priority over the configuration specified in the file.
+- the exported [environment variables](#environment-variables). They take priority and override the configuration specified in the file.
+
 
 ## File syntax
 
 The communication configuration file contains:
 
-- communication mediums configuration,
+- communication platforms configuration,
+
 - option to toggle notification type to short or long.
 
 ```yaml
@@ -93,7 +95,8 @@ The default configuration can be found at:
 
 ## Environment variables
 
-The individual communication settings can be specified via environment variables. It takes priority over the configuration specified in the file.
+The individual communication settings can be specified via environment variables. They take priority and override the configuration specified in the file.
+
 
 To construct the environment variable name, take any property from the [configuration file](#file-syntax) and make it uppercase. Use the underscore for properties that are nested. That's all - you have the environment variable name!
 

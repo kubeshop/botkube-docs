@@ -5,7 +5,8 @@ draft: false
 weight: 10
 ---
 
-BotKube backend allows you to specify the [resource configurations](/configuration/resource) and [communication settings](/configuration/communication). Check individual documents for more detailed explanation on how to provide those configurations.
+BotKube backend allows you to specify the [resource](/configuration/resource) and [communication](/configuration/communication) settings. Check the individual documents for more detailed explanation on how to provide those configurations.
+
 
 ### Updating the configuration at runtime
 

@@ -14,7 +14,7 @@ The resource configuration file contains:
 - Resource list you want to watch,
 - Namespaces you want to filter,
 - The type of events you want to get notifications about,
-- `updateSettings` to monitor change in the specific resource field,
+- Settings to monitor updates for the specific resource fields,
 - Way to skip filter runs.
 
 It also contains global settings to:
