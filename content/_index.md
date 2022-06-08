@@ -167,6 +167,16 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     overflow: auto;
     display: block;
   }
+  .leftfeature{
+    i{
+	padding-right:10px;
+	}	
+   }
+  .rightfeature{
+    i{
+	padding-right:10px;
+	}	
+   }
 }
 
 </style>
@@ -309,7 +319,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 <div style="overflow: auto;">
   <div class="leftfeature">
     <h4><i class="fas fa-cogs fa-fw"></i>
-     &nbsp &nbsp  Debug Anywhere, Anytime
+     Debug Anywhere, Anytime
     </h4>
     With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
     Even while you are camping without a laptop, you can use Slack, Mattermost or MS Teams mobile app and get crucial information.
