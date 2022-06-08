@@ -284,7 +284,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data and software.
   </div>
   <div class="rightfeature">
-    <h4><i style="padding-right:10px;" class="fas fa-terminal fa-fw"></i>
+    <h4><i style="margin-right:10px;" class="fas fa-terminal fa-fw"></i>
         Execute Kubectl commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
@@ -294,7 +294,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4> <i style="padding-right:10px;" class="fas fa-tasks fa-fw"> </i>
+    <h4> <i style="margin-right:8px;" class="fas fa-tasks fa-fw"> </i>
        Support for multiple interfaces
     </h4>
     Like Slack, BotKube can also be integrated with Mattermost, Microsoft Teams, ElasticSearch and outgoing webhook. See <a href=/configuration>configuration</a> syntax for details.
@@ -309,14 +309,14 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4><i style="padding-right:10px;" class="fas fa-cogs fa-fw"></i>
+    <h4><i style="margin-right:10px;" class="fas fa-cogs fa-fw"></i>
      Debug Anywhere, Anytime
     </h4>
     With @BotKube you can monitor and debug Kubernetes deployments from anywhere.
     Even while you are camping without a laptop, you can use Slack, Mattermost or MS Teams mobile app and get crucial information.
   </div>
   <div class="rightfeature">
-    <h4> <i style="padding-right:10px;" class="fas fa-cogs fa-fw"> </i>
+    <h4> <i style="margin-right:10px;" class="fas fa-cogs fa-fw"> </i>
 	 Easy to configure
     </h4>
     Get notifications about things that you really care for. You can configure events or objects or namespaces that you want to be informed about.
@@ -325,7 +325,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 <div style="overflow: auto;">
   <div class="leftfeature">
-    <h4> <i style="padding-right:10px;" class="fas fa-cloud fa-fw"> </i>
+    <h4> <i style="margin-right:10px;" class="fas fa-cloud fa-fw"> </i>
        Deploy on any Kubernetes cluster
     </h4>
     You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or anything in between.
