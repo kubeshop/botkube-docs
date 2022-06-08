@@ -62,6 +62,10 @@ This instruction guides you through the installation of BotKube and Vault on a K
         policies=internal-app \
         ttl=20m
     ```
+	  ```bash
+		# Exit from the Vault Pod
+		exit
+		```
 
 4. Install the Secrets Store CSI driver:
     ```bash
@@ -71,12 +75,7 @@ This instruction guides you through the installation of BotKube and Vault on a K
     --set syncSecret.enabled=true
     ```
 
-5. Exit from the Vault Pod:
-    ```bash
-    exit
-    ```
-
-6. Create BotKue installation parameters:
+5. Create BotKue installation parameters:
     ```yaml
     cat > /tmp/values.yaml << ENDOFFILE
     extraObjects:
@@ -129,8 +128,8 @@ This instruction guides you through the installation of BotKube and Vault on a K
     ENDOFFILE
     ```
 
-7. Install BotKube:
-		<!--- replace the version with v0.13.0 once released -->
+6. Install BotKube:
+    <!--- TODO(https://github.com/infracloudio/botkube/issues/595): replace the version with v0.13.0 once released -->
     ```bash
     helm install botkube --namespace default \
     --version v9.99.9-dev --set image.tag=v9.99.9-dev \

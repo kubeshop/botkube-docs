@@ -106,6 +106,6 @@ communications:
   slack:
     token: 'SLACK_API_TOKEN'
 ```
-is represented by `COMMUNICATIONS_SLACK_TOKEN` environment variable.
+is mapped to the `COMMUNICATIONS_SLACK_TOKEN` environment variable.
 
-This is a useful feature that allows you to store the overall configuration in a file, where sensitive data, such as tokens, can be put in environment variables. See the [**Tokens from Vault via CSI driver**](/configuration/communication/vault-csi/) tutorial for the example use-case.
+This is a useful feature that allows you to store the overall configuration in a file, where sensitive data, such as tokens, can be put in environment variables. See the [**Tokens from Vault via CSI driver**](/configuration/communication/vault-csi/) tutorial for an example use-case.
