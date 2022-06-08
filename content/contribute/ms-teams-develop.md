@@ -1,5 +1,6 @@
 ---
 title: "MS Teams Bot development"
+weight: 10
 ---
 
 Microsoft Teams is an entirely cloud-based product. Because of this, BotKube must be publicly accessible via an HTTPS endpoint.
