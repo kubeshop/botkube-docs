@@ -62,10 +62,10 @@ This instruction guides you through the installation of BotKube and Vault on a K
         policies=internal-app \
         ttl=20m
     ```
-	  ```bash
-		# Exit from the Vault Pod
-		exit
-		```
+    ```bash
+    # Exit from the Vault Pod
+    exit
+    ```
 
 4. Install the Secrets Store CSI driver:
     ```bash
