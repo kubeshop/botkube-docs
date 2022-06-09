@@ -107,7 +107,7 @@ This instruction guides you through the installation of BotKube and Vault on a K
         # token - specified via env variable
 
     extraEnv:
-      - name: COMMUNICATION_SLACK_TOKEN
+      - name: COMMUNICATIONS_SLACK_TOKEN
         valueFrom:
           secretKeyRef:
             name: communication-slack
