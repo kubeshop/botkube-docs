@@ -1,5 +1,6 @@
 ---
 title: "Release instruction"
+weight: 1
 ---
 
 This document describes how to prepare and publish a new Botkube release.
@@ -12,7 +13,7 @@ This document describes how to prepare and publish a new Botkube release.
     - [Goreleaser](https://goreleaser.com/install/) 1.8.3
     - [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator#installation) 1.16.4
 
-## Instruction
+## Steps
 
 ### The `botkube` repository
 

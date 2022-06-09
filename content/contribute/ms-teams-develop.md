@@ -1,12 +1,13 @@
 ---
 title: "MS Teams Bot development"
+weight: 10
 ---
 
 Microsoft Teams is an entirely cloud-based product. Because of this, BotKube must be publicly accessible via an HTTPS endpoint.
 
 For a local Kubernetes cluster, you can use the tunneling software, for example [`ngrok`](https://ngrok.com/). It creates an externally addressable URL for a port you open locally on your machine.
 
-### Steps
+## Steps
 
 1. Install [`ngrok`](https://ngrok.com/download).
 2. Start `ngrok`:
