@@ -3,7 +3,9 @@ title: "ElasticSearch notifier development"
 weight: 11
 ---
 
-To develop BotKube with Elasticsearch notifier enabled, install it locally:
+The easiest way to develop BotKube with Elasticsearch notifier enabled is to install Elasticsearch on your local Kubernetes cluster.
+
+## Steps
 
 1. Install Elasticsearch:
 
@@ -36,10 +38,10 @@ To review if the events are properly saved in Elasticsearch, follow these steps:
     ```
 
 
-1. Copy the index name with the `botkube-` prefix and export it as environment variable:
+1. Copy the index name with the `botkube-` prefix and export it as environment variable. For example:
 
     ```bash
-    INDEX_NAME="botkube-2022-06-06"
+    export INDEX_NAME="botkube-2022-06-06"
     ```
 
 1. See Elasticsearch index details with logged events:
