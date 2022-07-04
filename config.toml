@@ -12,7 +12,7 @@ home = [ "HTML", "RSS", "JSON"]
 [params]
   author = "Kubeshop" # add your company name
   github = "https://github.com/kubeshop/botkube" # add your github profile name
-  email = "info@kubeshop.io"
+  email = "frontdesk@kubeshop.io"
   description = "BotKube is a messaging bot for monitoring and debugging Kubernetes clusters."
   images = ['https://www.botkube.io/images/botkube_multicluster_v2.svg']
   showVisitedLinks = false
