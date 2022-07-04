@@ -109,10 +109,10 @@ We will use this TLS secret while deploying the BotKube backend.
 #### Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **infracloudio** chart repository:
+- Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add infracloudio https://infracloudio.github.io/charts
+  $ helm repo add botkube https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
@@ -130,7 +130,7 @@ We will use this TLS secret while deploying the BotKube backend.
   --set ingress.urlPath=<URLPATH> \
   --set ingress.tls.enabled=true \
   --set ingress.tls.secretName=<TLS_SECRET_NAME> \
-  infracloudio/botkube
+  botkube/botkube
   ```
 
   where,<br>

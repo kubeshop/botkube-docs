@@ -29,10 +29,10 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 #### Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **infracloudio** chart repository:
+- Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add infracloudio https://infracloudio.github.io/charts
+  $ helm repo add botkube https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
@@ -45,9 +45,8 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
-  --set image.repository=infracloudio/botkube \
   --set image.tag=v0.12.4 \
-  infracloudio/botkube
+  botkube/botkube
   ```
 
   where,<br>

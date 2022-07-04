@@ -12,10 +12,10 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 #### Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **infracloudio** chart repository:
+- Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add infracloudio https://infracloudio.github.io/charts
+  $ helm repo add botkube https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
@@ -26,9 +26,8 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   --set communications.webhook.enabled=true \
   --set communications.webhook.url=<WEBHOOK_URL> \
   --set config.settings.clustername=<CLUSTER_NAME> \
-  --set image.repository=infracloudio/botkube \
   --set image.tag=v0.12.4 \
-  infracloudio/botkube
+  botkube/botkube
   ```
 
   where,<br>
