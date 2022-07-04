@@ -11,12 +11,12 @@ Thanks to them <i class="fas fa-heart"></i> for making Open Source Software a be
 
 <br>
 
-{{% ghcontributors "https://api.github.com/repos/infracloudio/botkube/contributors?per_page=100" %}}
+{{% ghcontributors "https://api.github.com/repos/kubeshop/botkube/contributors?per_page=100" %}}
 
 {{< /raw_html >}}
 
 ## Tooling
 
-* [Netlify](https://www.netlify.com) - Continuous deployement and hosting of this documentation
+* [Netlify](https://www.netlify.com) - Continuous deployment and hosting of this documentation
 * [Hugo](https://gohugo.io/)
 

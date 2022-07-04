@@ -50,7 +50,7 @@ We will use "App Studio" to register and install Bot to MS Teams. Please follow 
 
     Click the checkbox on "Loading indicator" (optional)
 
-4. Download BotKube icons from https://github.com/infracloudio/botkube/tree/develop/branding/logos and update Branding icons.
+4. Download BotKube icons from https://github.com/kubeshop/botkube/tree/main/branding/logos and update Branding icons.
    ![](/images/teams_app_details.png "Teams BotKube App Details")
 
 ####  Add a Bot to the App
@@ -154,7 +154,7 @@ We will use this TLS secret while deploying the BotKube backend.
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
   ```yaml
   config:
@@ -206,7 +206,7 @@ We will use this TLS secret while deploying the BotKube backend.
 - Download deployment specs YAML:
 
     ```bash
-    $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+    $ wget -q https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
     ```
 - Uncomment BotKube service and ingress resource manifest.<br>
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
@@ -269,6 +269,6 @@ $ helm delete --purge botkube
 #### Using kubectl
 
 ```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
 ```
 

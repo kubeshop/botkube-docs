@@ -6,7 +6,7 @@ draft: false
 weight: 70
 ---
 
-You can extend BotKube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct. 
+You can extend BotKube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct.
 
 We have already defined a filter to add suggestions in the notifications if container image in pod specs is using **latest** tag.
 
@@ -82,7 +82,7 @@ func (f *ImageTagChecker) Describe() string {
 ```
 
 #### 3. Add your logic in the Run() function
-Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/infracloudio/botkube/blob/develop/pkg/events/events.go).
+Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/kubeshop/botkube/blob/develop/pkg/events/events.go).
 
 ```go
 // Run filers and modifies event struct
@@ -118,7 +118,7 @@ func (f *ImageTagChecker) Run(_ context.Context, object interface{}, event *even
 
 #### 4. Register your filter in the Filter Engine
 
-Open [**pkg/filterengine/with_all_filters.go**](https://github.com/infracloudio/botkube/blob/develop/pkg/filterengine/with_all_filters.go) file and call the constructor of your new filter in the `WithAllFilters` method:
+Open [**pkg/filterengine/with_all_filters.go**](https://github.com/kubeshop/botkube/blob/develop/pkg/filterengine/with_all_filters.go) file and call the constructor of your new filter in the `WithAllFilters` method:
 
 ```go
 // WithAllFilters returns new DefaultFilterEngine instance with all filters registered.
@@ -142,4 +142,4 @@ func WithAllFilters(logger *logrus.Logger, dynamicCli dynamic.Interface, mapper 
 - Push the image to Dockerhub registry.
 - Install/Upgrade your BotKube deployment (Steps are provided [here](/installation)).
 
-_The implementation of built in filters can be found at: https://github.com/infracloudio/botkube/tree/develop/pkg/filterengine/filters_
+_The implementation of built in filters can be found at: https://github.com/kubeshop/botkube/tree/develop/pkg/filterengine/filters_

@@ -45,7 +45,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
   ```yaml
   config:
@@ -96,7 +96,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 - Download deployment specs YAML:
 
   ```bash
-  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+  $ wget -q https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
   ```
 
 - Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
@@ -128,6 +128,6 @@ $ helm delete --purge botkube
 #### Using kubectl
 
 ```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
 ```
 

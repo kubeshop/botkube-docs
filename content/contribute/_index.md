@@ -9,39 +9,37 @@ weight: 80
 
 We'd love your help!
 
-BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
+BotKube is [MIT Licensed](/LICENSE) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
 
 We gratefully welcome improvements to [documentation](https://www.botkube.io/ "Go to documentation site") as well as to code.
 
 ## Contributing to documentation
 
-You can contribute to documentation by following [these instructions](https://github.com/infracloudio/botkube-docs#contributing "Contributing to BotKube Docs")
+You can contribute to documentation by following [these instructions](https://github.com/kubeshop/botkube-docs#contributing "Contributing to BotKube Docs")
 
 ## Compile BotKube from source code
 
-Before you proceed, make sure you have installed BotKube Slack/Mattermost/Teams app and copied required token as per the steps documented [here](https://www.botkube.io/installation/)
+Before you proceed, make sure you have installed BotKube Slack/Mattermost/Teams app and copied the required token as per the steps documented [here](https://www.botkube.io/installation/)
 
 ### Prerequisite
 
-* Make sure you have `go 1.11+` installed with go module activated. (You can set env var with `export GO111MODULE=on` to activate)
-
-* You will also need `make` and [`docker`](https://docs.docker.com/install/) installed on your
-machine.
+* Make sure you have [`go 1.18`](https://go.dev) installed.
+* You will also need `make` and [`docker`](https://docs.docker.com/install/) installed on your machine.
 * Clone the source code
    ```sh
-   $ git clone https://github.com/infracloudio/botkube.git
+   git clone https://github.com/kubeshop/botkube.git
    ```
 
 Now you can build and run BotKube by one of the following ways
 
 ### Build the container image
 
-1. This will build BotKube and create a new container image tagged as `infracloudio/botkube:latest`
+1. This will build BotKube and create a new container image tagged as `ghcr.io/kubeshop/botkube:v9.99.9-dev`
    ```sh
-   $ make build
-   $ make container-image
-   $ docker tag infracloudio/botkube:latest <your_account>/botkube:latest
-   $ docker push <your_account>/botkube:latest
+   make build
+   make container-image
+   docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev-amd64 <your_account>/botkube:v9.99.9-dev
+   docker push <your_account>/botkube:v9.99.9-dev
    ```
    Where `<your_account>` is Docker hub account to which you can push the image
 
@@ -50,35 +48,35 @@ Now you can build and run BotKube by one of the following ways
    a. Using helm (v3)
 
    ```sh
-   $ helm repo add infracloudio https://infracloudio.github.io/charts
-   $ helm repo update
-   $ kubectl create namespace botkube
-   $ helm install --version v9.99.9-dev botkube --namespace botkube \
-     --set communications.slack.enabled=true \
-     --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
-     --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
-     --set settings.clustername=<CLUSTER_NAME> \
-     --set settings.kubectl.enabled=<ALLOW_KUBECTL> \
-     --set image.repository=<your_account>/botkube \
-     --set image.tag=latest \
-     infracloudio/botkube
+   helm repo add infracloudio https://infracloudio.github.io/charts
+   helm repo update
+   kubectl create namespace botkube
+   helm install --version v9.99.9-dev botkube --namespace botkube \
+   --set communications.slack.enabled=true \
+   --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
+   --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
+   --set settings.clustername=<CLUSTER_NAME> \
+   --set settings.kubectl.enabled=<ALLOW_KUBECTL> \
+   --set image.repository=<your_account>/botkube \
+   --set image.tag=v9.99.9-dev \
+   infracloudio/botkube
    ```
 
-   Check [values.yaml](https://github.com/infracloudio/botkube/blob/develop/helm/botkube/values.yaml) for default options
+   Check [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) for default options.
 
-   > Note:
+   > **Note**
    >
    > If you are using helm version < 3.0.0, use following command
    >
    > helm install --version v9.99.9-dev --name botkube --namespace botkube --set \<options\> infracloudio/botkube
 
-   b. Using kubectl
+   b. Using `kubectl`
 
-     1. Edit deploy-all-in-one.yaml and update the configuration.
+     1. Edit `deploy-all-in-one.yaml` and update the configuration.
         Set SLACK_ENABLED, SLACK_CHANNEL, SLACK_API_TOKEN, clustername, kubectl.enabled and update the resource events configuration you want to receive notifications for in the configmap.
-     2. Create botkube namespace and deploy resources
+     2. Create `botkube` namespace and deploy resources
      ```sh
-     $ kubectl create ns botkube && kubectl create -f deploy-all-in-one.yaml -n botkube
+     kubectl create ns botkube && kubectl create -f deploy-all-in-one.yaml -n botkube
      ```
 
 ### Build and run BotKube locally
@@ -88,18 +86,24 @@ For faster development, you can also build and run BotKube outside K8s cluster.
 1. Build BotKube binary if you don't want to build the container image, you can build the binary like this,
    ```sh
    # Fetch the dependencies
-   $ go mod download
+   go mod download
    # Build the binary
-   $ go build ./cmd/botkube/
+   go build ./cmd/botkube/
    ```
 2. Edit `./resource_config.yaml` and `./comm_config.yaml` to configure resource and set communication credentials.
 
 3. Export the path to directory of `config.yaml`
    ```sh
    # From project root directory
-   $ export CONFIG_PATH=$(pwd)
+   export CONFIG_PATH=$(pwd)
    ```
-4. Make sure that correct context is set and you are able to access your Kubernetes cluster
+4. Export the path to Kubeconfig:
+
+   ```sh
+   export KUBECONFIG=/Users/$USER/.kube/config # set custom path if necessary
+   ```
+
+5. Make sure that correct context is set and you are able to access your Kubernetes cluster
    ```console
    $ kubectl config current-context
    minikube
@@ -107,29 +111,26 @@ For faster development, you can also build and run BotKube outside K8s cluster.
    Kubernetes master is running at https://192.168.39.233:8443
    CoreDNS is running at https://192.168.39.233:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
    ...
-	```
-5. Run BotKube binary
+   ```
+6. Run BotKube binary
    ```sh
-   $ ./botkube
+   ./botkube
    ```
 
 ## Making A Change
 
-* Before making any significant changes, please [open an issue](https://github.com/infracloudio/botkube/issues). Discussing your proposed changes ahead of time will make the contribution process smooth for everyone.
+* Before making any significant changes, please [open an issue](https://github.com/kubeshop/botkube/issues). Discussing your proposed changes ahead of time will make the contribution process smooth for everyone.
 
-* Once we've discussed your changes and you've got your code ready, make sure that build steps mentioned above pass. Open your pull request against [`develop`](http://github.com/infracloudio/botkube/tree/develop) branch.
+* Once we've discussed your changes and you've got your code ready, make sure that the build steps mentioned above pass. Open your pull request against [`main`](http://github.com/kubeshop/botkube/tree/main) branch.
 
-* To avoid build failures in CI, run
+* To avoid build failures in CI, install [`golangci-lint` v1.46](https://golangci-lint.run/usage/install/) and run:
   ```sh
   # From project root directory
-  $ ./hack/verify-*.sh
+  make lint
   ```
-  This will check if the code is properly formatted, linted & vendor directory is present.
+  This will run the `golangci-lint` tool to lint the Go code.
 
-* Run e2e tests
-  ```sh
-  $ ./hack/runtests.sh
-  ```
+* [Run e2e tests](https://github.com/kubeshop/botkube/blob/develop/test/README.md)
 
 * Make sure your pull request has [good commit messages](https://chris.beams.io/posts/git-commit/):
   * Separate subject from body with a blank line
@@ -140,4 +141,4 @@ For faster development, you can also build and run BotKube outside K8s cluster.
   * Wrap the body at 72 characters
   * Use the body to explain _what_ and _why_ instead of _how_
 
-* Try to squash unimportant commits and rebase your changes on to develop branch, this will make sure we have clean log of changes.
+* Try to squash unimportant commits and rebase your changes on to the `main` branch, this will make sure we have clean log of changes.
