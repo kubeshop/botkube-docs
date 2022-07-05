@@ -2,7 +2,7 @@
 
 ![BotKube logo](/static/images/botkube-title.jpg)
 
-For complete documentation visit www.botkube.io
+For complete documentation visit [https://botkube.io](https://botkube.io)
 
 A slack bot which keeps eye on your Kubernetes resources and notifies
 about resources life cycles events, errors and warnings. It allows you
