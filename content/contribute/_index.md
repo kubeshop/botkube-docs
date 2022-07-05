@@ -62,12 +62,6 @@ Now you can build and run BotKube by one of the following ways
 
    Check [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) for default options.
 
-   b. Using Helm v2
-
-   ```sh
-   helm install --version v9.99.9-dev --name botkube --namespace botkube --set \<options\> ./helm/botkube
-   ```
-
 ### Build and run BotKube locally
 
 For faster development, you can also build and run BotKube outside K8s cluster.
