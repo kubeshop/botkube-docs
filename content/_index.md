@@ -292,7 +292,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
   <div class="rightfeature">
     <h4><i class="fas fa-terminal fa-fw"></i>
-      Execute <code>kubectl</code> commands
+      Execute kubectl commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
     Plus you can configure which Kubectl commands BotKube can executes. See <a href=/configuration>configuration</a> for details.
