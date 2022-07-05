@@ -168,5 +168,5 @@ Add BotKube user created to the channel you want to receive notifications in.
 If you have installed BotKube backend using **helm**, execute following command to completely remove BotKube and related resources from your cluster
 
 ```bash
-$ helm delete --purge botkube
+$ helm uninstall botkube
 ```

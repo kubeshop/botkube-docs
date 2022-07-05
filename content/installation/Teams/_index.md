@@ -226,5 +226,5 @@ If you get 404, please check the ingress configuration or endpoint you configure
 If you have installed BotKube backend using **helm**, execute the following command to completely remove BotKube and related resources from your cluster.
 
 ```bash
-$ helm delete --purge botkube
+$ helm uninstall botkube
 ```

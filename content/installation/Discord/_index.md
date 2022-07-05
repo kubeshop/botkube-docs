@@ -181,6 +181,6 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 If you have installed BotKube backend using **helm**, execute following command to completely remove BotKube and related resources from your cluster.
 
 ```bash
-$ helm delete --purge botkube
+$ helm uninstall botkube
 ```
 

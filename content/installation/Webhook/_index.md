@@ -95,5 +95,5 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 If you have installed BotKube backend using **helm**, execute following command to completely remove BotKube and related resources from your cluster
 
 ```bash
-$ helm delete --purge botkube
+$ helm uninstall botkube
 ```
