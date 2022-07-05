@@ -98,33 +98,6 @@ toc = true
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-
-#### Using kubectl
-
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
-- Download deployment specs YAML:
-
-  ```bash
-  $ wget -q https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-  ```
-
-- Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-
-  Set *ELASTICSEARCH_ENABLED*=true, *ELASTICSEARCH_USERNAME*, *ELASTICSEARCH_PASSWORD*, *clustername*, index settings and update the resource events configuration you want to receive notifications for in the configmap.<br>
-
-  where,<br>
-  - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br>
-  - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br>
-  - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br>
-
-- Create **botkube** namespace and deploy resources:
-
-  ```bash
-  $ kubectl create -f deploy-all-in-one.yaml
-  ```
-
-- Check pod status in botkube namespace.
-
 ### Remove BotKube
 
 #### Using helm
@@ -134,10 +107,3 @@ If you have installed BotKube backend using **helm**, execute following command 
 ```bash
 $ helm delete --purge botkube
 ```
-
-#### Using kubectl
-
-```bash
-$ kubectl delete -f https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-```
-

@@ -89,9 +89,7 @@ communications:
     url: 'WEBHOOK_URL'                 # e.g https://example.com:80
 ```
 
-The default configuration can be found at:
-- for Helm chart in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml),
-- and for all-in-one deployment spec in [deploy-all-in-one.yaml](https://github.com/kubeshop/botkube/blob/main/deploy-all-in-one.yaml).
+The default configuration for Helm chart can be found in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml).
 
 ## Environment variables
 

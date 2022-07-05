@@ -88,32 +88,6 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-
-#### Using kubectl
-
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
-- Download deployment specs YAML:
-
-  ```bash
-  $ wget -q https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-  ```
-
-- Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-
-  Set *WEBHOOK_ENABLED*=true, *WEBHOOK_URL*, *clustername* and update the resource events configuration you want to receive notifications for in the configmap.<br>
-
-  where,<br>
-  - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
-
-- Deploy the resources:
-
-  ```bash
-  $ kubectl create -f deploy-all-in-one.yaml
-  ```
-
-- Check pod status in botkube namespace.
-
 ### Remove BotKube
 
 #### Using helm
@@ -123,10 +97,3 @@ If you have installed BotKube backend using **helm**, execute following command 
 ```bash
 $ helm delete --purge botkube
 ```
-
-#### Using kubectl
-
-```bash
-$ kubectl delete -f https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-```
-

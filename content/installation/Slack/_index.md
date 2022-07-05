@@ -111,37 +111,6 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-
-#### Using kubectl
-
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
-- Download deployment specs YAML:
-
-  ```bash
-  $ wget -q https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-  ```
-
-- Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-  Set *SLACK_ENABLED*, *SLACK_CHANNEL*, *SLACK_API_TOKEN*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
-
-  where,<br>
-  - **SLACK_ENABLED** set true to enable Slack support for BotKube<br>
-  - **SLACK_CHANNEL** is the channel name where @BotKube is added<br>
-  - **SLACK_API_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br>
-  - **clustername** is the cluster name set in the incoming messages<br>
-  - **kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
-
-     Configuration syntax is explained [here](/configuration).
-
-- Deploy the resources:
-
-  ```bash
-  $ kubectl create -f deploy-all-in-one.yaml
-  ```
-
-- Check pod status in botkube namespace. Once running, send **@BotKube ping** in the Slack channel to confirm if BotKube is responding correctly.
-
-
 #### Remove BotKube from Slack workspace
 
 - Goto Slack <a href="https://slack.com/apps/manage">manage apps</a> page<br>
@@ -156,10 +125,3 @@ If you have installed BotKube backend using **helm**, execute following command 
 ```bash
 $ helm delete --purge botkube
 ```
-
-#### Using kubectl
-
-```bash
-$ kubectl delete -f https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-```
-

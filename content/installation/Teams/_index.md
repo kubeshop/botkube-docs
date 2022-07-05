@@ -195,39 +195,6 @@ We will use this TLS secret while deploying the BotKube backend.
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-
-#### Using kubectl
-
-- Make sure that you have kubectl cli installed and have access to the Kubernetes cluster.
-- Download deployment specs YAML:
-
-    ```bash
-    $ wget -q https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-    ```
-- Uncomment BotKube service and ingress resource manifest.<br>
-- Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-  Set *teams.enabled*, *APPLICATION_ID*, *APPLICATION_PASSWORD*, *HOST*, *URLPATH*, *TLS_SECRET_NAME* and update the resource events configuration you want to receive notifications for in the configmap.<br>
-
-  where,<br>
-
-  - **communications.teams.enabled** set true to enable Teams support for BotKube<br>
-  - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
-  - **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br>
-  - **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br>
-  - **URLPATH** is the path in endpoint URL provided while registering BotKube to Teams<br>
-  - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
-  - **settings.clustername** is the cluster name set in the incoming messages<br>
-  - **settings.kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
-
-     Configuration syntax is explained [here](/configuration).
-     Complete list of helm options is documented [here](/configuration/helm-options)
-
-- Deploy the resources:
-
-  ```bash
-  $ kubectl create -f deploy-all-in-one.yaml
-  ```
-
 #### Verify if BotKube endpoint is reachable
 
 Curl on the endpoint to confirm that the BotKube endpoint is reachable and serving the requests.
@@ -261,10 +228,3 @@ If you have installed BotKube backend using **helm**, execute the following comm
 ```bash
 $ helm delete --purge botkube
 ```
-
-#### Using kubectl
-
-```bash
-$ kubectl delete -f https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/deploy-all-in-one.yaml
-```
-
