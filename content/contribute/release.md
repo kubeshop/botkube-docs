@@ -57,7 +57,7 @@ This document describes how to prepare and publish a new Botkube release.
     - Publishes Docker images,
     - Publishes GitHub release.
 
-1. Update [newly created GitHub release](https://github.com/infracloudio/botkube/releases/latest) description using GitHub UI.
+1. Update [newly created GitHub release](https://github.com/kubeshop/botkube/releases/latest) description using GitHub UI.
     - Copy the generated changelog for the released version from the `./CHANGELOG.md` file.
     - Edit the GitHub release and paste the changelog into the description field.
 

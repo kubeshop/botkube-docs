@@ -10,9 +10,9 @@ enableEmoji = true
 home = [ "HTML", "RSS", "JSON"]
 
 [params]
-  author = "InfraCloud" # add your company name
-  github = "https://github.com/infracloudio/botkube" # add your github profile name
-  email = "botkube@infracloud.io"
+  author = "Kubeshop" # add your company name
+  github = "https://github.com/kubeshop/botkube" # add your github profile name
+  email = "frontdesk@kubeshop.io"
   description = "BotKube is a messaging bot for monitoring and debugging Kubernetes clusters."
   images = ['https://www.botkube.io/images/botkube_multicluster_v2.svg']
   showVisitedLinks = false
@@ -29,7 +29,7 @@ weight = 10
 [[menu.shortcuts]]
 name = "<i class='fab fa-fw fa-github'></i> Github repo"
 identifier = "ds"
-url = "https://github.com/infracloudio/botkube"
+url = "https://github.com/kubeshop/botkube"
 weight = 20
 
 [[menu.shortcuts]]
@@ -54,5 +54,5 @@ weight = 50
 
 [[menu.shortcuts]]
 name = "<i class='fab fa-fw fa-twitter fa-fw'></i> Twitter"
-url = "https://twitter.com/infracloudio"
+url = "https://twitter.com/thekubeshop"
 weight = 60

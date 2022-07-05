@@ -12,10 +12,10 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 #### Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **infracloudio** chart repository:
+- Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add infracloudio https://infracloudio.github.io/charts
+  $ helm repo add botkube https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
@@ -26,9 +26,8 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   --set communications.webhook.enabled=true \
   --set communications.webhook.url=<WEBHOOK_URL> \
   --set config.settings.clustername=<CLUSTER_NAME> \
-  --set image.repository=infracloudio/botkube \
   --set image.tag=v0.12.4 \
-  infracloudio/botkube
+  botkube/botkube
   ```
 
   where,<br>
@@ -45,7 +44,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
   ```yaml
   config:
@@ -89,32 +88,6 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-
-#### Using kubectl
-
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
-- Download deployment specs YAML:
-
-  ```bash
-  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-  ```
-
-- Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-
-  Set *WEBHOOK_ENABLED*=true, *WEBHOOK_URL*, *clustername* and update the resource events configuration you want to receive notifications for in the configmap.<br>
-
-  where,<br>
-  - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
-
-- Deploy the resources:
-
-  ```bash
-  $ kubectl create -f deploy-all-in-one.yaml
-  ```
-
-- Check pod status in botkube namespace.
-
 ### Remove BotKube
 
 #### Using helm
@@ -124,10 +97,3 @@ If you have installed BotKube backend using **helm**, execute following command 
 ```bash
 $ helm delete --purge botkube
 ```
-
-#### Using kubectl
-
-```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-```
-

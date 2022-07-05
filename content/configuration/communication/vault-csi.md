@@ -129,10 +129,12 @@ This instruction guides you through the installation of BotKube and Vault on a K
     ```
 
 6. Install BotKube:
-    <!--- TODO(https://github.com/infracloudio/botkube/issues/595): replace the version with v0.13.0 once released -->
+    <!--- TODO(https://github.com/kubeshop/botkube/issues/595): replace the version with v0.13.0 once released -->
     ```bash
+    helm repo add botkube https://infracloudio.github.io/charts
+    helm repo update
     helm install botkube --namespace default \
     --version v9.99.9-dev --set image.tag=v9.99.9-dev \
     -f /tmp/values.yaml \
-    infracloudio/botkube
+    botkube/botkube
     ```

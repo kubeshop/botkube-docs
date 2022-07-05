@@ -26,7 +26,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
     Add a description - `BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. Visit https://www.botkube.io/usage for help.`.
 
-    Set the BotKube icon (BotKube icon can be downloaded from [this link](https://github.com/infracloudio/botkube/raw/develop/branding/logos/botkube_192x192.png)).
+    Set the BotKube icon (BotKube icon can be downloaded from [this link](https://github.com/kubeshop/botkube/raw/main/branding/logos/botkube_192x192.png)).
 
     Click on Save Changes to update the Bot.
 
@@ -84,10 +84,10 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 #### Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **infracloudio** chart repository:
+- Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add infracloudio https://infracloudio.github.io/charts
+  $ helm repo add botkube https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
@@ -101,9 +101,8 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   --set communications.discord.token=<DISCORD_TOKEN> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
-  --set image.repository=infracloudio/botkube \
   --set image.tag=v0.12.4 \
-  infracloudio/botkube
+  botkube/botkube
   ```
 
   where,<br>
@@ -125,7 +124,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
   ```yaml
   config:
@@ -170,37 +169,6 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-
-#### Using kubectl
-
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
-- Download deployment specs YAML:
-
-  ```bash
-  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-  ```
-
-- Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-  Set *DISCORD_ENABLED*, *DISCORD_BOTID*,  *DISCORD_CHANNEL*, *DISCORD_TOKEN*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
-
-  where,<br>
-    - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br>
-    - **DISCORD_BOT_ID** is the BotKube Application Client ID<br>
-    - **DISCORD_TOKEN** is the Token you received after adding BotKube bot to your Discord Application<br>
-    - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
-    - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
-
-  Configuration syntax is explained [here](/configuration).
-
-- Deploy the resources:
-
-  ```bash
-  $ kubectl create -f deploy-all-in-one.yaml
-  ```
-
-- Check pod status in botkube namespace. Once running, send **@BotKube ping** in the Discord channel to confirm if BotKube is responding correctly.
-
-
 #### Remove BotKube from Discord Server
 
 - Goto Discord Developers Portel <a href="https://discord.com/developers/applications">Applications</a> page<br>
@@ -214,11 +182,5 @@ If you have installed BotKube backend using **helm**, execute following command 
 
 ```bash
 $ helm delete --purge botkube
-```
-
-#### Using kubectl
-
-```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
 ```
 

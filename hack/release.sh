@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GITHUB_ORG=${GITHUB_ORG:-"infracloudio"}
+GITHUB_ORG=${GITHUB_ORG:-"kubeshop"}
 GITHUB_REPO=${GITHUB_REPO:-"botkube"}
 REPO_BRANCH=${REPO_BRANCH:-"develop"}
 
@@ -23,7 +23,7 @@ update_image_tags() {
 update_changelogs() {
     echo "Updating History page"
     wget "https://raw.githubusercontent.com/${GITHUB_ORG}/${GITHUB_REPO}/${REPO_BRANCH}/CHANGELOG.md"
-    sed -i.bak '1d' CHANGELOG.md 
+    sed -i.bak '1d' CHANGELOG.md
     echo "---" > content/history/_index.md
     echo "title: History" >> content/history/_index.md
     echo "---" >> content/history/_index.md
@@ -47,14 +47,14 @@ git_tag() {
     if [ -n "$(git tag | grep ${version})" ] ; then echo 'ERROR: Tag already exists' && exit 1 ; fi
     if [ -z "$(git remote -v)" ] ; then echo 'ERROR: No remote to push tags to' && exit 1 ; fi
     if [ -z "$(git config user.email)" ] ; then echo 'ERROR: Unable to detect git credentials' && exit 1 ; fi
-    
+
     echo "Creating a git tag"
     git add content/history/_index.md
     git add content/installation
     git add content/configuration/helm-options.md
     git commit -m "Release ${version}"
     git tag ${version}
-    git push --tags origin master
+    git push --tags origin main
     echo 'Git tag pushed successfully'
 }
 

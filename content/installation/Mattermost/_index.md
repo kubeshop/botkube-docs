@@ -64,10 +64,10 @@ Add BotKube user created to the channel you want to receive notifications in.
 #### BotKube install: Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **infracloudio** chart repository:
+- Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add infracloudio https://infracloudio.github.io/charts
+  $ helm repo add botkube https://infracloudio.github.io/charts
   $ helm repo update
   ```
 
@@ -84,9 +84,8 @@ Add BotKube user created to the channel you want to receive notifications in.
   --set communications.mattermost.botName=<MATTERMOST_BOT_NAME> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
-  --set image.repository=infracloudio/botkube \
   --set image.tag=v0.12.4 \
-  infracloudio/botkube
+  botkube/botkube
   ```
 
   where,<br>
@@ -113,7 +112,7 @@ Add BotKube user created to the channel you want to receive notifications in.
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 
-    (You can refer sample config from https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
+    (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
 
   ```yaml
   config:
@@ -157,44 +156,6 @@ Add BotKube user created to the channel you want to receive notifications in.
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-
-#### Using kubectl
-
-- Make sure that you have kubectl cli installed and have access to Kubernetes cluster.
-- Download deployment specs YAML:
-
-  ```bash
-  $ wget -q https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
-  ```
-
-- Open downloaded **deploy-all-in-one.yaml** and update the configuration.<br>
-  Set *MATTERMOST_ENABLED*, *MATTERMOST_SERVER_URL*, *MATTERMOST_TOKEN*, *MATTERMOST_TEAM*, *MATTERMOST_CHANNEL*, *clustername*, *kubectl.enabled* and update the resource events configuration you want to receive notifications for in the configmap.<br>
-
-  where,<br>
-  - **MATTERMOST_ENABLED** set true to enable Mattermost support for BotKube<br>
-  - **MATTERMOST_SERVER_URL** is the URL where Mattermost is running<br>
-  - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for BotKube user<br>
-  - **MATTERMOST_TEAM** is the Team name where BotKube is added<br>
-  - **MATTERMOST_CHANNEL** is the Channel name where BotKube is added and used for communication<br>
-  - **clustername** is the cluster name set in the incoming messages<br>
-  - **kubectl.enabled** set true to allow kubectl command execution by BotKube on the cluster<br>
-
-     Configuration syntax is explained [here](/configuration).
-
-- Deploy the resources:
-
-  ```bash
-  $ kubectl create -f deploy-all-in-one.yaml
-  ```
-
-- Check pod status in botkube namespace. Once running, send **@BotKube ping** in the configured channel to confirm if BotKube is responding correctly.
-
-- To deploy with TLS, download and use deploy-all-in-one-tls.yaml. Replace **ENCODED_CERTIFICATE** with your base64 encoded certificate value in the secret. To get a base64 encoded value of your certificate, use below command and replace <YOUR_CERTIFICATE> with the certificate name.
-
-  ```bash
-  $ cat <YOUR_CERTIFICATE> | base64 -w 0
-  ```
-
 ### Remove BotKube from Mattermost Team
 
 - Deactivate or remove BotKube user from Mattermost Team. Login as System Admin, in the Menu proceed to System console -> Users -> botkube -> Deactivate<br>
@@ -208,10 +169,4 @@ If you have installed BotKube backend using **helm**, execute following command 
 
 ```bash
 $ helm delete --purge botkube
-```
-
-#### Using kubectl
-
-```bash
-$ kubectl delete -f https://raw.githubusercontent.com/infracloudio/botkube/v0.12.4/deploy-all-in-one.yaml
 ```

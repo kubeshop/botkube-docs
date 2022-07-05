@@ -29,7 +29,7 @@ docs locally.
 
   * Clone the repository
 	```sh
-	git clone https://github.com/infracloudio/botkube-docs
+	git clone https://github.com/kubeshop/botkube-docs
 	cd botkube-docs
 	```
   * Fetch the theme submodule
@@ -60,5 +60,5 @@ automatically by Netlify.
 
 ## Licensing
 The code snippets and the documentation is licensed under MIT
-license. BotKube name and the logo are copyright of InfraCloud
-Technologies. See [LICENSE](./LICENSE) for the full license text.
+license. BotKube name and the logo are copyright of Kubeshop.
+See [LICENSE](./LICENSE) for the full license text.
