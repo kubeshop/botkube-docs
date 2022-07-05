@@ -45,8 +45,6 @@ Now you can build and run BotKube by one of the following ways
 
 2. Deploy newly created image in your cluster.
 
-   a. Using Helm v3
-
    ```sh
    kubectl create namespace botkube
    helm install --version v9.99.9-dev botkube --namespace botkube \
