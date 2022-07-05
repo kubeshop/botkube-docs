@@ -22,8 +22,6 @@ We will be discussing the most common way i.e exposing using [ingress](https://k
 - TLS cert and key for the registered domain name to configure SSL termination
 - nginx-ingress controller deployed on your cluster
 
-If you are new to Ingress and don't know how to set up an ingress controller, please follow [this](https://www.infracloud.io/blogs/deep-dive-ingress-kubernetes/) blog by InfraCloud.
-
 ### A. Register BotKube as a bot with Microsoft Bot Framework.
 
 We will use "App Studio" to register and install Bot to MS Teams. Please follow the steps below to create and install BotKube App to your Team.
@@ -95,8 +93,6 @@ Now there are few different ways to enable access to the K8s Service from the ou
 - a domain name with the ability to configure DNS
 - TLS cert and key for the registered domain name to configure SSL termination
 - nginx-ingress controller deployed on your cluster
-
-If you are new to Ingress and don't know how to set up an ingress controller, please follow [this](https://www.infracloud.io/blogs/deep-dive-ingress-kubernetes/) blog by InfraCloud.
 
 Create a K8s TLS secret from cert and key for the SSL termination in botkube namespace:
 

@@ -8,14 +8,14 @@ To develop the outgoing webhook integration, you can use [Echo-Server](https://g
 ## Steps
 
 1. Install Echo server with Helm:
-    
+
     ```bash
     helm repo add ealenn https://ealenn.github.io/charts
     helm repo update ealenn
     helm install echo-server ealenn/echo-server --set application.logs.ignore.ping=true --set application.enable.environment=false --wait
     ```
 
-1. Go through the [Outgoing Webhook BotKube installation](https://www.botkube.io/installation/webhook/) instruction. Provide `http://echo-server.default` as `WEBHOOK_URL`.
+1. Go through the [Outgoing Webhook BotKube installation](/installation/webhook/) instruction. Provide `http://echo-server.default` as `WEBHOOK_URL`.
 
 1. Watch the logs:
 
