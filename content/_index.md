@@ -86,11 +86,11 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 	
 .features {
   text-align: center;
-  }	
-	
- .features h4 > i {
-    margin-right: 10px;
-  }	
+}	
+
+.features h4 > i {
+  margin-right: 10px;
+}	
 
 .lefttitle:hover, .righttitle:hover {
   background-color: #1C90F3;
@@ -175,8 +175,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     overflow: auto;
     display: block;
   }
-	
-  
 }
 
 </style>
@@ -294,7 +292,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
   <div class="rightfeature">
     <h4><i class="fas fa-terminal fa-fw"></i>
-      Execute Kubectl commands
+      Execute <code>kubectl</code> commands
     </h4>
     Same old Kubectl syntax - just a new interface. You do not have to learn anything new!
     Plus you can configure which Kubectl commands BotKube can executes. See <a href=/configuration>configuration</a> for details.
@@ -361,7 +359,6 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     BotKube backend is open source and we welcome your requirements and contributions.
   </div>
 </div>
-	
 </div>
 
 <hr>
