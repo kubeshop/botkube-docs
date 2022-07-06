@@ -47,6 +47,11 @@
             display: none;
         }
       {{ end }}
+
+      /* https://www.cloudflare.com/apps/cookie-consent */
+      .tibrr-cookie-consent-text, .tibrr-cookie-consent-button > button {
+        font-size: 16px!important;
+      }
     </style>
     {{ partial "custom-header.html" . }}
   </head>
