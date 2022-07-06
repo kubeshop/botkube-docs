@@ -38,7 +38,7 @@ url = "/credits"
 weight = 30
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bookmark fa-fw'></i> Privacy Policy"
+name = "<i class='fas fa-fw fa-bookmark fa-fw'></i> Privacy & legal"
 url = "/privacy"
 weight = 30
 
