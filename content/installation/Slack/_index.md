@@ -32,7 +32,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 - Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add botkube https://infracloudio.github.io/charts
+  $ helm repo add botkube https://charts.botkube.io
   $ helm repo update
   ```
 

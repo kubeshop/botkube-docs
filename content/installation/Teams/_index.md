@@ -108,7 +108,7 @@ We will use this TLS secret while deploying the BotKube backend.
 - Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add botkube https://infracloudio.github.io/charts
+  $ helm repo add botkube https://charts.botkube.io
   $ helm repo update
   ```
 
