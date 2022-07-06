@@ -67,7 +67,7 @@ Add BotKube user created to the channel you want to receive notifications in.
 - Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add botkube https://infracloudio.github.io/charts
+  $ helm repo add botkube https://charts.botkube.io
   $ helm repo update
   ```
 

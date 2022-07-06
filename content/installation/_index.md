@@ -6,6 +6,11 @@ weight = 10
 toc = true
 +++
 
+{{% notice warning %}}
+The https://infracloudio.github.io/charts Helm repository is deprecated. In the future, BotKube charts from https://infracloudio.github.io/charts can be garbage collected and no longer available.
+The new BotKube Helm repository is available under https://charts.botkube.io.
+{{% /notice%}}
+
 BotKube has two components that need to be installed.
 
 1. BotKube App Integration in your Slack/Mattermost/Microsoft Teams/Discord

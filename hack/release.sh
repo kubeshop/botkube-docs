@@ -2,7 +2,7 @@
 
 GITHUB_ORG=${GITHUB_ORG:-"kubeshop"}
 GITHUB_REPO=${GITHUB_REPO:-"botkube"}
-REPO_BRANCH=${REPO_BRANCH:-"develop"}
+REPO_BRANCH=${REPO_BRANCH:-"main"}
 
 set -e
 
@@ -37,6 +37,7 @@ update_helm_options() {
     sed -i.bak '1d' helm-options.md
     echo "---" > content/configuration/helm-options.md
     echo "title: Advanced Helm Options" >> content/configuration/helm-options.md
+    echo "weight: 40" >> content/configuration/helm-options.md
     echo "---" >> content/configuration/helm-options.md
     cat helm-options.md >> content/configuration/helm-options.md
     rm helm-options.md
