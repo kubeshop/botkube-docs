@@ -106,7 +106,7 @@ The date at the top of this Cookie Policy indicates when it was last updated.
 
 If you have any questions about our use of cookies or other technologies, please email us at [**frontdesk@kubeshop.io**](mailto:frontdesk@kubeshop.io).
 
-_This cookie policy was created using [Termly’s Cookie Consent Manager](https://terasdfmly.io/en/products/cookie-consent-manager)._
+_This cookie policy was created using [Termly’s Cookie Consent Manager](https://termly.io/en/products/cookie-consent-manager)._
 
 ### Disclaimer
 

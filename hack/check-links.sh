@@ -10,7 +10,7 @@ readonly CURRENT_DIR
 readonly REPO_ROOT_DIR
 
 check::install() {
-  npm install -g markdown-link-check
+  npm install --location=global markdown-link-check
 }
 
 check::links() {

@@ -12,6 +12,10 @@
   ],
   "replacementPatterns": [
     {
+      "pattern": "^/images/",
+      "replacement": "{{BASEURL}}/static/images/"
+    },
+    {
       "pattern": "^/",
       "replacement": "https://botkube.io/"
     }
