@@ -1,19 +1,19 @@
 {
-	"ignorePatterns": [
-		{
-			"pattern": "^https://example.com"
-		},
-		{
-			"pattern": "^http://localhost:1313"
-		},
-		{
-			"pattern": "^https://botkube.herokuapp.com/help"
-		}
-	],
-	"replacementPatterns": [
-		{
-			"pattern": "^/",
-			"replacement": "https://botkube.io/"
-		}
-	]
+  "ignorePatterns": [
+    {
+      "pattern": "^https://example.com"
+    },
+    {
+      "pattern": "^http://localhost:1313"
+    },
+    {
+      "pattern": "^https://botkube.herokuapp.com/help"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^/",
+      "replacement": "https://botkube.io/"
+    }
+  ]
 }
