@@ -15,7 +15,7 @@ Follow the steps below to install BotKube Slack app to your Slack workspace.
 Click the **Add to Slack** button provided to install BotKube Slack application to your workspace. Once you have authorized the application, you will be provided a BOT Access token. Kindly note down that token as it will be required while deploying BotKube backend to your Kubernetes cluster.
 
 {{< raw_html >}}
-<a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=12637824912.515475697794"><img alt=""Add to Slack"" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+<a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=551945394612.515475697794"><img alt=""Add to Slack"" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
 {{< /raw_html >}}
 
 Alternatively, you can install BotKube Slack app [from Slack app directory](https://slack.com/apps/AF5DZLHPC-botkube).
