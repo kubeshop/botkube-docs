@@ -9,7 +9,7 @@ weight: 80
 
 We'd love your help!
 
-BotKube is [MIT Licensed](/LICENSE) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
+BotKube is [MIT Licensed](/license/) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
 
 We gratefully welcome improvements to [documentation](https://botkube.io/ "Go to documentation site") as well as to code.
 
@@ -110,7 +110,7 @@ For faster development, you can also build and run BotKube outside K8s cluster.
   ```
   This will run the `golangci-lint` tool to lint the Go code.
 
-* [Run e2e tests](https://github.com/kubeshop/botkube/blob/develop/test/README.md)
+* [Run e2e tests](https://github.com/kubeshop/botkube/blob/main/test/README.md)
 
 * Make sure your pull request has [good commit messages](https://chris.beams.io/posts/git-commit/):
   * Separate subject from body with a blank line

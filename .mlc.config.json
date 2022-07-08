@@ -1,0 +1,23 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://example.com"
+    },
+    {
+      "pattern": "^http://localhost:1313"
+    },
+    {
+      "pattern": "^https://botkube.herokuapp.com/help"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^/images/",
+      "replacement": "{{BASEURL}}/static/images/"
+    },
+    {
+      "pattern": "^/",
+      "replacement": "https://botkube.io/"
+    }
+  ]
+}
