@@ -21,4 +21,4 @@ This command opens ConfigMap `specs` in default editor. Do the required changes,
 
 ## Helm install options
 
-Advanced Helm install options are documented [here](/configuration/helm-options).
+Advanced Helm install options are documented [here](/configuration/helm-chart-parameters).

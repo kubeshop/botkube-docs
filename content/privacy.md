@@ -18,13 +18,30 @@ title = "Privacy & legal"
 
 ### Privacy Policy
 
-**Last updated** **December 08, 2019**
+**Last updated** **July 12, 2022**
 
-We don't store your data, period.
+To improve the user experience, BotKube collects anonymized data. It does not collect any identifying information, and all analytics are used only as aggregated collection of data to improve BotKube and adjust its roadmap. The analytics collection is enabled by default with an option to opt-out.
 
-You host backend for BotKube Slack or Mattermost intergration in your own Kubernetes cluster. We do not collect or send any kind of information.
+#### What data we collect
 
-Any future changes to this document will be posted on this page.
+The analytics data we collect is limited to:
+- BotKube version,
+- Kubernetes version,
+- Names of enabled integrations (notifiers and bots),
+- Handled events count, grouped by the integration (communication platform) name,
+- Executed commands in anonymized form.
+
+  For `kubectl` commands, only the command verb is collected. Resource name and namespace are excluded from the analytics collection.
+
+- App errors (crashes, configuration and notification errors).
+
+For identifying BotKube installations, we use unique identifiers generated in the following way:
+- As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace,
+- As an anonymous installation identifier, we use UUID generated during Helm chart installation and persisted in a ConfigMap.
+
+#### How to opt out
+
+To disable sending the anonymous analytics, provide the `analytics.disable: true` override during Helm chart installation or upgrade. See the [Helm chart parameters](/configuration/helm-chart-parameters/#values) for more details about Helm chart configuration.
 
 ## Website
 
