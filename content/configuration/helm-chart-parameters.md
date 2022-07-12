@@ -1,5 +1,5 @@
 ---
-title: Advanced Helm Options
+title: Helm chart parameters
 weight: 40
 ---
 
@@ -123,3 +123,4 @@ serviceAccount:
 | extraEnv                                          | list   | `[]`                                 | Extra environment variables to pass to the BotKube container. For the syntax, see the [environment variable API](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) document.              |
 | extraVolumeMounts                                 | list   | `[]`                                 | Extra volume mounts to pass to the BotKube container. For the syntax, see the [Volumes API](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1) document.                                               |
 | extraVolumes                                      | list   | `[]`                                 | Extra volumes to pass to the BotKube container. Mount it later with extraVolumeMounts. For the syntax, see the [mount Volumes API](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/volume/#Volume) document. |
+| analytics.disable                                 | bool   | `false`                              | If true, sending anonymous analytics is disabled. To learn what date we collect, see [Privacy Policy](/privacy#privacy-policy). |
