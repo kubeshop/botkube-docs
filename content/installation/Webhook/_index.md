@@ -35,7 +35,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
 
    Configuration syntax is explained [here](/configuration).
-   Complete list of helm options is documented [here](/configuration/helm-options).
+   Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters).
 
   {{% notice note %}}
   With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
