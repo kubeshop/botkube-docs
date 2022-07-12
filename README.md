@@ -1,60 +1,53 @@
-# BotKube
+<p align="center">
+  <img src="./static/images/botkube-title.jpg" alt="BotKube Logo Light" width="90%" />
+</p>
 
-![BotKube logo](/static/images/botkube-title.jpg)
+<p align="center">
+  BotKube is a messaging bot for monitoring and debugging Kubernetes clusters.
+</p>
 
-For complete documentation visit [https://botkube.io](https://botkube.io)
 
-A slack bot which keeps eye on your Kubernetes resources and notifies
-about resources life cycles events, errors and warnings. It allows you
-to define and run certain checks on resources specs.  You can also ask
-BotKube to execute kubectl commands on Kubernetes cluster which helps
-debugging an application or cluster.
+<p align="center">
+  <a href="https://github.com/kubeshop/botkube/releases/latest">
+    <img src="https://img.shields.io/github/v/release/kubeshop/botkube" alt="Latest Release" />
+  </a>
+  <a href="https://github.com/kubeshop/botkube/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/kubeshop/botkube" alt="License"/>
+  </a>
+  <a href="https://join.botkube.io/">
+    <img src="https://badgen.net/badge/slack/BotKube?icon=slack" alt="Slack" />
+  </a>
+  <a href="https://github.com/kubeshop/botkube/actions?query=workflow%3ACI+branch%3Amain">
+    <img src="https://github.com/kubeshop/botkube/workflows/CI/badge.svg?branch=main" alt="CI Build" />
+  </a>
+  <a href="https://goreportcard.com/report/github.com/kubeshop/botkube">
+    <img src="https://goreportcard.com/badge/github.com/kubeshop/botkube" alt="Go Report" />
+  </a>
+  <a href="https://godoc.org/github.com/kubeshop/botkube">
+    <img src="https://godoc.org/github.com/kubeshop/botkube?status.svg" alt="Go Docs" />
+  </a>
+</p>
+
+## Overview
+
+BotKube helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources. It integrates with multiple communication platforms, such as [Slack](https://slack.com), [Discord](https://discord.com/), or [Mattermost](https://mattermost.com).
+
+You can also execute `kubectl` commands on K8s cluster via BotKube which helps debugging an application or cluster.
+
+## Documentation
+
+For full documentation, visit [botkube.io](https://botkube.io). The documentation sources reside on this repository under [**content**](./content) directory.
 
 ## Contributing
+
 This website uses Hugo to generate static HTML pages.
 
 - [`content/`](./content/ "View the directory") directory contains
   documentation files
 - [`config.toml`](./config.toml "View file") is the Hugo configuration
 
-### Build the site locally
-Make sure you have installed
-[Hugo](https://gohugo.io) 0.98.0 on your
-system. Follow the instructions to clone this repository and build the
-docs locally.
+You can contribute to documentation by following instructions described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-  * Clone the repository
-	```sh
-	git clone https://github.com/kubeshop/botkube-docs
-	cd botkube-docs
-	```
-  * Fetch the theme submodule
-	```sh
-	git submodule update --init --recursive
-	```
-  * Start local server
-	```sh
-	hugo serve -D
-	```
-	Site can be viewed at http://localhost:1313
+## Licence
 
-### Making changes
-#### Adding a new documentation page
-```sh
-# example: adding new documentation page under installation section
-hugo new installation/name-of-new-integration.md
-```
-#### Modifying an existing documentation page
-Find the documentation page file (`.md` file) under `content/` and
-edit it.
-
-### Publishing your changes
-[Create a Pull
-Request](https://help.github.com/en/articles/creating-a-pull-request)
-with your changes. When the PR is merged site will be updated
-automatically by Netlify.
-
-## Licensing
-The code snippets and the documentation is licensed under MIT
-license. BotKube name and the logo are copyright of Kubeshop.
-See [LICENSE](./LICENSE) for the full license text.
+This project is currently licensed under the [MIT License](LICENSE).
