@@ -13,8 +13,8 @@
   <a href="https://join.botkube.io/">
     <img src="https://badgen.net/badge/slack/BotKube?icon=slack" alt="Slack" />
   </a>
-  <a href="https://github.com/kubeshop/botkube-docs/actions/workflows/periodic-checks.yaml">
-    <img src="https://github.com/kubeshop/botkube-docs/actions/workflows/periodic-checks.yaml/badge.svg?branch=main" alt="CI Build" />
+  <a href="https://github.com/kubeshop/botkube-docs/actions/workflows/dead-link-checker.yaml">
+    <img src="https://github.com/kubeshop/botkube-docs/actions/workflows/dead-link-checker.yaml/badge.svg?branch=main" alt="CI Build" />
   </a>
 </p>
 

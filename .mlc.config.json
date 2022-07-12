@@ -4,9 +4,6 @@
       "pattern": "^https://example.com"
     },
     {
-      "pattern": "^http://localhost:1313"
-    },
-    {
       "pattern": "^https://botkube.herokuapp.com/help"
     }
   ],
@@ -17,7 +14,7 @@
     },
     {
       "pattern": "^/",
-      "replacement": "https://botkube.io/"
+      "replacement": "http://localhost:60123/"
     }
   ]
 }
