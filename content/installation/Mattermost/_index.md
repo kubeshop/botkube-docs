@@ -27,7 +27,7 @@ You can also use a custom username for your bot. However, it needs to be passed 
 #### 3. Manage Roles for BotKube user
 Login as System Admin, in the Menu, proceed to **System console > Users**. For BotKube user, Manage Roles and allow tokens and post_all access.
 
-![mm_botkube_roles](/images/mm_botkube_roles.pngs)
+![mm_botkube_roles](/images/mm_botkube_roles.png)
 
 #### 4. Create a Token for BotKube user
 Login as BotKube user, in the Menu, proceed to **Account Settings > Security > Personal Access Token > Create** and save the token.
