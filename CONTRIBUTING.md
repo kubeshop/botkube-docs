@@ -14,7 +14,7 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
    git clone https://github.com/kubeshop/botkube-docs.git
    ```
    > **Note**
-	 > To learn how to do it, follow the **Contribute** section in the [Git workflow guide](https://github.com/kubeshop/botkube/blob/main/git-workflow.md).
+   > To learn how to do it, follow the **Contribute** section in the [Git workflow guide](https://github.com/kubeshop/botkube/blob/main/git-workflow.md).
 
 ## Build the site locally
 
