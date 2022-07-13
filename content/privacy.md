@@ -25,6 +25,7 @@ To improve the user experience, BotKube collects anonymized data. It does not co
 #### What data we collect
 
 The analytics data we collect is limited to:
+
 - BotKube version,
 - Kubernetes version,
 - Names of enabled integrations (notifiers and bots),
@@ -36,6 +37,7 @@ The analytics data we collect is limited to:
 - App errors (crashes, configuration and notification errors).
 
 For identifying BotKube installations, we use unique identifiers generated in the following way:
+
 - As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace,
 - As an anonymous installation identifier, we use UUID generated during Helm chart installation and persisted in a ConfigMap.
 
