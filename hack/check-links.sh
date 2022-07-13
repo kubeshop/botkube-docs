@@ -21,7 +21,19 @@ check::links() {
     | xargs -n 1 -0 markdown-link-check -q -c "${REPO_ROOT_DIR}/.mlc.config.json"
 }
 
+local::server::start() {
+	eval "hugo server -p 60123" &
+}
+
+local::server::kill() {
+	pkill hugo
+}
+
+trap local::server::kill EXIT
+
 main() {
+  local::server::start
+
   check::install
   check::links
 }
