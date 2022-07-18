@@ -18,7 +18,7 @@ title = "Privacy & legal"
 
 ### Privacy Policy
 
-**Last updated** **July 12, 2022**
+**Last updated** **July 18, 2022**
 
 To improve the user experience, BotKube collects anonymized data. It does not collect any identifying information, and all analytics are used only as aggregated collection of data to improve BotKube and adjust its roadmap. The analytics collection is enabled by default with an option to opt-out.
 
@@ -29,7 +29,10 @@ The analytics data we collect is limited to:
 - BotKube version,
 - Kubernetes version,
 - Names of enabled integrations (notifiers and bots),
-- Handled events count, grouped by the integration (communication platform) name,
+- Handled events in anonymized form, grouped by the integration (communication platform) name.
+
+  For each event, we collect its type (e.g. `create` or `delete`), resource API Version and resource Kind. Any custom resource API groups or Kinds are excluded from the analytics collection.
+
 - Executed commands in anonymized form.
 
   For `kubectl` commands, only the command verb is collected. Resource name and namespace are excluded from the analytics collection.
