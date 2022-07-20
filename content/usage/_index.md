@@ -46,8 +46,8 @@ To get the list of all clusters configured in botkube, you can use the ping comm
 ![ping](/images/ping.png)
 
 For cluster-specific response,
-use `--cluster-name` flag to specify the cluster's name on which command needs to be executed. 
-Use of this flag allows you to get response from any channel or group where BotKube is added. 
+use `--cluster-name` flag to specify the cluster's name on which command needs to be executed.
+Use of this flag allows you to get response from any channel or group where BotKube is added.
 The flag is ignored in notifier commands as they can be executed from the configured channel only.
 
 ![flag_clustername_ping](/images/flag_clustername_ping.png)
@@ -77,7 +77,7 @@ If you wish to change the configuration, you can update config section in **helm
 
 ```bash
 $ helm upgrade botkube \
---set config.settings.clustername=<CLUSTER_NAME> \
+--set config.settings.clusterName=<CLUSTER_NAME> \
 --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
 helm/botkube
 ```

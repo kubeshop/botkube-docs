@@ -29,7 +29,7 @@ toc = true
   --set communications.elasticsearch.index.type=<ELASTICSEARCH_INDEX_TYPE> \
   --set communications.elasticsearch.index.shards=<ELASTICSEARCH_INDEX_SHARDS> \
   --set communications.elasticsearch.index.replicas=<ELASTICSEARCH_INDEX_REPLICAS> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
+  --set config.settings.clusterName=<CLUSTER_NAME> \
   --set image.tag=v0.12.4 \
   botkube/botkube
   ```
