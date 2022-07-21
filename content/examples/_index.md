@@ -15,33 +15,33 @@ The default notification type is **short**
 
 #### Resource created
 
-![](/images/create_sh.png "Slack notifyType=short")
-![](/images/create.png "Slack notifyType=long")
+![](/images/create_sh.png "Slack notification.type=short")
+![](/images/create.png "Slack notification.type=long")
 
 #### Resource deleted
 
-![](/images/mm_delete_sh.png "Mattermost notifyType=short")
-![](/images/delete.png "Slack notifyType=long")
+![](/images/mm_delete_sh.png "Mattermost notification.type=short")
+![](/images/delete.png "Slack notification.type=long")
 
 #### Failed to pull image
 
-![](/images/image_failed_sh.png "Slack notifyType=short")
-![](/images/mm_image_failed_sh.png "Mattermost notifyType=short")
-![](/images/image-failed.png "Slack notifyType=long")
+![](/images/image_failed_sh.png "Slack notification.type=short")
+![](/images/mm_image_failed_sh.png "Mattermost notification.type=short")
+![](/images/image-failed.png "Slack notification.type=long")
 
 #### Error in pod
 
-![](/images/error_sh.png "Slack notifyType=short")
+![](/images/error_sh.png "Slack notification.type=short")
 
 #### Readiness probe failed for the pod
 
-![](/images/readiness_sh.png "Slack notifyType=short")
-![](/images/mm_readiness_sh.png "Mattermost notifyType=short")
+![](/images/readiness_sh.png "Slack notification.type=short")
+![](/images/mm_readiness_sh.png "Mattermost notification.type=short")
 
 #### Job succeeded
 
-![](/images/job_success_sh.png "Slack notifyType=short")
-![](/images/job_success.png "Slack notifyType=long")
+![](/images/job_success_sh.png "Slack notification.type=short")
+![](/images/job_success.png "Slack notification.type=long")
 
 #### Monitor Velero backups
 
