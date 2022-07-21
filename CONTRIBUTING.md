@@ -7,6 +7,11 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 ### Prerequisite
 
 - [Hugo](https://gohugo.io)
+- [Magefile](https://magefile.org/)
+
+  > **Note**
+  > Run `mage -l` to see all possible targets.
+
 - Cloned BotKube documentation repository
 
    Use the following command to clone it:
