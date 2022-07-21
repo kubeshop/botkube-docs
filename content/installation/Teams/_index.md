@@ -62,6 +62,10 @@ Go to Capabilities > Bots and fill in the info
     - Scope: **[x] Personal** & **[x] Team**
     And Create bot.
 
+{{% notice note %}}
+You can also use a custom username for your bot. However, it needs to be passed during BotKube installation in one of the further steps.
+{{% /notice%}}
+
 3. On the "Bots" page, click on **Generate a new password**. Note down the password required while installing BotKube backend.
 
 4. **Copy App ID displayed below Bot name in the heading. Note that Bot App ID is different than the one we generate on the "Apps Details" page.**
@@ -119,6 +123,7 @@ We will use this TLS secret while deploying the BotKube backend.
   --set communications.teams.enabled=true \
   --set communications.teams.appID=<APPLICATION_ID> \
   --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
+  --set communications.teams.botName=<BOT_NAME> \
   --set config.settings.clusterName=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set ingress.create=true \
@@ -132,6 +137,7 @@ We will use this TLS secret while deploying the BotKube backend.
   where,<br>
   - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
   - **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br>
+  - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `BotKube`)<br>  
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
   - **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br>
