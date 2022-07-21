@@ -50,7 +50,7 @@ Now you can build and run BotKube by one of the following ways
    --set communications.slack.enabled=true \
    --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
    --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
-   --set settings.clustername=<CLUSTER_NAME> \
+   --set settings.clusterName=<CLUSTER_NAME> \
    --set settings.kubectl.enabled=<ALLOW_KUBECTL> \
    --set image.repository=<your_account>/botkube \
    --set image.tag=v9.99.9-dev \
@@ -76,15 +76,16 @@ For faster development, you can also build and run BotKube outside K8s cluster.
    ```sh
    cp resource_config.yaml.tpl resource_config.yaml
    cp comm_config.yaml.tpl comm_config.yaml
-   ``` 
+   ```
 
    Edit the newly created `resource_config.yaml` and `comm_config.yaml` files to configure resource and set communication credentials.
 
-3. Export the path to directory of `config.yaml`
+3. Export paths for configuration files:
+
    ```sh
-   # From project root directory
-   export CONFIG_PATH=$(pwd)
+   export BOTKUBE_CONFIG_PATHS="$(pwd)/resource_config.yaml,$(pwd)/comm_config.yaml"
    ```
+
 4. Export the path to Kubeconfig:
 
    ```sh
