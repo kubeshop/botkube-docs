@@ -5,7 +5,7 @@ package main
 import (
 	"github.com/magefile/mage/mg"
 
-	"botkube.io/tools/helm"
+	"botkube.io/tools/target"
 )
 
 var (
@@ -19,6 +19,11 @@ var (
 type Sync mg.Namespace
 
 // Chart synchronize BotKube Helm chart parameters.
-func (Sync) Chart() error {
-	return helm.SyncChartParams()
+func (Sync) Chart() {
+	target.SyncChartParams()
+}
+
+// CheckLinks detects dead links in documentation.
+func CheckLinks() {
+	target.CheckDeadLinks()
 }

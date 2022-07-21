@@ -1,4 +1,4 @@
-package helm
+package target
 
 import (
 	"fmt"
@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/MakeNowJust/heredoc/v2"
+	"github.com/samber/lo"
 	"github.com/tidwall/gjson"
 
 	"botkube.io/tools/printer"
@@ -16,7 +17,7 @@ import (
 var fileTpl = heredoc.Doc(`
      ---
      title: Helm chart parameters
-     weight: 40
+     weight: 23
      ---
      %s
      `)
@@ -28,45 +29,30 @@ const (
 	dstFilePath       = "content/configuration/helm-chart-parameters.md"
 )
 
-func SyncChartParams() error {
+func SyncChartParams() {
 	printer.Title("Synchronizing Helm chart doc...")
 
-	lastCommitJSON, err := getBody(urlLastCommit)
-	if err != nil {
-		return err
-	}
+	lastCommitJSON := getBody(urlLastCommit)
 	sha := gjson.Get(lastCommitJSON, "0.sha").String()
 
 	url := fmt.Sprintf(urlReadmeBySHAFmt, sha)
-	rawREADME, err := getBody(url)
-	if err != nil {
-		return err
-	}
+	rawREADME := getBody(url)
 
 	url = fmt.Sprintf(urlValuesBySHAFmt, sha)
 	readme := strings.ReplaceAll(rawREADME, "./values.yaml", url)
 	readme = strings.TrimPrefix(readme, "# BotKube\n") // remove header
 
 	out := fmt.Sprintf(fileTpl, readme)
-	if err := os.WriteFile(dstFilePath, []byte(out), 0o644); err != nil {
-		return err
-	}
+	lo.Must0(os.WriteFile(dstFilePath, []byte(out), 0o644))
 
 	printer.Infof("%q updated according to commit %q from BotKube repo", dstFilePath, sha[:5])
-	return nil
 }
 
-func getBody(url string) (string, error) {
-	resp, err := http.Get(url)
-	if err != nil {
-		return "", err
-	}
+func getBody(url string) string {
+	resp := lo.Must(http.Get(url))
 	defer resp.Body.Close()
 
-	raw, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", err
-	}
+	raw := lo.Must(io.ReadAll(resp.Body))
 
-	return string(raw), nil
+	return string(raw)
 }
