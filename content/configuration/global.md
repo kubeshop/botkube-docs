@@ -7,9 +7,9 @@ weight: 21
 
 The global settings contains:
 
-- Toggle kubectl command execution,
-- Configure kubectl commands BotKube can execute,
-- Restrict kubectl command execute to specific channel.
+- Toggle `kubectl` command execution,
+- Configure `kubectl` commands BotKube can execute,
+- Restrict `kubectl` command execute to specific channel.
 
 ## Syntax
 

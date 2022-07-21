@@ -8,11 +8,8 @@ weight: 20
 BotKube backend allows you to specify [resource](/configuration/resource), [communication](/configuration/communication), and [global](/configuration/global) settings. Check the related documents for more detailed explanation.
 
 The configuration settings are read from two sources:
-- First, the configuration files specified by the `BOTKUBE_CONFIG_PATHS` environment variable or `--config/-c` flag. For example:
 
-  {{% notice note %}}
-  You can split individual settings into multiple configuration files. The priority will be given to the last (right-most) file specified. See [merging strategy](#merging-strategy) for more details explanation.
-  {{% /notice%}}
+- the configuration files specified by the `BOTKUBE_CONFIG_PATHS` environment variable or `--config/-c` flag. For example:
 
   ```bash
   export BOTKUBE_CONFIG_PATHS="global.yaml,team-b-specific.yaml"
@@ -20,7 +17,11 @@ The configuration settings are read from two sources:
   ./botkube --config "global.yaml,team-b-specific.yaml"
   ```
 
-- and then, the exported [environment variables](#environment-variables) that overrides the configuration specified in the files.
+  {{% notice note %}}
+  You can split individual settings into multiple configuration files. The priority will be given to the last (right-most) file specified. See the [merging strategy](#merging-strategy) section for more details.
+  {{% /notice%}}
+
+- the exported [environment variables](#environment-variables) that overrides the configuration specified in the files.
 
 
 ### Updating the configuration at runtime
@@ -31,7 +32,7 @@ You can also change configuration directly in ConfigMap and Secret - is not reco
 
 ```bash
 # Change resources related settings
-kubectl edit configmap botkube-configmap -n botkube
+kubectl edit configmap botkube-global-config -n botkube
 ```
 
 ```bash

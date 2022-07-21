@@ -86,7 +86,7 @@ OR
 You can also modify the controller configuration at runtime. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
 
 ```bash
-$ kubectl edit configmap botkube-configmap -n botkube
+kubectl edit configmap botkube-global-config -n botkube
 ```
 
 This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
