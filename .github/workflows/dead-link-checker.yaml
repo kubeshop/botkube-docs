@@ -27,6 +27,10 @@ jobs:
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-hugomod-
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -34,4 +38,7 @@ jobs:
       - name: Setup theme
         run: git submodule update --init --recursive
       - name: Check links in *.md files
-        run: ./hack/check-links.sh
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: checkLinks
