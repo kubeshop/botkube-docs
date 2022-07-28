@@ -42,11 +42,12 @@ Now you can build and run BotKube by one of the following ways
 
       Remember to set the `IMAGE_PLATFORM` env var to your target architecture. For example, the command below builds the `linux/arm64` target. By default, the build targets `linux/amd64`.
 
-         ```sh
-         IMAGE_PLATFORM=linux/arm64 make container-image-single
-         docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev <your_account>/botkube:v9.99.9-dev
-         docker push <your_account>/botkube:v9.99.9-dev
-         ```
+      ```sh
+      IMAGE_PLATFORM=linux/arm64 make container-image-single
+      docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev <your_account>/botkube:v9.99.9-dev
+      docker push <your_account>/botkube:v9.99.9-dev
+      ```
+      
       Where `<your_account>` is Docker hub account to which you can push the image.
 
     - **Multi-arch target builds for any K8s cluster**
@@ -60,12 +61,13 @@ Now you can build and run BotKube by one of the following ways
       > **Note**
       > This command takes some time to run as it builds the images for multiple architectures.
 
-   ```sh
-   make container-image
-   docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev-amd64 <your_account>/botkube:v9.99.9-dev
-   docker push <your_account>/botkube:v9.99.9-dev
-   ```
-   Where `<your_account>` is Docker hub account to which you can push the image.
+      ```sh
+      make container-image
+      docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev-amd64 <your_account>/botkube:v9.99.9-dev
+      docker push <your_account>/botkube:v9.99.9-dev
+      ```
+   
+      Where `<your_account>` is Docker hub account to which you can push the image.
 
 2. Deploy the newly created image in your cluster:
 
