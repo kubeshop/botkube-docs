@@ -24,31 +24,36 @@ We will be discussing the most common way i.e exposing using [ingress](https://k
 
 ### A. Register BotKube as a bot with Microsoft Bot Framework.
 
-We will use "App Studio" to register and install Bot to MS Teams. Please follow the steps below to create and install BotKube App to your Team.
+We will use the "Developer Portal for Teams" to register and install BotKube as an app on MS Teams.
 
-1. Install App Studio from the marketplace.
-   Search for "App Studio" in the Apps section and add to the Teams
+But first, ensure that you have [registered the app in Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#register-an-application-with-azure-ad-and-create-a-service-principal) - you'll need the "Application (client) ID" to fully configure your app.
 
-2. Open App Studio, Go to "Manifest editor" and choose "Create a new app"
+Then, configure your app by following the steps below,
 
-3. Fill in the App details
+1. Log into [Developer Portal for Teams](https://dev.teams.microsoft.com).
 
-    | Field                  | Value                                                                                                                          |
-    |------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-    | Short name             | BotKube                                                                                                                        |
-    | Package name           | botkube.io                                                                                                                     |
-    | App ID                 | \<Click on Generate\>                                                                                                          |
-    | Version                | 0.11.0                                                                                                                         |
-    | Short Description      | BotKube is a bot for your Kubernetes cluster                                                                                   |
-    | Full Description       | App that helps you monitor your Kubernetes cluster, debug critical deployments & gives recommendations for standard practices. |
-    | Developer/Company Name | BotKube                                                                                                                        |
-    | Website                | https://botkube.io                                                                                                             |
-    | Privacy statement      | https://botkube.io/privacy                                                                                                     |
-    | Terms of use           | https://botkube.io/license                                                                                                     |
+2. Click on the "Apps" left menu item and choose "+ New app"
 
-    Click the checkbox on "Loading indicator" (optional)
+3. You'll see and "Add app" pop-up, just add an app name.
 
-4. Download BotKube icons from https://github.com/kubeshop/botkube/tree/main/branding/logos and update Branding icons.
+4. You should now see your app listed in the "Apps" table, Click the app to continue.
+
+5. Fill in the App details in the "Configure/Basic information" section.
+
+| Field                                 | Value                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| App name / Short name                 | BotKube                                                                                                                        |
+| Descriptions / Short description      | BotKube is a bot for your Kubernetes cluster                                                                                   |
+| Descriptions / Long description       | App that helps you monitor your Kubernetes cluster, debug critical deployments & gives recommendations for standard practices. |
+| Version                               | 0.11.0                                                                                                                         |
+| Developer Information / Developer ... | BotKube                                                                                                                        |
+| Developer Information / Website       | https://botkube.io                                                                                                             |
+| App URLs / Privacy statement          | https://botkube.io/privacy                                                                                                     |
+| App URLs / Terms of use               | https://botkube.io/license                                                                                                     |
+| Application (client) ID               | Add the Application (client) ID you obtained from Azure Active Directory                                                       |
+
+
+5. Download BotKube icons from https://github.com/kubeshop/botkube/tree/main/branding/logos and update Branding icons.
    ![](/images/teams_app_details.png "Teams BotKube App Details")
 
 ####  Add a Bot to the App
