@@ -36,7 +36,7 @@ Then, configure your app by following the steps below,
    
    ![](/images/teams_add_app.png "Teams add app")
 
-3. You'll see and "Add app" pop-up, just add an app name.
+3. You'll see an "Add app" pop-up. Add an app name.
 
 4. You should now see your app listed in the "Apps" table, Click the app to continue.
 
@@ -47,7 +47,7 @@ Then, configure your app by following the steps below,
 | App name / Short name                 | BotKube                                                                                                                        |
 | Descriptions / Short description      | BotKube is a bot for your Kubernetes cluster                                                                                   |
 | Descriptions / Long description       | App that helps you monitor your Kubernetes cluster, debug critical deployments & gives recommendations for standard practices. |
-| Version                               | 0.11.0                                                                                                                         |
+| Version                               | 0.12.4                                                                                                                         |
 | Developer Information / Developer ... | BotKube                                                                                                                        |
 | Developer Information / Website       | https://botkube.io                                                                                                             |
 | App URLs / Privacy statement          | https://botkube.io/privacy                                                                                                     |
