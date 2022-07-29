@@ -93,28 +93,25 @@ This command will open configmap specs in vim editor. Do the required changes, s
 
 #### Disable notifications
 
-If you want to stop receiving notifications from BotKube, run
-**@BotKube notifier stop**
-from the configured channel where BotKube is added. You will no longer receive notifications from the BotKube
+If you want to stop receiving notifications from BotKube, run **@BotKube notifier stop** from the configured channel where BotKube is added. You will no longer receive notifications from the BotKube in a given communication platform.
 
-![notifier_stop](/images/notifier_stop.png)
-![notifier_stop](/images/mm_notifier_stop.png)
+![notifier-stop](/images/notifier-stop.png)
 
 #### Enable notifications
 
-If you want to receice notifications from BotKube again, run
-**@BotKube notifier start**
-from the configured channel where BotKube is added.
+If you want to receive BotKube notifications again, run **@BotKube notifier start** from the configured channel where BotKube is added.
 
-![notifier_start](/images/notifier_start.png)
-![notifier_start](/images/mm_notifier_start.png)
+{{% notice note %}}
+For MS Teams integration notifications are disabled by default. You need to turn them on manually using this command.
+{{% /notice%}}
+
+![notifier-start](/images/notifier-start.png)
 
 #### Check notifier status
 
-Run **@BotKube notifier status** to check status of notifier if running or stopped from the configured channel.
+Run **@BotKube notifier status** to check if notifications are enabled for a given communication platform.
 
-![notifier_status](/images/notifier_status.png)
-![notifier_status](/images/mm_notifier_status.png)
+![notifier-status](/images/notifier-status.png)
 
 ### Manage filters
 
