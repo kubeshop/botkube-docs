@@ -32,7 +32,9 @@ Then, configure your app by following the steps below,
 
 1. Log into [Developer Portal for Teams](https://dev.teams.microsoft.com).
 
-2. Click on the "Apps" left menu item and choose "+ New app"
+2. Click on the "Apps" left-hand side menu item and choose "+ New app"
+   
+   ![](/images/teams_add_app.png "Teams add app")
 
 3. You'll see and "Add app" pop-up, just add an app name.
 
@@ -52,37 +54,56 @@ Then, configure your app by following the steps below,
 | App URLs / Terms of use               | https://botkube.io/license                                                                                                     |
 | Application (client) ID               | Add the Application (client) ID you obtained from Azure Active Directory                                                       |
 
+   ![](/images/teams_add_app_info.png "Teams add app info")
 
-5. Download BotKube icons from https://github.com/kubeshop/botkube/tree/main/branding/logos and update Branding icons.
-   ![](/images/teams_app_details.png "Teams BotKube App Details")
+6. Click the "Save" button to save your details.
 
-####  Add a Bot to the App
+7. Navigate to "Configure / Branding" left-hand side menu item. Click to open the "Branding" section.
 
-Go to Capabilities > Bots and fill in the info
+8. Download BotKube icons from https://github.com/kubeshop/botkube/tree/main/branding/logos and update Branding icons.
 
-1. Click "Set up"
+####  Add the Bot feature to the App
 
-2. Set "BotKube" name, and enable
-    - Messaging bot: **[x] My bot supports uploading and downloading files**
-    - Scope: **[x] Personal** & **[x] Team**
-    And Create bot.
+On the left-hand side menu click "Configure / App features"
 
-{{% notice note %}}
-You can also use a custom username for your bot. However, it needs to be passed during BotKube installation in one of the further steps.
-{{% /notice%}}
+1. In "App features / Select a feature to add", click the "Bot" button
 
-3. On the "Bots" page, click on **Generate a new password**. Note down the password required while installing BotKube backend.
+   ![](/images/teams_add_bot_feature.png "Teams add bot feature to app")
 
-4. **Copy App ID displayed below Bot name in the heading. Note that Bot App ID is different than the one we generate on the "Apps Details" page.**
+2. In "Bot / Identify your bot" enable
+    - What can your bot do?: **[x] Upload and download files**
+    - Select the scopes in which people can use this command: **[x] Personal** & **[x] Team**
 
-5. Set **Messaging Endpoint**.
-   The messaging endpoint is the URL on which BotKube backend listens for incoming requests from Teams. While deploying the BotKube backend you can give an option to expose BotKube via Ingress. Please check the [prerequisites](/installation/teams/#prerequisites) for more details.
+3. Then click "Save".
 
-   ![](/images/teams_bot.png "Teams BotKube Bot")
+4. In "Bot / Identify your bot", select "Create a bot", click the "+ New Bot" and enter a name for the Bot. Use this name when BotKube's MS Teams `botName` later.
+
+   ![](/images/teams_add_bot.png "Teams add bot")
+
+5. In the "Configure" screen, set the **Endpoint address**.
+   The Endpoint address is the URL on which BotKube backend listens for incoming requests from MS Teams. While deploying the BotKube backend you can give an option to expose BotKube via Ingress. Please check the [prerequisites](/installation/teams/#prerequisites) for more details.
+
+   ![](/images/teams_add_bot_endpoint.png "Teams add bot endpoint address")
+
+6. Navigate to the "Client secret" screen, then click the "Add a client secret for your bot".
+
+7. Note down the generated client secret **this is required while installing BotKube backend (as `appPassword`)**.
+
+8. Navigate back the Bot management screen, and **copy the Bot ID displayed next to the Bot name in the table.**
+
+9. Navigate to the Apps section, select your App, click "Configure / App features", select "Bot".
+
+10. In "Identify your bot / Select an existing bot", select the bot you just created.
+
+   ![](/images/teams_select_existing_bot.png "Teams select existing bot")
 
 #### Install Bot to Teams
 
-Go to Finish >> Test and distribute and click on **Install** to install the BotKube app on teams.
+Go to "Publish / Publish to org" and click on **Publish your app** to install the BotKube app on MS Teams for your org.
+
+![](/images/teams_publish_app.png "Teams publish app")
+
+An admin has to approve this app in the [Teams Admin Centre](https://admin.teams.microsoft.com/policies/manage-apps).
 
    {{% notice note %}}
    If you face "You don't have permissions to add BotKube to this team.", contact your admin to provide an access to install apps on teams.<br>
