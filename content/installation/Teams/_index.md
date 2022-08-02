@@ -70,32 +70,32 @@ On the left-hand side menu click "Configure / App features"
 
    ![](/images/teams_add_bot_feature.png "Teams add bot feature to app")
 
-2. In "Bot / Identify your bot" enable
-    - What can your bot do?: **[x] Upload and download files**
-    - Select the scopes in which people can use this command: **[x] Personal** & **[x] Team**
-
-3. Then click "Save".
-
-4. In "Bot / Identify your bot", select "Create a bot", click the "+ New Bot" and enter a name for the Bot. Use this name when BotKube's MS Teams `botName` later.
+2. In "Bot / Identify your bot", select "Create a bot", click the "+ New Bot" and enter a name for the Bot. Use this name when configuring BotKube's MS Teams `botName` using Helm later.
 
    ![](/images/teams_add_bot.png "Teams add bot")
 
-5. In the "Configure" screen, set the **Endpoint address**.
+3. In the "Configure" screen, set the **Endpoint address**.
    The Endpoint address is the URL on which BotKube backend listens for incoming requests from MS Teams. While deploying the BotKube backend you can give an option to expose BotKube via Ingress. Please check the [prerequisites](/installation/teams/#prerequisites) for more details.
 
    ![](/images/teams_add_bot_endpoint.png "Teams add bot endpoint address")
 
-6. Navigate to the "Client secret" screen, then click the "Add a client secret for your bot".
+4. Navigate to the "Client secret" screen, then click the "Add a client secret for your bot".
 
-7. Note down the generated client secret **this is required while installing BotKube backend (as `appPassword`)**.
+5. Note down the generated client secret **this is required while installing BotKube backend (as `appPassword`)**.
 
-8. Navigate back the Bot management screen, and **copy the Bot ID displayed next to the Bot name in the table.**
+6. Navigate back the Bot management screen, and **copy the Bot ID displayed next to the Bot name in the table.**
 
-9. Navigate to the Apps section, select your App, click "Configure / App features", select "Bot".
+7. Navigate to the Apps section, select your App, click "Configure / App features", select "Bot".
 
-10. In "Identify your bot / Select an existing bot", select the bot you just created.
+8. In "Identify your bot / Select an existing bot", select the bot you just created.
 
-   ![](/images/teams_select_existing_bot.png "Teams select existing bot")
+![](/images/teams_select_existing_bot.png "Teams select existing bot")
+
+9. In "Bot / Identify your bot" enable
+- What can your bot do?: **[x] Upload and download files**
+- Select the scopes in which people can use this command: **[x] Personal** & **[x] Team**
+
+10. Then click "Save".
 
 #### Install Bot to Teams
 
@@ -142,90 +142,90 @@ We will use this TLS secret while deploying the BotKube backend.
   $ helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster:
-
-  ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace\
-  --set communications.teams.enabled=true \
-  --set communications.teams.appID=<APPLICATION_ID> \
-  --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
-  --set communications.teams.botName=<BOT_NAME> \
-  --set config.settings.clusterName=<CLUSTER_NAME> \
-  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
-  --set ingress.create=true \
-  --set ingress.host=<HOST> \
-  --set ingress.urlPath=<URLPATH> \
-  --set ingress.tls.enabled=true \
-  --set ingress.tls.secretName=<TLS_SECRET_NAME> \
-  botkube/botkube
-  ```
-
-  where,<br>
-  - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
-  - **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br>
-  - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `BotKube`)<br>  
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
-  - **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br>
-  - **URLPATH** is the path in endpoint URL provided while registering BotKube to Teams<br>
-  - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
-
-   Configuration syntax is explained [here](/configuration).
-   A Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters)
-
-  Send **@BotKube ping** in the channel to see if BotKube is running and responding.
-
-  {{% notice note %}}
-  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
-  If you wish to monitor only specific resources, follow the steps given below:
-  {{% /notice %}}
-
-  - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
-
-    (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
-
-  ```yaml
-  config:
-    ## Resources you want to watch
-    resources:
-    - name: v1/pods        # Name of the resource. Resource name must be in
-                           # group/version/resource (G/V/R) format
-                           # resource name should be plural
-                           # (e.g apps/v1/deployments, v1/pods)
-      namespaces:          # List of namespaces, "all" will watch all the namespaces
-        include:
-        - all
-        ignore:            # List of namespaces to be ignored, used only with include: all
-        - kube-system      # example : include [all], ignore [x,y,z]
-      events:              # List of lifecycle events you want to receive,
-                           # e.g create, update, delete, error OR all
-      - create
-      - delete
-      - error
-    - name: batch/v1/jobs
-      namespaces:
-        include:
-        - ns1
-        - ns2
-      events:
-      - create
-      - update
-      - delete
-      - error
-      updateSetting:
-        includeDiff: true
-        fields:
-        - spec.template.spec.containers[*].image
-        - status.conditions[*].type
-  ```
-
-  - Pass the YAML file as a flag to `helm install` command, e.g.:
+  - Deploy BotKube backend using **helm install** in your cluster:
 
     ```bash
-    $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+    $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace\
+    --set communications.teams.enabled=true \
+    --set communications.teams.appID=<APPLICATION_ID> \
+    --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
+    --set communications.teams.botName=<BOT_NAME> \
+    --set config.settings.clusterName=<CLUSTER_NAME> \
+    --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
+    --set ingress.create=true \
+    --set ingress.host=<HOST> \
+    --set ingress.urlPath=<URLPATH> \
+    --set ingress.tls.enabled=true \
+    --set ingress.tls.secretName=<TLS_SECRET_NAME> \
+    botkube/botkube
     ```
 
-  Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
+    where,<br>
+    - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
+    - **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br>
+    - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `BotKube`)<br>  
+    - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
+    - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
+    - **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br>
+    - **URLPATH** is the path in endpoint URL provided while registering BotKube to Teams<br>
+    - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br>
+
+     Configuration syntax is explained [here](/configuration).
+     A Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters)
+
+    Send **@BotKube ping** in the channel to see if BotKube is running and responding.
+
+    {{% notice note %}}
+    With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+    If you wish to monitor only specific resources, follow the steps given below:
+    {{% /notice %}}
+
+    - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
+
+      (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
+
+    ```yaml
+    config:
+      ## Resources you want to watch
+      resources:
+      - name: v1/pods        # Name of the resource. Resource name must be in
+                             # group/version/resource (G/V/R) format
+                             # resource name should be plural
+                             # (e.g apps/v1/deployments, v1/pods)
+        namespaces:          # List of namespaces, "all" will watch all the namespaces
+          include:
+          - all
+          ignore:            # List of namespaces to be ignored, used only with include: all
+          - kube-system      # example : include [all], ignore [x,y,z]
+        events:              # List of lifecycle events you want to receive,
+                             # e.g create, update, delete, error OR all
+        - create
+        - delete
+        - error
+      - name: batch/v1/jobs
+        namespaces:
+          include:
+          - ns1
+          - ns2
+        events:
+        - create
+        - update
+        - delete
+        - error
+        updateSetting:
+          includeDiff: true
+          fields:
+          - spec.template.spec.containers[*].image
+          - status.conditions[*].type
+    ```
+
+    - Pass the YAML file as a flag to `helm install` command, e.g.:
+
+      ```bash
+      $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+      ```
+
+    Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
 #### Verify if BotKube endpoint is reachable
 
