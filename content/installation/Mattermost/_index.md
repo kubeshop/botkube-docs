@@ -82,7 +82,7 @@ Add BotKube user created to the channel you want to receive notifications in.
   --set communications.mattermost.team=<MATTERMOST_TEAM> \
   --set communications.mattermost.channel=<MATTERMOST_CHANNEL> \
   --set communications.mattermost.botName=<MATTERMOST_BOT_NAME> \
-  --set config.settings.clusterName=<CLUSTER_NAME> \
+  --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.tag=v0.12.4 \
   botkube/botkube

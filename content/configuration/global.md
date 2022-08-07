@@ -18,7 +18,7 @@ The global settings contains:
 # Cluster Setting to manage command execution access
 settings:
   # Set cluster name to differentiate incoming messages
-  clusterName: not-configured
+  clustername: not-configured
   # Kubectl executor configs
   kubectl:
     # Set true to enable kubectl commands execution
