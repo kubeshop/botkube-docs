@@ -43,7 +43,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   --set communications.slack.enabled=true \
   --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
   --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
-  --set config.settings.clusterName=<CLUSTER_NAME> \
+  --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.tag=v0.12.4 \
   botkube/botkube

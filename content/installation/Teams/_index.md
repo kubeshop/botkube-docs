@@ -150,7 +150,7 @@ We will use this TLS secret while deploying the BotKube backend.
     --set communications.teams.appID=<APPLICATION_ID> \
     --set communications.teams.appPassword=<APPLICATION_PASSWORD> \
     --set communications.teams.botName=<BOT_NAME> \
-    --set config.settings.clusterName=<CLUSTER_NAME> \
+    --set config.settings.clustername=<CLUSTER_NAME> \
     --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
     --set ingress.create=true \
     --set ingress.host=<HOST> \
