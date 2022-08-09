@@ -1,8 +1,7 @@
 ---
+id: resource
 title: "Resource"
-date: 2019-01-08T17:58:08+05:30
-draft: false
-weight: 22
+sidebar_position: 2
 ---
 
 The resource settings contains:

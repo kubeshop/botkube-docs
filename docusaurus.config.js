@@ -27,6 +27,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'content',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/kubeshop/botkube-docs',
@@ -38,6 +39,8 @@ const config = {
     ],
   ],
 
+  plugins: ['docusaurus-plugin-sass'],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -48,6 +51,12 @@ const config = {
           src: 'images/botkube.png',
         },
         items: [
+          {
+            type: 'doc',
+            docId: 'installation/installation',
+            position: 'left',
+            label: 'Docs',
+          },
           {
             href: 'https://github.com/kubeshop/botkube',
             label: 'GitHub',

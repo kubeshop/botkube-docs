@@ -1,6 +1,6 @@
 ---
+id: helm-chart-parameters
 title: Helm chart parameters
-weight: 40
 ---
 
 ![Version: v0.12.4](https://img.shields.io/badge/Version-v0.12.4-informational?style=flat-square) ![AppVersion: v0.12.4](https://img.shields.io/badge/AppVersion-v0.12.4-informational?style=flat-square)

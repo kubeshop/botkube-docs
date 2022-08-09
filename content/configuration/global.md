@@ -1,8 +1,7 @@
 ---
+id: global
 title: "Global"
-date: 2022-07-20T13:28:06+02:00
-draft: false
-weight: 21
+sidebar_position: 2
 ---
 
 The global settings contains:
