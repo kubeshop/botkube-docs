@@ -1,5 +1,5 @@
 ---
-title: "BotKube"
+title: "General"
 date: 2022-07-20T13:28:06+02:00
 draft: false
 weight: 21
@@ -10,7 +10,7 @@ The settings property holds a general configuration for the BotKube backend. For
 ## Syntax
 
 ```yaml
-# Global BotKube configuration.
+# General BotKube configuration.
 settings:
   # Cluster name to differentiate incoming messages.
   clusterName: not-configured
@@ -26,4 +26,4 @@ settings:
     disableColors: false
 ```
 
-The default configuration for Helm chart can be found in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml).
+The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.

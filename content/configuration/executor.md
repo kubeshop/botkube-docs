@@ -4,20 +4,20 @@ title: "Executor"
 weight: 23
 ---
 
-The executor property allows you to define multiple executor groups that can be later referred by communication bindings. For example, take a look on such executor definition:
+The executor property allows you to define multiple executor configurations that can be later referred in [communication](/configuration/communication) bindings. For example, take a look on such executor definition:
 
 ```yaml
 executors:
-  'kubectl-global':      # This is an executor name, which is used in bindings
+  'kubectl-global':      # This is an executor configuration name, which is referred in communication bindings.
     kubectl:
       # ... trimmed ...
 
-  'kubectl-team-a-only':  # This is an executor name, which is used in bindings
+  'kubectl-team-a-only':  # This is an executor configuration name, which is referred in communication bindings
     kubectl:
       # ... trimmed ...
 ```
 
-This can be later used by the communication mediums:
+This can be later used by the communication platforms:
 
 ```yaml
 communications:
@@ -27,12 +27,12 @@ communications:
         'default':
           bindings:
             executors: # The order is important for merging strategy.
-              - kubectl-global       # The executor group name
-              - kubectl-team-a-only  # The executor group name
+              - kubectl-global       # The executor configuration name
+              - kubectl-team-a-only  # The executor configuration name
           # ... trimmed ...
 ```
 
-Multiple executor bindings, are merged together, see the [**merging strategy**](#merging-strategy) section for more details. For all available executor configuration properties, see the [**syntax**](#syntax) section.
+Multiple executor bindings are merged. See the [**merging strategy**](#merging-strategy) section for more details. For all available executor configuration properties, see the [**syntax**](#syntax) section.
 
 ## Syntax
 
@@ -67,15 +67,15 @@ executors:
       restrictAccess: false
 ```
 
-The default configuration for Helm chart can be found in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml).
+The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
 
 ## Merging strategy
 
-BotKube takes into account only bindings for a given execution Namespace. For example:
+When executing a `kubectl` command, BotKube takes into account only bindings for a given execution Namespace. For example:
 
-1. `@BotKube get po/botkube -n botkube` - collect `kubectl` executor bindings that include `botkube` or `all` Namespaces.
-2. `@BotKube get po -A` - collect all `kubectl` executor bindings that include `all` Namespace.
-3. `@BotKube get po` - first, we resolve the execution Namespace. For that, we collect all enabled `kubectl` executor bindings and check the `defaultNamespace` property. If property is not define, we use the `default` Namespace. With resolved execution Namespace, we run the logic define in the first step.
+- `@BotKube get po/botkube -n botkube` - collect `kubectl` executor bindings that include `botkube` or `all` Namespaces.
+- `@BotKube get po -A` - collect all `kubectl` executor bindings that include `all` Namespaces.
+- `@BotKube get po` - first, we resolve the execution Namespace. For that, we collect all enabled `kubectl` executor bindings and check the `defaultNamespace` property. If property is not define, we use the `default` Namespace. With resolved execution Namespace, we run the logic define in the first step.
 
 For all collected `kubectl` executors, we merge properties with the following strategy:
 - `commands.verbs` - append
@@ -83,12 +83,12 @@ For all collected `kubectl` executors, we merge properties with the following st
 - `commands.defaultNamespace` - override
 - `commands.restrictAccess` - override
 
-
 The order of the binding list is important as it impacts properties that are overridden. The priority is given to the last binding specified on the list.
 
 ### Example
 
-Let's consider such configuration:
+Consider such configuration:
+
 ```yaml
 communications:
   'default-group':
@@ -141,7 +141,7 @@ executors:
 ```
 
 We can see that:
-- for `botkube` and `default` Namespaces we can get and wait for Pods. This is the result of merging `kubectl-pod` and `kubectl-wait`.
-- for all Namespaces we can only get Deployments as specified by `kubectl-all-ns`.
-- the `exec` command is not allowed as the `kubectl-exec` binding is disabled (`kubectl.enabled=false`). As a result is not taken into account.
-- the `kubectl` works in a restricted access because the `kubectl-wait` binding is the last one which is both enabled and sets the `restrictAccess` property to a particular value.
+- For `botkube` and `default` Namespaces, we can execute `get` and `wait` commands for Pods. This is the result of merging `kubectl-pod` and `kubectl-wait`.
+- For all Namespaces we can execute `get` for Deployments, as specified by `kubectl-all-ns`.
+- The `exec` command is not allowed as the `kubectl-exec` binding is disabled (`kubectl.enabled` is set to `false`).
+- The `kubectl` works in a restricted access because the `kubectl-wait` binding is the **last one** which is both enabled and sets the `restrictAccess` property to `true`.
