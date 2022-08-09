@@ -13,7 +13,7 @@ This tutorial shows how to install BotKube which takes the configuration from Va
     limactl start template://k3s
     ```
 
-- [Slack integration installed](http://localhost:1313/installation/slack/#install-botkube-slack-app-to-your-slack-workspace).
+- [Slack integration installed](/installation/slack/#install-botkube-slack-app-to-your-slack-workspace).
 - [`helm`](https://helm.sh/docs/intro/install/) v3 installed.
 - [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) installed.
 
@@ -130,11 +130,14 @@ This instruction guides you through the installation of BotKube and Vault on a K
 
 6. Install BotKube:
     <!--- TODO(https://github.com/kubeshop/botkube/issues/595): replace the version with v0.13.0 once released -->
+
+    {{% notice note %}}
+    You need to clone the https://github.com/kubeshop/botkube first.
+    {{% /notice%}}
+
     ```bash
-    helm repo add botkube https://infracloudio.github.io/charts
-    helm repo update
     helm install botkube --namespace default \
-    --version v9.99.9-dev --set image.tag=v9.99.9-dev \
+    --set image.tag=v9.99.9-dev \
     -f /tmp/values.yaml \
-    botkube/botkube
+    ./helm/botkube
     ```

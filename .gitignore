@@ -20,3 +20,6 @@ hugo.linux
 .AppleDouble
 .LSOverride
 ._*
+
+# IDE configuraiton files
+/.idea/

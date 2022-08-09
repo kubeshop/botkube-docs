@@ -22,10 +22,10 @@ This document describes how to prepare and publish a new Botkube release.
 
     ```bash
     export GITHUB_USERNAME="{username}" # GitHub username
-    export GITHUB_TOKEN="{token}" # GitHub personal access token
+    export GITHUB_TOKEN="{token}" # GitHub personal access token with packages write scope
     ```
 
-1. Log in to Docker
+1. Log in to Docker:
 
     ```bash
     echo $GITHUB_TOKEN | docker login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
@@ -64,15 +64,13 @@ This document describes how to prepare and publish a new Botkube release.
 1. Publish the modified Helm charts:
 
     ```bash
-    GITHUB_ORG="infracloudio"
-    GITHUB_REPO="charts"
-    git clone -b gh-pages "https://github.com/${GITHUB_ORG}/${GITHUB_REPO}.git" /tmp/botkube-charts
+    git clone -b gh-pages "https://github.com/kubeshop/botkube.git" /tmp/botkube-charts
     helm package -d /tmp/botkube-charts ./helm/botkube
     cd /tmp/botkube-charts
-    helm repo index --url "https://${GITHUB_ORG}.github.io/${GITHUB_REPO}/" --merge ./index.yaml .
+    helm repo index --url "https://charts.botkube.io/" --merge ./index.yaml .
     git add .
-    git commit -m "Release Botkube Helm chart"
-    git push "https://${GITHUB_TOKEN}@github.com/${GITHUB_ORG}/${GITHUB_REPO}.git"
+    git commit -m "Release BotKube Helm chart"
+    git push
     cd -
     rm -rf /tmp/botkube-charts
     ```

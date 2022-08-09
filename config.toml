@@ -1,4 +1,4 @@
-baseURL = "https://www.botkube.io/"
+baseURL = "https://botkube.io/"
 languageCode = "en-us"
 title = "Messaging bot for monitoring and debugging Kubernetes clusters"
 theme = "hugo-theme-learn"
@@ -14,7 +14,7 @@ home = [ "HTML", "RSS", "JSON"]
   github = "https://github.com/kubeshop/botkube" # add your github profile name
   email = "frontdesk@kubeshop.io"
   description = "BotKube is a messaging bot for monitoring and debugging Kubernetes clusters."
-  images = ['https://www.botkube.io/images/botkube_multicluster_v2.svg']
+  images = ['https://botkube.io/images/botkube_multicluster_v2.svg']
   showVisitedLinks = false
   disableBreadcrumb = false
   disableNextPrev = false
@@ -38,7 +38,7 @@ url = "/credits"
 weight = 30
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bookmark fa-fw'></i> Privacy Policy"
+name = "<i class='fas fa-fw fa-bookmark fa-fw'></i> Privacy & legal"
 url = "/privacy"
 weight = 30
 

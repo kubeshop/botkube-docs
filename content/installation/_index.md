@@ -6,6 +6,11 @@ weight = 10
 toc = true
 +++
 
+{{% notice warning %}}
+The https://infracloudio.github.io/charts Helm repository is deprecated. In the future, BotKube charts from https://infracloudio.github.io/charts can be garbage collected and no longer available.
+The new BotKube Helm repository is available under https://charts.botkube.io.
+{{% /notice%}}
+
 BotKube has two components that need to be installed.
 
 1. BotKube App Integration in your Slack/Mattermost/Microsoft Teams/Discord
@@ -124,7 +129,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <img src="/images/slack.png" alt="Avatar" class="image">
     <div class="middle">
       <div class="text">
-        <a href="slack" class="linkhighlight">
+        <a href="/installation/slack" class="linkhighlight">
           Integrate with Slack
         </a>
       </div>
@@ -134,7 +139,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <img src="/images/mattermost.png" alt="Avatar" class="image">
     <div class="middle">
       <div class="text">
-        <a href="mattermost" class="linkhighlight">
+        <a href="/installation/mattermost" class="linkhighlight">
           Integrate with Mattermost
         </a>
       </div>
@@ -144,7 +149,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <img src="/images/discord.png" alt="Avatar" class="image">
     <div class="middle">
       <div class="text">
-        <a href="discord" class="linkhighlight">
+        <a href="/installation/discord" class="linkhighlight">
           Integrate with Discord
         </a>
       </div>
@@ -154,7 +159,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <img src="/images/msteams.png" alt="Avatar" class="image">
     <div class="middle">
       <div class="text">
-        <a href="teams" class="linkhighlight">
+        <a href="/installation/teams" class="linkhighlight">
           Integrate with Microsoft Teams
         </a>
       </div>
@@ -164,7 +169,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <img src="/images/elasticsearch.png" alt="Avatar" class="image">
     <div class="middle">
       <div class="text">
-        <a href="elasticsearch" class="linkhighlight">
+        <a href="/installation/elasticsearch" class="linkhighlight">
           Integrate with ElasticSearch
         </a>
       </div>
@@ -174,7 +179,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
     <img src="/images/webhook.png" alt="Avatar" class="image">
     <div class="middle">
       <div class="text">
-        <a href="webhook" class="linkhighlight">
+        <a href="/installation/webhook" class="linkhighlight">
           Configure Outgoing Webhook
         </a>
       </div>

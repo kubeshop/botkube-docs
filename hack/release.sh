@@ -2,7 +2,7 @@
 
 GITHUB_ORG=${GITHUB_ORG:-"kubeshop"}
 GITHUB_REPO=${GITHUB_REPO:-"botkube"}
-REPO_BRANCH=${REPO_BRANCH:-"develop"}
+REPO_BRANCH=${REPO_BRANCH:-"main"}
 
 set -e
 
@@ -31,15 +31,16 @@ update_changelogs() {
     rm CHANGELOG.md
 }
 
-update_helm_options() {
-    echo "Updating Helm options page"
-    wget -O helm-options.md "https://raw.githubusercontent.com/${GITHUB_ORG}/${GITHUB_REPO}/${REPO_BRANCH}/helm/botkube/README.md"
-    sed -i.bak '1d' helm-options.md
-    echo "---" > content/configuration/helm-options.md
-    echo "title: Advanced Helm Options" >> content/configuration/helm-options.md
-    echo "---" >> content/configuration/helm-options.md
-    cat helm-options.md >> content/configuration/helm-options.md
-    rm helm-options.md
+update_helm_chart_parameters() {
+    echo "Updating Helm chart parameters page"
+    wget -O helm-chart-parameters.md "https://raw.githubusercontent.com/${GITHUB_ORG}/${GITHUB_REPO}/${REPO_BRANCH}/helm/botkube/README.md"
+    sed -i.bak '1d' helm-chart-parameters.md
+    echo "---" > content/configuration/helm-chart-parameters.md
+    echo "title: Helm chart parameters" >> content/configuration/helm-chart-parameters.md
+    echo "weight: 40" >> content/configuration/helm-chart-parameters.md
+    echo "---" >> content/configuration/helm-chart-parameters.md
+    cat helm-chart-parameters.md >> content/configuration/helm-chart-parameters.md
+    rm helm-chart-parameters.md
 }
 
 git_tag() {
@@ -51,7 +52,7 @@ git_tag() {
     echo "Creating a git tag"
     git add content/history/_index.md
     git add content/installation
-    git add content/configuration/helm-options.md
+    git add content/configuration/helm-chart-parameters.md
     git commit -m "Release ${version}"
     git tag ${version}
     git push --tags origin main
@@ -62,7 +63,7 @@ find_release
 find_prev_release
 update_image_tags
 update_changelogs
-update_helm_options
+update_helm_chart_parameters
 echo "Tagging release ${version}"
 git_tag
 

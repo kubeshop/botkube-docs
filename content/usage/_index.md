@@ -46,8 +46,8 @@ To get the list of all clusters configured in botkube, you can use the ping comm
 ![ping](/images/ping.png)
 
 For cluster-specific response,
-use `--cluster-name` flag to specify the cluster's name on which command needs to be executed. 
-Use of this flag allows you to get response from any channel or group where BotKube is added. 
+use `--cluster-name` flag to specify the cluster's name on which command needs to be executed.
+Use of this flag allows you to get response from any channel or group where BotKube is added.
 The flag is ignored in notifier commands as they can be executed from the configured channel only.
 
 ![flag_clustername_ping](/images/flag_clustername_ping.png)
@@ -86,35 +86,32 @@ OR
 You can also modify the controller configuration at runtime. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
 
 ```bash
-$ kubectl edit configmap botkube-configmap -n botkube
+kubectl edit configmap botkube-global-config -n botkube
 ```
 
 This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
 
 #### Disable notifications
 
-If you want to stop receiving notifications from BotKube, run
-**@BotKube notifier stop**
-from the configured channel where BotKube is added. You will no longer receive notifications from the BotKube
+If you want to stop receiving notifications from BotKube, run **@BotKube notifier stop** from the configured channel where BotKube is added. You will no longer receive notifications from the BotKube in a given communication platform.
 
-![notifier_stop](/images/notifier_stop.png)
-![notifier_stop](/images/mm_notifier_stop.png)
+![notifier-stop](/images/notifier-stop.png)
 
 #### Enable notifications
 
-If you want to receice notifications from BotKube again, run
-**@BotKube notifier start**
-from the configured channel where BotKube is added.
+If you want to receive BotKube notifications again, run **@BotKube notifier start** from the configured channel where BotKube is added.
 
-![notifier_start](/images/notifier_start.png)
-![notifier_start](/images/mm_notifier_start.png)
+{{% notice note %}}
+For MS Teams integration notifications are disabled by default. You need to turn them on manually using this command.
+{{% /notice%}}
+
+![notifier-start](/images/notifier-start.png)
 
 #### Check notifier status
 
-Run **@BotKube notifier status** to check status of notifier if running or stopped from the configured channel.
+Run **@BotKube notifier status** to check if notifications are enabled for a given communication platform.
 
-![notifier_status](/images/notifier_status.png)
-![notifier_status](/images/mm_notifier_status.png)
+![notifier-status](/images/notifier-status.png)
 
 ### Manage filters
 

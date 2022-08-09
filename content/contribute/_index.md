@@ -9,9 +9,9 @@ weight: 80
 
 We'd love your help!
 
-BotKube is [MIT Licensed](/LICENSE) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
+BotKube is [MIT Licensed](/license/) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
 
-We gratefully welcome improvements to [documentation](https://www.botkube.io/ "Go to documentation site") as well as to code.
+We gratefully welcome improvements to [documentation](https://botkube.io/ "Go to documentation site") as well as to code.
 
 ## Contributing to documentation
 
@@ -32,29 +32,53 @@ Before you proceed, make sure you have installed BotKube Slack/Mattermost/Teams 
 
 Now you can build and run BotKube by one of the following ways
 
-### Build the container image
+### Build and install on Kubernetes
 
-1. This will build BotKube and create a new container image tagged as `ghcr.io/kubeshop/botkube:v9.99.9-dev`
+1. Build BotKube and create a new container image tagged as `ghcr.io/kubeshop/botkube:v9.99.9-dev`. Choose one option:
+
+    - **Single target build for your local K8s cluster**
+
+      This is ideal for running BotKube on a local cluster, e.g. using [kind](https://kind.sigs.k8s.io) or [`minikube`](https://minikube.sigs.k8s.io/docs/).
+
+      Remember to set the `IMAGE_PLATFORM` env var to your target architecture. For example, the command below builds the `linux/arm64` target. By default, the build targets `linux/amd64`.
+
+      ```sh
+      IMAGE_PLATFORM=linux/arm64 make container-image-single
+      docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev <your_account>/botkube:v9.99.9-dev
+      docker push <your_account>/botkube:v9.99.9-dev
+      ```
+      
+      Where `<your_account>` is Docker hub account to which you can push the image.
+
+    - **Multi-arch target builds for any K8s cluster**
+
+      This is ideal for running BotKube on remote clusters.
+
+      When tagging your dev image take care to add your target image architecture as a suffix. For example, in the command below we added `-amd64` as our target architecture.
+
+      This ensures the image will run correctly on the target K8s cluster.
+
+      > **Note**
+      > This command takes some time to run as it builds the images for multiple architectures.
+
+      ```sh
+      make container-image
+      docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev-amd64 <your_account>/botkube:v9.99.9-dev
+      docker push <your_account>/botkube:v9.99.9-dev
+      ```
+   
+      Where `<your_account>` is Docker hub account to which you can push the image.
+
+2. Deploy the newly created image in your cluster:
+
    ```sh
-   make build
-   make container-image
-   docker tag ghcr.io/kubeshop/botkube:v9.99.9-dev-amd64 <your_account>/botkube:v9.99.9-dev
-   docker push <your_account>/botkube:v9.99.9-dev
-   ```
-   Where `<your_account>` is Docker hub account to which you can push the image
-
-2. Deploy newly created image in your cluster.
-
-   a. Using Helm v3
-
-   ```sh
-   kubectl create namespace botkube
-   helm install --version v9.99.9-dev botkube --namespace botkube \
+   helm install botkube --namespace botkube --create-namespace \
    --set communications.slack.enabled=true \
    --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
    --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
    --set settings.clustername=<CLUSTER_NAME> \
    --set settings.kubectl.enabled=<ALLOW_KUBECTL> \
+   --set image.registry=<image_registry e.g. docker.io> \
    --set image.repository=<your_account>/botkube \
    --set image.tag=v9.99.9-dev \
    ./helm/botkube
@@ -73,13 +97,22 @@ For faster development, you can also build and run BotKube outside K8s cluster.
    # Build the binary
    go build ./cmd/botkube/
    ```
-2. Edit `./resource_config.yaml` and `./comm_config.yaml` to configure resource and set communication credentials.
 
-3. Export the path to directory of `config.yaml`
+2. Use templates to create configuration files:
+
    ```sh
-   # From project root directory
-   export CONFIG_PATH=$(pwd)
+   cp resource_config.yaml.tpl resource_config.yaml
+   cp comm_config.yaml.tpl comm_config.yaml
    ```
+
+   Edit the newly created `resource_config.yaml` and `comm_config.yaml` files to configure resource and set communication credentials.
+
+3. Export paths for configuration files:
+
+   ```sh
+   export BOTKUBE_CONFIG_PATHS="$(pwd)/resource_config.yaml,$(pwd)/comm_config.yaml"
+   ```
+
 4. Export the path to Kubeconfig:
 
    ```sh
@@ -113,7 +146,7 @@ For faster development, you can also build and run BotKube outside K8s cluster.
   ```
   This will run the `golangci-lint` tool to lint the Go code.
 
-* [Run e2e tests](https://github.com/kubeshop/botkube/blob/develop/test/README.md)
+* [Run e2e tests](https://github.com/kubeshop/botkube/blob/main/test/README.md)
 
 * Make sure your pull request has [good commit messages](https://chris.beams.io/posts/git-commit/):
   * Separate subject from body with a blank line

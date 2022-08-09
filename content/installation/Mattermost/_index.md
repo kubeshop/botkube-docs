@@ -67,7 +67,7 @@ Add BotKube user created to the channel you want to receive notifications in.
 - Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add botkube https://infracloudio.github.io/charts
+  $ helm repo add botkube https://charts.botkube.io
   $ helm repo update
   ```
 
@@ -101,7 +101,7 @@ Add BotKube user created to the channel you want to receive notifications in.
   - To deploy with TLS, replace **MATTERMOST_CERT** with the location of the SSL certificate file placed in Helm directory. Leave this value to None if deploying without TLS.
 
     Configuration syntax is explained [here](/configuration).
-    Complete list of helm options is documented [here](/configuration/helm-options).
+    Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 

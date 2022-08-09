@@ -24,7 +24,7 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
     ![discord_copy_client_id](/images/discord_copy_application_id.png)
 
-    Add a description - `BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. Visit https://www.botkube.io/usage for help.`.
+    Add a description - `BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. Visit https://botkube.io/usage for help.`.
 
     Set the BotKube icon (BotKube icon can be downloaded from [this link](https://github.com/kubeshop/botkube/raw/main/branding/logos/botkube_192x192.png)).
 
@@ -87,7 +87,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 - Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add botkube https://infracloudio.github.io/charts
+  $ helm repo add botkube https://charts.botkube.io
   $ helm repo update
   ```
 
@@ -97,7 +97,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace \
   --set communications.discord.enabled=true \
   --set communications.discord.channel=<DISCORD_CHANNEL_ID> \
-  --set communications.discord.botid=<DISCORD_BOT_ID> \
+  --set communications.discord.botID=<DISCORD_BOT_ID> \
   --set communications.discord.token=<DISCORD_TOKEN> \
   --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
@@ -113,7 +113,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
 
    Configuration syntax is explained [here](/configuration).
-   Complete list of helm options is documented [here](/configuration/helm-options).
+   Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
