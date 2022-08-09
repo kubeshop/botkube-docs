@@ -27,9 +27,12 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 
 .centerimage {
   height: 50%;
+  width:100%;
   display: block;
   text-align:center;
   display: flex;
+  margin-top:90px;
+  margin-bottom:110px;
   justify-content: center;
   align-items: center;
 }
@@ -190,7 +193,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   BotKube is a messaging bot for monitoring and debugging Kubernetes clusters. It's built and maintained with <i class="fas fa-heart fa-fw"></i> by <a href="https://kubeshop.io">Kubeshop</a>
   </p>
   <div class="centerimage">
-    <img src="/images/botkube_multicluster_v2.svg" style="max-height:100%;max-width:100%;">
+    <img src="/images/botkube_multicluster_v2.svg" >
   </div>
   <div>
   <p style="font-size:16px;font-weight:400;" class="fitscreenmargin">
@@ -215,7 +218,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
 </div>
 
 
-<h2>What can BotKube do?</h2>
+<h2 style="margin-top:150px" >What can BotKube do?</h2>
 <div class="visibledesktop">
   <div class="leftimage">
     <img src="/images/monitor.gif" style="border-radius:3%;">
