@@ -77,7 +77,7 @@ If you wish to change the configuration, you can update config section in **helm
 
 ```bash
 $ helm upgrade botkube \
---set config.settings.clusterName=<CLUSTER_NAME> \
+--set config.settings.clustername=<CLUSTER_NAME> \
 --set config.settings.allowkubectl=<ALLOW_KUBECTL> \
 helm/botkube
 ```

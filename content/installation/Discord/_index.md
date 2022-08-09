@@ -99,7 +99,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   --set communications.discord.channel=<DISCORD_CHANNEL_ID> \
   --set communications.discord.botID=<DISCORD_BOT_ID> \
   --set communications.discord.token=<DISCORD_TOKEN> \
-  --set config.settings.clusterName=<CLUSTER_NAME> \
+  --set config.settings.clustername=<CLUSTER_NAME> \
   --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
   --set image.tag=v0.12.4 \
   botkube/botkube
