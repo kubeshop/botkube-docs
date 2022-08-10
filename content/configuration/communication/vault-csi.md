@@ -15,7 +15,7 @@ This tutorial shows how to install BotKube which takes the configuration from Va
     limactl start template://k3s
     ```
 
-- [Slack integration installed](/installation/slack/#install-botkube-slack-app-to-your-slack-workspace).
+- [Slack integration installed](../../installation/slack/#install-botkube-slack-app-to-your-slack-workspace).
 - [`helm`](https://helm.sh/docs/intro/install/) v3 installed.
 - [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) installed.
 

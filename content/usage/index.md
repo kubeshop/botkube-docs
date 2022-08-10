@@ -12,7 +12,7 @@ Run **/botkubehelp** to find more information about the supported commands.
 
 ![help](/images/help.png)
 
-By default, kubectl command execution is disabled. To enable this feature, set `settings.kubectl.enabled: true` in <a href="/configuration/#resource-config-yaml-syntax">resource_config</a>.
+By default, kubectl command execution is disabled. To enable this feature, set `settings.kubectl.enabled: true` in <a href="../configuration/#resource-config-yaml-syntax">resource_config</a>.
 
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where BotKube is already added or as a direct message to BotKube.
 ```
@@ -21,7 +21,7 @@ As suggested in help message, to execute kubectl commands, send message in follo
 
 ### Checking allowed commands
 
-While deploying BotKube controller, you can specify which kubectl commands you want to allow BotKube to execute through <a href="/configuration">configuration</a>.
+While deploying BotKube controller, you can specify which kubectl commands you want to allow BotKube to execute through <a href="../configuration">configuration</a>.
 
 To check which commands are allowed for users to execute through BotKube, run **@BotKube commands list**
 
@@ -54,7 +54,7 @@ The flag is ignored in notifier commands as they can be executed from the config
 ![flag_clustername_kubectl](/images/flag_clustername_kubectl.png)
 ![flag_clustername_kubectl](/images/mm_flag_clustername_kubectl.png)
 
-See [Examples](/examples/#h-examples) for the use cases.
+See [Examples](../examples/#h-examples) for the use cases.
 
 ## Check BotKube health
 

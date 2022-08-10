@@ -4,7 +4,7 @@ title: Configuration
 sidebar_position: 2
 ---
 
-BotKube backend allows you to specify [source](/configuration/source), [executor](/configuration/executor), [communication](/configuration/communication), and [general](/configuration/general) BotKube settings. Check the related documents for more detailed explanation.
+BotKube backend allows you to specify [source](./source), [executor](./executor), [communication](./communication), and [general](./general) BotKube settings. Check the related documents for more detailed explanation.
 
 The configuration settings are read from two sources:
 
@@ -43,7 +43,7 @@ This command opens ConfigMap `specs` in default editor. Do the required changes,
 
 ## Helm install options
 
-Advanced Helm install options are documented [here](/configuration/helm-chart-parameters).
+Advanced Helm install options are documented [here](helm-chart-parameters).
 
 ## Environment variables
 
@@ -61,7 +61,7 @@ settings:
 
 is mapped to the `BOTKUBE_SETTINGS_KUBECTL_DEFAULT__NAMESPACE` environment variable.
 
-This is a useful feature that allows you to store the overall configuration in a file, where sensitive data, such as tokens, can be put in environment variables. See the [**Tokens from Vault via CSI driver**](/configuration/communication/vault-csi/) tutorial for an example use-case.
+This is a useful feature that allows you to store the overall configuration in a file, where sensitive data, such as tokens, can be put in environment variables. See the [**Tokens from Vault via CSI driver**](./communication/vault-csi/) tutorial for an example use-case.
 
 ## Merging strategy
 
