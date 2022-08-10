@@ -17,7 +17,7 @@ import (
 var fileTpl = heredoc.Doc(`
      ---
      title: Helm chart parameters
-     weight: 23
+     weight: 40
      ---
      %s
      `)
