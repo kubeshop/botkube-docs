@@ -27,7 +27,6 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: 'content',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/kubeshop/botkube-docs/edit/main/',
