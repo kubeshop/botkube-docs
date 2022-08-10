@@ -39,7 +39,18 @@ const config = {
     ],
   ],
 
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: [
+    'docusaurus-plugin-sass',
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'community',
+        path: 'community',
+        routeBasePath: 'community',
+        sidebarPath: require.resolve('./sidebarsCommunity.js'),
+      },
+    ]
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -56,6 +67,13 @@ const config = {
             docId: 'installation/installation',
             position: 'left',
             label: 'Docs',
+          },
+          {
+            type: "doc",
+            docId: "contribute/contribute",
+            docsPluginId: "community",
+            position: "left",
+            label: "Community",
           },
           {
             href: 'https://github.com/kubeshop/botkube',

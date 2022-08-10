@@ -1,6 +1,7 @@
 ---
+id: elasticsearch-develop
 title: "ElasticSearch notifier development"
-weight: 11
+sidebar_position: 3
 ---
 
 The easiest way to develop BotKube with Elasticsearch notifier enabled is to install Elasticsearch on your local Kubernetes cluster.

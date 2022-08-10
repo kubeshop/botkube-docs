@@ -1,6 +1,7 @@
 ---
+id: release
 title: "Release instruction"
-weight: 1
+sidebar_position: 1
 ---
 
 This document describes how to prepare and publish a new Botkube release.

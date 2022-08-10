@@ -1,6 +1,7 @@
 ---
+id: webhook-develop
 title: "Outgoing Webhook development"
-weight: 12
+sidebar_position: 4
 ---
 
 To develop the outgoing webhook integration, you can use [Echo-Server](https://github.com/Ealenn/Echo-Server), which logs all incoming requests.

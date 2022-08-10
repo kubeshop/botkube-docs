@@ -1,6 +1,7 @@
 ---
+id: credits
 title: Credits
-disableToc: true
+sidebar_position: 2
 ---
 
 ## Contributors
