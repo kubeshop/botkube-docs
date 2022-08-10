@@ -12,6 +12,11 @@ import (
 	"botkube.io/tools/shellx"
 )
 
+var ignoredFiles = []string{
+	"content/history/", // too much GitHub links and we get 429 anyway
+	"content/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
+}
+
 func CheckDeadLinks() {
 	printer.Title("Checking dead links in docs...")
 
@@ -50,9 +55,11 @@ func shouldSkipPath(d fs.DirEntry, path string) bool {
 		return true
 	}
 
-	// too much GitHub links and we get 429...
-	if strings.HasPrefix(path, "content/history/") {
-		return true
+	for _, name := range ignoredFiles {
+		if strings.HasPrefix(path, name) {
+			return true
+		}
 	}
+
 	return false
 }
