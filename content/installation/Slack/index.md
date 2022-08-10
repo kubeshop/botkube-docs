@@ -58,10 +58,10 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
-:::note
-With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
-If you wish to monitor only specific resources, follow the steps given below:
-:::
+  :::note
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  If you wish to monitor only specific resources, follow the steps given below:
+  :::
 
   - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
 

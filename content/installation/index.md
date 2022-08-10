@@ -30,11 +30,11 @@ BotKube has two components that need to be installed.
 <IntegrationList
   integrations={[
     {name: 'Slack', image: '/images/slack.png', link: 'slack'},
-    {name: 'Slack', image: '/images/mattermost.png', link: 'mattermost'},
-    {name: 'Slack', image: '/images/discord.png', link: 'discord'},
-    {name: 'Slack', image: '/images/msteams.png', link: 'msteams'},
-    {name: 'Slack', image: '/images/elasticsearch.png', link: 'elasticsearch'},
-    {name: 'Slack', image: '/images/webhook.png', link: 'webhook'},
+    {name: 'Mattermost', image: '/images/mattermost.png', link: 'mattermost'},
+    {name: 'Discord', image: '/images/discord.png', link: 'discord'},
+    {name: 'Teams', image: '/images/msteams.png', link: 'teams'},
+    {name: 'ElasticSearch', image: '/images/elasticsearch.png', link: 'elasticsearch'},
+    {name: 'Webhook', image: '/images/webhook.png', link: 'webhook'},
   ]}
 />
 
