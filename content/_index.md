@@ -217,7 +217,7 @@ a.linkhighlight:hover:after, a.linkhighlight:focus:after {
   </div>
 </div>
 
-<h2 style="margin-top:150px" >What can BotKube do?</h2>
+<h2 style="margin-top:30%" >What can BotKube do?</h2>
 <div class="visibledesktop">
   <div class="leftimage">
     <img src="/images/monitor.gif" style="border-radius:3%;">
