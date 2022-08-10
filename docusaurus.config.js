@@ -89,8 +89,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Contributing',
-                to: '/community/contributing',
+                label: 'Contribute',
+                to: '/community/contribute',
               },
               {
                 label: 'GitHub',
