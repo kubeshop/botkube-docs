@@ -1,6 +1,9 @@
-+++
-title = "Support"
-+++
+---
+id: support
+title: "Support"
+---
+
+# Support
 
 We would love to hear more about your story and usage of BotKube, please comment on BotKube issue: https://github.com/kubeshop/botkube/issues/202
 
