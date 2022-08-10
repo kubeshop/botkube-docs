@@ -1,18 +1,9 @@
-+++
-title = "Privacy & legal"
-+++
+---
+id: privacy
+title: "Privacy & legal"
+---
 
-## Table of contents
-
-<!-- toc -->
-
-- [BotKube App](#botkube-app)
-  * [Privacy Policy](#privacy-policy)
-- [Website](#website)
-  * [Cookie Policy](#cookie-policy)
-  * [Disclaimer](#disclaimer)
-
-<!-- tocstop -->
+# Privacy & Legal
 
 ## BotKube App
 

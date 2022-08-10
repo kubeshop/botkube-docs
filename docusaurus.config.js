@@ -84,7 +84,64 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [],
+        links: [
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'Contributing',
+                to: '/community/contributing',
+              },
+              {
+                label: 'GitHub',
+                to: 'https://github.com/kubeshop/botkube',
+              },
+              {
+                label: 'Community Slack',
+                to: 'https://botkube-slack.herokuapp.com/',
+              },
+              {
+                label: 'Support',
+                to: '/support',
+              },
+            ],
+          },
+          {
+            title: 'Legal',
+            items: [
+              {
+                label: 'License',
+                to: '/license',
+              },
+              {
+                label: 'Privacy & legal',
+                to: '/privacy',
+              }
+            ]
+          },
+          {
+            title: 'Learn',
+            items: [
+              {
+                label: "Installation",
+                to: "/docs/installation",
+              },
+              {
+                label: "Examples",
+                to: "/docs/examples",
+              },
+            ],
+          },
+          {
+            title: 'Social',
+            items: [
+              {
+                label: 'Twitter',
+                to: 'https://twitter.com/thekubeshop',
+              },
+            ],
+          },
+        ],
         copyright: `Copyright © ${new Date().getFullYear()} Kubeshop, Inc. Built with Docusaurus.`,
       },
       prism: {

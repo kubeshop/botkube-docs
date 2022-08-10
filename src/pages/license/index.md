@@ -1,8 +1,11 @@
-+++
-title = "License"
-+++
+---
+id: license
+title: "License"
+---
 
-MIT License
+# License
+
+## MIT License
 
 Copyright (c) 2022 Kubeshop
 
