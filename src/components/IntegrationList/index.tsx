@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './index.module.scss';
 
 type Integration = {
@@ -18,9 +19,9 @@ export const IntegrationList = (props: Props) => {
     <div className={styles.integrations}>
       {integrations.map(integration => (
         <div className={styles.integrations__item}>
-          <a href={integration.link} className="integrations__link">
+          <Link to={integration.link} className="integrations__link">
             <img src={integration.image} alt={integration.name} className="integrations__image" />
-          </a>
+          </Link>
         </div>
       ))}
     </div>
