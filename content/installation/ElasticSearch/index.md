@@ -1,11 +1,10 @@
-+++
-title = "ElasticSearch"
-draft = false
-weight = 30
-toc = true
-+++
+---
+id: elasticsearch
+title: "ElasticSearch"
+sidebar_position: 5
+---
 
-### Install BotKube Backend in Kubernetes cluster
+## Install BotKube Backend in Kubernetes cluster
 
 - We use [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
@@ -35,15 +34,15 @@ toc = true
   ```
 
   where,<br>
-  - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br>
-  - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br>
-  - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br>
-  - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which BotKube events will be stored _(default: botkube)_<br>
+  - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br/>
+  - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br/>
+  - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br/>
+  - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which BotKube events will be stored _(default: botkube)_<br/>
 
    Configuration syntax is explained [here](/configuration).
    Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters).
 
-  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](/configuration/source) page.
@@ -55,7 +54,7 @@ toc = true
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-### Remove BotKube
+## Remove BotKube
 
 Execute following command to completely remove BotKube and related resources from your cluster
 
