@@ -1,7 +1,7 @@
 ---
 menutitle: "Executor"
 title: "Executor"
-weight: 23
+weight: 24
 ---
 
 The executor property allows you to define multiple executor configurations that can be later referred in [communication](/configuration/communication) bindings. For example, take a look on such executor definition:
