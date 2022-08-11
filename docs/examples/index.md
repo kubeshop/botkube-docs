@@ -5,7 +5,7 @@ sidebar_position: 4
 ---
 
 :::note
-You can change notification format to - **long** or **short** through settings based on your requirement. Check [configuration](/configuration) for more details.<br/>
+You can change notification format to - **long** or **short** through settings based on your requirement. Check [configuration](../configuration) for more details.<br/>
 The default notification type is **short**
 :::
 
@@ -15,33 +15,33 @@ The default notification type is **short**
 
 ### Resource created
 
-![](/images/create_sh.png "Slack notification.type=short")
-![](/images/create.png "Slack notification.type=long")
+![Resource created](assets/create_sh.png "Slack notification.type=short")
+![Resource created](assets/create.png "Slack notification.type=long")
 
 ### Resource deleted
 
-![](/images/mm_delete_sh.png "Mattermost notification.type=short")
-![](/images/delete.png "Slack notification.type=long")
+![Resource deleted](assets/mm_delete_sh.png "Mattermost notification.type=short")
+![Resource deleted](assets/delete.png "Slack notification.type=long")
 
 ### Failed to pull image
 
-![](/images/image_failed_sh.png "Slack notification.type=short")
-![](/images/mm_image_failed_sh.png "Mattermost notification.type=short")
-![](/images/image-failed.png "Slack notification.type=long")
+![Failed to pull image](assets/image_failed_sh.png "Slack notification.type=short")
+![Failed to pull image](assets/mm_image_failed_sh.png "Mattermost notification.type=short")
+![Failed to pull image](assets/image-failed.png "Slack notification.type=long")
 
 ### Error in pod
 
-![](/images/error_sh.png "Slack notification.type=short")
+![Error in pod](assets/error_sh.png "Slack notification.type=short")
 
 ### Readiness probe failed for the pod
 
-![](/images/readiness_sh.png "Slack notification.type=short")
-![](/images/mm_readiness_sh.png "Mattermost notification.type=short")
+![Readiness probe failed for the pod](assets/readiness_sh.png "Slack notification.type=short")
+![Readiness probe failed for the pod](assets/mm_readiness_sh.png "Mattermost notification.type=short")
 
 ### Job succeeded
 
-![](/images/job_success_sh.png "Slack notification.type=short")
-![](/images/job_success.png "Slack notification.type=long")
+![Job succeeded](assets/job_success_sh.png "Slack notification.type=short")
+![Job succeeded](assets/job_success.png "Slack notification.type=long")
 
 ### Monitor Velero backups
 
@@ -65,40 +65,40 @@ Add following configuration resource_config to monitor Velero backups resource.
 
 With this configuration, BotKube will monitor create/delete/error events and updates in _status.phase_ fields in _velero.io/v1/backups_ resource.
 
-![](/images/velero_backup.png "Velero backup")
+![Monitor Velero backups](assets/velero_backup.png "Velero backup")
 
 ## Debugging use-cases
 
 ### List pods in "fission" namespace
 
-![get_pods](/images/get_pods.png)
+![get_pods](assets/get_pods.png)
 
 ### Get logs of "controller-676f97f45-pjmv2" pod in "fission" namespace
 
-![logs](/images/logs.png)
-![logs](/images/mm_logs.png)
+![logs](assets/logs.png)
+![logs](assets/mm_logs.png)
 
 ### Show cluster health
 
-![cluster-health](/images/cluster-health.png)
+![cluster-health](assets/cluster-health.png)
 
 ### Describe a node
 
-![desc_node](/images/desc_node.png)
+![desc_node](assets/desc_node.png)
 
 ### List top pods in "fission" namespace
 
-![top_pods](/images/top_pods.png)
+![top_pods](assets/top_pods.png)
 
 ### Check connection status of "gke-stg" cluster
 
-![flag_clustername](/images/flag_clustername_ping.png)
+![flag_clustername](assets/flag_clustername_ping.png)
 
 ### List services in a "gke-dev" cluster
 
-![get_services](/images/get_services.png)
+![get_services](assets/get_services.png)
 
 ### Describe deployment in a "gke-stg" cluster
 
-![describe_deployment](/images/desc_deployment.png)
-![describe_deployment](/images/mm_describe.png)
+![describe_deployment](assets/desc_deployment.png)
+![describe_deployment](assets/mm_describe.png)

@@ -11,7 +11,7 @@ Follow the steps below to install BotKube in your Mattermost Team (v5.14.0).
 ### 1. Enable Personal Access Token
 Login with System Admin account, and in the Menu proceed to **System console > Integrations > Integration Management** and enable **Personal Access Token**.
 
-![mm_token_access](/images/mm_token_access.png)
+![mm_token_access](assets/mm_token_access.png)
 
 ### 2. Create BotKube user
 To create a BotKube user, if not already created, proceed to the menu and Get a team invite link. Logout from the admin account and paste the link in the address bar and create a user with the username **BotKube**.
@@ -20,17 +20,17 @@ To create a BotKube user, if not already created, proceed to the menu and Get a 
 You can also use a custom username for your bot. However, it needs to be passed during BotKube installation in one of the further steps.
 :::
 
-![mm_botkube_user](/images/mm_botkube_user.png)
+![mm_botkube_user](assets/mm_botkube_user.png)
 
 ### 3. Manage Roles for BotKube user
 Login as System Admin, in the Menu, proceed to **System console > Users**. For BotKube user, Manage Roles and allow tokens and post_all access.
 
-![mm_botkube_roles](/images/mm_botkube_roles.png)
+![mm_botkube_roles](assets/mm_botkube_roles.png)
 
 ### 4. Create a Token for BotKube user
 Login as BotKube user, in the Menu, proceed to **Account Settings > Security > Personal Access Token > Create** and save the token.
 
-![mm_botkube_token](/images/mm_botkube_token.png)
+![mm_botkube_token](assets/mm_botkube_token.png)
 
 ### 5. Add BotKube to a channel
 Add BotKube user created to the channel you want to receive notifications in.
@@ -50,11 +50,11 @@ Add BotKube user created to the channel you want to receive notifications in.
 | Request Method       | POST                               |
 | Autocomplete         | True                               |
 
-![mm_botkube_slash_cmd](/images/mm_botkube_slash_cmd.png)
+![mm_botkube_slash_cmd](assets/mm_botkube_slash_cmd.png)
 
 **3.** Verify executing **/botkubehelp** in a channel.
 
-![mm_botkube_help](/images/mm_botkube_help.png)
+![mm_botkube_help](assets/mm_botkube_help.png)
 
 
 ## Install BotKube in Kubernetes cluster

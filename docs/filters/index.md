@@ -8,7 +8,7 @@ You can extend BotKube functionality by writing additional filters. The **Filter
 
 We have already defined a filter to add suggestions in the notifications if container image in pod specs is using **latest** tag.
 
-![tag_filter](/images/tag_filter_sh.png)
+![tag_filter](assets/tag_filter_sh.png)
 
 **Let's see, how we can write a filter like this.**
 

@@ -7,7 +7,7 @@ sidebar_position: 6
 BotKube backend communicates with Kubernetes API Server to monitor Kubernetes events and forwards them to communication mediums like Slack/Mattermost/MS Teams. It also reads messages from users and sends response accordingly.
 
 ## BotKube Backend Architecture
-![architecture](/images/architecture.png)
+![architecture](assets/architecture.png)
 
 **Informer Controller:** Registers informers to kube-apiserver to watch events on the configured Kubernetes resources. It forwards the incoming Kubernetes event to the Event Manager
 
