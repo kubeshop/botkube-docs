@@ -1,16 +1,14 @@
-+++
-title = "Discord"
-date = 2020-10-02T15:46:02+05:30
-draft = false
-weight = 25
-toc = true
-+++
+---
+id: discord
+title: Discord
+sidebar_position: 3
+---
 
-### Install BotKube to the Discord Server:
+## Install BotKube to the Discord Server:
 
 Follow the steps below to install BotKube Discord app to your Discord server.
 
-#### Create BotKube app at your Discord Server
+### Create BotKube app at your Discord Server
 
 1. Reach https://discordapp.com/developers/applications.
 
@@ -72,16 +70,14 @@ Follow the steps below to install BotKube Discord app to your Discord server.
 
 10. Now, go ahead and install the BotKube backend on your Kubernetes cluster.
 
-{{% notice note %}}
-
+:::note
 Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) to understand the process visually.
+:::
 
-{{% /notice%}}
 
+## Install BotKube Backend in Kubernetes cluster
 
-### Install BotKube Backend in Kubernetes cluster
-
-#### Using helm
+### Using helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
@@ -105,19 +101,19 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   botkube/botkube
   ```
 
-  where,<br>
-  - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br>
-  - **DISCORD_BOT_ID** is the BotKube Application Client ID<br>
-  - **DISCORD_TOKEN** is the Token you received after adding BotKube bot to your Discord Application<br>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
+  where,<br/>
+  - **DISCORD_CHANNEL_ID** is the channel name where @BotKube needs to send notifications<br/>
+  - **DISCORD_BOT_ID** is the BotKube Application Client ID<br/>
+  - **DISCORD_TOKEN** is the Token you received after adding BotKube bot to your Discord Application<br/>
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br/>
 
    Configuration syntax is explained [here](/configuration).
    Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters).
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
-  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
+  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](/configuration/source) page.
@@ -129,14 +125,14 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
-#### Remove BotKube from Discord Server
+### Remove BotKube from Discord Server
 
-- Goto Discord Developers Portel <a href="https://discord.com/developers/applications">Applications</a> page<br>
+- Goto Discord Developers Portel <a href="https://discord.com/developers/applications">Applications</a> page<br/>
 - Click on "BotKube" and click on "Delete App" button
 
-### Remove BotKube from Kubernetes cluster
+## Remove BotKube from Kubernetes cluster
 
-#### Using helm
+### Using helm
 
 If you have installed BotKube backend using **helm**, execute following command to completely remove BotKube and related resources from your cluster.
 

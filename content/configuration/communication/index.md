@@ -1,7 +1,7 @@
 ---
-menutitle: "Communication"
+id: communication
 title: "Communication"
-weight: 10
+sidebar_position: 1
 ---
 
 The communication settings contains:
