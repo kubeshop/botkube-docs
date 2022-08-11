@@ -6,7 +6,9 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 
 ### Prerequisite
 
-- [Hugo](https://gohugo.io)
+- [NodeJS](https://nodejs.org/)
+- [NVM](https://github.com/nvm-sh/nvm) (Preferable)
+- [Docusaurus](https://docusaurus.io/)
 - [Magefile](https://magefile.org/)
 
   > **Note**
@@ -23,7 +25,7 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 
 ## Build the site locally
 
-Make sure you have installed [Hugo](https://gohugo.io) on your system. Follow the instructions to clone this repository and build the docs locally.
+Make sure you have installed [NodeJS](https://nodejs.org/) on your system. Follow the instructions to clone this repository and build the docs locally.
 
 - Clone the repository
 
@@ -32,18 +34,17 @@ Make sure you have installed [Hugo](https://gohugo.io) on your system. Follow th
   cd botkube-docs
   ```
 
-- Fetch the theme submodule
-
+- Select the right node version using nvm. If you don't like to use it please check the current node version in .nvmrc
   ```sh
-  git submodule update --init --recursive
+  nvm use
   ```
 
 - Start local server
 
   ```sh
-  hugo serve -D
+  npm run start
   ```
-  Site can be viewed at http://localhost:1313
+  Site can be viewed at [http://localhost:3000](http://localhost:3000)
 
 ## Making A Change
 
@@ -51,14 +52,12 @@ Before making any significant changes, please [open an issue](https://github.com
 
 #### Adding a new documentation page
 
-```sh
-# example: adding new documentation page under installation section
-hugo new installation/name-of-new-integration.md
-```
+Create a Markdown file and place it under the `docs/` directory.
+More info how to do it can be found in Docusaurus documentation [Create a doc](https://docusaurus.io/docs/create-doc)
 
 #### Modifying an existing documentation page
 
-Find the documentation page file (`.md` file) under `content/` and edit it.
+Find the documentation page file (`.md/mdx` file) under `docs/` and edit it.
 
 ### Publishing your changes
 
