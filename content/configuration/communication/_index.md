@@ -73,7 +73,7 @@ Most of the communication platforms support executor and source bindings, which 
 
 With executor bindings you can configure which executors are allowed in a given channel. To read more about executor configuration, see the [Executor](/configuration/executor) document.
 
-With source bindings, you can specify which events are sent to a given channel (or, in case of Elasticsearch, index).
+With source bindings, you can specify which events are sent to a given channel (or, in case of Elasticsearch, index). To read more about source configuration, see the [Source](/configuration/source) document.
 
 ## Known limitations
 

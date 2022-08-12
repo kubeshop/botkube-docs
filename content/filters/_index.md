@@ -44,7 +44,7 @@ FilterEngine has an interface Filter defined for the filters:
 
 ```go
 type Filter interface {
-	Run(context.Context, interface{}, *events.Event)
+	Run(context.Context, *events.Event)
 	Name() string
 	Describe() string
 }
@@ -53,31 +53,31 @@ type Filter interface {
 Create a struct which implements the Filter interface. Use logger instance taken as an argument from the constructor:
 
 ```go
-// ImageTagChecker add recommendations to the event object if latest image tag is used in pod containers
-type ImageTagChecker struct {
+// NamespaceChecker ignore events from disallowed namespaces.
+type NamespaceChecker struct {
 	log logrus.FieldLogger
 }
 
-// NewImageTagChecker creates a new ImageTagChecker instance
-func NewImageTagChecker(log logrus.FieldLogger) *ImageTagChecker {
-	return &ImageTagChecker{log: log}
+// NewNamespaceChecker creates a new NamespaceChecker instance
+func NewNamespaceChecker(log logrus.FieldLogger) *ImageTagChecker {
+	return &NamespaceChecker{log: log}
 }
 
 // Run filer and modifies event struct
-func (f *ImageTagChecker) Run(ctx context.Context, object interface{}, event *events.Event) {
+func (f *NamespaceChecker) Run(ctx context.Context, event *events.Event) {
 
 	// your logic goes here
 
 }
 
 // Name returns the filter's name
-func (f *ImageTagChecker) Name() string {
-	return "ImageTagChecker"
+func (f *NamespaceChecker) Name() string {
+	return "NamespaceChecker"
 }
 
 // Describe describes the filter
 func (f *ImageTagChecker) Describe() string {
-	return "Checks and adds recommendation if 'latest' image tag is used for container image."
+	return "Checks if event belongs to blocklisted namespaces and filter them."
 }
 ```
 
@@ -85,33 +85,22 @@ func (f *ImageTagChecker) Describe() string {
 Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/kubeshop/botkube/blob/main/pkg/events/events.go).
 
 ```go
-// Run filers and modifies event struct
-func (f *ImageTagChecker) Run(_ context.Context, object interface{}, event *events.Event) error {
-	if event.Kind != "Pod" || event.Type != config.CreateEvent || utils.GetObjectTypeMetaData(object).Kind == "Event" {
+// Run filters and modifies event struct
+func (f *NamespaceChecker) Run(_ context.Context, event *events.Event) error {
+	// Skip filter for cluster scoped resource
+	if len(event.Namespace) == 0 {
 		return nil
 	}
-	var podObj coreV1.Pod
-	err := utils.TransformIntoTypedObject(object.(*unstructured.Unstructured), &podObj)
-	if err != nil {
-		return fmt.Errorf("while transforming object type %T into type: %T: %w", object, podObj, err)
-	}
 
-	// Check image tag in initContainers
-	for _, ic := range podObj.Spec.InitContainers {
-		images := strings.Split(ic.Image, ":")
-		if len(images) == 1 || images[1] == "latest" {
-			event.Recommendations = append(event.Recommendations, fmt.Sprintf(":latest tag used in image '%s' of initContainer '%s' should be avoided.", ic.Image, ic.Name))
+	for _, resource := range f.configuredResources {
+		if event.Resource != resource.Name {
+			continue
 		}
+		shouldSkipEvent := !resource.Namespaces.IsAllowed(event.Namespace)
+		event.Skip = shouldSkipEvent
+		break
 	}
-
-	// Check image tag in Containers
-	for _, c := range podObj.Spec.Containers {
-		images := strings.Split(c.Image, ":")
-		if len(images) == 1 || images[1] == "latest" {
-			event.Recommendations = append(event.Recommendations, fmt.Sprintf(":latest tag used in image '%s' of Container '%s' should be avoided.", c.Image, c.Name))
-		}
-	}
-	f.log.Debug("Image tag filter successful!")
+	f.log.Debug("Ignore Namespaces filter successful!")
 	return nil
 }
 ```
@@ -125,11 +114,11 @@ Open [**pkg/filterengine/with_all_filters.go**](https://github.com/kubeshop/botk
 func WithAllFilters(logger *logrus.Logger, dynamicCli dynamic.Interface, mapper meta.RESTMapper, conf *config.Config) *DefaultFilterEngine {
 	filterEngine := New(logger.WithField(componentLogFieldKey, "Filter Engine"))
 	filterEngine.Register([]Filter{
-		filters.NewIngressValidator(logger.WithField(filterLogFieldKey, "Ingress Validator"), dynamicCli),
+		filters.NewNodeEventsChecker(logger.WithField(filterLogFieldKey, "Node Events Checker")),
 		// ...
 
 		// Your filter goes here:
-		filters.NewImageTagChecker(logger.WithField(filterLogFieldKey, "Image Tag Checker")), // make sure to use `logger.WithField`
+		filters.NewNamespaceChecker(logger.WithField(filterLogFieldKey, "Namespace Checker"), res), // make sure to use `logger.WithField`
 	}...)
 
 	return filterEngine
