@@ -51,9 +51,7 @@ Add following configuration resource_config to monitor Velero backups resource.
     - name: velero.io/v1/backups
       namespaces:
         include:
-          - all
-        ignore:
-          -
+          - .*
       events:
         - create
         - update

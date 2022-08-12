@@ -64,7 +64,7 @@ sources:
           labelsSet: true
         ingress:
           backendServiceValid: false
-          tlsSecretValid: true             
+          tlsSecretValid: true
 ```
 
 And the following source bindings:
@@ -129,11 +129,17 @@ sources:
       resources:
         - name: v1/pods             # Name of the resource. Resource name must be in group/version/resource (G/V/R) format
                                     # resource name should be plural (e.g apps/v1/deployments, v1/pods)
-          namespaces:               # List of namespaces, "all" will watch all the namespaces
+
+          namespaces:
+            # Include contains a list of allowed Namespaces.
+            # It can also contain a regex expressions:
+            #  - ".*" - to specify all Namespaces.
             include:
-              - all
-            ignore:                 # List of namespaces to be ignored (omitempty), used only with include: all, can contain a wildcard (*)
-              -                     # example : include [all], ignore [x,y,secret-ns-*]
+              - ".*"
+            # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
+            # It can also contain a regex expressions:
+            #  - "test-.*" - to specify all Namespaces with `test-` prefix.
+            #exclude: []
           events:                   # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
             - create
             - delete
@@ -141,9 +147,7 @@ sources:
         - name: v1/services
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -151,9 +155,7 @@ sources:
         - name: apps/v1/deployments
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - update
@@ -167,9 +169,7 @@ sources:
         - name: apps/v1/statefulsets
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - update
@@ -183,9 +183,7 @@ sources:
         - name: networking.k8s.io/v1/ingresses
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -193,9 +191,7 @@ sources:
         - name: v1/nodes
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -203,9 +199,7 @@ sources:
         - name: v1/namespaces
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -213,9 +207,7 @@ sources:
         - name: v1/persistentvolumes
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -223,9 +215,7 @@ sources:
         - name: v1/persistentvolumeclaims
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -233,9 +223,7 @@ sources:
         - name: v1/configmaps
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -243,9 +231,7 @@ sources:
         - name: apps/v1/daemonsets
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - update
@@ -259,9 +245,7 @@ sources:
         - name: batch/v1/jobs
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - update
@@ -275,9 +259,7 @@ sources:
         - name: rbac.authorization.k8s.io/v1/roles
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -285,9 +267,7 @@ sources:
         - name: rbac.authorization.k8s.io/v1/rolebindings
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -295,9 +275,7 @@ sources:
         - name: rbac.authorization.k8s.io/v1/clusterrolebindings
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -305,9 +283,7 @@ sources:
         - name: rbac.authorization.k8s.io/v1/clusterroles
           namespaces:
             include:
-              - all
-            ignore:
-              -
+              - ".*"
           events:
             - create
             - delete
@@ -316,9 +292,7 @@ sources:
        # - name: velero.io/v1/backups
        #   namespaces:
        #     include:
-       #       - all
-       #     ignore:
-       #       -
+       #       - ".*"
        #   events:
        #     - create
        #     - update

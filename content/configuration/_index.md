@@ -5,7 +5,7 @@ draft: false
 weight: 20
 ---
 
-BotKube backend allows you to specify [source](/configuration/source), [communication](/configuration/communication), and [general](/configuration/general) BotKube settings. Check the related documents for more detailed explanation.
+BotKube backend allows you to specify [source](/configuration/source), [executor](/configuration/executor), [communication](/configuration/communication), and [general](/configuration/general) BotKube settings. Check the related documents for more detailed explanation.
 
 The configuration settings are read from two sources:
 

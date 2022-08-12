@@ -46,13 +46,15 @@ executors:
     # Kubectl executor configuration.
     kubectl:
       namespaces:
-        # List of allowed Kubernetes Namespaces for command execution. The "all" keyword, allows all the Namespaces.
+        # Include contains a list of allowed Namespaces.
+        # It can also contain a regex expressions:
+        #  - ".*" - to specify all Namespaces.
         include:
-          - all
-        # List of ignored Kubernetes Namespace. It can be used only when `include: ["all"]`.
-        # It can contain a wildcard (*) that expands to zero or more arbitrary characters
-        # Example: `ignore: ["x", "y", "secret-ns-*"]`
-        ignore: []
+          - ".*"
+        # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
+        # It can also contain a regex expressions:
+        #  - "test-.*" - to specify all Namespaces with `test-` prefix.
+        #exclude: []
       # If true, enables `kubectl` commands execution.
       enabled: false
       # List of allowed `kubectl` commands.
@@ -73,8 +75,8 @@ The default configuration for Helm chart can be found in the [values.yaml](https
 
 When executing a `kubectl` command, BotKube takes into account only bindings for a given execution Namespace. For example:
 
-- `@BotKube get po/botkube -n botkube` - collect `kubectl` executor bindings that include `botkube` or `all` Namespaces.
-- `@BotKube get po -A` - collect all `kubectl` executor bindings that include `all` Namespaces.
+- `@BotKube get po/botkube -n botkube` - collect `kubectl` executor bindings that include `botkube` or `*.` (all) Namespaces.
+- `@BotKube get po -A` - collect all `kubectl` executor bindings that include `*.` (all) Namespaces.
 - `@BotKube get po` - first, we resolve the execution Namespace. For that, we collect all enabled `kubectl` executor bindings and check the `defaultNamespace` property. If property is not define, we use the `default` Namespace. With resolved execution Namespace, we run the logic define in the first step.
 
 For all collected `kubectl` executors, we merge properties with the following strategy:
@@ -126,7 +128,7 @@ executors:
       enabled: true
       namespaces:
         include:
-          - all
+          - ".*"
       commands:
         verbs: [ "get" ]
         resources: [ "deployments" ]
