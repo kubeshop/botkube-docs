@@ -18,19 +18,23 @@ Sources are bound to specific channels in the communications configuration. To l
 For every source you can configure recommendations related to Kubernetes resources. The full recommendation configuration is as follows:
 
 ```yaml
-recommendations:
-  # Recommendations for Pod Kubernetes resource.
-  pod:
-    # If true, notifies about Pod containers that use `latest` tag for images.
-    noLatestImageTag: true
-    # If true, notifies about Pod resources created without labels.
-    labelsSet: true
-  # Recommendations for Ingress Kubernetes resource.
-  ingress:
-    # If true, notifies about Ingress resources with invalid backend service reference.
-    backendServiceValid: true
-    # If true, notifies about Ingress resources with invalid TLS secret reference.
-    tlsSecretValid: true
+kubernetes:
+
+  # ... trimmed ...
+
+  recommendations:
+    # Recommendations for Pod Kubernetes resource.
+    pod:
+      # If true, notifies about Pod containers that use `latest` tag for images.
+      noLatestImageTag: true
+      # If true, notifies about Pod resources created without labels.
+      labelsSet: true
+    # Recommendations for Ingress Kubernetes resource.
+    ingress:
+      # If true, notifies about Ingress resources with invalid backend service reference.
+      backendServiceValid: true
+      # If true, notifies about Ingress resources with invalid TLS secret reference.
+      tlsSecretValid: true
 ```
 
 ### Merging strategy
@@ -42,23 +46,25 @@ Consider the following example source configuration:
 ```yaml
 sources:
     `first-source`:
-        # ... trimmed ...
-        recommendations:
-            pod:
-                noLatestImageTag: false
-                labelsSet: true
-            ingress:
-                backendServiceValid: true
-                tlsSecretValid: true
+        kubernetes:
+          # ... trimmed ...
+          recommendations:
+              pod:
+                  noLatestImageTag: false
+                  labelsSet: true
+              ingress:
+                  backendServiceValid: true
+                  tlsSecretValid: true
     `second-source`:
-        # ... trimmed ...
-        recommendations:
-            pod:
-                noLatestImageTag: false
-                labelsSet: true
-            ingress:
-                backendServiceValid: false
-                tlsSecretValid: true             
+        kubernetes:
+          # ... trimmed ...
+          recommendations:
+              pod:
+                  noLatestImageTag: false
+                  labelsSet: true
+              ingress:
+                  backendServiceValid: false
+                  tlsSecretValid: true             
 ```
 
 And the following source bindings:
@@ -102,22 +108,23 @@ recommendations:
 sources:
   'k8s-events':
 
-    # Describes configuration for various recommendation insights.
-    recommendations:
-      # Recommendations for Pod Kubernetes resource.
-      pod:
-        # If true, notifies about Pod containers that use `latest` tag for images.
-        noLatestImageTag: true
-        # If true, notifies about Pod resources created without labels.
-        labelsSet: true
-      # Recommendations for Ingress Kubernetes resource.
-      ingress:
-        # If true, notifies about Ingress resources with invalid backend service reference.
-        backendServiceValid: true
-        # If true, notifies about Ingress resources with invalid TLS secret reference.
-        tlsSecretValid: true
-
+    # Describes Kubernetes source configuration.
     kubernetes:
+      # Describes configuration for various recommendation insights.
+      recommendations:
+        # Recommendations for Pod Kubernetes resource.
+        pod:
+          # If true, notifies about Pod containers that use `latest` tag for images.
+          noLatestImageTag: true
+          # If true, notifies about Pod resources created without labels.
+          labelsSet: true
+        # Recommendations for Ingress Kubernetes resource.
+        ingress:
+          # If true, notifies about Ingress resources with invalid backend service reference.
+          backendServiceValid: true
+          # If true, notifies about Ingress resources with invalid TLS secret reference.
+          tlsSecretValid: true
+
       # Describes the Kubernetes resources you want to watch.
       resources:
         - name: v1/pods             # Name of the resource. Resource name must be in group/version/resource (G/V/R) format
