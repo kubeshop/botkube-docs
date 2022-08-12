@@ -18,7 +18,7 @@ export const IntegrationList = (props: Props) => {
   return (
     <div className={styles.integrations}>
       {integrations.map(integration => (
-        <div className={styles.integrations__item}>
+        <div className={styles.integrationsItem}>
           <Link to={integration.link} className="integrations__link">
             <img src={integration.image} alt={integration.name} className="integrations__image" />
           </Link>

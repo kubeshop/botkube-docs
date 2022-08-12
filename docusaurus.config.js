@@ -32,10 +32,18 @@ const config = {
             'https://github.com/kubeshop/botkube-docs/edit/main/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.scss'),
         },
       }),
     ],
+  ],
+
+  scripts: [
+    {
+      src:
+        'https://kit.fontawesome.com/00670398ef.js',
+      async: false,
+    },
   ],
 
   plugins: [
