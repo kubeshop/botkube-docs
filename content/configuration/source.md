@@ -45,26 +45,26 @@ Consider the following example source configuration:
 
 ```yaml
 sources:
-    `first-source`:
-        kubernetes:
-          # ... trimmed ...
-          recommendations:
-              pod:
-                  noLatestImageTag: false
-                  labelsSet: true
-              ingress:
-                  backendServiceValid: true
-                  tlsSecretValid: true
-    `second-source`:
-        kubernetes:
-          # ... trimmed ...
-          recommendations:
-              pod:
-                  noLatestImageTag: false
-                  labelsSet: true
-              ingress:
-                  backendServiceValid: false
-                  tlsSecretValid: true             
+  'first-source':
+    kubernetes:
+      # ... trimmed ...
+      recommendations:
+        pod:
+          noLatestImageTag: false
+          labelsSet: true
+        ingress:
+          backendServiceValid: true
+          tlsSecretValid: true
+  'second-source':
+    kubernetes:
+      # ... trimmed ...
+      recommendations:
+        pod:
+          noLatestImageTag: false
+          labelsSet: true
+        ingress:
+          backendServiceValid: false
+          tlsSecretValid: true             
 ```
 
 And the following source bindings:
