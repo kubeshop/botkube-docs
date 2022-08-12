@@ -33,7 +33,7 @@ Then, configure your app by following the steps below,
 1. Log into [Developer Portal for Teams](https://dev.teams.microsoft.com).
 
 2. Click on the "Apps" left-hand side menu item and choose "+ New app"
-   
+
    ![](/images/teams_add_app.png "Teams add app")
 
 3. You'll see an "Add app" pop-up. Add an app name.
@@ -163,7 +163,7 @@ We will use this TLS secret while deploying the BotKube backend.
     where,<br>
     - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br>
     - **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br>
-    - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `BotKube`)<br>  
+    - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `BotKube`)<br>
     - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
     - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br>
     - **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br>
@@ -192,11 +192,16 @@ We will use this TLS secret while deploying the BotKube backend.
                              # group/version/resource (G/V/R) format
                              # resource name should be plural
                              # (e.g apps/v1/deployments, v1/pods)
-        namespaces:          # List of namespaces, "all" will watch all the namespaces
+        namespaces:
+          # Include contains a list of allowed Namespaces.
+          # It can also contain a regex expressions:
+          #  - ".*" - to specify all Namespaces.
           include:
-          - all
-          ignore:            # List of namespaces to be ignored, used only with include: all
-          - kube-system      # example : include [all], ignore [x,y,z]
+            - ".*"
+          # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
+          # It can also contain a regex expressions:
+          #  - "test-.*" - to specify all Namespaces with `test-` prefix.
+          exclude: ["kube-system"]
         events:              # List of lifecycle events you want to receive,
                              # e.g create, update, delete, error OR all
         - create

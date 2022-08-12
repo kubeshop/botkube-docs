@@ -64,11 +64,16 @@ toc = true
                            # group/version/resource (G/V/R) format
                            # resource name should be plural
                            # (e.g apps/v1/deployments, v1/pods)
-      namespaces:          # List of namespaces, "all" will watch all the namespaces
+      namespaces:
+        # Include contains a list of allowed Namespaces.
+        # It can also contain a regex expressions:
+        #  - ".*" - to specify all Namespaces.
         include:
-        - all
-        ignore:            # List of namespaces to be ignored, used only with include: all
-        - kube-system      # example : include [all], ignore [x,y,z]
+          - ".*"
+        # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
+        # It can also contain a regex expressions:
+        #  - "test-.*" - to specify all Namespaces with `test-` prefix.
+        exclude: ["kube-system"]
       events:              # List of lifecycle events you want to receive,
                            # e.g create, update, delete, error OR all
       - create
