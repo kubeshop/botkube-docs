@@ -117,60 +117,15 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
   Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
-  {{% notice note %}}
   With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br>
   If you wish to monitor only specific resources, follow the steps given below:
-  {{% /notice %}}
 
-  - Create new file config.yaml and add resource configuration as described on the [configuration](/configuration) page.
+  1. Create new file config.yaml and add resource configuration as described on the [source](/configuration/source) page.
+  2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
-    (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
-
-  ```yaml
-  config:
-    ## Resources you want to watch
-    resources:
-    - name: v1/pods        # Name of the resource. Resource name must be in
-                           # group/version/resource (G/V/R) format
-                           # resource name should be plural
-                           # (e.g apps/v1/deployments, v1/pods)
-      namespaces:
-        # Include contains a list of allowed Namespaces.
-        # It can also contain a regex expressions:
-        #  - ".*" - to specify all Namespaces.
-        include:
-          - ".*"
-        # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
-        # It can also contain a regex expressions:
-        #  - "test-.*" - to specify all Namespaces with `test-` prefix.
-        exclude: ["kube-system"]
-      events:              # List of lifecycle events you want to receive,
-                           # e.g create, update, delete, error OR all
-      - create
-      - delete
-      - error
-    - name: batch/v1/jobs
-      namespaces:
-        include:
-        - ns1
-        - ns2
-      events:
-      - create
-      - update
-      - delete
-      - error
-      updateSetting:
-        includeDiff: true
-        fields:
-        - spec.template.spec.containers[*].image
-        - status.conditions[*].type
-    ```
-  - Pass the YAML file as a flag to `helm install` command.
-    e.g
-
-    ```
-    $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-    ```
+      ```
+      helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
