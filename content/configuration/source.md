@@ -39,7 +39,7 @@ kubernetes:
 
 ### Merging strategy
 
-If multiple source bindings are specified for a given communication channel, the recommendations are merged. If any bound source has a given recommendation enabled, it is enabled for the channel.
+If multiple source bindings are specified for a given communication channel, the recommendations are merged with override strategy. The order of bindings is important, as it affects the final values of properties. The priority is given to the last binding specified on the list.
 
 Consider the following example source configuration:
 
@@ -50,21 +50,27 @@ sources:
       # ... trimmed ...
       recommendations:
         pod:
-          noLatestImageTag: false
           labelsSet: true
+          noLatestImageTag: false
         ingress:
-          backendServiceValid: true
-          tlsSecretValid: true
+          backendServiceValid: false
   'second-source':
     kubernetes:
       # ... trimmed ...
       recommendations:
         pod:
-          noLatestImageTag: false
-          labelsSet: true
+          noLatestImageTag: true
         ingress:
           backendServiceValid: false
           tlsSecretValid: true
+  'third-source':
+    kubernetes:
+      # ... trimmed ...
+      recommendations:
+        pod:
+          noLatestImageTag: false
+        ingress:
+          backendServiceValid: true
 ```
 
 And the following source bindings:
@@ -83,6 +89,7 @@ communications:
                         sources:
                             - first-source
                             - second-source
+                            - third-source
 ```
 
 In a result, for the `random` channel, the merged recommendation configuration is as follows:
@@ -90,11 +97,11 @@ In a result, for the `random` channel, the merged recommendation configuration i
 ```yaml
 recommendations:
     pod:
-        noLatestImageTag: false # none of the sources has this property set to true
-        labelsSet: true
+        noLatestImageTag: false # set in `first-source` to `false`, overriden in `third-source`
+        labelsSet: true # set in `first-source`, other sources didn't specify its value
     ingress:
-        backendServiceValid: true
-        tlsSecretValid: true
+        backendServiceValid: true # set in `first-source` and `second-source` to `false`, overriden in `third-source`
+        tlsSecretValid: true # set in `second-source`
 ```
 
 ## Syntax
