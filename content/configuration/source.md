@@ -97,10 +97,10 @@ In a result, for the `random` channel, the merged recommendation configuration i
 ```yaml
 recommendations:
     pod:
-        noLatestImageTag: false # set in `first-source` to `false`, overriden in `third-source`
-        labelsSet: true # set in `first-source`, other sources didn't specify its value
+        noLatestImageTag: false # set in `first-source`, overriden in `third-source` with the same value
+        labelsSet: true # set to `true` in `first-source`, other sources didn't specify its value
     ingress:
-        backendServiceValid: true # set in `first-source` and `second-source` to `false`, overriden in `third-source`
+        backendServiceValid: true # set in `first-source` and `second-source` to `false`, overriden in `third-source` to `true`
         tlsSecretValid: true # set in `second-source`
 ```
 
