@@ -56,6 +56,16 @@ const config = {
         routeBasePath: 'community',
         sidebarPath: require.resolve('./sidebarsCommunity.js'),
       },
+    ],
+    [
+      '@docusaurus/plugin-ideal-image',
+      {
+        quality: 85,
+        max: 2000,
+        min: 500,
+        steps: 4,
+        disableInDev: false,
+      },
     ]
   ],
 
@@ -157,7 +167,13 @@ const config = {
       },
       colorMode: {
         respectPrefersColorScheme: true,
-      }
+      },
+      algolia: {
+        appId: 'someAppId',
+        apiKey: 'someApiKye',
+        indexName: 'someIndexName',
+        contextualSearch: true,
+      },
     }),
 };
 
