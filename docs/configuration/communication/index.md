@@ -15,9 +15,9 @@ Communication group is a way to aggregate separate configurations for a set of c
 
 Also, most platforms also support another level of multiple configurations within a workspace. For example, Slack supports multi-channel configuration. To learn more about platform-specific options, see the [Syntax](#syntax) section.
 
-{{% notice note %}}
+:::note
 The purpose of the communication group is to allow using multiple workspaces, e.g. for Slack or Mattermost. To use multiple channels inside the same workspace, don't define separate communication groups, but use `channels` property under a given communication platform instead.
-{{% /notice %}}
+:::
 
 ### Example
 
@@ -71,13 +71,13 @@ For Slack **Workspace 2**, as defined by the second communication group (`second
 
 Most of the communication platforms support executor and source bindings, which allows to fine-tune notifications and allowed BotKube commands inside a given channel.
 
-With executor bindings you can configure which executors are allowed in a given channel. To read more about executor configuration, see the [Executor](/configuration/executor) document.
+With executor bindings you can configure which executors are allowed in a given channel. To read more about executor configuration, see the [Executor](../executor) document.
 
-With source bindings, you can specify which events are sent to a given channel (or, in case of Elasticsearch, index). To read more about source configuration, see the [Source](/configuration/source) document.
+With source bindings, you can specify which events are sent to a given channel (or, in case of Elasticsearch, index). To read more about source configuration, see the [Source](../source) document.
 
 ## Known limitations
 
-Currently, [Microsoft Teams](/installation/teams/) integration works differently than other bot integrations, such as Slack or Discord. While Microsoft Teams support multiple channels for forwarding notifications, you need to turn them on with `@BotKube notifier start` on each channel. Microsoft Teams uses source and executor bindings defined under `communications.teams.bindings` property for all channels in the following way:
+Currently, [Microsoft Teams](../../installation/teams/) integration works differently than other bot integrations, such as Slack or Discord. While Microsoft Teams support multiple channels for forwarding notifications, you need to turn them on with `@BotKube notifier start` on each channel. Microsoft Teams uses source and executor bindings defined under `communications.teams.bindings` property for all channels in the following way:
 - Executor bindings apply to all MS Teams channels where BotKube has access to.
 - Source bindings apply to all channels which have notification turned on with `@BotKube notifier start` command.
 

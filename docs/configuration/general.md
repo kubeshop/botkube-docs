@@ -1,8 +1,7 @@
 ---
-title: "General"
-date: 2022-07-20T13:28:06+02:00
-draft: false
-weight: 21
+id: general
+title: General
+sidebar_position: 2
 ---
 
 The settings property holds a general configuration for the BotKube backend. For example, log level, disabling config watcher and similar.

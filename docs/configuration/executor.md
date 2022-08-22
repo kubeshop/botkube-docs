@@ -1,10 +1,10 @@
 ---
-menutitle: "Executor"
-title: "Executor"
-weight: 24
+id: executor
+title: Executor
+sidebar_position: 4
 ---
 
-The executor property allows you to define multiple executor configurations that can be later referred in [communication](/configuration/communication) bindings. For example, take a look on such executor definition:
+The executor property allows you to define multiple executor configurations that can be later referred in [communication](./communication) bindings. For example, take a look on such executor definition:
 
 ```yaml
 executors:

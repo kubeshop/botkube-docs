@@ -162,7 +162,7 @@ We will use this TLS secret while deploying the BotKube backend.
     where,<br/>
     - **APPLICATION_ID** is the BotKube application ID generated while registering Bot to Teams<br/>
     - **APPLICATION_PASSWORD** is the BotKube application password generated while registering Bot to Teams<br/>
-    - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `BotKube`)<br/>  
+    - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `BotKube`)<br/>
     - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
     - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br/>
     - **HOST** is the Hostname of endpoint provided while registering BotKube to Teams<br/>
@@ -174,55 +174,15 @@ We will use this TLS secret while deploying the BotKube backend.
 
     Send **@BotKube ping** in the channel to see if BotKube is running and responding.
 
-    :::note
     With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
     If you wish to monitor only specific resources, follow the steps given below:
-    :::
 
-    - Create new file config.yaml and add resource configuration as described on the [configuration](../../configuration) page.
+    1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
+    2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
-      (You can refer sample config from https://raw.githubusercontent.com/kubeshop/botkube/v0.12.4/helm/botkube/sample-res-config.yaml)
-
-    ```yaml
-    config:
-      ## Resources you want to watch
-      resources:
-      - name: v1/pods        # Name of the resource. Resource name must be in
-                             # group/version/resource (G/V/R) format
-                             # resource name should be plural
-                             # (e.g apps/v1/deployments, v1/pods)
-        namespaces:          # List of namespaces, "all" will watch all the namespaces
-          include:
-          - all
-          ignore:            # List of namespaces to be ignored, used only with include: all
-          - kube-system      # example : include [all], ignore [x,y,z]
-        events:              # List of lifecycle events you want to receive,
-                             # e.g create, update, delete, error OR all
-        - create
-        - delete
-        - error
-      - name: batch/v1/jobs
-        namespaces:
-          include:
-          - ns1
-          - ns2
-        events:
-        - create
-        - update
-        - delete
-        - error
-        updateSetting:
-          includeDiff: true
-          fields:
-          - spec.template.spec.containers[*].image
-          - status.conditions[*].type
+    ```bash
+    helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
     ```
-
-    - Pass the YAML file as a flag to `helm install` command, e.g.:
-
-      ```bash
-      $ helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-      ```
 
     Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
 
