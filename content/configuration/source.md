@@ -13,33 +13,72 @@ The source settings contains:
 
 Sources are bound to specific channels in the communications configuration. To learn more, read the [Source and Executor Bindings](/configuration/communication/#source-and-executor-bindings) section.
 
-## Recommendations
+## Kubernetes resource events
 
-For every source you can configure recommendations related to Kubernetes resources. The full recommendation configuration is as follows:
-
-```yaml
-kubernetes:
-
-  # ... trimmed ...
-
-  recommendations:
-    # Recommendations for Pod Kubernetes resource.
-    pod:
-      # If true, notifies about Pod containers that use `latest` tag for images.
-      noLatestImageTag: true
-      # If true, notifies about Pod resources created without labels.
-      labelsSet: true
-    # Recommendations for Ingress Kubernetes resource.
-    ingress:
-      # If true, notifies about Ingress resources with invalid backend service reference.
-      backendServiceValid: true
-      # If true, notifies about Ingress resources with invalid TLS secret reference.
-      tlsSecretValid: true
-```
+A source essentially notifies a channel about events for configured resources filtered by specified namespaces.
 
 ### Merging strategy
 
-If multiple source bindings are specified for a given communication channel, the recommendations are merged with override strategy. The order of bindings is important, as it affects the final values of properties. The priority is given to the last binding specified on the list.
+When a channel binds to more than one source, the resource notifications are merged across all sources.
+
+Let's say you have a resource defined in more than one source but wired with different events and namespaces.
+
+```yaml
+sources:
+  'k8s-events':
+    kubernetes:
+      resources:
+        - name: v1/configmaps
+          namespaces:
+            include:
+              - (botk.*|default)
+          events:
+            - create
+            - update
+            - delete
+  'k8s-updates':
+    kubernetes:
+      resources:
+        - name: v1/configmaps
+          namespaces:
+            include:
+              - botkube
+          events:
+            - update
+```
+
+The bound channel `monitor-config` (below) will notify on the merged events and namespaces across all resource/source definitions.
+
+```yaml
+communications:
+  'default-group':
+    slack:
+      # ... trimmed ...
+      channels:
+        'monitor-config':
+          name: "monitor-config"
+          # ... trimmed ...
+          bindings:
+            # ... trimmed ...
+            sources:
+              - k8s-events
+              - k8s-updates
+...
+```
+
+Meaning, channel `monitor-config` will receive notifications for `v1/configmaps` events matching,
+- the `botk.*|default` and `botkube` namespaces.
+- the `create`, `delete` and `update` event types.
+
+## Recommendations
+
+For every source, you can configure recommendations related to Kubernetes resources. 
+
+### Merging Strategy
+
+Recommendations take a different approach from the [Kubernetes resource events merge strategy](#kubernetes-resource-events).
+
+If multiple source bindings are specified for a given communication channel, the recommendations are merged with an override strategy. The order of bindings here is important, as it affects the final values of properties. The priority is given to the last binding specified on the list.
 
 Consider the following example source configuration:
 
