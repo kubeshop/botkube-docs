@@ -116,7 +116,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
   If you wish to monitor only specific resources, follow the steps given below:
 
-  1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](/configuration/source) page.
+  1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
     ```
