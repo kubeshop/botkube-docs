@@ -30,6 +30,11 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/kubeshop/botkube-docs/edit/main/',
+          versions: {
+            current: {
+              label: `Unreleased 🚧`,
+            },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.scss'),
@@ -91,6 +96,10 @@ const config = {
             docsPluginId: "community",
             position: "left",
             label: "Community",
+          },
+          {
+            type: "docsVersionDropdown",
+            position: "right",
           },
           {
             href: 'https://github.com/kubeshop/botkube',

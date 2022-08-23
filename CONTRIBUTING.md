@@ -46,6 +46,22 @@ Make sure you have installed [NodeJS](https://nodejs.org/) on your system. Follo
   ```
   Site can be viewed at [http://localhost:3000](http://localhost:3000)
 
+## Add new version of the docs
+Please read this documentation before doing versioning [versioning](https://docusaurus.io/docs/versioning) to better
+understand the process
+
+1. First, make sure the current docs version (the ./docs directory) is ready to be frozen
+2. Enter a new version number.
+
+    ```bash
+    npm run docusaurus docs:version 13.0.0
+    ```
+    _Note: 13.0.0 version is just an example_
+
+3. Then make sure that the new folder `versioned_docs/version-[versionName]/` for documentation was created and the new
+sidebar `versioned_sidebars/version-[versionName]-sidebars.json`
+4. Make sure that the new version number is in the right order in `versions.json` file
+
 ## Making A Change
 
 Before making any significant changes, please [open an issue](https://github.com/kubeshop/botkube-docs/issues). Discussing your proposed changes ahead of time will make the contribution process smooth for everyone.
