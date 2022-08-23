@@ -13,15 +13,13 @@ The source settings contains:
 
 Sources are bound to specific channels in the communications configuration. To learn more, read the [Source and Executor Bindings](/configuration/communication/#source-and-executor-bindings) section.
 
-## General merging strategy
+## Kubernetes resource events
 
 A source essentially notifies a channel about events for configured resources filtered by specified namespaces.
 
-When a channel binds to more than one source, the notifications are merged across all sources.
+### Merging strategy
 
-Consider this example,
-
-### Example
+When a channel binds to more than one source, the resource notifications are merged across all sources.
 
 Let's say you have a resource defined in more than one source but wired with different events and namespaces.
 
@@ -68,33 +66,13 @@ communications:
 ...
 ```
 
-Meaning, channel `monitor-config` will notify on `v1/configmaps` events matching,
+Meaning, channel `monitor-config` will receive notifications for `v1/configmaps` events matching,
 - the `botk.*|default` and `botkube` namespaces.
 - the `create`, `delete` and `update` event types.
 
 ## Recommendations
 
-For every source, you can configure recommendations related to Kubernetes resources. The full configuration is as follows:
-
-```yaml
-kubernetes:
-
-  # ... trimmed ...
-
-  recommendations:
-    # Recommendations for Pod Kubernetes resource.
-    pod:
-      # If true, notifies about Pod containers that use `latest` tag for images.
-      noLatestImageTag: true
-      # If true, notifies about Pod resources created without labels.
-      labelsSet: true
-    # Recommendations for Ingress Kubernetes resource.
-    ingress:
-      # If true, notifies about Ingress resources with invalid backend service reference.
-      backendServiceValid: true
-      # If true, notifies about Ingress resources with invalid TLS secret reference.
-      tlsSecretValid: true
-```
+For every source, you can configure recommendations related to Kubernetes resources. 
 
 ### Merging Strategy
 
