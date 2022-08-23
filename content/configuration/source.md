@@ -76,7 +76,7 @@ For every source, you can configure recommendations related to Kubernetes resour
 
 ### Merging Strategy
 
-Recommendations take a different approach from the [general resource merge strategy](#general-merging-strategy).
+Recommendations take a different approach from the [Kubernetes resource events merge strategy](#kubernetes-resource-events).
 
 If multiple source bindings are specified for a given communication channel, the recommendations are merged with an override strategy. The order of bindings here is important, as it affects the final values of properties. The priority is given to the last binding specified on the list.
 
