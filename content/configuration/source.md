@@ -170,22 +170,30 @@ sources:
           backendServiceValid: true
           # If true, notifies about Ingress resources with invalid TLS secret reference.
           tlsSecretValid: true
+      
+      # Describes namespaces configuration for every Kubernetes resources you want to watch or exclude.
+      # These namespaces are applied to every resource specified in the resources list.
+      # However, every specified resource can override this by using its own namespaces object.
+      namespaces:
+        # Include contains a list of allowed Namespaces.
+        # It can also contain a regex expressions:
+        #  `- ".*"` - to specify all Namespaces.
+        include:
+          - ".*"
+        # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
+        # It can also contain a regex expressions:
+        #  - "test-.*" - to specify all Namespaces with `test-` prefix.
+        # exclude: []
 
       # Describes the Kubernetes resources you want to watch.
       resources:
         - name: v1/pods             # Name of the resource. Resource name must be in group/version/resource (G/V/R) format
                                     # resource name should be plural (e.g apps/v1/deployments, v1/pods)
 
-          namespaces:
-            # Include contains a list of allowed Namespaces.
-            # It can also contain a regex expressions:
-            #  - ".*" - to specify all Namespaces.
-            include:
-              - ".*"
-            # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
-            # It can also contain a regex expressions:
-            #  - "test-.*" - to specify all Namespaces with `test-` prefix.
-            #exclude: []
+          #  namespaces:             # Overrides 'source'.kubernetes.namespaces
+          #    include:
+          #      - ".*"
+          #    exclude: []
           events:                   # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
             - create
             - delete
