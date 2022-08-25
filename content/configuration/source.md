@@ -199,17 +199,11 @@ sources:
             - delete
             - error
         - name: v1/services
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: apps/v1/deployments
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - update
@@ -221,9 +215,6 @@ sources:
               - spec.template.spec.containers[*].image
               - status.availableReplicas
         - name: apps/v1/statefulsets
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - update
@@ -235,57 +226,36 @@ sources:
               - spec.template.spec.containers[*].image
               - status.readyReplicas
         - name: networking.k8s.io/v1/ingresses
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: v1/nodes
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: v1/namespaces
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: v1/persistentvolumes
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: v1/persistentvolumeclaims
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: v1/configmaps
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: apps/v1/daemonsets
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - update
@@ -297,9 +267,6 @@ sources:
               - spec.template.spec.containers[*].image
               - status.numberReady
         - name: batch/v1/jobs
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - update
@@ -311,42 +278,27 @@ sources:
               - spec.template.spec.containers[*].image
               - status.conditions[*].type
         - name: rbac.authorization.k8s.io/v1/roles
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: rbac.authorization.k8s.io/v1/rolebindings
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: rbac.authorization.k8s.io/v1/clusterrolebindings
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
         - name: rbac.authorization.k8s.io/v1/clusterroles
-          namespaces:
-            include:
-              - ".*"
           events:
             - create
             - delete
             - error
        ## Custom resource example
        # - name: velero.io/v1/backups
-       #   namespaces:
-       #     include:
-       #       - ".*"
        #   events:
        #     - create
        #     - update
