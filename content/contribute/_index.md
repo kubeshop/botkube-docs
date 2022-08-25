@@ -26,6 +26,7 @@ Before you proceed, make sure you have installed BotKube Slack/Mattermost/Teams 
 * Make sure you have [`go 1.18`](https://go.dev) installed.
 * You will also need `make` and [`docker`](https://docs.docker.com/install/) installed on your machine.
 * Clone the source code
+
    ```sh
    git clone https://github.com/kubeshop/botkube.git
    ```
@@ -72,14 +73,19 @@ Now you can build and run BotKube by one of the following ways
 2. Deploy the newly created image in your cluster:
 
    ```sh
+   export IMAGE_REGISTRY="docker.io"
+   export IMAGE_REPOSITORY="<your_account>/botkube"
+   export SLACK_CHANNEL_NAME="<your_slack_channel_name>"
+   export SLACK_API_BOT_TOKEN="<slack_api_bot_token>"
+   
    helm install botkube --namespace botkube --create-namespace \
-   --set communications.slack.enabled=true \
-   --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
-   --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
-   --set settings.clustername=<CLUSTER_NAME> \
-   --set settings.kubectl.enabled=<ALLOW_KUBECTL> \
-   --set image.registry=<image_registry e.g. docker.io> \
-   --set image.repository=<your_account>/botkube \
+   --set communications.default-group.slack.enabled=true \
+   --set communications.default-group.slack.channels.default.name=${SLACK_CHANNEL_NAME} \
+   --set communications.default-group.slack.token=${SLACK_API_BOT_TOKEN} \
+   --set settings.clusterName=${CLUSTER_NAME} \
+   --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+   --set image.registry=${IMAGE_REGISTRY} \
+   --set image.repository=${IMAGE_REPOSITORY} \
    --set image.tag=v9.99.9-dev \
    ./helm/botkube
    ```
@@ -119,15 +125,21 @@ For faster development, you can also build and run BotKube outside K8s cluster.
    export KUBECONFIG=/Users/$USER/.kube/config # set custom path if necessary
    ```
 
-5. Make sure that correct context is set and you are able to access your Kubernetes cluster
+5. Make sure you are able to access your Kubernetes cluster.
+    
+   Run command:
+
+   ```bash
+   kubectl cluster-info
+   ```
+
+   The output should be similar to:
+
    ```console
-   $ kubectl config current-context
-   minikube
-   $ kubectl cluster-info
    Kubernetes master is running at https://192.168.39.233:8443
    CoreDNS is running at https://192.168.39.233:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-   ...
    ```
+
 6. Run BotKube binary
    ```sh
    ./botkube

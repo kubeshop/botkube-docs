@@ -242,6 +242,10 @@ communications:
       enabled: false
       # The Webhook URL, e.g.: https://example.com:80
       url: 'WEBHOOK_URL'
+      bindings:
+        # -- Notification sources configuration for the webhook.
+        sources:
+          - k8s-events      
 ```
 
 The default configuration for Helm chart can be found in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml).

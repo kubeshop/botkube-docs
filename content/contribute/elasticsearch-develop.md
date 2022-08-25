@@ -11,7 +11,7 @@ The easiest way to develop BotKube with Elasticsearch notifier enabled is to ins
 
     ```bash
     helm repo add elastic https://helm.elastic.co
-    helm install elasticsearch elastic/elasticsearch --set replicas=1 --set resources.requests.cpu="100m" --set resources.requests.memory="512M" --wait
+    helm install elasticsearch elastic/elasticsearch --version 7.17.3  --set replicas=1 --set resources.requests.cpu="100m" --set resources.requests.memory="512M" --wait
     ```
 
 1. Install BotKube with Elasticsearch, according to the [Elasticsearch installation](/installation/elasticsearch) instruction, where:

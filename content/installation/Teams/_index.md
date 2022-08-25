@@ -141,9 +141,7 @@ kubectl create secret tls botkube-tls -n botkube --cert=/path/to/cert.pem --key=
 ```
 We use this TLS Secret while deploying the BotKube backend.
 
-#### Using Helm
-
-- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- We will be using [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
 
   ```bash
@@ -204,7 +202,7 @@ We use this TLS Secret while deploying the BotKube backend.
 Curl on the endpoint to confirm that the BotKube endpoint is reachable and serving the requests.
 
 ```bash
-$ curl -k https://<HOST>/<URLPATH>
+curl -k https://<HOST>/<URLPATH>
 Authentication headers are missing in the request # Expected response
 ```
 
@@ -225,10 +223,8 @@ If you get 404, please check the ingress configuration or endpoint you configure
 
 ### Remove BotKube from Kubernetes cluster
 
-#### Using helm
-
-If you have installed BotKube backend using **helm**, execute the following command to completely remove BotKube and related resources from your cluster.
+Execute the following command to completely remove BotKube and related resources from your cluster.
 
 ```bash
-$ helm uninstall botkube
+helm uninstall botkube
 ```
