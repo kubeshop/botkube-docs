@@ -10,7 +10,7 @@ This document describes how to prepare and publish a new Botkube release.
 - Obtain a GitHub Personal Access token with `repo` and `write:packages` permissions.
 - Install the following applications:
 
-    - [Goreleaser](https://goreleaser.com/install/) 1.8.3
+    - [Goreleaser](https://goreleaser.com/install/) 1.10.3
     - [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator#installation) 1.16.4
 
 ## Steps
@@ -18,6 +18,16 @@ This document describes how to prepare and publish a new Botkube release.
 ### The `botkube` repository
 
 1. Clone and navigate to the root of the `botkube` repository.
+
+  {{% notice warning %}}
+  Ensure that the `origin` remote points to `git@github.com:kubeshop/botkube.git` and not your fork.
+  {{% /notice%}}
+
+  ```bash
+  git clone git@github.com:kubeshop/botkube.git
+  cd botkube
+  ```
+
 1. Export required environment variables:
 
     ```bash
