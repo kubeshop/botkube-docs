@@ -8,7 +8,7 @@ import { ContributorsList } from '@site/src/components/ContributorsList';
 
 ## Contributors
 
-Thanks to them <i class="fas fa-heart"></i> for making Open Source Software a better place ! <br/>
+Thanks to them ❤️ for making Open Source Software a better place ! <br/>
 
 <br/>
 
