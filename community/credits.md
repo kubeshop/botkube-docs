@@ -4,16 +4,18 @@ title: Credits
 sidebar_position: 2
 ---
 
+import { ContributorsList } from '@site/src/components/ContributorsList';
+
 ## Contributors
 
 Thanks to them <i class="fas fa-heart"></i> for making Open Source Software a better place ! <br/>
 
 <br/>
 
-{{% ghcontributors "https://api.github.com/repos/kubeshop/botkube/contributors?per_page=100" %}}
+<ContributorsList />
 
 ## Tooling
 
-* [Netlify](https://www.netlify.com) - Continuous deployment and hosting of this documentation
-* [Hugo](https://gohugo.io/)
+* [CloudFlare](https://cloudflare.com) - Continuous deployment and hosting of this documentation
+* [Docusaurus](https://docusaurus.io/) - Used to build this docs website
 

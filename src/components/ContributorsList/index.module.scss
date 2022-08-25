@@ -1,0 +1,21 @@
+.contributors {
+  display: flex;
+}
+
+.contributorsItem {
+  padding: 16px 32px;
+  display: flex;
+  gap: 10px;
+
+  img {
+    width: 100px;
+  }
+}
+
+.contributorNickName {
+  font-weight: bold;
+}
+
+.contribution {
+  font-size: 10px;
+}
