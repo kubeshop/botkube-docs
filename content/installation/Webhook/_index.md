@@ -22,11 +22,13 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 - Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
+  $ export CLUSTER_NAME={cluster_name}
+  $ export WEBHOOK_URL={url}
+  
   $ helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.webhook.enabled=true \
-  --set communications.default-group.webhook.url=<WEBHOOK_URL> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
-  --set image.tag=v0.13.0 \
+  --set communications.default-group.webhook.url=${WEBHOOK_URL} \
+  --set config.settings.clusterName=${CLUSTER_NAME} \
   botkube/botkube
   ```
 
