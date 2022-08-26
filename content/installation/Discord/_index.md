@@ -93,7 +93,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
 ### Install BotKube Backend in Kubernetes cluster
 
-#### Using helm
+#### Using Helm
 
 - We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
@@ -116,7 +116,6 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   --set communications.default-group.discord.token=${DISCORD_TOKEN} \
   --set settings.clusterName=${CLUSTER_NAME} \
   --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
-  --set image.tag=v0.13.0 \
   botkube/botkube
   ```
 
