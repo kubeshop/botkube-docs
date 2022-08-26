@@ -24,20 +24,13 @@ toc = true
   export ELASTICSEARCH_USERNAME={elasticsearch_username}
   export ELASTICSEARCH_PASSWORD={elasticsearch_password}
   export ELASTICSEARCH_INDEX_NAME={elasticsearch_index_name}  
-  export ELASTICSEARCH_INDEX_SHARDS={elasticsearch_index_shards}  
-  export ELASTICSEARCH_INDEX_REPLICAS={elasticsearch_index_replicas}
-  export CLUSTER_NAME={cluster_name}  
   
   $ helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.elasticsearch.enabled=true \
-  --set communications.default-group.elasticsearch.server=<ELASTICSEARCH_ADDRESS> \
-  --set communications.default-group.elasticsearch.username=<ELASTICSEARCH_USERNAME> \
-  --set communications.default-group.elasticsearch.password=<ELASTICSEARCH_PASSWORD> \
-  --set communications.default-group.elasticsearch.indices.default.name=<ELASTICSEARCH_INDEX_NAME> \
-  --set communications.default-group.elasticsearch.indices.default.shards=<ELASTICSEARCH_INDEX_SHARDS> \
-  --set communications.default-group.elasticsearch.indices.default.replicas=<ELASTICSEARCH_INDEX_REPLICAS> \
-  --set settings.clusterName=<CLUSTER_NAME> \
-  --set image.tag=v0.13.0 \
+  --set communications.default-group.elasticsearch.server=${ELASTICSEARCH_ADDRESS} \
+  --set communications.default-group.elasticsearch.username=${ELASTICSEARCH_USERNAME} \
+  --set communications.default-group.elasticsearch.password=${ELASTICSEARCH_PASSWORD} \
+  --set communications.default-group.elasticsearch.indices.default.name=${ELASTICSEARCH_INDEX_NAME} \
   botkube/botkube
   ```
 
@@ -46,9 +39,6 @@ toc = true
   - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br>
   - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br>
   - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which BotKube events will be stored _(default: botkube)_<br>
-  - **ELASTICSEARCH_INDEX_SHARDS** _(optional)_ denotes number of shards for BotKube index _(default: 1)_<br>
-  - **ELASTICSEARCH_INDEX_REPLICAS** _(optional)_ is the number of replicas of the shards  _(default: 0)_<br>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br>
 
    Configuration syntax is explained [here](/configuration).
    Full Helm chart parameters list is documented [here](/configuration/helm-chart-parameters).
