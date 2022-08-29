@@ -22,11 +22,13 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 - Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace \
-  --set communications.webhook.enabled=true \
-  --set communications.webhook.url=<WEBHOOK_URL> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
-  --set image.tag=v0.12.4 \
+  $ export CLUSTER_NAME={cluster_name}
+  $ export WEBHOOK_URL={url}
+  
+  $ helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
+  --set communications.default-group.webhook.enabled=true \
+  --set communications.default-group.webhook.url=${WEBHOOK_URL} \
+  --set settings.clusterName=${CLUSTER_NAME} \
   botkube/botkube
   ```
 
@@ -44,7 +46,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
       ```
-      helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+      helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
       ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](/configuration/#updating-the-configuration-at-runtime)
