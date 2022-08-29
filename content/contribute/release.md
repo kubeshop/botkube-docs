@@ -88,10 +88,17 @@ This document describes how to prepare and publish a new Botkube release.
 ### The `botkube-docs` repository
 
 1. Clone and navigate to the root of the `botkube` repository.
+1. Checkout a new branch.
 1. Run the release script:
 
     ```bash
-    ./hack/release.sh
+    ./hack/release.sh {previous_version}
+    ```
+
+    For example, for 0.12.4 release, run:
+
+    ```bash
+    ./hack/release.sh v0.12.4
     ```
 
     You can customize the source repository by setting `GITHUB_ORG`, `GITHUB_REPO` and `REPO_BRANCH` environment variables.
@@ -100,4 +107,5 @@ This document describes how to prepare and publish a new Botkube release.
     - Updates Docker image versions in the documentation,
     - Updates changelog,
     - Updates Helm chart options,
-    - Creates and pushes git tag.
+
+1. Create a pull request to the `main` branch of the upstream repository with the updated documentation.
