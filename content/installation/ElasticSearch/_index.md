@@ -20,6 +20,7 @@ toc = true
 - Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
+  export CLUSTER_NAME={cluster_name}
   export ELASTICSEARCH_ADDRESS={elasticsearch_address}
   export ELASTICSEARCH_USERNAME={elasticsearch_username}
   export ELASTICSEARCH_PASSWORD={elasticsearch_password}
@@ -31,6 +32,7 @@ toc = true
   --set communications.default-group.elasticsearch.username=${ELASTICSEARCH_USERNAME} \
   --set communications.default-group.elasticsearch.password=${ELASTICSEARCH_PASSWORD} \
   --set communications.default-group.elasticsearch.indices.default.name=${ELASTICSEARCH_INDEX_NAME} \
+  --set settings.clusterName=${CLUSTER_NAME} \
   botkube/botkube
   ```
 
