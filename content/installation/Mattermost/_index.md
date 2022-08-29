@@ -79,7 +79,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
 
 ### Install BotKube in Kubernetes cluster
 
-- We will be using [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- We use [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
 
   ```bash

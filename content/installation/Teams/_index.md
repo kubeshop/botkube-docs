@@ -141,7 +141,7 @@ kubectl create secret tls botkube-tls -n botkube --cert=/path/to/cert.pem --key=
 ```
 We use this TLS Secret while deploying the BotKube backend.
 
-- We will be using [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- We use [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
 
   ```bash
