@@ -6,7 +6,7 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 
 ### Prerequisite
 
-- [NodeJS](https://nodejs.org/)
+- [NodeJS 16](https://nodejs.org/)
 - [NVM](https://github.com/nvm-sh/nvm) (Preferable)
 - [Docusaurus](https://docusaurus.io/)
 - [Magefile](https://magefile.org/)
@@ -25,7 +25,7 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 
 ## Build the site locally
 
-Make sure you have installed [NodeJS](https://nodejs.org/) on your system. Follow the instructions to clone this repository and build the docs locally.
+Follow the instructions to clone this repository and build the docs locally.
 
 - Clone the repository
 
@@ -34,9 +34,9 @@ Make sure you have installed [NodeJS](https://nodejs.org/) on your system. Follo
   cd botkube-docs
   ```
 
-- Select the right node version using nvm. If you don't like to use it please check the current node version in .nvmrc
+- Install dependencies
   ```sh
-  nvm use
+  npm install
   ```
 
 - Start local server
@@ -44,23 +44,19 @@ Make sure you have installed [NodeJS](https://nodejs.org/) on your system. Follo
   ```sh
   npm run start
   ```
-  Site can be viewed at [http://localhost:3000](http://localhost:3000)
+  Site can be viewed at [http://localhost:3000](http://localhost:3000).
 
 ## Add new version of the docs
-Please read this documentation before doing versioning [versioning](https://docusaurus.io/docs/versioning) to better
-understand the process
 
 1. First, make sure the current docs version (the ./docs directory) is ready to be frozen
-2. Enter a new version number.
+2. Provide the new version and run the script. For example:
 
     ```bash
-    npm run docusaurus docs:version 13.0.0
+    npm run docusaurus docs:version 0.13
     ```
-    _Note: 13.0.0 version is just an example_
-
-3. Then make sure that the new folder `versioned_docs/version-[versionName]/` for documentation was created and the new
-sidebar `versioned_sidebars/version-[versionName]-sidebars.json`
-4. Make sure that the new version number is in the right order in `versions.json` file
+This should be run only when major or minor version is released. For, patchers we won't change the version<br />
+Please read this documentation before doing [versioning](https://docusaurus.io/docs/versioning) to better
+understand the process.
 
 ## Making A Change
 

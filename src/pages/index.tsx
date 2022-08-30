@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import { BotKubeFeatures } from '@site/src/components/BotKubeFeatures';
 import { Hero } from '@site/src/components/Hero';
 import styles from './index.module.scss';
-import clsx from 'clsx';
 
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
@@ -17,7 +18,7 @@ export default function Home(): JSX.Element {
       <Hero />
       <main className="container">
         <section className={styles.mainSlogan}>
-          <img src="/images/botkube_multicluster_v2.svg" alt="BotKube multi-cluster presentation" />
+          <img src={useBaseUrl('/images/botkube_multicluster_v2.svg')} alt="BotKube multi-cluster presentation" />
           <p className={styles.mainSloganDesc}>
             BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost, Microsoft Teams to
             help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for
@@ -40,7 +41,7 @@ export default function Home(): JSX.Element {
               </ul>
             </div>
             <div className="col col-6">
-              <img src="/images/monitor.gif" alt="BotKube monitoring" />
+              <img src={useBaseUrl('/images/monitor.gif')} alt="BotKube monitoring" />
             </div>
           </div>
           <div className={clsx('row', styles.whatCanDoFeature)}>
@@ -53,7 +54,7 @@ export default function Home(): JSX.Element {
               </ul>
             </div>
             <div className="col col-6">
-              <img src="/images/exec.gif" alt="" />
+              <img src={useBaseUrl('/images/exec.gif')} alt="" />
             </div>
           </div>
           <div className={clsx('row', styles.whatCanDoFeature)}>
@@ -65,7 +66,7 @@ export default function Home(): JSX.Element {
               </ul>
             </div>
             <div className="col col-6">
-              <img src="/images/checks.gif" alt="BotKube run checks" />
+              <img src={useBaseUrl('/images/checks.gif')} alt="BotKube run checks" />
             </div>
           </div>
         </section>

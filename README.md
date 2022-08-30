@@ -29,3 +29,8 @@ You can contribute to documentation by following instructions described in [CONT
 ## Licence
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Tooling
+
+* [Cloudflare](https://cloudflare.com) - Continuous deployment and hosting of this documentation
+* [Docusaurus](https://docusaurus.io/) - Used to build this docs website

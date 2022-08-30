@@ -32,7 +32,7 @@
   }
 }
 
-@media (max-width: 966px) {
+@media (max-width: var(--infimaBP)) {
   .banner {
     flex-flow: column wrap;
   }
