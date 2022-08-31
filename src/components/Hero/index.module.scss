@@ -44,6 +44,9 @@
 
 @media screen and (max-width: $xSmall) {
   .mainSloganLinks {
+    flex-direction: column;
+    align-items: center;
+
     a {
       margin-bottom: 15px;
     }
