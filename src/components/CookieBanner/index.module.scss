@@ -1,3 +1,5 @@
+@import "src/css/variables";
+
 .banner {
   position: fixed;
   width: 100%;
@@ -32,7 +34,7 @@
   }
 }
 
-@media (max-width: var(--infimaBP)) {
+@media (max-width: $infimaBP) {
   .banner {
     flex-flow: column wrap;
   }

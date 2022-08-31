@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -24,10 +23,6 @@ export default function Home(): JSX.Element {
             help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for
             standard practices by running checks on the Kubernetes resources.
           </p>
-          <div className={styles.mainSloganLinks}>
-            <Link to="/docs/installation" title="Installation guide" className="button"><i className="fas fa-rocket" /> Try Now!</Link>
-            <a href="https://github.com/kubeshop/botkube" title="GitHub repository" className="button"><i className="fab fa-github"/> View Source</a>
-          </div>
         </section>
         <section className={styles.whatCanDo}>
           <h2>What can BotKube do?</h2>

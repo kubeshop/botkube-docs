@@ -6,9 +6,6 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  //Breakpoints
-  --infimaBP: 966px;
-
   //Fonts
   --ifm-h2-font-size: 2rem;
 
@@ -46,4 +43,25 @@
   --cookie-background: #1c90f3;
   --cookie-font-color: #fff;
   --cookie-button-border: #fff;
+}
+
+.button.button--primary {
+  border: 1px solid #fff;
+  background-color: #fff;
+  color: #000;
+
+  &:hover {
+    background: #eee;
+  }
+}
+
+.button.button--secondary {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+
+  &:hover {
+    color: #000;
+    background: #fff;
+  }
 }

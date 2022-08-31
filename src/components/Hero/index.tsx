@@ -17,8 +17,8 @@ export const Hero = () => {
           A messaging bot for monitoring and debugging Kubernetes clusters.
         </p>
         <div className={styles.mainSloganLinks}>
-          <Link to="/docs/installation" title="Installation guide" className={clsx('button', styles.mainSloganButton)}><i className="fas fa-rocket" /> Try Now!</Link>
-          <a href="https://github.com/kubeshop/botkube" title="GitHub repository" className={clsx('button', styles.mainSloganButton)}><i className="fab fa-github"/> View Source</a>
+          <Link to={useBaseUrl('/docs/installation')} title="Installation guide" className="button button--lg button--primary"><i className="fas fa-rocket" /> Try Now!</Link>
+          <a href="https://github.com/kubeshop/botkube" title="GitHub repository" className="button button--lg button--secondary"><i className="fab fa-github"/> View Source</a>
         </div>
       </div>
     </header>

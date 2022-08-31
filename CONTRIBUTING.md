@@ -7,7 +7,7 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 ### Prerequisite
 
 - [NodeJS 16](https://nodejs.org/)
-- [NVM](https://github.com/nvm-sh/nvm) (Preferable)
+- (Optional) [NVM](https://github.com/nvm-sh/nvm) for managing multiple Node.js installations
 - [Docusaurus](https://docusaurus.io/)
 - [Magefile](https://magefile.org/)
 
@@ -54,7 +54,8 @@ Follow the instructions to clone this repository and build the docs locally.
     ```bash
     npm run docusaurus docs:version 0.13
     ```
-This should be run only when major or minor version is released. For, patchers we won't change the version<br />
+This should be run only when major or minor version is released. For, patchers we won't change the version
+
 Please read this documentation before doing [versioning](https://docusaurus.io/docs/versioning) to better
 understand the process.
 

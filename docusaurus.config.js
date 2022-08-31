@@ -179,12 +179,6 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
-      algolia: {
-        appId: 'someAppId',
-        apiKey: 'someApiKye',
-        indexName: 'someIndexName',
-        contextualSearch: true,
-      },
     }),
 };
 
