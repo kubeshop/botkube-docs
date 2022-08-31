@@ -1,0 +1,47 @@
+@import "src/css/variables";
+
+.banner {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  bottom: 0;
+  padding: 15px;
+  background: var(--cookie-background);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  span:global(.cookie-message) {
+    width: 100%;
+    text-align: center;
+    color: var(--cookie-font-color);
+  }
+
+  a {
+    color: var(--cookie-font-color);
+  }
+
+  button:global(.button-close) {
+    border: 1px solid var(--cookie-button-border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--cookie-font-color);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--cookie-font-color);
+    }
+  }
+}
+
+@media (max-width: $infimaBP) {
+  .banner {
+    flex-flow: column wrap;
+  }
+
+  .banner button:global(.button-close) {
+    margin-top: 10px;
+    padding: 3px 6px;
+    align-self: center;
+  }
+}

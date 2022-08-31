@@ -20,7 +20,7 @@
 
 ## Overview
 
-This repository contains source code of the BotKube documentation website, accessible under the [botkube.io](https://botkube.io) address. The documentation source files reside under the [**content**](./content) directory.
+This repository contains source code of the BotKube documentation website, accessible under the [botkube.io](https://botkube.io) address. The documentation source files reside under the [**content**](./docs) directory.
 
 ## Contributing
 
@@ -29,3 +29,8 @@ You can contribute to documentation by following instructions described in [CONT
 ## Licence
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Tooling
+
+* [Cloudflare](https://cloudflare.com) - Continuous deployment and hosting of this documentation
+* [Docusaurus](https://docusaurus.io/) - Used to build this docs website

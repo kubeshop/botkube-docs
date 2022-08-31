@@ -1,6 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const path = require('path')
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
@@ -27,19 +28,53 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: 'content',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/kubeshop/botkube-docs/edit/main/',
+          versions: {
+            current: {
+              label: `Unreleased 🚧`,
+            },
+          },
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.scss'),
         },
       }),
     ],
   ],
 
-  plugins: ['docusaurus-plugin-sass'],
+  scripts: [
+    {
+      src:
+        'https://kit.fontawesome.com/00670398ef.js',
+      async: false,
+    },
+  ],
+
+  plugins: [
+    'docusaurus-plugin-sass',
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'community',
+        path: 'community',
+        routeBasePath: 'community',
+        sidebarPath: require.resolve('./sidebarsCommunity.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-ideal-image',
+      {
+        quality: 85,
+        max: 2000,
+        min: 500,
+        steps: 4,
+        disableInDev: false,
+      },
+    ],
+    path.resolve(__dirname, 'src', 'plugins', 'contributors'),
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -58,6 +93,17 @@ const config = {
             label: 'Documentation',
           },
           {
+            type: "doc",
+            docId: "contribute/contribute",
+            docsPluginId: "community",
+            position: "left",
+            label: "Community",
+          },
+          {
+            type: "docsVersionDropdown",
+            position: "right",
+          },
+          {
             href: 'https://github.com/kubeshop/botkube',
             label: 'GitHub',
             position: 'right',
@@ -66,7 +112,64 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [],
+        links: [
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'Contribute',
+                to: '/community/contribute',
+              },
+              {
+                label: 'GitHub',
+                to: 'https://github.com/kubeshop/botkube',
+              },
+              {
+                label: 'Community Slack',
+                to: 'https://botkube-slack.herokuapp.com/',
+              },
+              {
+                label: 'Support',
+                to: '/support',
+              },
+            ],
+          },
+          {
+            title: 'Legal',
+            items: [
+              {
+                label: 'License',
+                to: '/license',
+              },
+              {
+                label: 'Privacy & legal',
+                to: '/privacy',
+              }
+            ]
+          },
+          {
+            title: 'Learn',
+            items: [
+              {
+                label: "Installation",
+                to: "/docs/installation",
+              },
+              {
+                label: "Examples",
+                to: "/docs/examples",
+              },
+            ],
+          },
+          {
+            title: 'Social',
+            items: [
+              {
+                label: 'Twitter',
+                to: 'https://twitter.com/thekubeshop',
+              },
+            ],
+          },
+        ],
         copyright: `Copyright © ${new Date().getFullYear()} Kubeshop, Inc. Built with Docusaurus.`,
       },
       prism: {
@@ -75,7 +178,7 @@ const config = {
       },
       colorMode: {
         respectPrefersColorScheme: true,
-      }
+      },
     }),
 };
 

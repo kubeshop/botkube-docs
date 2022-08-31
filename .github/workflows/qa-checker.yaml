@@ -1,0 +1,30 @@
+name: Code quality checker
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  ts-lint-check:
+    name: Check TS & ESLint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.16
+      - run: npm install
+      - name: Check typescript
+        run: npm run tsc
+      - name: Check eslint
+        run: npm run lint
+      - name: Build
+        run: npm run build
