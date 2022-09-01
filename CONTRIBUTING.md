@@ -46,19 +46,6 @@ Follow the instructions to clone this repository and build the docs locally.
   ```
   Site can be viewed at [http://localhost:3000](http://localhost:3000).
 
-## Add new version of the docs
-
-1. First, make sure the current docs version (the ./docs directory) is ready to be frozen
-2. Provide the new version and run the script. For example:
-
-    ```bash
-    npm run docusaurus docs:version 0.13
-    ```
-This should be run only when major or minor version is released. For, patchers we won't change the version
-
-Please read this documentation before doing [versioning](https://docusaurus.io/docs/versioning) to better
-understand the process.
-
 ## Making A Change
 
 Before making any significant changes, please [open an issue](https://github.com/kubeshop/botkube-docs/issues). Discussing your proposed changes ahead of time will make the contribution process smooth for everyone.

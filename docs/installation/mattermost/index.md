@@ -26,7 +26,7 @@ Export the bot name as an environment variable:
 export MATTERMOST_BOT_NAME="{bot_name}"
 ```
 
-![mm_botkube_user](/assets/mm_botkube_user.png)
+![mm_botkube_user](assets/mm_botkube_user.png)
 
 ### 3. Manage Roles for BotKube user
 Login as System Admin, in the Menu, proceed to **System console > Users**. For BotKube user, Manage Roles and allow tokens and post_all access.
@@ -108,7 +108,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
   botkube/botkube
   ```
 
-  where,<br>
+  where,<br/>
   - **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running<br/>
   - **MATTERMOST_CERT** _(optional)_ is the SSL certificate file for HTTPS connection. Place it in Helm directory and specify the path<br/>
   - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for BotKube user<br/>

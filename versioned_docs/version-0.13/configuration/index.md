@@ -71,7 +71,7 @@ BotKube allows you to split individual settings into multiple configuration file
   ```yaml
   # a.yaml - first file
   settings:
-    clustername: dev-cluster
+    clusterName: dev-cluster
     configWatcher: true
     kubectl:
       enabled: false
@@ -86,7 +86,7 @@ BotKube allows you to split individual settings into multiple configuration file
   ```yaml
   # result
   settings:
-    clustername: dev-cluster
+    clusterName: dev-cluster
     configWatcher: true
     kubectl:
       enabled: true

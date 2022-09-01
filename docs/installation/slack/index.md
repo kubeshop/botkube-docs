@@ -52,7 +52,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   botkube/botkube
   ```
 
-  where,<br>
+  where,<br/>
   - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added<br/>
   - **SLACK_API_BOT_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br/>
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>

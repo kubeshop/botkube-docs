@@ -33,7 +33,7 @@ sidebar_position: 5
   botkube/botkube
   ```
 
-  where,<br>
+  where,<br/>
   - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br/>
   - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br/>
   - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br/>

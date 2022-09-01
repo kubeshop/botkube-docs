@@ -20,9 +20,9 @@ This document describes how to prepare and publish a new Botkube release.
 
 1. Clone and navigate to the root of the `botkube` repository.
 
-  {{% notice warning %}}
+  :::warning
   Ensure that the `origin` remote points to `git@github.com:kubeshop/botkube.git` and not your fork.
-  {{% /notice%}}
+  :::
 
   ```bash
   git clone git@github.com:kubeshop/botkube.git
@@ -88,25 +88,31 @@ This document describes how to prepare and publish a new Botkube release.
 
 ### The `botkube-docs` repository
 
-1. Clone and navigate to the root of the `botkube` repository.
-1. Checkout a new branch.
-1. Run the release script:
+:::note
+This should be run only when major or minor version is released. For, patchers we won't change the version
+
+Please read this documentation before doing [versioning](https://docusaurus.io/docs/versioning) to better
+understand the process.
+:::
+
+1. Clone and navigate to the root of the `botkube-docs` repository.
+   ```bash
+   git clone git@github.com:kubeshop/botkube-docs.git
+   cd botkube-docs
+   ```
+2. Checkout a new branch.
+3. Make sure the current docs version (the ./docs directory) is ready to be frozen
+4. Run the release script:
+
+    For example, for 0.13 release, run:
 
     ```bash
-    ./hack/release.sh {previous_version}
+    npm run docusaurus docs:version 0.13
     ```
-
-    For example, for 0.12.4 release, run:
-
-    ```bash
-    ./hack/release.sh v0.12.4
-    ```
-
-    You can customize the source repository by setting `GITHUB_ORG`, `GITHUB_REPO` and `REPO_BRANCH` environment variables.
 
     This script:
-    - Updates Docker image versions in the documentation,
-    - Updates changelog,
-    - Updates Helm chart options,
+    - Copies current documentation `./docs` to `./versioned_docs`,
+    - Updates `./versions.json` file,
+    - Creates new sidebar in `./versioned_sidebars`,
 
-1. Create a pull request to the `main` branch of the upstream repository with the updated documentation.
+5. Create a pull request to the `main` branch of the upstream repository with the updated documentation.

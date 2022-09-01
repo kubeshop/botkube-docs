@@ -10,7 +10,11 @@ Follow the steps below to install BotKube Slack app to your Slack workspace.
 
 ### Install BotKube Slack app to your Slack workspace
 
-Click the **Add to Slack** button provided to install BotKube Slack application to your workspace. Once you have authorized the application, you will be provided a BOT Access token. Kindly note down that token as it will be required while deploying BotKube backend to your Kubernetes cluster.
+Click the **Add to Slack** button provided to install BotKube Slack application to your workspace. Once you have authorized the application, you will be provided a Bot Access token. Copy the token and export it as an environment variable:
+
+```bash
+export SLACK_API_BOT_TOKEN="{token}"
+```
 
 <a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=551945394612.515475697794">
   <img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />
@@ -24,34 +28,35 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
 ## Install BotKube Backend in Kubernetes cluster
 
-### Using helm
-
-- We will be using [helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- We use [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
 
   ```bash
-  $ helm repo add botkube https://charts.botkube.io
-  $ helm repo update
+  helm repo add botkube https://charts.botkube.io
+  helm repo update
   ```
 
 - Deploy BotKube backend using **helm install** in your cluster:
 
   ```bash
-  $ helm install --version v0.12.4 botkube --namespace botkube --create-namespace \
-  --set communications.slack.enabled=true \
-  --set communications.slack.channel=<SLACK_CHANNEL_NAME> \
-  --set communications.slack.token=<SLACK_API_TOKEN_FOR_THE_BOT> \
-  --set config.settings.clustername=<CLUSTER_NAME> \
-  --set config.settings.kubectl.enabled=<ALLOW_KUBECTL> \
-  --set image.tag=v0.12.4 \
+  export CLUSTER_NAME={cluster_name}
+  export ALLOW_KUBECTL={allow_kubectl}
+  export SLACK_CHANNEL_NAME={channel_name}
+  
+  helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
+  --set communications.default-group.slack.enabled=true \
+  --set communications.default-group.slack.channels.default.name=${SLACK_CHANNEL_NAME} \
+  --set communications.default-group.slack.token=${SLACK_API_BOT_TOKEN} \
+  --set settings.clusterName=${CLUSTER_NAME} \
+  --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
   botkube/botkube
   ```
 
   where,<br/>
-    - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added<br/>
-    - **SLACK_API_TOKEN_FOR_THE_BOT** is the Token you received after installing BotKube app to your Slack workspace<br/>
-    - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
-    - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br/>
+  - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added<br/>
+  - **SLACK_API_BOT_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br/>
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br/>
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
@@ -64,9 +69,9 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
     1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
     2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
-    ```bash
-    helm install --version v0.12.4 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-    ```
+      ```
+      helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
 
@@ -77,10 +82,8 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
 ## Remove BotKube from Kubernetes cluster
 
-### Using helm
-
-If you have installed BotKube backend using **helm**, execute following command to completely remove BotKube and related resources from your cluster.
+Execute following command to completely remove BotKube and related resources from your cluster.
 
 ```bash
-$ helm uninstall botkube
+helm uninstall botkube
 ```

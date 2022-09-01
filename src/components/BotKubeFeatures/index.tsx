@@ -87,7 +87,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         It is very easy to write your own filters and registering them to FilterEngine. Follow
-        <Link to="/docs/filters">this</Link> guide to know more.
+        <Link to="/docs/filters"> this</Link> guide to know more.
       </>
     ),
   },
