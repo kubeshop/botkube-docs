@@ -1,5 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+const isDev = process.env.NODE_ENV === 'development';
 
 const path = require('path')
 const lightCodeTheme = require('prism-react-renderer/themes/github');
@@ -39,6 +40,9 @@ const config = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.scss'),
+        },
+        gtag: {
+          trackingID: isDev ? 'gtm-dev' : process.env.GOOGLE_TAG_MANAGER_TRACKING_ID,
         },
       }),
     ],
