@@ -91,10 +91,9 @@ cd botkube
 ### The `botkube-docs` repository
 
 :::note
-This should be run only when major or minor version is released. For, patchers we won't change the version
+This should be run only when major or minor version is released. Don't create a new docs version for patch releases.
 
-Please read this documentation before doing [versioning](https://docusaurus.io/docs/versioning) to better
-understand the process.
+To better understand the process, read the [Docusaurus versioning](https://docusaurus.io/docs/versioning) documentation.
 :::
 
 1. Clone and navigate to the root of the `botkube-docs` repository.
