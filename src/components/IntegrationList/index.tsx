@@ -1,19 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './index.module.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./index.module.scss";
 
 type Integration = {
-  name: string
-  image: string
-  link: string
-}
+  name: string;
+  image: string;
+  link: string;
+};
 
 type Props = {
-  integrations?: Integration[]
-}
+  integrations?: Integration[];
+};
 
 export const IntegrationList = (props: Props) => {
-  const { integrations = [] } = props
+  const { integrations = [] } = props;
 
   return (
     <div className={styles.integrations}>
@@ -26,4 +26,4 @@ export const IntegrationList = (props: Props) => {
       ))}
     </div>
   );
-}
+};

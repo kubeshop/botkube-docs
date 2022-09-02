@@ -15,7 +15,8 @@
     "tsc": "tsc",
     "lint": "eslint . --ext .json,.js,.jsx,.ts,.tsx",
     "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "qa": "npm run tsc && npm run lint && npm run prettier:check && npm run build"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.1",

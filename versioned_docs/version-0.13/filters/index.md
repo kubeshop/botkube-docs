@@ -13,12 +13,14 @@ We have already defined a filter to add suggestions in the notifications if cont
 **Let's see, how we can write a filter like this.**
 
 ## A. Writing a filter
+
 Prerequisites:
 
 - As of now, you can write filters only using Go language. So you need to be familiar with it.
 - Understanding of Kubernetes Objects needed (https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 
 ### 1. Create a new .go file
+
 Create a new file (e.g image_tag_checker.go) in **botkube/pkg/filterengine/filters/** directory
 
 Set package name as "filters" and import required packages:
@@ -80,6 +82,7 @@ func (f *ImageTagChecker) Describe() string {
 ```
 
 ### 3. Add your logic in the Run() function
+
 Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/kubeshop/botkube/blob/main/pkg/events/events.go).
 
 ```go

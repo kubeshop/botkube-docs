@@ -9,8 +9,6 @@ You can change notification format to - **long** or **short** through settings b
 The default notification type is **short**
 :::
 
-
-
 ## Sample Notifications
 
 ### Resource created

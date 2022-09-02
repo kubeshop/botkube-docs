@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import clsx from 'clsx';
-import styles from './index.module.scss'
+import React from "react";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
+import styles from "./index.module.scss";
 
 type FeatureItem = {
   title: string;
@@ -11,8 +11,8 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Privacy',
-    iconClass: 'fas fa-user-secret',
+    title: "Privacy",
+    iconClass: "fas fa-user-secret",
     description: (
       <>
         The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data
@@ -21,18 +21,19 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Execute kubectl commands',
-    iconClass: 'fas fa-terminal',
+    title: "Execute kubectl commands",
+    iconClass: "fas fa-terminal",
     description: (
       <>
         Same old Kubectl syntax - just a new interface. You do not have to learn anything new! Plus you can configure
-        which Kubectl commands BotKube can executes. See <Link to="/docs/configuration">configuration</Link> for details.
+        which Kubectl commands BotKube can executes. See <Link to="/docs/configuration">configuration</Link> for
+        details.
       </>
     ),
   },
   {
-    title: 'Support for multiple interfaces',
-    iconClass: 'fas fa-tasks',
+    title: "Support for multiple interfaces",
+    iconClass: "fas fa-tasks",
     description: (
       <>
         Like Slack, BotKube can also be integrated with Mattermost, Microsoft Teams, ElasticSearch and outgoing webhook.
@@ -41,19 +42,19 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Supports Custom Resources',
-    iconClass: 'fas fa-puzzle-piece',
+    title: "Supports Custom Resources",
+    iconClass: "fas fa-puzzle-piece",
     description: (
       <>
         BotKube can monitor literally any Kubernetes resource including Custom Resource. This enables you to configure
-        alerts on some interesting events like - certificate issue/expiry if you are using cert-manager or backup failure
-        in case you are using backup tools like Velero or Kanister.
+        alerts on some interesting events like - certificate issue/expiry if you are using cert-manager or backup
+        failure in case you are using backup tools like Velero or Kanister.
       </>
     ),
   },
   {
-    title: 'Debug Anywhere, Anytime',
-    iconClass: 'fas fa-cogs',
+    title: "Debug Anywhere, Anytime",
+    iconClass: "fas fa-cogs",
     description: (
       <>
         With @BotKube you can monitor and debug Kubernetes deployments from anywhere. Even while you are camping without
@@ -62,8 +63,8 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Easy to configure',
-    iconClass: 'fas fa-cogs',
+    title: "Easy to configure",
+    iconClass: "fas fa-cogs",
     description: (
       <>
         Get notifications about things that you really care for. You can configure events or objects or namespaces that
@@ -72,8 +73,8 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Deploy on any Kubernetes cluster',
-    iconClass: 'fas fa-cloud',
+    title: "Deploy on any Kubernetes cluster",
+    iconClass: "fas fa-cloud",
     description: (
       <>
         You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or
@@ -82,8 +83,8 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Add custom filters',
-    iconClass: 'fas fa-plug',
+    title: "Add custom filters",
+    iconClass: "fas fa-plug",
     description: (
       <>
         It is very easy to write your own filters and registering them to FilterEngine. Follow
@@ -92,30 +93,24 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Security',
-    iconClass: 'fas fa-shield-alt',
-    description: (
-      <>
-        By default BotKube uses a READONLY service account, you can customize this to your needs.
-      </>
-    ),
+    title: "Security",
+    iconClass: "fas fa-shield-alt",
+    description: <>By default BotKube uses a READONLY service account, you can customize this to your needs.</>,
   },
   {
-    title: 'Open source',
-    iconClass: 'fab fa-github',
-    description: (
-      <>
-        BotKube backend is open source and we welcome your requirements and contributions.
-      </>
-    ),
+    title: "Open source",
+    iconClass: "fab fa-github",
+    description: <>BotKube backend is open source and we welcome your requirements and contributions.</>,
   },
 ];
 
-function Feature({title, iconClass, description}: FeatureItem) {
+function Feature({ title, iconClass, description }: FeatureItem) {
   return (
     <div className="col col--6">
-      <div className={clsx('text--center', styles.feature)}>
-        <h3><i className={iconClass} role="img" /> {title}</h3>
+      <div className={clsx("text--center", styles.feature)}>
+        <h3>
+          <i className={iconClass} role="img" /> {title}
+        </h3>
         <p>{description}</p>
       </div>
     </div>
