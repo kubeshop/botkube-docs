@@ -24,7 +24,7 @@ jobs:
       - run: npm install
       - name: Check typescript
         run: npm run tsc
-      - name: Check eslint & prettier
+      - name: Lint and format code
         run: npm run lint
       - name: Build
         run: npm run build
