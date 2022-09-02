@@ -1,37 +1,36 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === "development";
 
-const path = require('path')
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require("path");
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'BotKube',
-  tagline: 'Messaging bot for monitoring and debugging Kubernetes clusters',
-  url: 'https://botkube.io/',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'images/favicon.png',
-  organizationName: 'kubeshop',
-  projectName: 'botkube',
+  title: "BotKube",
+  tagline: "Messaging bot for monitoring and debugging Kubernetes clusters",
+  url: "https://botkube.io/",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "images/favicon.png",
+  organizationName: "kubeshop",
+  projectName: "botkube",
 
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/kubeshop/botkube-docs/edit/main/',
+          sidebarPath: require.resolve("./sidebars.js"),
+          editUrl: "https://github.com/kubeshop/botkube-docs/edit/main/",
           versions: {
             current: {
               label: `Unreleased 🚧`,
@@ -39,10 +38,10 @@ const config = {
           },
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.scss'),
+          customCss: require.resolve("./src/css/custom.scss"),
         },
         gtag: {
-          trackingID: isDev ? 'gtm-dev' : process.env.GOOGLE_TAG_MANAGER_TRACKING_ID,
+          trackingID: isDev ? "gtm-dev" : process.env.GOOGLE_TAG_MANAGER_TRACKING_ID,
         },
       }),
     ],
@@ -50,25 +49,24 @@ const config = {
 
   scripts: [
     {
-      src:
-        'https://kit.fontawesome.com/00670398ef.js',
+      src: "https://kit.fontawesome.com/00670398ef.js",
       async: false,
     },
   ],
 
   plugins: [
-    'docusaurus-plugin-sass',
+    "docusaurus-plugin-sass",
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'community',
-        path: 'community',
-        routeBasePath: 'community',
-        sidebarPath: require.resolve('./sidebarsCommunity.js'),
+        id: "community",
+        path: "community",
+        routeBasePath: "community",
+        sidebarPath: require.resolve("./sidebarsCommunity.js"),
       },
     ],
     [
-      '@docusaurus/plugin-ideal-image',
+      "@docusaurus/plugin-ideal-image",
       {
         quality: 85,
         max: 2000,
@@ -77,24 +75,24 @@ const config = {
         disableInDev: false,
       },
     ],
-    path.resolve(__dirname, 'src', 'plugins', 'contributors'),
+    path.resolve(__dirname, "src", "plugins", "contributors"),
   ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'BotKube',
+        title: "BotKube",
         logo: {
-          alt: 'BotKube Logo',
-          src: 'images/botkube.png',
+          alt: "BotKube Logo",
+          src: "images/botkube.png",
         },
         items: [
           {
-            type: 'doc',
-            docId: 'installation/installation',
-            position: 'left',
-            label: 'Documentation',
+            type: "doc",
+            docId: "installation/installation",
+            position: "left",
+            label: "Documentation",
           },
           {
             type: "doc",
@@ -108,51 +106,51 @@ const config = {
             position: "right",
           },
           {
-            href: 'https://github.com/kubeshop/botkube',
-            label: 'GitHub',
-            position: 'right',
+            href: "https://github.com/kubeshop/botkube",
+            label: "GitHub",
+            position: "right",
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Community',
+            title: "Community",
             items: [
               {
-                label: 'Contribute',
-                to: '/community/contribute',
+                label: "Contribute",
+                to: "/community/contribute",
               },
               {
-                label: 'GitHub',
-                to: 'https://github.com/kubeshop/botkube',
+                label: "GitHub",
+                to: "https://github.com/kubeshop/botkube",
               },
               {
-                label: 'Community Slack',
-                to: 'https://botkube-slack.herokuapp.com/',
+                label: "Community Slack",
+                to: "https://botkube-slack.herokuapp.com/",
               },
               {
-                label: 'Support',
-                to: '/support',
+                label: "Support",
+                to: "/support",
               },
             ],
           },
           {
-            title: 'Legal',
+            title: "Legal",
             items: [
               {
-                label: 'License',
-                to: '/license',
+                label: "License",
+                to: "/license",
               },
               {
-                label: 'Privacy & legal',
-                to: '/privacy',
-              }
-            ]
+                label: "Privacy & Legal",
+                to: "/privacy",
+              },
+            ],
           },
           {
-            title: 'Learn',
+            title: "Learn",
             items: [
               {
                 label: "Installation",
@@ -165,11 +163,11 @@ const config = {
             ],
           },
           {
-            title: 'Social',
+            title: "Social",
             items: [
               {
-                label: 'Twitter',
-                to: 'https://twitter.com/thekubeshop',
+                label: "Twitter",
+                to: "https://twitter.com/thekubeshop",
               },
             ],
           },
