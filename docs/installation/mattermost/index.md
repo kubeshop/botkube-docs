@@ -9,11 +9,13 @@ sidebar_position: 2
 Follow the steps below to install BotKube in your Mattermost Team (v5.14.0).
 
 ### 1. Enable Personal Access Token
+
 Login with System Admin account, and in the Menu proceed to **System console > Integrations > Integration Management** and enable **Personal Access Token**.
 
 ![mm_token_access](assets/mm_token_access.png)
 
 ### 2. Create BotKube user
+
 To create a BotKube user, if not already created, proceed to the menu and Get a team invite link. Logout from the admin account and paste the link in the address bar and create a user with the username **BotKube**.
 
 :::note
@@ -26,14 +28,16 @@ Export the bot name as an environment variable:
 export MATTERMOST_BOT_NAME="{bot_name}"
 ```
 
-![mm_botkube_user](/assets/mm_botkube_user.png)
+![mm_botkube_user](assets/mm_botkube_user.png)
 
 ### 3. Manage Roles for BotKube user
+
 Login as System Admin, in the Menu, proceed to **System console > Users**. For BotKube user, Manage Roles and allow tokens and post_all access.
 
 ![mm_botkube_roles](assets/mm_botkube_roles.png)
 
 ### 4. Create a Token for BotKube user
+
 Login as BotKube user, in the Menu, proceed to **Account Settings > Security > Personal Access Token > Create** and copy the token.
 
 ![mm_botkube_token](assets/mm_botkube_token.png)
@@ -45,8 +49,8 @@ export MATTERMOST_TOKEN="{token}"
 ```
 
 ### 5. Add BotKube to a channel
-Add BotKube user created to the channel you want to receive notifications in.
 
+Add BotKube user created to the channel you want to receive notifications in.
 
 Export the channel name as an environment variable:
 
@@ -61,7 +65,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
 **2.** Click **Add Slash Command** and add the following details for the command and click **Save**.
 
 | Field                | Value                              |
-|----------------------|------------------------------------|
+| -------------------- | ---------------------------------- |
 | Title                | BotKube                            |
 | Description          | Show BotKube help                  |
 | Command Trigger Word | botkubehelp                        |
@@ -74,7 +78,6 @@ export MATTERMOST_CHANNEL="{channel_name}"
 **3.** Verify executing **/botkubehelp** in a channel.
 
 ![mm_botkube_help](assets/mm_botkube_help.png)
-
 
 ## Install BotKube in Kubernetes cluster
 
@@ -94,7 +97,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
   export MATTERMOST_TEAM={mattermost_team_name}
   export CLUSTER_NAME={cluster_name}
   export ALLOW_KUBECTL={allow_kubectl}
-  
+
   helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.mattermost.enabled=true \
   --set communications.default-group.mattermost.url=${MATTERMOST_SERVER_URL} \
@@ -108,7 +111,8 @@ export MATTERMOST_CHANNEL="{channel_name}"
   botkube/botkube
   ```
 
-  where,<br>
+  where,<br/>
+
   - **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running<br/>
   - **MATTERMOST_CERT** _(optional)_ is the SSL certificate file for HTTPS connection. Place it in Helm directory and specify the path<br/>
   - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for BotKube user<br/>
@@ -131,9 +135,9 @@ export MATTERMOST_CHANNEL="{channel_name}"
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
-      ```
-      helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-      ```
+     ```
+     helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
 

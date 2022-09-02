@@ -21,7 +21,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   ```bash
   export CLUSTER_NAME={cluster_name}
   export WEBHOOK_URL={url}
-  
+
   helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.webhook.enabled=true \
   --set communications.default-group.webhook.url=${WEBHOOK_URL} \
@@ -30,8 +30,9 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   ```
 
   where,<br/>
-    - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br/>
-    - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
+
+  - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br/>
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
@@ -42,9 +43,9 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
-      ```
-      helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-      ```
+     ```
+     helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
 

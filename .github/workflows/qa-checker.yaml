@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ts-lint-check:
+  qa-checker:
     name: Check TS & ESLint
     runs-on: ubuntu-latest
     permissions:
@@ -24,7 +24,7 @@ jobs:
       - run: npm install
       - name: Check typescript
         run: npm run tsc
-      - name: Check eslint
+      - name: Lint and format code
         run: npm run lint
       - name: Build
         run: npm run build

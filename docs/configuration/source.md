@@ -5,6 +5,7 @@ sidebar_position: 3
 ---
 
 The source settings contains:
+
 - Resource list you want to watch,
 - Namespaces you want to filter,
 - The type of events you want to get notifications about,
@@ -25,7 +26,7 @@ Let's say you have a resource defined in more than one source but wired with dif
 
 ```yaml
 sources:
-  'k8s-events':
+  "k8s-events":
     kubernetes:
       resources:
         - name: v1/configmaps
@@ -36,7 +37,7 @@ sources:
             - create
             - update
             - delete
-  'k8s-updates':
+  "k8s-updates":
     kubernetes:
       resources:
         - name: v1/configmaps
@@ -51,11 +52,11 @@ The bound channel `monitor-config` (below) will notify on the merged events and 
 
 ```yaml
 communications:
-  'default-group':
+  "default-group":
     slack:
       # ... trimmed ...
       channels:
-        'monitor-config':
+        "monitor-config":
           name: "monitor-config"
           # ... trimmed ...
           bindings:
@@ -63,16 +64,16 @@ communications:
             sources:
               - k8s-events
               - k8s-updates
-...
 ```
 
 Meaning, channel `monitor-config` will receive notifications for `v1/configmaps` events matching,
+
 - the `botk.*|default` and `botkube` namespaces.
 - the `create`, `delete` and `update` event types.
 
 ## Recommendations
 
-For every source, you can configure recommendations related to Kubernetes resources. 
+For every source, you can configure recommendations related to Kubernetes resources.
 
 ### Merging Strategy
 
@@ -84,7 +85,7 @@ Consider the following example source configuration:
 
 ```yaml
 sources:
-  'first-source':
+  "first-source":
     kubernetes:
       # ... trimmed ...
       recommendations:
@@ -93,7 +94,7 @@ sources:
           noLatestImageTag: false
         ingress:
           backendServiceValid: false
-  'second-source':
+  "second-source":
     kubernetes:
       # ... trimmed ...
       recommendations:
@@ -102,7 +103,7 @@ sources:
         ingress:
           backendServiceValid: false
           tlsSecretValid: true
-  'third-source':
+  "third-source":
     kubernetes:
       # ... trimmed ...
       recommendations:
@@ -116,31 +117,31 @@ And the following source bindings:
 
 ```yaml
 communications:
-    'default-group':
-        slack:
+  "default-group":
+    slack:
+      # ... trimmed ...
+      channels:
+        "random":
+          name: "random"
+          # ... trimmed ...
+          bindings:
             # ... trimmed ...
-            channels:
-                'random':
-                    name: "random"
-                    # ... trimmed ...
-                    bindings:
-                        # ... trimmed ...
-                        sources:
-                            - first-source
-                            - second-source
-                            - third-source
+            sources:
+              - first-source
+              - second-source
+              - third-source
 ```
 
 In a result, for the `random` channel, the merged recommendation configuration is as follows:
 
 ```yaml
 recommendations:
-    pod:
-        noLatestImageTag: false # set in `first-source`, overriden in `third-source` with the same value
-        labelsSet: true # set to `true` in `first-source`, other sources didn't specify its value
-    ingress:
-        backendServiceValid: true # set in `first-source` and `second-source` to `false`, overriden in `third-source` to `true`
-        tlsSecretValid: true # set in `second-source`
+  pod:
+    noLatestImageTag: false # set in `first-source`, overriden in `third-source` with the same value
+    labelsSet: true # set to `true` in `first-source`, other sources didn't specify its value
+  ingress:
+    backendServiceValid: true # set in `first-source` and `second-source` to `false`, overriden in `third-source` to `true`
+    tlsSecretValid: true # set in `second-source`
 ```
 
 ## Syntax
@@ -152,8 +153,7 @@ recommendations:
 #
 # Format: sources.<alias>
 sources:
-  'k8s-events':
-
+  "k8s-events":
     # Describes Kubernetes source configuration.
     kubernetes:
       # Describes configuration for various recommendation insights.
@@ -170,7 +170,7 @@ sources:
           backendServiceValid: true
           # If true, notifies about Ingress resources with invalid TLS secret reference.
           tlsSecretValid: true
-      
+
       # Describes namespaces configuration for every Kubernetes resources you want to watch or exclude.
       # These namespaces are applied to every resource specified in the resources list.
       # However, every specified resource can override this by using its own namespaces object.
@@ -187,14 +187,15 @@ sources:
 
       # Describes the Kubernetes resources you want to watch.
       resources:
-        - name: v1/pods             # Name of the resource. Resource name must be in group/version/resource (G/V/R) format
-                                    # resource name should be plural (e.g apps/v1/deployments, v1/pods)
+        - name:
+            v1/pods # Name of the resource. Resource name must be in group/version/resource (G/V/R) format
+            # resource name should be plural (e.g apps/v1/deployments, v1/pods)
 
           #  namespaces:             # Overrides 'source'.kubernetes.namespaces
           #    include:
           #      - ".*"
           #    exclude: []
-          events:                   # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
+          events: # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
             - create
             - delete
             - error
@@ -297,17 +298,17 @@ sources:
             - create
             - delete
             - error
-       ## Custom resource example
-       # - name: velero.io/v1/backups
-       #   events:
-       #     - create
-       #     - update
-       #     - delete
-       #     - error
-       #   updateSetting:
-       #     includeDiff: true
-       #     fields:
-       #       - status.phase
+        ## Custom resource example
+        # - name: velero.io/v1/backups
+        #   events:
+        #     - create
+        #     - update
+        #     - delete
+        #     - error
+        #   updateSetting:
+        #     includeDiff: true
+        #     fields:
+        #       - status.phase
 ```
 
 The default configuration for Helm chart can be found in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml).

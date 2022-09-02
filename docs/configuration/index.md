@@ -22,7 +22,6 @@ The configuration settings are read from two sources:
 
 - the exported [environment variables](#environment-variables) that overrides the configuration specified in the files.
 
-
 ## Updating the configuration at runtime
 
 You can update the configuration and use `helm upgrade` to update configuration values for the BotKube.
@@ -56,7 +55,7 @@ For example, such configuration property from YAML:
 ```yaml
 settings:
   kubectl:
-    defaultNamespace: 'NAMESPACE'
+    defaultNamespace: "NAMESPACE"
 ```
 
 is mapped to the `BOTKUBE_SETTINGS_KUBECTL_DEFAULT__NAMESPACE` environment variable.
@@ -66,8 +65,10 @@ This is a useful feature that allows you to store the overall configuration in a
 ## Merging strategy
 
 BotKube allows you to split individual settings into multiple configuration files. The following rules apply:
+
 - The priority will be given to the last (right-most) file specified.
 - Objects are merged together and primitive fields are overridden. For example:
+
   ```yaml
   # a.yaml - first file
   settings:
@@ -76,6 +77,7 @@ BotKube allows you to split individual settings into multiple configuration file
     kubectl:
       enabled: false
   ```
+
   ```yaml
   # b.yaml - second file
   settings:
@@ -100,8 +102,10 @@ BotKube allows you to split individual settings into multiple configuration file
     kubectl:
       enabled: true
       commands:
-        verbs: ["api-resources", "api-versions", "cluster-info", "describe", "diff", "explain", "get", "logs", "top", "auth"]
+        verbs:
+          ["api-resources", "api-versions", "cluster-info", "describe", "diff", "explain", "get", "logs", "top", "auth"]
   ```
+
   ```yaml
   # b.yaml
   settings:

@@ -8,11 +8,11 @@ The executor property allows you to define multiple executor configurations that
 
 ```yaml
 executors:
-  'kubectl-global':      # This is an executor configuration name, which is referred in communication bindings.
+  "kubectl-global": # This is an executor configuration name, which is referred in communication bindings.
     kubectl:
       # ... trimmed ...
 
-  'kubectl-team-a-only':  # This is an executor configuration name, which is referred in communication bindings
+  "kubectl-team-a-only": # This is an executor configuration name, which is referred in communication bindings
     kubectl:
       # ... trimmed ...
 ```
@@ -21,14 +21,14 @@ This can be later used by the communication platforms:
 
 ```yaml
 communications:
-  'default-group':
+  "default-group":
     slack:
       channels:
-        'default':
+        "default":
           bindings:
             executors: # The order is important for merging strategy.
-              - kubectl-global       # The executor configuration name
-              - kubectl-team-a-only  # The executor configuration name
+              - kubectl-global # The executor configuration name
+              - kubectl-team-a-only # The executor configuration name
           # ... trimmed ...
 ```
 
@@ -42,7 +42,7 @@ Multiple executor bindings are merged. See the [**merging strategy**](#merging-s
 #
 # Format: executors.<alias>
 executors:
-  'kubectl-read-only':
+  "kubectl-read-only":
     # Kubectl executor configuration.
     kubectl:
       namespaces:
@@ -60,9 +60,11 @@ executors:
       # List of allowed `kubectl` commands.
       commands:
         # Configures which `kubectl` methods are allowed.
-        verbs: ["api-resources", "api-versions", "cluster-info", "describe", "diff", "explain", "get", "logs", "top", "auth"]
+        verbs:
+          ["api-resources", "api-versions", "cluster-info", "describe", "diff", "explain", "get", "logs", "top", "auth"]
         # Configures which K8s resource are allowed.
-        resources: ["deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps"]
+        resources:
+          ["deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps"]
       # Configures the default Namespace for executing BotKube `kubectl` commands. If not set, uses 'default'.
       defaultNamespace: default
       # If true, enables commands execution from configured channel only.
@@ -80,6 +82,7 @@ When executing a `kubectl` command, BotKube takes into account only bindings for
 - `@BotKube get po` - first, we resolve the execution Namespace. For that, we collect all enabled `kubectl` executor bindings and check the `defaultNamespace` property. If property is not define, we use the `default` Namespace. With resolved execution Namespace, we run the logic define in the first step.
 
 For all collected `kubectl` executors, we merge properties with the following strategy:
+
 - `commands.verbs` - append
 - `commands.resources` - append
 - `commands.defaultNamespace` - override
@@ -93,10 +96,10 @@ Consider such configuration:
 
 ```yaml
 communications:
-  'default-group':
+  "default-group":
     slack:
       channels:
-        'default':
+        "default":
           name: "random"
           bindings:
             executors:
@@ -106,43 +109,44 @@ communications:
               - kubectl-exec
 
 executors:
-  'kubectl-pod':
+  "kubectl-pod":
     kubectl:
       enabled: true
       namespaces:
-        include: [ "botkube", "default" ]
+        include: ["botkube", "default"]
       commands:
-        verbs: [ "get" ]
-        resources: [ "pods" ]
+        verbs: ["get"]
+        resources: ["pods"]
       restrictAccess: false
-  'kubectl-wait':
+  "kubectl-wait":
     kubectl:
       enabled: true
       namespaces:
-        include: [ "botkube", "default" ]
+        include: ["botkube", "default"]
       commands:
-        verbs: [ "wait" ]
+        verbs: ["wait"]
       restrictAccess: true
-  'kubectl-all-ns':
+  "kubectl-all-ns":
     kubectl:
       enabled: true
       namespaces:
         include:
           - ".*"
       commands:
-        verbs: [ "get" ]
-        resources: [ "deployments" ]
-  'kubectl-exec':
+        verbs: ["get"]
+        resources: ["deployments"]
+  "kubectl-exec":
     kubectl:
       enabled: false
       namespaces:
-        include: [ "botkube", "default" ]
+        include: ["botkube", "default"]
       commands:
-        verbs: [ "exec" ]
+        verbs: ["exec"]
       restrictAccess: false
 ```
 
 We can see that:
+
 - For `botkube` and `default` Namespaces, we can execute `get` and `wait` commands for Pods. This is the result of merging `kubectl-pod` and `kubectl-wait`.
 - For all Namespaces we can execute `get` for Deployments, as specified by `kubectl-all-ns`.
 - The `exec` command is not allowed as the `kubectl-exec` binding is disabled (`kubectl.enabled` is set to `false`).

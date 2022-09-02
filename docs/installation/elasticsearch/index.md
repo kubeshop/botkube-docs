@@ -21,8 +21,8 @@ sidebar_position: 5
   export ELASTICSEARCH_ADDRESS={elasticsearch_address}
   export ELASTICSEARCH_USERNAME={elasticsearch_username}
   export ELASTICSEARCH_PASSWORD={elasticsearch_password}
-  export ELASTICSEARCH_INDEX_NAME={elasticsearch_index_name}  
-  
+  export ELASTICSEARCH_INDEX_NAME={elasticsearch_index_name}
+
   helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.elasticsearch.enabled=true \
   --set communications.default-group.elasticsearch.server=${ELASTICSEARCH_ADDRESS} \
@@ -33,7 +33,8 @@ sidebar_position: 5
   botkube/botkube
   ```
 
-  where,<br>
+  where,<br/>
+
   - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br/>
   - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br/>
   - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br/>
@@ -48,9 +49,9 @@ sidebar_position: 5
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
-      ```
-      helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-      ```
+     ```
+     helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
 

@@ -4,7 +4,7 @@ title: Installation
 sidebar_position: 1
 ---
 
-import { IntegrationList } from '@site/src/components/IntegrationList';
+import { IntegrationList } from "@site/src/components/IntegrationList";
 
 :::caution
 The https://infracloudio.github.io/charts Helm repository is deprecated. In the future, BotKube charts from https://infracloudio.github.io/charts can be garbage collected and no longer available.
@@ -19,7 +19,7 @@ BotKube has two components that need to be installed.
 ## Feature map
 
 | Feature                                 | Slack              | Mattermost         | Microsoft Teams    | Discord            | Elastic Search     | Webhook            |
-|-----------------------------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| --------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
 | K8s Event push                          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | Kubectl commands                        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA                 | NA                 |
 | Multi cluster support                   | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -29,12 +29,12 @@ BotKube has two components that need to be installed.
 
 <IntegrationList
   integrations={[
-    {name: 'Slack', image: '/images/slack.png', link: 'slack'},
-    {name: 'Mattermost', image: '/images/mattermost.png', link: 'mattermost'},
-    {name: 'Discord', image: '/images/discord.png', link: 'discord'},
-    {name: 'Teams', image: '/images/msteams.png', link: 'teams'},
-    {name: 'ElasticSearch', image: '/images/elasticsearch.png', link: 'elasticsearch'},
-    {name: 'Webhook', image: '/images/webhook.png', link: 'webhook'},
+    { name: "Slack", image: "/images/slack.png", link: "slack" },
+    { name: "Mattermost", image: "/images/mattermost.png", link: "mattermost" },
+    { name: "Discord", image: "/images/discord.png", link: "discord" },
+    { name: "Teams", image: "/images/msteams.png", link: "teams" },
+    { name: "ElasticSearch", image: "/images/elasticsearch.png", link: "elasticsearch" },
+    { name: "Webhook", image: "/images/webhook.png", link: "webhook" },
   ]}
 />
 

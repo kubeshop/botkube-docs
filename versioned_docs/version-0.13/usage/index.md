@@ -9,12 +9,12 @@ sidebar_position: 3
 @BotKube allows you to execute kubectl commands on your Kubernetes cluster.
 Run **/botkubehelp** to find more information about the supported commands.
 
-
 ![help](assets/help.png)
 
 By default, kubectl command execution is disabled. To enable this feature, set `settings.kubectl.enabled: true` in <a href="../configuration/#resource-config-yaml-syntax">resource_config</a>.
 
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where BotKube is already added or as a direct message to BotKube.
+
 ```
 @BotKube <kubectl command without `kubectl` prefix> [--cluster-name <cluster_name>]
 ```
@@ -38,6 +38,7 @@ This command needs to be executed from configured channel else use `--cluster-na
 ![get_pods](assets/mm_get_ns.png)
 
 ### Specify cluster name
+
 If you have installed BotKube backend on multiple clusters, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
 
 To get the list of all clusters configured in botkube, you can use the ping command.
@@ -72,14 +73,18 @@ BotKube bot allows you to enable/disable notifications on each configured channe
 
 Run **@BotKube notifier showconfig** message from the configured channel where BotKube is added. The bot will reply you with the configuration with which the controller is running.
 
-If you wish to change the configuration, you can update config section in **helm/botkube/values.yaml** and then run **helm upgrade**.
+If you wish to change the configuration, you can run **helm upgrade**:
 
 ```bash
-$ helm upgrade botkube \
---set config.settings.clustername=<CLUSTER_NAME> \
---set config.settings.allowkubectl=<ALLOW_KUBECTL> \
+export CLUSTER_NAME={cluster_name}
+export ALLOW_KUBECTL={allow_kubectl}
+
+helm upgrade botkube \
+--set settings.clusterName=${CLUSTER_NAME} \
+--set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
 helm/botkube
 ```
+
 OR
 
 You can also modify the controller configuration at runtime. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.

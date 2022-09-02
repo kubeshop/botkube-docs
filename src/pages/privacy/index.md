@@ -75,23 +75,23 @@ The specific types of first and third party cookies served through our Websites 
 
 These cookies collect information that is used either in aggregate form to help us understand how our Websites are being used or how effective our marketing campaigns are, or to help us customize our Websites for you.
 
-| Name | Description |
-|------|------------|
-| Name | `\_ga` |
-| Purpose | It records a particular ID used to come up with data about website usage by the user. It is a HTTP cookie that expires after 2 years. |
-| Provider | `.botkube.io` |
-| Service | Google Analytics [View Service Privacy Policy](https://policies.google.com/technologies/ads) |
-| Country | United States |
-| Type | `http\_cookie` |
+| Name     | Description                                                                                                                           |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Name     | `\_ga`                                                                                                                                |
+| Purpose  | It records a particular ID used to come up with data about website usage by the user. It is a HTTP cookie that expires after 2 years. |
+| Provider | `.botkube.io`                                                                                                                         |
+| Service  | Google Analytics [View Service Privacy Policy](https://policies.google.com/technologies/ads)                                          |
+| Country  | United States                                                                                                                         |
+| Type     | `http\_cookie`                                                                                                                        |
 
-| Name | Description |
-|------|------------|
-|Name |  `\_ga\_#`|
-|Purpose |  Used to distinguish individual users by means of designation of a randomly generated number as client identifier, which allows calculation of visits and sessions|
-|Provider |  `.botkube.io`|
-|Service |  Google analytics [View Service Privacy Policy](https://policies.google.com/technologies/ads)|
-|Country |  United States|
-|Type |  `http\_cookie`|
+| Name     | Description                                                                                                                                                       |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name     | `\_ga\_#`                                                                                                                                                         |
+| Purpose  | Used to distinguish individual users by means of designation of a randomly generated number as client identifier, which allows calculation of visits and sessions |
+| Provider | `.botkube.io`                                                                                                                                                     |
+| Service  | Google analytics [View Service Privacy Policy](https://policies.google.com/technologies/ads)                                                                      |
+| Country  | United States                                                                                                                                                     |
+| Type     | `http\_cookie`                                                                                                                                                    |
 
 **What about other tracking technologies, like web beacons?**
 

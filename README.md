@@ -32,5 +32,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Tooling
 
-* [Cloudflare](https://cloudflare.com) - Continuous deployment and hosting of this documentation
-* [Docusaurus](https://docusaurus.io/) - Used to build this docs website
+- [Cloudflare](https://cloudflare.com) - Continuous deployment and hosting of this documentation
+- [Docusaurus](https://docusaurus.io/) - Used to build this docs website
