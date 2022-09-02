@@ -20,19 +20,19 @@ var ignoredFiles = []string{
 func CheckDeadLinks() {
 	printer.Title("Checking dead links in docs...")
 
+	dirs := [2]string{"./docs", "./community"}
 	var files []string
-	lo.Must0(filepath.WalkDir("./content", func(path string, d fs.DirEntry, err error) error {
-		if !shouldSkipPath(d, path) {
-			files = append(files, path)
-		}
-		return nil
-	}))
+
+	for _, dir := range dirs {
+		lo.Must0(filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
+			if !shouldSkipPath(d, path) {
+				files = append(files, path)
+			}
+			return nil
+		}))
+	}
 
 	ensureMarkdownLinkCheck()
-
-	hugoSvr := shellx.AsyncCmdf("hugo server -p 60123")
-	hugoSvr.Start()
-	defer hugoSvr.Stop()
 
 	lo.Must0(shellx.Cmdf("markdown-link-check -q -c .mlc.config.json %s", strings.Join(files, " ")).RunV())
 }
