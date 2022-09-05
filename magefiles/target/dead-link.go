@@ -13,17 +13,19 @@ import (
 )
 
 var ignoredFiles = []string{
-	"content/history/", // too much GitHub links and we get 429 anyway
-	"content/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
+	"docs/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
+}
+
+var dirsWithMarkdowns = []string{
+	"./docs", "./community",
 }
 
 func CheckDeadLinks() {
 	printer.Title("Checking dead links in docs...")
 
-	dirs := [2]string{"./docs", "./community"}
 	var files []string
 
-	for _, dir := range dirs {
+	for _, dir := range dirsWithMarkdowns {
 		lo.Must0(filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
 			if !shouldSkipPath(d, path) {
 				files = append(files, path)
