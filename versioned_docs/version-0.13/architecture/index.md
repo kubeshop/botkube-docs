@@ -8,7 +8,7 @@ BotKube backend communicates with Kubernetes API Server to monitor Kubernetes ev
 
 ## BotKube Backend Architecture
 
-![architecture](assets/architecture.png)
+![architecture](assets/architecture.png#light-bg)
 
 **Informer Controller:** Registers informers to kube-apiserver to watch events on the configured Kubernetes resources. It forwards the incoming Kubernetes event to the Event Manager
 

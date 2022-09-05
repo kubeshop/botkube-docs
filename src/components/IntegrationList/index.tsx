@@ -21,6 +21,7 @@ export const IntegrationList = (props: Props) => {
         <div key={integration.name} className={styles.integrationsItem}>
           <Link to={integration.link} className="integrations__link">
             <img src={integration.image} alt={integration.name} className="integrations__image" />
+            {integration.name}
           </Link>
         </div>
       ))}

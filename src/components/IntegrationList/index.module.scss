@@ -1,7 +1,25 @@
 .integrations {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .integrationsItem {
   padding: 16px 32px;
+  text-align: center;
+  font-weight: bold;
+
+  img {
+    height: 90px;
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--ifm-font-color-base);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
