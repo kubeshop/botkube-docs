@@ -43,6 +43,11 @@
   --cookie-background: #1c90f3;
   --cookie-font-color: #fff;
   --cookie-button-border: #fff;
+
+  img[src$='#light-bg'], .light-bg {
+    background-color: #fff;
+    padding: 2px;
+  }
 }
 
 .button.button--primary {
