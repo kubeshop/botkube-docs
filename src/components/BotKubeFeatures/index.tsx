@@ -15,7 +15,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-user-secret",
     description: (
       <>
-        The backend for the BotKube app runs in your Kubernetes cluster - thus you have complete control on your data
+        The back end for the BotKube app runs in your Kubernetes cluster so you have complete control of your data
         and software.
       </>
     ),
@@ -25,8 +25,8 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-terminal",
     description: (
       <>
-        Same old Kubectl syntax - just a new interface. You do not have to learn anything new! Plus you can configure
-        which Kubectl commands BotKube can executes. See <Link to="/docs/configuration">configuration</Link> for
+        Use the familiar Kubectl syntax, just with a new interface. You do not have to learn anything new! Plus you can configure
+        which Kubectl commands BotKube can execute. See <Link to="/docs/configuration">configuration</Link> for
         details.
       </>
     ),
@@ -36,7 +36,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-tasks",
     description: (
       <>
-        Like Slack, BotKube can also be integrated with Mattermost, Microsoft Teams, ElasticSearch and outgoing webhook.
+        Like Slack, BotKube can also be integrated with Mattermost, Microsoft Teams, Discord, ElasticSearch and outgoing webhook.
         See <Link to="/docs/configuration">configuration</Link> syntax for details.
       </>
     ),
@@ -46,9 +46,9 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-puzzle-piece",
     description: (
       <>
-        BotKube can monitor literally any Kubernetes resource including Custom Resource. This enables you to configure
-        alerts on some interesting events like - certificate issue/expiry if you are using cert-manager or backup
-        failure in case you are using backup tools like Velero or Kanister.
+        BotKube can monitor any Kubernetes resource including Custom Resources. This allows you to configure
+        alerts on some interesting events like certificate issue/expiry if you are using cert-manager, or backup
+        failure if you are using backup tools like Velero or Kanister.
       </>
     ),
   },
@@ -57,8 +57,8 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-cogs",
     description: (
       <>
-        With @BotKube you can monitor and debug Kubernetes deployments from anywhere. Even while you are camping without
-        a laptop, you can use Slack, Mattermost or MS Teams mobile app and get crucial information.
+        With BotKube you can monitor and debug Kubernetes deployments from anywhere. Even if you are camping without
+        a laptop, you can use Slack, Mattermost or Microsoft Teams mobile apps to get crucial information.
       </>
     ),
   },
@@ -67,7 +67,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-cogs",
     description: (
       <>
-        Get notifications about things that you really care for. You can configure events or objects or namespaces that
+        Get notifications about things that you really care about. You can configure events, objects, and namespaces that
         you want to be informed about.
       </>
     ),
@@ -77,7 +77,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-cloud",
     description: (
       <>
-        You can deploy BotKube backend on any Kubernetes cluster, whether it is Minikube or cloud managed Kubernetes or
+        You can deploy the BotKube back end on any Kubernetes cluster, whether it is Minikube, cloud-managed Kubernetes, or
         anything in between.
       </>
     ),
@@ -88,19 +88,19 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         It is very easy to write your own filters and registering them to FilterEngine. Follow
-        <Link to="/docs/filters"> this</Link> guide to know more.
+        <Link to="/docs/filters"> this</Link> guide to learn more.
       </>
     ),
   },
   {
     title: "Security",
     iconClass: "fas fa-shield-alt",
-    description: <>By default BotKube uses a READONLY service account, you can customize this to your needs.</>,
+    description: <>By default BotKube uses a READONLY service account, you can customize this to meet your needs.</>,
   },
   {
     title: "Open source",
     iconClass: "fab fa-github",
-    description: <>BotKube backend is open source and we welcome your requirements and contributions.</>,
+    description: <>The BotKube back end is open source and we welcome your feedback and contributions.</>,
   },
 ];
 
