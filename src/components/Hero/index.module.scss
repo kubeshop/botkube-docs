@@ -1,0 +1,58 @@
+@import "src/css/variables";
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroLogo {
+  max-height: 50px;
+  margin-right: 15px;
+}
+
+.mainSloganLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+
+  a + a {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: $infimaBP) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: $xSmall) {
+  .mainSloganLinks {
+    flex-direction: column;
+    align-items: center;
+
+    a {
+      margin-bottom: 15px;
+    }
+
+    a + a {
+      margin-left: 0;
+    }
+  }
+}

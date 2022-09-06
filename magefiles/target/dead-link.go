@@ -13,26 +13,28 @@ import (
 )
 
 var ignoredFiles = []string{
-	"content/history/", // too much GitHub links and we get 429 anyway
-	"content/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
+	"docs/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
+}
+
+var dirsWithMarkdowns = []string{
+	"./docs", "./community",
 }
 
 func CheckDeadLinks() {
 	printer.Title("Checking dead links in docs...")
 
 	var files []string
-	lo.Must0(filepath.WalkDir("./content", func(path string, d fs.DirEntry, err error) error {
-		if !shouldSkipPath(d, path) {
-			files = append(files, path)
-		}
-		return nil
-	}))
+
+	for _, dir := range dirsWithMarkdowns {
+		lo.Must0(filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
+			if !shouldSkipPath(d, path) {
+				files = append(files, path)
+			}
+			return nil
+		}))
+	}
 
 	ensureMarkdownLinkCheck()
-
-	hugoSvr := shellx.AsyncCmdf("hugo server -p 60123")
-	hugoSvr.Start()
-	defer hugoSvr.Stop()
 
 	lo.Must0(shellx.Cmdf("markdown-link-check -q -c .mlc.config.json %s", strings.Join(files, " ")).RunV())
 }

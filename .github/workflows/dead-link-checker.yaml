@@ -9,7 +9,6 @@ on:
   schedule:
     # Triggers the workflow weekdays at 9:00 UTC
     - cron: '0 9 * * MON-FRI'
-  workflow_dispatch:
 
 jobs:
   markdown-link-check:
@@ -21,22 +20,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - uses: actions/cache@v2
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
+          node-version-file: '.nvmrc'
+          cache: 'npm'
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-      - name: Setup theme
-        run: git submodule update --init --recursive
+          go-version-file: magefiles/go.mod
       - name: Check links in *.md files
         uses: magefile/mage-action@v2
         with:

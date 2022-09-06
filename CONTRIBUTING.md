@@ -6,7 +6,9 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 
 ### Prerequisite
 
-- [Hugo](https://gohugo.io)
+- [NodeJS 16](https://nodejs.org/)
+- (Optional) [NVM](https://github.com/nvm-sh/nvm) for managing multiple Node.js installations
+- [Docusaurus](https://docusaurus.io/)
 - [Magefile](https://magefile.org/)
 
   > **Note**
@@ -14,16 +16,18 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 
 - Cloned BotKube documentation repository
 
-   Use the following command to clone it:
-   ```sh
-   git clone https://github.com/kubeshop/botkube-docs.git
-   ```
-   > **Note**
-   > To learn how to do it, follow the **Contribute** section in the [Git workflow guide](https://github.com/kubeshop/botkube/blob/main/git-workflow.md).
+  Use the following command to clone it:
+
+  ```sh
+  git clone https://github.com/kubeshop/botkube-docs.git
+  ```
+
+  > **Note**
+  > To learn how to do it, follow the **Contribute** section in the [Git workflow guide](https://github.com/kubeshop/botkube/blob/main/git-workflow.md).
 
 ## Build the site locally
 
-Make sure you have installed [Hugo](https://gohugo.io) on your system. Follow the instructions to clone this repository and build the docs locally.
+Follow the instructions to clone this repository and build the docs locally.
 
 - Clone the repository
 
@@ -32,18 +36,19 @@ Make sure you have installed [Hugo](https://gohugo.io) on your system. Follow th
   cd botkube-docs
   ```
 
-- Fetch the theme submodule
+- Install dependencies
 
   ```sh
-  git submodule update --init --recursive
+  npm install
   ```
 
 - Start local server
 
   ```sh
-  hugo serve -D
+  npm run start
   ```
-  Site can be viewed at http://localhost:1313
+
+  Site can be viewed at [http://localhost:3000](http://localhost:3000).
 
 ## Making A Change
 
@@ -51,14 +56,12 @@ Before making any significant changes, please [open an issue](https://github.com
 
 #### Adding a new documentation page
 
-```sh
-# example: adding new documentation page under installation section
-hugo new installation/name-of-new-integration.md
-```
+Create a Markdown file and place it under the `docs/` directory.
+More info how to do it can be found in Docusaurus documentation [Create a doc](https://docusaurus.io/docs/create-doc)
 
 #### Modifying an existing documentation page
 
-Find the documentation page file (`.md` file) under `content/` and edit it.
+Find the documentation page file (`.md/mdx` file) under `docs/` and edit it.
 
 ### Publishing your changes
 
