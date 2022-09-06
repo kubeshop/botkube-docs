@@ -20,7 +20,8 @@ jobs:
       - name: Install dependencies
         uses: actions/setup-node@v3
         with:
-          node-version: 16.16
+          node-version-file: '.nvmrc'
+          cache: 'npm'
       - run: npm install
       - name: Check typescript
         run: npm run tsc
