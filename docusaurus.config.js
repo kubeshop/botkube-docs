@@ -108,6 +108,11 @@ const config = {
             label: "GitHub",
             position: "right",
           },
+          {
+            href: "https://join.botkube.io",
+            label: "Slack",
+            position: "right",
+          },
         ],
       },
       footer: {
@@ -126,7 +131,7 @@ const config = {
               },
               {
                 label: "Community Slack",
-                to: "https://botkube-slack.herokuapp.com/",
+                to: "https://join.botkube.io",
               },
               {
                 label: "Support",
