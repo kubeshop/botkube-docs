@@ -15,10 +15,11 @@ export const Hero = () => {
         </h1>
         <p className="hero__subtitle">A messaging bot for monitoring and debugging Kubernetes clusters.</p>
         <div className={styles.mainSloganLinks}>
-        <a
+          <a
             href="https://github.com/kubeshop/botkube"
             title="GitHub repository"
             className="button button--lg button--secondary"
+            target="_blank"
           >
             <i className="fab fa-github" /> View Source
           </a>
@@ -33,6 +34,7 @@ export const Hero = () => {
             href="https://join.botkube.io"
             title="Community Slack"
             className="button button--lg button--secondary"
+            target="_blank"
           >
             <i className="fab fa-slack" /> Community Slack
           </a>
