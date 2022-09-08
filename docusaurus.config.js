@@ -82,7 +82,7 @@ const config = {
       metadata: [
         {
           property: "og:image",
-          content: "https://botkube.io/images/botkube.png",
+          content: "https://botkube.io/images/botkube-title-social.png",
         },
         {
           property: "twitter:card",
