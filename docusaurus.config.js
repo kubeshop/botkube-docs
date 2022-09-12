@@ -79,7 +79,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: "https://botkube.io/images/botkube-title-social.png",
+      image: "images/botkube-title-social.png",
       metadata: [
         {
           property: "twitter:card",
