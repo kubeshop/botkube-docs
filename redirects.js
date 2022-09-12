@@ -26,7 +26,7 @@ function getVersions() {
  * @param {string} path
  * @return boolean
  */
-function haVersionInPath(path) {
+function hasVersionInPath(path) {
   const versions = getVersions();
 
   return versions.some(ver => path.includes(ver));
@@ -37,7 +37,7 @@ function haVersionInPath(path) {
  * @return {string[]|undefined}
  */
 function createRedirects(existingPath) {
-  if (!haVersionInPath(existingPath)) {
+  if (!hasVersionInPath(existingPath)) {
     for (const subPath of subPathsToRedirect) {
       if (existingPath.includes(subPath)) {
         return [existingPath.replace(subPath, "")];
@@ -48,6 +48,23 @@ function createRedirects(existingPath) {
   return undefined;
 }
 
+/**
+ * @return {{to: string, from: string}[]}
+ */
+function customRedirections() {
+  return [
+    {
+      to: "/docs/installation/",
+      from: "/docs",
+    },
+    {
+      to: "/community/contribute/",
+      from: "/community",
+    },
+  ];
+}
+
 module.exports = {
+  redirects: customRedirections(),
   createRedirects,
 };
