@@ -79,6 +79,21 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: "images/botkube-title-social.png",
+      metadata: [
+        {
+          property: "twitter:card",
+          content: "summary_large_image",
+        },
+        {
+          property: "twitter:site",
+          content: "@Botkube_io",
+        },
+        {
+          property: "twitter:creator",
+          content: "@Botkube_io",
+        },
+      ],
       navbar: {
         title: "BotKube",
         logo: {
@@ -108,6 +123,11 @@ const config = {
             label: "GitHub",
             position: "right",
           },
+          {
+            href: "https://join.botkube.io",
+            label: "Slack",
+            position: "right",
+          },
         ],
       },
       footer: {
@@ -126,7 +146,7 @@ const config = {
               },
               {
                 label: "Community Slack",
-                to: "https://botkube-slack.herokuapp.com/",
+                to: "https://join.botkube.io",
               },
               {
                 label: "Support",

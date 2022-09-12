@@ -20,14 +20,15 @@ export const Hero = () => {
             title="Installation guide"
             className="button button--lg button--primary"
           >
-            <i className="fas fa-rocket" /> Try Now!
+            <i className="fas fa-rocket" /> Try Now
           </Link>
           <a
-            href="https://github.com/kubeshop/botkube"
-            title="GitHub repository"
+            href="https://join.botkube.io"
+            title="Community Slack"
             className="button button--lg button--secondary"
+            target="_blank"
           >
-            <i className="fab fa-github" /> View Source
+            <i className="fab fa-slack" /> Get Help
           </a>
         </div>
       </div>

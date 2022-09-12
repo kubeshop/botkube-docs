@@ -17,9 +17,9 @@ export default function Home(): JSX.Element {
         <section className={styles.mainSlogan}>
           <img src={useBaseUrl("/images/botkube_multicluster_v2.svg")} alt="BotKube multi-cluster presentation" />
           <p className={styles.mainSloganDesc}>
-            BotKube can be integrated with multiple messaging platforms like - Slack, Mattermost, Microsoft Teams to
-            help you monitor your Kubernetes cluster(s), debug critical deployments and gives recommendations for
-            standard practices by running checks on the Kubernetes resources.
+            BotKube can be integrated with multiple messaging platforms like Slack, Microsoft Teams, Discord, or
+            Mattermost to help you monitor your Kubernetes cluster(s), debug critical deployments, and get
+            recommendations for standard practices by running checks on Kubernetes resources.
           </p>
         </section>
         <section className={styles.whatCanDo}>
@@ -29,10 +29,10 @@ export default function Home(): JSX.Element {
               <h3>Monitor</h3>
               <ul>
                 <li>
-                  BotKube watches Kubernetes resources and sends a notification to the channel if any event occurs for
-                  example a ImagePullBackOff error.
+                  BotKube watches Kubernetes resources and sends a notification to the configured channel if any event
+                  occurs, for example, an ImagePullBackOff error.
                 </li>
-                <li>You can customize the objects and level of events you want to get from Kubernetes cluster.</li>
+                <li>You can customize the objects and level of events you want to get from your Kubernetes cluster.</li>
                 <li>You can turn on/off notifications simply by sending a message to @BotKube</li>
               </ul>
             </div>
@@ -45,11 +45,11 @@ export default function Home(): JSX.Element {
               <h3>Debug</h3>
               <ul>
                 <li>
-                  BotKube can execute kubectl commands on Kubernetes cluster without giving access to Kubeconfig or
+                  BotKube can execute kubectl commands on your Kubernetes cluster without giving access to Kubeconfig or
                   underlying infrastructure.
                 </li>
                 <li>
-                  With BotKube you can debug your deployment, services or anything about your cluster right from your
+                  With BotKube, you can debug your deployment, services, or anything about your cluster, right from your
                   messaging window ;){" "}
                 </li>
                 <li>
