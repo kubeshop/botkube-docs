@@ -42,7 +42,7 @@ Then, configure your app by following the steps below,
 5. Fill in the App details in the "Configure/Basic information" section.
 
    | Field                                 | Value                                                                                                                                                                         |
-   |---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
    | App name / Short name                 | BotKube                                                                                                                                                                       |
    | Descriptions / Short description      | BotKube is a bot for your Kubernetes cluster                                                                                                                                  |
    | Descriptions / Long description       | BotKube helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources. |
