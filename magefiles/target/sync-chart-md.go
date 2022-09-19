@@ -16,8 +16,9 @@ import (
 
 var fileTpl = heredoc.Doc(`
      ---
+     id: helm-chart-parameters
      title: Helm chart parameters
-     weight: 40
+     sidebar_position: 5
      ---
      %s
      `)
@@ -26,7 +27,7 @@ const (
 	urlLastCommit     = "https://api.github.com/repos/kubeshop/botkube/commits?per_page=1"
 	urlReadmeBySHAFmt = "https://raw.githubusercontent.com/kubeshop/botkube/%s/helm/botkube/README.md"
 	urlValuesBySHAFmt = "https://github.com/kubeshop/botkube/blob/%s/helm/botkube/values.yaml"
-	dstFilePath       = "content/configuration/helm-chart-parameters.md"
+	dstFilePath       = "docs/configuration/helm-chart-parameters.md"
 )
 
 func SyncChartParams() {
