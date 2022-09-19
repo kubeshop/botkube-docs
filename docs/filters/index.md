@@ -21,7 +21,7 @@ Prerequisites:
 
 ### 1. Create a new .go file
 
-Create a new file (e.g image_tag_checker.go) in **botkube/pkg/filterengine/filters/** directory
+Create a new file (e.g `object_annotation_checker.go`) in the `pkg/filterengine/filters/` directory.
 
 Set package name as "filters" and import required packages:
 
@@ -29,12 +29,16 @@ Set package name as "filters" and import required packages:
 package filters
 
 import (
-	"strings"
+	"context"
+	"fmt"
 
 	"github.com/sirupsen/logrus"
-	apiV1 "k8s.io/api/core/v1"
+	"k8s.io/apimachinery/pkg/api/meta"
+	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/dynamic"
 
 	"github.com/kubeshop/botkube/pkg/events"
+	"github.com/kubeshop/botkube/pkg/utils"
 )
 ```
 
@@ -53,14 +57,16 @@ type Filter interface {
 Create a struct which implements the Filter interface. Use logger instance taken as an argument from the constructor:
 
 ```go
-// NamespaceChecker ignore events from disallowed namespaces.
-type NamespaceChecker struct {
-	log logrus.FieldLogger
+// ObjectAnnotationChecker forwards events to specific channels based on a special annotation if it is set on a given K8s resource.
+type ObjectAnnotationChecker struct {
+	log        logrus.FieldLogger
+	dynamicCli dynamic.Interface
+	mapper     meta.RESTMapper
 }
 
-// NewNamespaceChecker creates a new NamespaceChecker instance
-func NewNamespaceChecker(log logrus.FieldLogger) *ImageTagChecker {
-	return &NamespaceChecker{log: log}
+// NewObjectAnnotationChecker creates a new ObjectAnnotationChecker instance.
+func NewObjectAnnotationChecker(log logrus.FieldLogger, dynamicCli dynamic.Interface, mapper meta.RESTMapper) *ObjectAnnotationChecker {
+	return &ObjectAnnotationChecker{log: log, dynamicCli: dynamicCli, mapper: mapper}
 }
 
 // Run filer and modifies event struct
@@ -70,14 +76,14 @@ func (f *NamespaceChecker) Run(ctx context.Context, event *events.Event) {
 
 }
 
-// Name returns the filter's name
-func (f *NamespaceChecker) Name() string {
-	return "NamespaceChecker"
+// Name returns the filter's name.
+func (f *ObjectAnnotationChecker) Name() string {
+	return "ObjectAnnotationChecker"
 }
 
-// Describe describes the filter
-func (f *ImageTagChecker) Describe() string {
-	return "Checks if event belongs to blocklisted namespaces and filter them."
+// Describe describes the filter.
+func (f *ObjectAnnotationChecker) Describe() string {
+	return "Filters or reroutes events based on botkube.io/* Kubernetes resource annotations."
 }
 ```
 
@@ -86,22 +92,26 @@ func (f *ImageTagChecker) Describe() string {
 Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/kubeshop/botkube/blob/main/pkg/events/events.go).
 
 ```go
-// Run filters and modifies event struct
-func (f *NamespaceChecker) Run(_ context.Context, event *events.Event) error {
-	// Skip filter for cluster scoped resource
-	if len(event.Namespace) == 0 {
-		return nil
+// Run filters and modifies event struct.
+func (f *ObjectAnnotationChecker) Run(ctx context.Context, event *events.Event) error {
+	// get objects metadata
+	obj, err := utils.GetObjectMetaData(ctx, f.dynamicCli, f.mapper, event.Object)
+	if err != nil {
+		return fmt.Errorf("while getting object metadata: %w", err)
 	}
 
-	for _, resource := range f.configuredResources {
-		if event.Resource != resource.Name {
-			continue
-		}
-		shouldSkipEvent := !resource.Namespaces.IsAllowed(event.Namespace)
-		event.Skip = shouldSkipEvent
-		break
+	// Check annotations in object
+	if f.isObjectNotifDisabled(obj) {
+		event.Skip = true
+		f.log.Debug("Object Notification Disable through annotations")
 	}
-	f.log.Debug("Ignore Namespaces filter successful!")
+
+	if channel, ok := f.reconfigureChannel(obj); ok {
+		event.Channel = channel
+		f.log.Debugf("Redirecting Event Notifications to channel: %s", channel)
+	}
+
+	f.log.Debug("Object annotations filter successful!")
 	return nil
 }
 ```
@@ -112,18 +122,26 @@ Open [**pkg/filterengine/with_all_filters.go**](https://github.com/kubeshop/botk
 
 ```go
 // WithAllFilters returns new DefaultFilterEngine instance with all filters registered.
-func WithAllFilters(logger *logrus.Logger, dynamicCli dynamic.Interface, mapper meta.RESTMapper, conf *config.Config) *DefaultFilterEngine {
+func WithAllFilters(logger *logrus.Logger, dynamicCli dynamic.Interface, mapper meta.RESTMapper, cfg config.Filters) *DefaultFilterEngine {
 	filterEngine := New(logger.WithField(componentLogFieldKey, "Filter Engine"))
-	filterEngine.Register([]Filter{
-		filters.NewNodeEventsChecker(logger.WithField(filterLogFieldKey, "Node Events Checker")),
-		// ...
+	filterEngine.Register([]RegisteredFilter{
+		{
+			Filter:  filters.NewObjectAnnotationChecker(logger.WithField(filterLogFieldKey, "Object Annotation Checker"), dynamicCli, mapper),
+			Enabled: cfg.Kubernetes.ObjectAnnotationChecker,
+		},
 
 		// Your filter goes here:
-		filters.NewNamespaceChecker(logger.WithField(filterLogFieldKey, "Namespace Checker"), res), // make sure to use `logger.WithField`
+		{
+			Filter:  filters.NewNodeEventsChecker(
+				logger.WithField(filterLogFieldKey, "Node Events Checker") // make sure to use `logger.WithField`
+			),
+			Enabled: cfg.Kubernetes.NodeEventsChecker, // you can use a configuration field or set a fixed `true` or `false` default value to enable/disable the filter during the initial app startup
+		},
 	}...)
 
 	return filterEngine
 }
+
 ```
 
 ## B. Rebuild and deploy the BotKube backend
