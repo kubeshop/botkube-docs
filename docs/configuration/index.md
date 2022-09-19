@@ -17,7 +17,7 @@ The configuration settings are read from two sources:
   ```
 
   :::note
-  You can split individual settings into multiple configuration files. The priority will be given to the last (right-most) file specified. See the [merging strategy](#merging-strategy) section for more details.
+  You can split individual settings into multiple configuration files. The priority will be given to the last (right-most) file specified. Files with `_` name prefix are always read as the last ones. See the [merging strategy](#merging-strategy) section for more details.
   :::
 
 - the exported [environment variables](#environment-variables) that overrides the configuration specified in the files.
@@ -67,6 +67,7 @@ This is a useful feature that allows you to store the overall configuration in a
 BotKube allows you to split individual settings into multiple configuration files. The following rules apply:
 
 - The priority will be given to the last (right-most) file specified.
+- Files with `_` name prefix are always read as the last ones following the alphabetical order.
 - Objects are merged together and primitive fields are overridden. For example:
 
   ```yaml
@@ -79,7 +80,13 @@ BotKube allows you to split individual settings into multiple configuration file
   ```
 
   ```yaml
-  # b.yaml - second file
+  # _a.yaml - second file with `_` prefix
+  settings:
+    clusterName: demo-cluster
+  ```
+
+  ```yaml
+  # b.yaml - third file
   settings:
     kubectl:
       enabled: true
@@ -88,7 +95,7 @@ BotKube allows you to split individual settings into multiple configuration file
   ```yaml
   # result
   settings:
-    clusterName: dev-cluster
+    clusterName: demo-cluster
     configWatcher: true
     kubectl:
       enabled: true
