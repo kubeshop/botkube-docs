@@ -41,17 +41,17 @@ Then, configure your app by following the steps below,
 
 5. Fill in the App details in the "Configure/Basic information" section.
 
-   | Field                                 | Value                                                                                                                          |
-   | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-   | App name / Short name                 | BotKube                                                                                                                        |
-   | Descriptions / Short description      | BotKube is a bot for your Kubernetes cluster                                                                                   |
-   | Descriptions / Long description       | App that helps you monitor your Kubernetes cluster, debug critical deployments & gives recommendations for standard practices. |
-   | Version                               | 0.13.0                                                                                                                         |
-   | Developer Information / Developer ... | BotKube                                                                                                                        |
-   | Developer Information / Website       | https://botkube.io                                                                                                             |
-   | App URLs / Privacy policy             | https://botkube.io/privacy                                                                                                     |
-   | App URLs / Terms of use               | https://botkube.io/license                                                                                                     |
-   | Application (client) ID               | Add the Application (client) ID you obtained from Azure Active Directory                                                       |
+   | Field                                 | Value                                                                                                                                                                         |
+   | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | App name / Short name                 | BotKube                                                                                                                                                                       |
+   | Descriptions / Short description      | BotKube is a bot for your Kubernetes cluster                                                                                                                                  |
+   | Descriptions / Long description       | BotKube helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources. |
+   | Version                               | 0.13.0                                                                                                                                                                        |
+   | Developer Information / Developer ... | BotKube                                                                                                                                                                       |
+   | Developer Information / Website       | https://botkube.io                                                                                                                                                            |
+   | App URLs / Privacy policy             | https://botkube.io/privacy                                                                                                                                                    |
+   | App URLs / Terms of use               | https://botkube.io/license                                                                                                                                                    |
+   | Application (client) ID               | Add the Application (client) ID you obtained from Azure Active Directory                                                                                                      |
 
    ![Developer Portal - Basic Information](assets/teams_add_app_info.png "Teams add app info")
 

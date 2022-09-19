@@ -7,7 +7,7 @@ sidebar_position: 3
 ## Debugging deployments using BotKube
 
 @BotKube allows you to execute kubectl commands on your Kubernetes cluster.
-Run **/botkubehelp** to find more information about the supported commands.
+Run **@BotKube help** to find more information about the supported commands.
 
 ![help](assets/help.png)
 
@@ -67,7 +67,7 @@ Run **@BotKube ping** to the channel where BotKube is added. The BotKube will re
 ## Managing notifications
 
 Depending upon your configuration, you will receive notifications about Kubernetes resources lifecycle events and their health.
-BotKube bot allows you to enable/disable notifications on each configured channel separately. Run **/botkubehelp**, the bot will reply with the help message about the supported message formats.
+BotKube bot allows you to enable/disable notifications on each configured channel separately. Run **@BotKube help**, the bot will reply with the help message about the supported message formats.
 
 ### View BotKube configuration
 
