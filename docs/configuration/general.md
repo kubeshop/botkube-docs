@@ -13,7 +13,7 @@ The general settings holds a general configuration for the BotKube backend. For 
 settings:
   # Cluster name to differentiate incoming messages.
   clusterName: not-configured
-  # If true, restarts the BotKube Pod on config changes.
+  # If true, restarts the BotKube Pod on config changes. Files with `_` name prefix are ignored.
   configWatcher: true
   # If true, notifies about new BotKube releases.
   upgradeNotifier: true

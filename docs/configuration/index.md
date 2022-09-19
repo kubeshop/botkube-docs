@@ -16,15 +16,17 @@ The configuration settings are read from two sources:
   ./botkube --config "global.yaml,team-b-specific.yaml"
   ```
 
-  :::note
   You can split individual settings into multiple configuration files. The priority will be given to the last (right-most) file specified. Files with `_` name prefix are always read as the last ones. See the [merging strategy](#merging-strategy) section for more details.
+
+  :::note
+  For Helm installation, BotKube uses `_runtime_state.yaml` and `_startup_state.yaml` files to store its internal state. Remember to keep these files in the `BOTKUBE_CONFIG_PATHS` environment variable.
   :::
 
 - the exported [environment variables](#environment-variables) that overrides the configuration specified in the files.
 
 ## Updating the configuration at runtime
 
-You can update the configuration and use `helm upgrade` to update configuration values for the BotKube.
+You can update the configuration and use `helm upgrade` to update configuration values for the BotKube. Also, you can use `@BotKube` commands which persist the configuration. See the [Usage](../usage/index.md) section for more details.
 
 You can also change configuration directly in ConfigMap and Secret - is not recommended but is great for quick experimentation.
 
@@ -67,7 +69,7 @@ This is a useful feature that allows you to store the overall configuration in a
 BotKube allows you to split individual settings into multiple configuration files. The following rules apply:
 
 - The priority will be given to the last (right-most) file specified.
-- Files with `_` name prefix are always read as the last ones following the alphabetical order.
+- Files with `_` name prefix are always read as the last ones following the initial order. Also, they are ignored by the Config Watcher (if enabled according to the [**general**](./general) settings).
 - Objects are merged together and primitive fields are overridden. For example:
 
   ```yaml

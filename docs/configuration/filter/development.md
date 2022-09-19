@@ -1,6 +1,6 @@
 ---
-id: filters
-title: "Adding a custom filter"
+id: development
+title: "Custom filter development"
 sidebar_position: 5
 ---
 
