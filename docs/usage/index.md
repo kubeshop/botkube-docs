@@ -7,7 +7,7 @@ sidebar_position: 3
 ## Debugging deployments using BotKube
 
 @BotKube allows you to execute kubectl commands on your Kubernetes cluster.
-Run **/botkubehelp** to find more information about the supported commands.
+Run **@BotKube help** to find more information about the supported commands.
 
 ![help](assets/help.png)
 

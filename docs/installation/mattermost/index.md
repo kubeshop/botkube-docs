@@ -58,27 +58,6 @@ Export the channel name as an environment variable:
 export MATTERMOST_CHANNEL="{channel_name}"
 ```
 
-## Configure /botkubehelp Slash Command
-
-**1.** First, go to **Main Menu > Integrations > Slash Commands**. (If you don’t have the Integrations option in your Main Menu, slash commands may not be enabled on your Mattermost server or maybe disabled for non-admins. Enable them from System Console > Integrations > Custom Integrations in prior versions)
-
-**2.** Click **Add Slash Command** and add the following details for the command and click **Save**.
-
-| Field                | Value                              |
-| -------------------- | ---------------------------------- |
-| Title                | BotKube                            |
-| Description          | Show BotKube help                  |
-| Command Trigger Word | botkubehelp                        |
-| Request URL          | https://botkube.herokuapp.com/help |
-| Request Method       | POST                               |
-| Autocomplete         | True                               |
-
-![mm_botkube_slash_cmd](assets/mm_botkube_slash_cmd.png)
-
-**3.** Verify executing **/botkubehelp** in a channel.
-
-![mm_botkube_help](assets/mm_botkube_help.png)
-
 ## Install BotKube in Kubernetes cluster
 
 - We use [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
