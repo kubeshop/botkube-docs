@@ -207,6 +207,11 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
+      algolia: {
+        appId: "RGVPQ6NK42",
+        apiKey: "d7514a8ad9b1aebb64c54172856ecb44",
+        indexName: "botkube",
+      },
     }),
 };
 
