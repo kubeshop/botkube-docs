@@ -4,9 +4,9 @@ title: Filter
 sidebar_position: 5
 ---
 
-The filter configuration allows you to configure global filters which are used for all processed events. The filters can be disabled or enabled using dedicated commands. See the [Usage](../usage/index.md) document for more details.
+The filter configuration allows you to configure global filters which are used for all processed events. The filters can be disabled or enabled using dedicated commands. See the [Usage](../../usage/index.md) document for more details.
 
-You can develop your own filter according to the [Filter Development Guide](../filters/index.md).
+You can develop your own filter according to the [Filter Development Guide](./development.md).
 
 ## Syntax
 
