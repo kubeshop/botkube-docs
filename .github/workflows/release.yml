@@ -38,6 +38,9 @@ jobs:
           git checkout -b release/${{ inputs.version }}
           npm install
           npm run docusaurus docs:version ${{ inputs.version }} 
+          git add .
+          git commit -m "Prepare docs for ${{ inputs.version }} release"
+          git push
           git push origin release/${{ inputs.version }}
 
       - name: Create a pull request
