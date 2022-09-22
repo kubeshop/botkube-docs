@@ -22,6 +22,12 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
       - name: Set git 'user.name' and 'user.email'
         run: |
           git config user.name "${{ env.git-user }}"
