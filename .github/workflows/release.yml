@@ -45,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh pr create \
-            --title "Prepare docs for ${{ inputs.version }}" release"  \
+            --title "Prepare docs for ${{ inputs.version }} release"  \
              --head "release/${{ inputs.version }}" \
              --base main \
              --label release-automation \
