@@ -1,7 +1,7 @@
 ---
 id: elasticsearch
 title: "ElasticSearch"
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 ## Install BotKube Backend in Kubernetes cluster
