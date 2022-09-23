@@ -5,18 +5,21 @@ sidebar_position: 1
 ---
 
 ## Install Slack App in Your Slack workspace
+
 BotKube uses interactive messaging to provide better experience. Interactive messaging needs Slack App with Socket Mode enabled
-and this kind of Slack App is not suitable for Slack App Directory listing. For this reason, instead of using Add to Slack flow, 
+and this kind of Slack App is not suitable for Slack App Directory listing. For this reason, instead of using Add to Slack flow,
 you need to create a Slack App in your own Slack workspace and use it for BotKube deployment. Now that you understand the background,
 lets continue with step-by-step explanation of Slack App creation.
 
 ### Create Slack app
+
 - Go to [Slack App console](https://api.slack.com/apps) to create an application.
 - Click **Create New App** and select **From an app manifest** in the popup to create application from manifest.
   ![Create App from Manifest](assets/socketslack_add_app.png "Slack add app")
 - Select a workspace where you want to create application and click **Next**.
   ![Select Workspace](assets/socketslack_select_workspace.png "Slack select workspace")
-- Select **YAML** tab, copy & paste following manifest, and click **Next**. 
+- Select **YAML** tab, copy & paste following manifest, and click **Next**.
+
 ```yaml
 display_information:
   name: Botkube
@@ -51,21 +54,26 @@ Once the application is created, you should be redirected to application detail 
 ![Install Slack App](assets/socketslack_install_app.png "Slack install app")
 
 ### Collect Bot Token
+
 - Go to Slack App detail page and click OAuth & Permissions where you can see the bot token which starts with `xoxb...`.
   ![Retrieve Slack Bot Token](assets/socketslack_retrieve_bot_token.png "Slack Bot Token")
 - Export Slack Bot Token as follows.
+
 ```shell
 export SLACK_API_BOT_TOKEN="{botToken}"
 ```
 
 ### Generate & Collect App-Level Token
+
 Slack App with Socket Mode uses websocket protocol under the hood which needs another special token which is called App-Level Token. Please follow
 below steps to generate an App-Level Token.
+
 - Go to Slack App detail page and scroll down to section **App-Level Token** and click Generate Token and Scopes
 - Enter a **Name**, select `connections:write` scope, and click **Generate**.
   ![Generate App-Level Token](assets/socketslack_generate_app_token.png "Slack App Token")
   ![Retrieve App-Level Token](assets/socketslack_retrieve_app_token.png "Slack Retrieve App Token")
 - Copy **App-Level Token** and export it as follows.
+
 ```shell
 export SLACK_API_APP_TOKEN="${appToken}"
 ```
