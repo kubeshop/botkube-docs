@@ -8,113 +8,58 @@ This document describes how to prepare and publish a new Botkube release.
 
 ## Prerequisites
 
-- Obtain a GitHub Personal Access token with `repo` and `write:packages` permissions.
-- Install the following applications:
+- Proper permission on main `botkube` or `botkube-docs` repositories to trigger Github Actions.
 
-  - [Goreleaser](https://goreleaser.com/install/) 1.10.3
-  - [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator#installation) 1.16.4
+## The `botkube` repository
 
-## Steps
+### Release Steps
 
-### The `botkube` repository
-
-1. Clone and navigate to the root of the `botkube` repository.
+- Go to BotKube repository [Actions page](https://github.com/kubeshop/botkube/actions), and click **Code Freeze** workflow.
+  ![BotKube Github Actions](assets/release_code_freeze.png "BotKube Github Actions")
+- Click on **Run workflow** drop-down, fill **Version** field. (e.g. 0.14.0), and click **Run Workflow**. Branch field will be **main** always for major and minor releases.
+  ![BotKube Code Freeze](assets/release_code_freeze_version.png "BotKube Code Freeze")
+- It will generate all the needed artifacts and tag it with a release candidate tags. Once you verify everything is ok on release candidate,
+  continue with **Finalize Release** by going to [Actions](https://github.com/kubeshop/botkube/actions) page and click on **Finalize release.**
+- Click on **Run workflow** drop-down and fill **Version** field to finalize specific release. (e.g. 0.14.0)
+  ![BotKube Finalize Release](assets/release_code_freeze.png "BotKube Finalize Release")
 
 :::warning
-Ensure that the `origin` remote points to `git@github.com:kubeshop/botkube.git` and not your fork.
+For the patch releases, you need to use a different branch, tag, or commit to derive from. For example, in order to create a patch
+release for `0.14.0` as `0.14.1`, you need to set first input in **Code Freeze Run workflow** drop-down as `0.14.0`. By doing this, `0.14.1` will
+be derived from `0.14.0` instead of `main` branch
 :::
 
-```bash
-git clone git@github.com:kubeshop/botkube.git
-cd botkube
-```
+### What this automation does under the hood?
 
-1. Export required environment variables:
+- Creates a release branch like `release/0.14.0` and pushes to remote
+- Processes Helm Chart to update helm docs, tags it as `0.14.1-rc.1` and pushes to remote
+- Generates docker images
+- Generates changelog
+- Creates release candidate with changelog body
+- Publishes helm chart
+- After release candidate verification and triggering Finalize Release workflow, it repeats steps 2,3,4,5 with `0.14.0`
 
-   ```bash
-   export GITHUB_USERNAME="{username}" # GitHub username
-   export GITHUB_TOKEN="{token}" # GitHub personal access token with packages write scope
-   ```
+### What to do on bug detection on release branch?
 
-1. Log in to Docker:
+- You can create PR against release branch. Once it is merged to release branch, it will increment candidate version by one automatically.
+  For example, if you have `0.14.1-rc.1`, it will become `0.14.0-rc.2` and it will create a backport pr against `main` branch.
 
-   ```bash
-   echo $GITHUB_TOKEN | docker login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
-   ```
+## The `botkube-docs` repository
 
-1. Update `.release` file with the new version in [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html) format.
+### Release Steps
 
-   ```
-   release=v{semVer version}
-   ```
+- Go to BotKube Docs [Actions page](https://github.com/kubeshop/botkube-docs/actions), and click **Release workflow**
+- Click **Run workflow** drop-down and fill the **Version** input for the next release, e.g. 0.14
+  ![BotKube Docs Release](assets/docs_release.png "BotKube Docs Release")
 
-   For example:
-
-   ```
-   release=v0.12.5
-   ```
-
-1. Run release script:
-
-   ```bash
-   ./hack/release.sh
-   ```
-
-   This script:
-
-   - Updates version in Helm chart,
-   - Generates changelog based on pull requests and issues,
-   - Runs tests,
-   - Creates and pushes git tag,
-   - Publishes Docker images,
-   - Publishes GitHub release.
-
-1. Update [newly created GitHub release](https://github.com/kubeshop/botkube/releases/latest) description using GitHub UI.
-
-   - Copy the generated changelog for the released version from the `./CHANGELOG.md` file.
-   - Edit the GitHub release and paste the changelog into the description field.
-
-1. Publish the modified Helm charts:
-
-   ```bash
-   git clone -b gh-pages "https://github.com/kubeshop/botkube.git" /tmp/botkube-charts
-   helm package -d /tmp/botkube-charts ./helm/botkube
-   cd /tmp/botkube-charts
-   helm repo index --url "https://charts.botkube.io/" --merge ./index.yaml .
-   git add .
-   git commit -m "Release BotKube Helm chart"
-   git push
-   cd -
-   rm -rf /tmp/botkube-charts
-   ```
-
-### The `botkube-docs` repository
-
-:::note
-This should be run only when major or minor version is released. Don't create a new docs version for patch releases.
-
-To better understand the process, read the [Docusaurus versioning](https://docusaurus.io/docs/versioning) documentation.
+:::warning
+Don't use semantic version format, only provide Major and Minor fields of semantic version like `0.14`
 :::
 
-1. Clone and navigate to the root of the `botkube-docs` repository.
-   ```bash
-   git clone git@github.com:kubeshop/botkube-docs.git
-   cd botkube-docs
-   ```
-2. Checkout a new branch.
-3. Make sure the current docs version (the ./docs directory) is ready to be frozen
-4. Run the release script:
+### What this automation does under the hood?
 
-   For example, for 0.13 release, run:
-
-   ```bash
-   npm run docusaurus docs:version 0.13
-   ```
-
-   This script:
-
-   - Copies current documentation `./docs` to `./versioned_docs`,
-   - Updates `./versions.json` file,
-   - Creates new sidebar in `./versioned_sidebars`,
-
-5. Create a pull request to the `main` branch of the upstream repository with the updated documentation.
+- Generates a release branch like `release/0.14`
+- Copies current documentation `./docs` to `./versioned_docs`,
+- Updates `./versions.json` file,
+- Creates new sidebar in `./versioned_sidebars`,
+- Creates an automatic PR against `main` branch
