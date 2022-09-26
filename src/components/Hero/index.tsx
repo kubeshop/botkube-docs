@@ -16,7 +16,7 @@ export const Hero = () => {
         <p className="hero__subtitle">A messaging bot for monitoring and debugging Kubernetes clusters.</p>
         <div className={styles.mainSloganLinks}>
           <Link
-            to={useBaseUrl("/docs/installation/")}
+            to={useBaseUrl("/docs/installation")}
             title="Installation guide"
             className="button button--lg button--primary"
           >

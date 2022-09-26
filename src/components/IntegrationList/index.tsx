@@ -14,12 +14,13 @@ type Props = {
 
 export const IntegrationList = (props: Props) => {
   const { integrations = [] } = props;
+  const currentPath = window.location.pathname.replace(/\/$|$/, "/");
 
   return (
     <div className={styles.integrations}>
       {integrations.map(integration => (
         <div key={integration.name} className={styles.integrationsItem}>
-          <Link to={integration.link} className="integrations__link">
+          <Link to={`${currentPath}${integration.link}`} className="integrations__link">
             <img src={integration.image} alt={integration.name} className="integrations__image" />
             {integration.name}
           </Link>
