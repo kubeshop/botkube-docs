@@ -99,11 +99,15 @@ This command will open configmap specs in vim editor. Do the required changes, s
 
 If you want to stop receiving notifications from BotKube, run **@BotKube notifier stop** from the configured channel where BotKube is added. You will no longer receive notifications from the BotKube in a given communication platform.
 
+The notification settings are persisted across BotKube app restarts.
+
 ![notifier-stop](assets/notifier-stop.png)
 
 ### Enable notifications
 
 If you want to receive BotKube notifications again, run **@BotKube notifier start** from the configured channel where BotKube is added.
+
+The notification settings are persisted across BotKube app restarts.
 
 :::note
 For MS Teams integration notifications are disabled by default. You need to turn them on manually using this command.
@@ -128,12 +132,18 @@ Run **@BotKube filters list** to get list of available filters and their running
 
 ### Disable filter
 
-Run **@BotKube filters disable {filter-name}** to disable perticular filter to skip checks on resource specs
+Run **@BotKube filters disable {filter-name}** to disable a filter named `{filter-name}`.
+
+The filter settings are persisted across BotKube app restarts.
+
 ![Disable filter](assets/filters_disable.png)
 
 ### Enable filter
 
-Run **@BotKube filters enable {filter-name}** to enable perticular filter to run checks on resource specs
+Run **@BotKube filters enable {filter-name}** to enable a filter named `{filter-name}`.
+
+The filter settings are persisted across BotKube app restarts.
+
 ![Enable filter](assets/filters_enable.png)
 
 ## Filter events using Annotations
