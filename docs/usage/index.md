@@ -16,8 +16,16 @@ By default, kubectl command execution is disabled. To enable this feature, set `
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where BotKube is already added or as a direct message to BotKube.
 
 ```
-@BotKube <kubectl command without `kubectl` prefix> [--cluster-name <cluster_name>]
+@BotKube <kubectl command with or without `kubectl` prefix> [--cluster-name <cluster_name>]
 ```
+
+:::info
+You can also prefix your commands with `kubectl` , `kc` or `k`.
+:::
+
+:::caution
+In future, one of the kubectl prefix (`kubectl` , `kc` or `k`) will be required.
+:::
 
 ### Checking allowed commands
 
