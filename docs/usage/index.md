@@ -95,6 +95,20 @@ kubectl edit configmap botkube-global-config -n botkube
 
 This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
 
+### Change notification sources
+
+To change the notification sources, you can either run the `helm upgrade` as described in [**View BotKube configuration**](#view-botkube-configuration) or run **@BotKube edit SourceBindings**.
+
+Depending on the communication platform, the possible options are being printed in response message:
+
+![discord-edit-sources](assets/discord-edit-bindings.png)
+
+or you are able to pick them from an interactive list:
+
+![slack-edit-sources](assets/slack-edit-bindings.png)
+
+Changes applied via **@BotKube edit SourceBindings** are applied once the BotKube is restarted. It is an automated process, but may take up to 1 minute.
+
 ### Disable notifications
 
 If you want to stop receiving notifications from BotKube, run **@BotKube notifier stop** from the configured channel where BotKube is added. You will no longer receive notifications from the BotKube in a given communication platform.
