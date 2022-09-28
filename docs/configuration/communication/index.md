@@ -50,6 +50,9 @@ communications:
       channels:
         "primary-channel": # Your own alias for the channel configuration
           name: general
+          notification:
+            # If true, the notifications are not sent to the channel. They can be enabled with `@BotKube` command anytime.
+            disabled: true
           bindings:
             executors: # Executors configuration for a given channel
               - kubectl-read-only
@@ -61,13 +64,13 @@ The example YAML configuration definition results in the following configuration
 
 For Slack **Workspace 1**, as defined by the first communication group (`first-group`):
 
-- sending notifications from `k8s-events` source to the `general` and `random` channels,
-- ability to execute commands from `kubectl-read-only` configuration in the `general` channel. On `random` channel executors are not configured.
+- Notifications from `k8s-events` source are sent to the `general` and `random` channels.
+- Commands from the `kubectl-read-only` configuration can be executed in the `general` channel. On `random` channel executors are not configured.
 
 For Slack **Workspace 2**, as defined by the second communication group (`second-group`):
 
-- sending notifications from `k8s-events` source to the `general` channel,
-- ability to execute commands in the `general` channel.
+- Notifications are configured to be sent from the `k8s-events` source to the `general` channel. They are disabled by default, and can be enabled with `@BotKube` command or during BotKube upgrade.
+- Commands from the `kubectl-read-only` configuration can be executed in the `general` channel.
 
 ## Source and Executor Bindings
 
@@ -107,6 +110,9 @@ communications:
         "default":
           # Slack channel name without '#' prefix where you have added BotKube and want to receive notifications in.
           name: "SLACK_CHANNEL"
+          notification:
+            # If true, the notifications are not sent to the channel. They can be enabled with `@BotKube` command anytime.
+            disabled: false
           bindings:
             # Executors configuration for a given channel.
             executors:
@@ -140,6 +146,9 @@ communications:
           # The Mattermost channel name for receiving BotKube alerts.
           # The BotKube user needs to be added to it.
           name: "MATTERMOST_CHANNEL"
+          notification:
+            # If true, the notifications are not sent to the channel. They can be enabled with `@BotKube` command anytime.
+            disabled: false
           bindings:
             # Executors configuration for a given channel.
             executors:
@@ -192,6 +201,9 @@ communications:
           # Discord channel ID for receiving BotKube alerts.
           # The BotKube user needs to be added to it.
           id: "DISCORD_CHANNEL_ID"
+          notification:
+            # If true, the notifications are not sent to the channel. They can be enabled with `@BotKube` command anytime.
+            disabled: false
           bindings:
             # Executors configuration for a given channel.
             executors:

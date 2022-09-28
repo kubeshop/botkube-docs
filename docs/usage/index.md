@@ -16,8 +16,16 @@ By default, kubectl command execution is disabled. To enable this feature, set `
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where BotKube is already added or as a direct message to BotKube.
 
 ```
-@BotKube <kubectl command without `kubectl` prefix> [--cluster-name <cluster_name>]
+@BotKube <kubectl command with or without `kubectl` prefix> [--cluster-name <cluster_name>]
 ```
+
+:::info
+You can also prefix your commands with `kubectl` , `kc` or `k`.
+:::
+
+:::caution
+In future, one of the kubectl prefix (`kubectl` , `kc` or `k`) will be required.
+:::
 
 ### Checking allowed commands
 
@@ -95,15 +103,33 @@ kubectl edit configmap botkube-global-config -n botkube
 
 This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
 
+### Change notification sources
+
+To change the notification sources, you can either run the `helm upgrade` as described in [**View BotKube configuration**](#view-botkube-configuration) or run **@BotKube edit SourceBindings**.
+
+Depending on the communication platform, the possible options are being printed in response message:
+
+![discord-edit-sources](assets/discord-edit-bindings.png)
+
+or you are able to pick them from an interactive list:
+
+![slack-edit-sources](assets/slack-edit-bindings.png)
+
+Changes applied via **@BotKube edit SourceBindings** are applied once the BotKube is restarted. It is an automated process, but may take up to 1 minute.
+
 ### Disable notifications
 
 If you want to stop receiving notifications from BotKube, run **@BotKube notifier stop** from the configured channel where BotKube is added. You will no longer receive notifications from the BotKube in a given communication platform.
+
+The notification settings are persisted across BotKube app restarts.
 
 ![notifier-stop](assets/notifier-stop.png)
 
 ### Enable notifications
 
 If you want to receive BotKube notifications again, run **@BotKube notifier start** from the configured channel where BotKube is added.
+
+The notification settings are persisted across BotKube app restarts.
 
 :::note
 For MS Teams integration notifications are disabled by default. You need to turn them on manually using this command.
@@ -128,12 +154,18 @@ Run **@BotKube filters list** to get list of available filters and their running
 
 ### Disable filter
 
-Run **@BotKube filters disable {filter-name}** to disable perticular filter to skip checks on resource specs
+Run **@BotKube filters disable {filter-name}** to disable a filter named `{filter-name}`.
+
+The filter settings are persisted across BotKube app restarts.
+
 ![Disable filter](assets/filters_disable.png)
 
 ### Enable filter
 
-Run **@BotKube filters enable {filter-name}** to enable perticular filter to run checks on resource specs
+Run **@BotKube filters enable {filter-name}** to enable a filter named `{filter-name}`.
+
+The filter settings are persisted across BotKube app restarts.
+
 ![Enable filter](assets/filters_enable.png)
 
 ## Filter events using Annotations
