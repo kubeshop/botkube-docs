@@ -33,7 +33,7 @@ Advanced Helm install options are documented [here](helm-chart-parameters).
 To update BotKube configuration, you can either:
 
 - upgrade BotKube installation with Helm,
-- or use dedicated `@BotKube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Usage](../usage/index.md) section for more details.
+- or use dedicated `@BotKube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Usage](../usage/index.md) document for more details.
 
 If you wish to change the configuration with Helm, create a `/tmp/values.yaml` file that contains the new values and use the **helm upgrade** command:
 
@@ -110,6 +110,12 @@ communications:
             sources: null # explicitly not use defaults from Helm chart
 # (...) other values
 ```
+
+The following properties need such `null` value during upgrade, if you want to keep the previous configuration:
+
+- `communications.default-group.{communication-platform}.channels.default.notifications`, where `{communication-platform}` is any communication platform supported except Microsoft Teams,
+- `communications.default-group.{communication-platform}.channels.default.bindings.sources`, where `{communication-platform}` is any communication platform supported except Microsoft Teams,
+- `communications.default-group.teams.bindings.sources`.
 
 To learn more, read the [Deleting a default key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) paragraph in Helm documentation.
 
