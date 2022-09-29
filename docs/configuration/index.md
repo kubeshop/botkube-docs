@@ -24,27 +24,94 @@ The configuration settings are read from two sources:
 
 - the exported [environment variables](#environment-variables) that overrides the configuration specified in the files.
 
-## Updating the configuration at runtime
-
-You can update the configuration and use `helm upgrade` to update configuration values for the BotKube. Also, you can use `@BotKube` commands which persist the configuration. See the [Usage](../usage/index.md) section for more details.
-
-You can also change configuration directly in ConfigMap and Secret - is not recommended but is great for quick experimentation.
-
-```bash
-# Change resources related settings
-kubectl edit configmap botkube-global-config -n botkube
-```
-
-```bash
-# Change communication related settings
-kubectl edit secret botkube-communication-secret -n botkube
-```
-
-This command opens ConfigMap `specs` in default editor. Do the required changes, save and exit. The BotKube Pod will automatically restart to have these configurations in effect.
-
 ## Helm install options
 
 Advanced Helm install options are documented [here](helm-chart-parameters).
+
+## Updating the configuration
+
+To update BotKube configuration, you can either:
+
+- upgrade BotKube installation with Helm,
+- or use dedicated `@BotKube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Usage](../usage/index.md) section for more details.
+
+If you wish to change the configuration with Helm, create a `/tmp/values.yaml` file that contains the new values and use the **helm upgrade** command:
+
+```bash
+helm upgrade -n botkube botkube -f /tmp/values.yaml helm/botkube --wait
+```
+
+As both Helm release upgrade and some of the `@BotKube` commands modify the same configuration, it is merged during the **helm upgrade** command.
+Whenever you specify a new value in the `/tmp/values.yaml` file, it will override the existing value in the configuration.
+
+### Preventing overrides by default Helm chart values
+
+Keep in mind that even if you don't specify custom values in the `/tmp/values.yaml` file, Helm can override the existing values with the default ones.
+
+Consider the following config:
+
+```yaml
+communications:
+  "default-group":
+    socketSlack:
+      enabled: true
+      botToken: "{botToken}"
+      appToken: "{appToken}"
+      channels:
+        "default":
+          name: general
+          notification:
+            disabled: false # default from the Helm chart
+          bindings:
+            sources:
+              - k8s-all-events # default from the Helm chart
+# (...)
+```
+
+Assume that users ran the following commands:
+
+```
+@BotKube edit SourceBindings k8s-err-events, k8s-recommendation-events
+@BotKube notifier stop
+```
+
+Which effectively result in the following config that BotKube sees:
+
+```yaml
+communications:
+  "default-group":
+    socketSlack:
+      enabled: true
+      botToken: "{botToken}"
+      appToken: "{appToken}"
+      channels:
+        "default":
+          name: general
+          notification:
+            disabled: true # set by user command
+          bindings:
+            sources:
+              - k8s-err-events # set by user command
+              - k8s-recommendation-events # set by user command
+# (...)
+```
+
+To persist the configuration that users provided, and not overwrite notification and source bindings values, run Helm upgrade with:
+
+```yaml
+communications:
+  "default-group":
+    socketSlack:
+      channels:
+        "default":
+          name: general
+          notification: null # explicitly not use defaults from Helm chart
+          bindings:
+            sources: null # explicitly not use defaults from Helm chart
+# (...) other values
+```
+
+To learn more, read the [Deleting a default key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) paragraph in Helm documentation.
 
 ## Environment variables
 
@@ -69,7 +136,7 @@ This is a useful feature that allows you to store the overall configuration in a
 BotKube allows you to split individual settings into multiple configuration files. The following rules apply:
 
 - The priority will be given to the last (right-most) file specified.
-- Files with `_` name prefix are always read as the last ones following the initial order. Also, they are ignored by the Config Watcher (if enabled according to the [**general**](./general) settings).
+- Files with `_` name prefix are always read as the last ones following the initial order.
 - Objects are merged together and primitive fields are overridden. For example:
 
   ```yaml

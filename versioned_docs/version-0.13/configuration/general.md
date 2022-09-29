@@ -4,7 +4,7 @@ title: General
 sidebar_position: 2
 ---
 
-The settings property holds a general configuration for the BotKube backend. For example, log level, disabling config watcher and similar.
+The settings property holds a general configuration for the BotKube backend. For example, log level, disabling Config Watcher and similar.
 
 ## Syntax
 
