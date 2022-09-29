@@ -23,6 +23,7 @@ settings:
     disableColors: false
 
 # Parameters for the Config Watcher container.
+# It watches for data changes of any ConfigMap or Secret with the label `botkube.io/config-watch: "true"` from the namespace where BotKube is installed, and restarts BotKube.
 configWatcher:
   # If true, restarts the BotKube Pod on config changes.
   enabled: true
