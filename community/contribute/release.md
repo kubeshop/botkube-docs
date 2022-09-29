@@ -30,7 +30,7 @@ This document describes how to prepare and publish a new BotKube release.
 ### New patch release
 
 Let say that you have published `v0.15.0` release and detected a problem in this version. As an action item, you may want to create set of PRs
-against a given release branch which is this case is `release-0.15`. After merging PRs to that release branch  the [**Prepare next release candidate**](https://github.com/kubeshop/botkube/actions/workflows/next-rc.yml) workflow **won't be executed until you will not cut a new patch version** `v0.15.1`.
+against a given release branch which is this case is `release-0.15`. After merging PRs to that release branch the [**Prepare next release candidate**](https://github.com/kubeshop/botkube/actions/workflows/next-rc.yml) workflow **won't be executed until you will not cut a new patch version** `v0.15.1`.
 
 1. Navigate to [**Cut a new release**](https://github.com/kubeshop/botkube/actions/workflows/cut-new-release.yml) workflow.
 2. Click on **Run workflow** drop-down and provide a patch release version like `v0.15.1`.
