@@ -81,27 +81,7 @@ BotKube bot allows you to enable/disable notifications on each configured channe
 
 Run **@BotKube notifier showconfig** message from the configured channel where BotKube is added. The bot will reply you with the configuration with which the controller is running.
 
-If you wish to change the configuration, you can run **helm upgrade**:
-
-```bash
-export CLUSTER_NAME={cluster_name}
-export ALLOW_KUBECTL={allow_kubectl}
-
-helm upgrade botkube \
---set settings.clusterName=${CLUSTER_NAME} \
---set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
-helm/botkube
-```
-
-OR
-
-You can also modify the controller configuration at runtime. You have to edit the configmap which will also restart the BotKube pod to update mounted configuration in the pod.
-
-```bash
-kubectl edit configmap botkube-global-config -n botkube
-```
-
-This command will open configmap specs in vim editor. Do the required changes, save and exit. The BotKube pod will automatically restart to have these configuration in effect.
+To see how to update the configuration, see the [Updating the configuration](../configuration/index.md#updating-the-configuration) section in the Configuration document.
 
 ### Change notification sources
 
