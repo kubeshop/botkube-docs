@@ -115,7 +115,7 @@ BotKube allows you to split individual settings into multiple configuration file
   ```
 
   ```yaml
-  # b.yaml
+  # result
   settings:
     kubectl:
       enabled: true
