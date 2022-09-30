@@ -6,81 +6,93 @@ sidebar_position: 1
 
 ## Install Slack App in Your Slack workspace
 
-BotKube uses interactive messaging to provide better experience. Interactive messaging needs Slack App with Socket Mode enabled
-and this kind of Slack App is not suitable for Slack App Directory listing. For this reason, instead of using Add to Slack flow,
-you need to create a Slack App in your own Slack workspace and use it for BotKube deployment. Now that you understand the background,
-lets continue with step-by-step explanation of Slack App creation.
+BotKube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled
+and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for BotKube deployment.
+
+Follow the steps below to create and install BotKube Slack app to your Slack workspace.
 
 ### Create Slack app
 
-- Go to [Slack App console](https://api.slack.com/apps) to create an application.
-- Click **Create New App** and select **From an app manifest** in the popup to create application from manifest.
-  ![Create App from Manifest](assets/socketslack_add_app.png "Slack add app")
-- Select a workspace where you want to create application and click **Next**.
-  ![Select Workspace](assets/socketslack_select_workspace.png "Slack select workspace")
-- Select **YAML** tab, copy & paste following manifest, and click **Next**.
+1. Go to [Slack App console](https://api.slack.com/apps) to create an application.
+1. Click **Create New App** and select **From an app manifest** in the popup to create application from manifest.
 
-```yaml
-display_information:
-  name: Botkube
-  description: Botkube
-  background_color: "#a653a6"
-features:
-  bot_user:
-    display_name: Botkube
-    always_online: false
-oauth_config:
-  scopes:
-    bot:
-      - app_mentions:read
-      - chat:write
-      - channels:read
-      - files:write
-settings:
-  event_subscriptions:
-    bot_events:
-      - app_mention
-  interactivity:
-    is_enabled: true
-  org_deploy_enabled: false
-  socket_mode_enabled: true
-  token_rotation_enabled: false
-```
+   ![Create App from Manifest](assets/socketslack_add_app.png "Slack add app")
+
+1. Select a workspace where you want to create application and click **Next**.
+
+   ![Select Workspace](assets/socketslack_select_workspace.png "Slack select workspace")
+
+1. Select **YAML** tab, copy & paste following manifest, and click **Next**, and then **Create**.
+
+   ```yaml
+   display_information:
+     name: Botkube
+     description: Botkube
+     background_color: "#a653a6"
+   features:
+     bot_user:
+       display_name: Botkube
+       always_online: false
+   oauth_config:
+     scopes:
+       bot:
+         - app_mentions:read
+         - chat:write
+         - channels:read
+         - files:write
+   settings:
+     event_subscriptions:
+       bot_events:
+         - app_mention
+     interactivity:
+       is_enabled: true
+     org_deploy_enabled: false
+     socket_mode_enabled: true
+     token_rotation_enabled: false
+   ```
 
 ### Install BotKube to the Slack workspace
 
-Once the application is created, you should be redirected to application detail page. In that page, click Install your app, select the workspace and click Allow to finish installation.
+Once the application is created, you will be redirected to application details page. Press the **Install your app** button, select the workspace and click **Allow to finish installation**.
 
 ![Install Slack App](assets/socketslack_install_app.png "Slack install app")
 
-### Collect Bot Token
+### Obtain Bot Token
 
-- Go to Slack App detail page and click OAuth & Permissions where you can see the bot token which starts with `xoxb...`.
-  ![Retrieve Slack Bot Token](assets/socketslack_retrieve_bot_token.png "Slack Bot Token")
-- Export Slack Bot Token as follows.
+Follow the steps to obtain the Bot Token:
 
-```shell
-export SLACK_API_BOT_TOKEN="{botToken}"
-```
+1. Select **OAuth & Permissions** section on the left sidebar. On this page you can copy the bot token which starts with `xoxb...`.
 
-### Generate & Collect App-Level Token
+   ![Retrieve Slack Bot Token](assets/socketslack_retrieve_bot_token.png "Slack Bot Token")
 
-Slack App with Socket Mode uses websocket protocol under the hood which needs another special token which is called App-Level Token. Please follow
-below steps to generate an App-Level Token.
+1. Export Slack Bot Token as follows:
 
-- Go to Slack App detail page and scroll down to section **App-Level Token** and click Generate Token and Scopes
-- Enter a **Name**, select `connections:write` scope, and click **Generate**.
-  ![Generate App-Level Token](assets/socketslack_generate_app_token.png "Slack App Token")
-  ![Retrieve App-Level Token](assets/socketslack_retrieve_app_token.png "Slack Retrieve App Token")
-- Copy **App-Level Token** and export it as follows.
+   ```shell
+   export SLACK_API_BOT_TOKEN="{botToken}"
+   ```
 
-```shell
-export SLACK_API_APP_TOKEN="${appToken}"
-```
+### Generate and obtain App-Level Token
+
+Slack App with Socket Mode requires an App-Level Token for the websocket connection.
+
+Follow the steps to generate an App-Level Token:
+
+1. Select **Basic Information** link from the left sidebar and scroll down to section **App-Level Token**. Click on the **Generate Token and Scopes** button.
+1. Enter a **Name**, select `connections:write` scope, and click **Generate**.
+
+   ![Generate App-Level Token](assets/socketslack_generate_app_token.png "Slack App Token")
+
+   ![Retrieve App-Level Token](assets/socketslack_retrieve_app_token.png "Slack Retrieve App Token")
+
+1. Copy **App-Level Token** and export it as follows:
+
+   ```shell
+   export SLACK_API_APP_TOKEN="${appToken}"
+   ```
 
 ### Add BotKube user to a Slack channel
 
-After installing BotKube app to your Slack workspace, you could see a new bot user with the name "BotKube" added in your workspace. Add that bot to a Slack channel you want to receive notification in.<br/> (You can add it by inviting **@BotKube** in a channel)
+After installing BotKube app to your Slack workspace, you could see a new bot user with the name "BotKube" added in your workspace. Add that bot to a Slack channel you want to receive notification in. You can add it by inviting **@BotKube** in a channel.
 
 ## Install BotKube Backend in Kubernetes cluster
 
@@ -100,22 +112,22 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   export SLACK_CHANNEL_NAME={channel_name}
 
   helm install --version v0.14.0 botkube --namespace botkube --create-namespace \
-  --set communications.default-group.slack.enabled=true \
-  --set communications.default-group.slack.channels.default.name=${SLACK_CHANNEL_NAME} \
-  --set communications.default-group.slack.appToken=${SLACK_API_APP_TOKEN} \
-  --set communications.default-group.slack.botToken=${SLACK_API_BOT_TOKEN} \
+  --set communications.default-group.socketSlack.enabled=true \
+  --set communications.default-group.socketSlack.channels.default.name=${SLACK_CHANNEL_NAME} \
+  --set communications.default-group.socketSlack.appToken=${SLACK_API_APP_TOKEN} \
+  --set communications.default-group.socketSlack.botToken=${SLACK_API_BOT_TOKEN} \
   --set settings.clusterName=${CLUSTER_NAME} \
   --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
   botkube/botkube
   ```
 
-  where,<br/>
+  where:
 
-  - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added<br/>
-  - **SLACK_API_BOT_TOKEN** is the Token you received after installing BotKube app to your Slack workspace<br/>
-  - **SLACK_API_APP_TOKEN** is the Token you received after installing BotKube app to your Slack workspace and generate in App-Level Token section<br/>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster<br/>
+  - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added
+  - **SLACK_API_BOT_TOKEN** is the Token you received after installing BotKube app to your Slack workspace
+  - **SLACK_API_APP_TOKEN** is the Token you received after installing BotKube app to your Slack workspace and generate in App-Level Token section
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
@@ -136,8 +148,8 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
 ### Delete BotKube from Slack workspace
 
-- Goto Slack <a href="https://api.slack.com/apps">apps</a> page<br/>
-- Click on "BotKube", scroll to bottom, and click on "Delete App" button
+- Go to the [Slack apps](https://api.slack.com/apps) page,
+- Click on "BotKube", scroll to bottom, and click on "Delete App" button.
 
 ## Remove BotKube from Kubernetes cluster
 
