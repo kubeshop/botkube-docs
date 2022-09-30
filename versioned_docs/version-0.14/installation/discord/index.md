@@ -102,7 +102,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   export CLUSTER_NAME={cluster_name}
   export ALLOW_KUBECTL={allow_kubectl}
 
-  helm install --version v0.13.0 botkube --namespace botkube --create-namespace \
+  helm install --version v0.14.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.discord.enabled=true \
   --set communications.default-group.discord.channels.default.id=${DISCORD_CHANNEL_ID} \
   --set communications.default-group.discord.botID=${DISCORD_BOT_ID} \
@@ -132,7 +132,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
      ```
-     helm install --version v0.13.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     helm install --version v0.14.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
