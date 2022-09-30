@@ -1,7 +1,7 @@
 ---
 id: mattermost
 title: Mattermost
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 ## Install BotKube to the Mattermost team

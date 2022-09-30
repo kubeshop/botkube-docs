@@ -1,7 +1,7 @@
 ---
 id: discord
 title: Discord
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 ## Install BotKube to the Discord Server:

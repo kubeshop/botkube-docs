@@ -1,7 +1,7 @@
 ---
 id: slack
-title: Slack
-sidebar_position: 1
+title: Slack (Legacy)
+sidebar_position: 2
 ---
 
 ## Install BotKube to the Slack workspace
