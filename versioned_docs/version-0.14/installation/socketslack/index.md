@@ -31,92 +31,94 @@ import TabItem from '@theme/TabItem';
 <Tabs>
   <TabItem value="public" label="Public channels only" default>
 
-   ```yaml
-   display_information:
-     name: Botkube
-     description: Botkube
-     background_color: "#a653a6"
-   features:
-     bot_user:
-       display_name: Botkube
-       always_online: false
-   oauth_config:
-     scopes:
-       bot:
-         - channels:read
-         - app_mentions:read
-         - chat:write
-         - files:write
-   settings:
-     event_subscriptions:
-       bot_events:
-         - app_mention
-     interactivity:
-       is_enabled: true
-     org_deploy_enabled: false
-     socket_mode_enabled: true
-     token_rotation_enabled: false
-   ```
+```yaml
+display_information:
+  name: Botkube
+  description: Botkube
+  background_color: "#a653a6"
+features:
+  bot_user:
+    display_name: Botkube
+    always_online: false
+oauth_config:
+  scopes:
+    bot:
+      - channels:read
+      - app_mentions:read
+      - chat:write
+      - files:write
+settings:
+  event_subscriptions:
+    bot_events:
+      - app_mention
+  interactivity:
+    is_enabled: true
+  org_deploy_enabled: false
+  socket_mode_enabled: true
+  token_rotation_enabled: false
+```
 
   </TabItem>
   <TabItem value="priv" label="Private channels only">
 
-   ```yaml
-   display_information:
-     name: Botkube
-     description: Botkube
-     background_color: "#a653a6"
-   features:
-     bot_user:
-       display_name: Botkube
-       always_online: false
-   oauth_config:
-     scopes:
-       bot:
-         - groups:read
-         - app_mentions:read
-         - chat:write
-         - files:write
-   settings:
-     event_subscriptions:
-       bot_events:
-         - app_mention
-     interactivity:
-       is_enabled: true
-     org_deploy_enabled: false
-     socket_mode_enabled: true
-     token_rotation_enabled: false
-   ```
+```yaml
+display_information:
+  name: Botkube
+  description: Botkube
+  background_color: "#a653a6"
+features:
+  bot_user:
+    display_name: Botkube
+    always_online: false
+oauth_config:
+  scopes:
+    bot:
+      - groups:read
+      - app_mentions:read
+      - chat:write
+      - files:write
+settings:
+  event_subscriptions:
+    bot_events:
+      - app_mention
+  interactivity:
+    is_enabled: true
+  org_deploy_enabled: false
+  socket_mode_enabled: true
+  token_rotation_enabled: false
+```
+
   </TabItem>
   <TabItem value="public-priv" label="Public and private channels">
 
-   ```yaml
-   display_information:
-     name: Botkube
-     description: Botkube
-     background_color: "#a653a6"
-   features:
-     bot_user:
-       display_name: Botkube
-       always_online: false
-   oauth_config:
-     scopes:
-       bot:
-         - channels:read
-         - groups:read
-         - app_mentions:read
-         - chat:write
-         - files:write
-   settings:
-     event_subscriptions:
-       bot_events:
-         - app_mention
-     interactivity:
-       is_enabled: true
-     org_deploy_enabled: false
-     socket_mode_enabled: true
-     token_rotation_enabled: false
-   ```
+```yaml
+display_information:
+  name: Botkube
+  description: Botkube
+  background_color: "#a653a6"
+features:
+  bot_user:
+    display_name: Botkube
+    always_online: false
+oauth_config:
+  scopes:
+    bot:
+      - channels:read
+      - groups:read
+      - app_mentions:read
+      - chat:write
+      - files:write
+settings:
+  event_subscriptions:
+    bot_events:
+      - app_mention
+  interactivity:
+    is_enabled: true
+  org_deploy_enabled: false
+  socket_mode_enabled: true
+  token_rotation_enabled: false
+```
+
   </TabItem>
 </Tabs>
 </div>
