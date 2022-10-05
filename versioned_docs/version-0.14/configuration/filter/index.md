@@ -13,7 +13,7 @@ You can develop your own filter according to the [Filter Development Guide](./de
 ```yaml
 # Filter settings for various sources.
 # Currently, all filters are globally enabled or disabled.
-# You can enable or disable filters with `@BotKube filters` commands.
+# You can enable or disable filters with `@Botkube filters` commands.
 filters:
   kubernetes:
     # If true, enables support for `botkube.io/disable` and `botkube.io/channel` resource annotations.

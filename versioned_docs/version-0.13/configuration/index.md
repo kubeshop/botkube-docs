@@ -4,7 +4,7 @@ title: Configuration
 sidebar_position: 2
 ---
 
-BotKube backend allows you to specify [source](./source), [executor](./executor), [communication](./communication), and [general](./general) BotKube settings. Check the related documents for more detailed explanation.
+Botkube backend allows you to specify [source](./source), [executor](./executor), [communication](./communication), and [general](./general) Botkube settings. Check the related documents for more detailed explanation.
 
 The configuration settings are read from two sources:
 
@@ -24,7 +24,7 @@ The configuration settings are read from two sources:
 
 ## Updating the configuration at runtime
 
-You can update the configuration and use `helm upgrade` to update configuration values for the BotKube.
+You can update the configuration and use `helm upgrade` to update configuration values for the Botkube.
 
 You can also change configuration directly in ConfigMap and Secret - is not recommended but is great for quick experimentation.
 
@@ -38,7 +38,7 @@ kubectl edit configmap botkube-global-config -n botkube
 kubectl edit secret botkube-communication-secret -n botkube
 ```
 
-This command opens ConfigMap `specs` in default editor. Do the required changes, save and exit. The BotKube Pod will automatically restart to have these configurations in effect.
+This command opens ConfigMap `specs` in default editor. Do the required changes, save and exit. The Botkube Pod will automatically restart to have these configurations in effect.
 
 ## Helm install options
 
@@ -64,7 +64,7 @@ This is a useful feature that allows you to store the overall configuration in a
 
 ## Merging strategy
 
-BotKube allows you to split individual settings into multiple configuration files. The following rules apply:
+Botkube allows you to split individual settings into multiple configuration files. The following rules apply:
 
 - The priority will be given to the last (right-most) file specified.
 - Objects are merged together and primitive fields are overridden. For example:

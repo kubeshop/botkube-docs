@@ -4,7 +4,7 @@ title: Configuration
 sidebar_position: 2
 ---
 
-BotKube backend allows you to specify [source](./source), [executor](./executor), [communication](./communication), and [general](./general) BotKube settings. Check the related documents for more detailed explanation.
+Botkube backend allows you to specify [source](./source), [executor](./executor), [communication](./communication), and [general](./general) Botkube settings. Check the related documents for more detailed explanation.
 
 The configuration settings are read from two sources:
 
@@ -19,7 +19,7 @@ The configuration settings are read from two sources:
   You can split individual settings into multiple configuration files. The priority will be given to the last (right-most) file specified. Files with `_` name prefix are always read as the last ones. See the [merging strategy](#merging-strategy) section for more details.
 
   :::note
-  For Helm installation, BotKube uses `_runtime_state.yaml` and `_startup_state.yaml` files to store its internal state. Remember to keep these files in the `BOTKUBE_CONFIG_PATHS` environment variable.
+  For Helm installation, Botkube uses `_runtime_state.yaml` and `_startup_state.yaml` files to store its internal state. Remember to keep these files in the `BOTKUBE_CONFIG_PATHS` environment variable.
   :::
 
 - the exported [environment variables](#environment-variables) that overrides the configuration specified in the files.
@@ -30,10 +30,10 @@ Advanced Helm install options are documented [here](helm-chart-parameters).
 
 ## Updating the configuration
 
-To update BotKube configuration, you can either:
+To update Botkube configuration, you can either:
 
-- upgrade BotKube installation with Helm,
-- or use dedicated `@BotKube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Usage](../usage/index.md) document for more details.
+- upgrade Botkube installation with Helm,
+- or use dedicated `@Botkube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Usage](../usage/index.md) document for more details.
 
 If you wish to change the configuration with Helm, create a `/tmp/values.yaml` file that contains the new values and use the **helm upgrade** command:
 
@@ -41,7 +41,7 @@ If you wish to change the configuration with Helm, create a `/tmp/values.yaml` f
 helm upgrade -n botkube botkube -f /tmp/values.yaml helm/botkube --wait
 ```
 
-As both Helm release upgrade and some of the `@BotKube` commands modify the same configuration, it is merged during the **helm upgrade** command.
+As both Helm release upgrade and some of the `@Botkube` commands modify the same configuration, it is merged during the **helm upgrade** command.
 Whenever you specify a new value in the `/tmp/values.yaml` file, it will override the existing value in the configuration.
 
 ### Preventing overrides by default Helm chart values
@@ -71,11 +71,11 @@ communications:
 Assume that users ran the following commands:
 
 ```
-@BotKube edit SourceBindings k8s-err-events, k8s-recommendation-events
-@BotKube notifier stop
+@Botkube edit SourceBindings k8s-err-events, k8s-recommendation-events
+@Botkube notifier stop
 ```
 
-Which effectively result in the following config that BotKube sees:
+Which effectively result in the following config that Botkube sees:
 
 ```yaml
 communications:
@@ -139,7 +139,7 @@ This is a useful feature that allows you to store the overall configuration in a
 
 ## Merging strategy
 
-BotKube allows you to split individual settings into multiple configuration files. The following rules apply:
+Botkube allows you to split individual settings into multiple configuration files. The following rules apply:
 
 - The priority will be given to the last (right-most) file specified.
 - Files with `_` name prefix are always read as the last ones following the initial order.

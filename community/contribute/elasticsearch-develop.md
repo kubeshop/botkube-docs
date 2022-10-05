@@ -4,7 +4,7 @@ title: "ElasticSearch notifier development"
 sidebar_position: 3
 ---
 
-The easiest way to develop BotKube with Elasticsearch notifier enabled is to install Elasticsearch on your local Kubernetes cluster.
+The easiest way to develop Botkube with Elasticsearch notifier enabled is to install Elasticsearch on your local Kubernetes cluster.
 
 ## Steps
 
@@ -15,7 +15,7 @@ The easiest way to develop BotKube with Elasticsearch notifier enabled is to ins
    helm install elasticsearch elastic/elasticsearch --version 7.17.3  --set replicas=1 --set resources.requests.cpu="100m" --set resources.requests.memory="512M" --wait
    ```
 
-1. Install BotKube with Elasticsearch, according to the [Elasticsearch installation](../../docs/installation/elasticsearch) instruction, where:
+1. Install Botkube with Elasticsearch, according to the [Elasticsearch installation](../../docs/installation/elasticsearch) instruction, where:
 
    - `ELASTICSEARCH_USERNAME` is `elastic`,
    - `ELASTICSEARCH_PASSWORD` is `changeme`,

@@ -4,20 +4,20 @@ title: General
 sidebar_position: 2
 ---
 
-The settings property holds a general configuration for the BotKube backend. For example, log level, disabling Config Watcher and similar.
+The settings property holds a general configuration for the Botkube backend. For example, log level, disabling Config Watcher and similar.
 
 ## Syntax
 
 ```yaml
-# General BotKube configuration.
+# General Botkube configuration.
 settings:
   # Cluster name to differentiate incoming messages.
   clusterName: not-configured
-  # If true, restarts the BotKube Pod on config changes.
+  # If true, restarts the Botkube Pod on config changes.
   configWatcher: true
-  # If true, notifies about new BotKube releases.
+  # If true, notifies about new Botkube releases.
   upgradeNotifier: true
-  # BotKube logging settings.
+  # Botkube logging settings.
   log:
     # Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
     level: info

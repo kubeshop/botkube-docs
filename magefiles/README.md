@@ -1,6 +1,6 @@
 # Magefiles
 
-This package contains various Go helper functions that are used by BotKube developers. The [Magefile](https://magefile.org/) is used to execute them.
+This package contains various Go helper functions that are used by Botkube developers. The [Magefile](https://magefile.org/) is used to execute them.
 
 ## Purpose
 
