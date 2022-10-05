@@ -13,7 +13,7 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "images/favicon.png",
+  favicon: "images/favicon.ico",
   organizationName: "kubeshop",
   projectName: "botkube",
 
@@ -106,7 +106,8 @@ const config = {
         title: "Botkube",
         logo: {
           alt: "Botkube Logo",
-          src: "images/botkube.png",
+          src: "images/botkube-black.svg",
+          srcDark: "images/botkube-white.svg",
         },
         items: [
           {

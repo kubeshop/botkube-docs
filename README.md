@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./static/images/botkube-title.jpg" alt="Botkube Logo Light" width="90%" />
+  <img src="./static/images/botkube-title.png" alt="Botkube Logo Light" />
 </p>
 
 <p align="center">
