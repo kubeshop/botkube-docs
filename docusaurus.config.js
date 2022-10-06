@@ -13,7 +13,7 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "images/favicon.ico",
+  favicon: "images/favicon.png",
   organizationName: "kubeshop",
   projectName: "botkube",
 
