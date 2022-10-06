@@ -28,7 +28,7 @@ Follow the steps below to install Botkube Discord app to your Discord server.
 
 4. Add a description - `Botkube helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.`.
 
-   Set the Botkube icon (Botkube icon can be downloaded from [this link](https://github.com/kubeshop/botkube/raw/main/branding/logos/botkube_192x192.png)).
+   Set the Botkube icon (Botkube icon can be downloaded from [this link](https://github.com/kubeshop/botkube/blob/main/branding/logos/botkube-color-192x192.png)).
 
    Click on Save Changes to update the Bot.
 
