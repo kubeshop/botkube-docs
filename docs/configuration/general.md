@@ -4,18 +4,18 @@ title: General
 sidebar_position: 2
 ---
 
-The general settings holds a general configuration for the BotKube backend. For example, log level, disabling config watcher and similar.
+The general settings holds a general configuration for the Botkube backend. For example, log level, disabling config watcher and similar.
 
 ## Syntax
 
 ```yaml
-# General BotKube configuration.
+# General Botkube configuration.
 settings:
   # Cluster name to differentiate incoming messages.
   clusterName: not-configured
-  # If true, notifies about new BotKube releases.
+  # If true, notifies about new Botkube releases.
   upgradeNotifier: true
-  # BotKube logging settings.
+  # Botkube logging settings.
   log:
     # Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
     level: info
@@ -23,12 +23,12 @@ settings:
     disableColors: false
 
 # Parameters for the Config Watcher container.
-# It watches for data changes of any ConfigMap or Secret with the label `botkube.io/config-watch: "true"` from the namespace where BotKube is installed, and restarts BotKube.
+# It watches for data changes of any ConfigMap or Secret with the label `botkube.io/config-watch: "true"` from the namespace where Botkube is installed, and restarts Botkube.
 configWatcher:
-  # If true, restarts the BotKube Pod on config changes.
+  # If true, restarts the Botkube Pod on config changes.
   enabled: true
   # Timeout for the initial Config Watcher sync.
-  # If set to 0, waiting for Config Watcher sync will be skipped. In a result, configuration changes may not reload BotKube app during the first few seconds after BotKube startup.
+  # If set to 0, waiting for Config Watcher sync will be skipped. In a result, configuration changes may not reload Botkube app during the first few seconds after Botkube startup.
   initialSyncTimeout: 0
 ```
 

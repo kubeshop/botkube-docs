@@ -15,7 +15,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-user-secret",
     description: (
       <>
-        The back end for the BotKube app runs in your Kubernetes cluster so you have complete control of your data and
+        The back end for the Botkube app runs in your Kubernetes cluster so you have complete control of your data and
         software.
       </>
     ),
@@ -26,7 +26,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Use the familiar Kubectl syntax, just with a new interface. You do not have to learn anything new! Plus you can
-        configure which Kubectl commands BotKube can execute. See <Link to="/docs/configuration">configuration</Link>{" "}
+        configure which Kubectl commands Botkube can execute. See <Link to="/docs/configuration">configuration</Link>{" "}
         for details.
       </>
     ),
@@ -36,7 +36,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-tasks",
     description: (
       <>
-        Like Slack, BotKube can also be integrated with Mattermost, Microsoft Teams, Discord, ElasticSearch and outgoing
+        Like Slack, Botkube can also be integrated with Mattermost, Microsoft Teams, Discord, ElasticSearch and outgoing
         webhook. See <Link to="/docs/configuration">configuration</Link> syntax for details.
       </>
     ),
@@ -46,7 +46,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-puzzle-piece",
     description: (
       <>
-        BotKube can monitor any Kubernetes resource including Custom Resources. This allows you to configure alerts on
+        Botkube can monitor any Kubernetes resource including Custom Resources. This allows you to configure alerts on
         some interesting events like certificate issue/expiry if you are using cert-manager, or backup failure if you
         are using backup tools like Velero or Kanister.
       </>
@@ -57,7 +57,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-cogs",
     description: (
       <>
-        With BotKube you can monitor and debug Kubernetes deployments from anywhere. Even if you are camping without a
+        With Botkube you can monitor and debug Kubernetes deployments from anywhere. Even if you are camping without a
         laptop, you can use Slack, Mattermost or Microsoft Teams mobile apps to get crucial information.
       </>
     ),
@@ -77,7 +77,7 @@ const FeatureList: FeatureItem[] = [
     iconClass: "fas fa-cloud",
     description: (
       <>
-        You can deploy the BotKube back end on any Kubernetes cluster, whether it is Minikube, cloud-managed Kubernetes,
+        You can deploy the Botkube back end on any Kubernetes cluster, whether it is Minikube, cloud-managed Kubernetes,
         or anything in between.
       </>
     ),
@@ -95,12 +95,12 @@ const FeatureList: FeatureItem[] = [
   {
     title: "Security",
     iconClass: "fas fa-shield-alt",
-    description: <>By default BotKube uses a READONLY service account, you can customize this to meet your needs.</>,
+    description: <>By default Botkube uses a READONLY service account, you can customize this to meet your needs.</>,
   },
   {
     title: "Open source",
     iconClass: "fab fa-github",
-    description: <>The BotKube back end is open source and we welcome your feedback and contributions.</>,
+    description: <>The Botkube back end is open source and we welcome your feedback and contributions.</>,
   },
 ];
 

@@ -4,7 +4,7 @@ title: "Adding a custom filter"
 sidebar_position: 5
 ---
 
-You can extend BotKube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct.
+You can extend Botkube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct.
 
 We have already defined a filter to add suggestions in the notifications if container image in pod specs is using **latest** tag.
 
@@ -126,10 +126,10 @@ func WithAllFilters(logger *logrus.Logger, dynamicCli dynamic.Interface, mapper 
 }
 ```
 
-## B. Rebuild and deploy the BotKube backend
+## B. Rebuild and deploy the Botkube backend
 
-- Build the BotKube backend docker image with `make container-image`.
+- Build the Botkube backend docker image with `make container-image`.
 - Push the image to Dockerhub registry.
-- Install/Upgrade your BotKube deployment (Steps are provided [here](../installation)).
+- Install/Upgrade your Botkube deployment (Steps are provided [here](../installation)).
 
 _The implementation of built-in filters can be found at: https://github.com/kubeshop/botkube/tree/main/pkg/filterengine/filters_

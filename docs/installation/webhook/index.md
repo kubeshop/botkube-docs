@@ -4,11 +4,11 @@ title: "Outgoing webhook"
 sidebar_position: 7
 ---
 
-## Install BotKube Backend in Kubernetes cluster
+## Install Botkube Backend in Kubernetes cluster
 
-BotKube can be integrated with external apps via Webhooks. A webhook is essentially a POST request sent to a callback URL. So you can configure BotKube to send events on specified URL.
+Botkube can be integrated with external apps via Webhooks. A webhook is essentially a POST request sent to a callback URL. So you can configure Botkube to send events on specified URL.
 
-- We use [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- We use [Helm](https://helm.sh/) to install Botkube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
 
   ```bash
@@ -16,7 +16,7 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
   helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster:
+- Deploy Botkube backend using **helm install** in your cluster:
 
   ```bash
   export CLUSTER_NAME={cluster_name}
@@ -31,13 +31,13 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
   where,<br/>
 
-  - **WEBHOOK_URL** is an outgoing webook URL to which BotKube will POST the events <br/>
+  - **WEBHOOK_URL** is an outgoing webook URL to which Botkube will POST the events <br/>
   - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
@@ -49,9 +49,9 @@ BotKube can be integrated with external apps via Webhooks. A webhook is essentia
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
 
-## Remove BotKube
+## Remove Botkube
 
-Execute following command to completely remove BotKube and related resources from your cluster
+Execute following command to completely remove Botkube and related resources from your cluster
 
 ```bash
 helm uninstall botkube

@@ -41,12 +41,12 @@ func SyncChartParams() {
 
 	url = fmt.Sprintf(urlValuesBySHAFmt, sha)
 	readme := strings.ReplaceAll(rawREADME, "./values.yaml", url)
-	readme = strings.TrimPrefix(readme, "# BotKube\n") // remove header
+	readme = strings.TrimPrefix(readme, "# Botkube\n") // remove header
 
 	out := fmt.Sprintf(fileTpl, readme)
 	lo.Must0(os.WriteFile(dstFilePath, []byte(out), 0o644))
 
-	printer.Infof("%q updated according to commit %q from BotKube repo", dstFilePath, sha[:5])
+	printer.Infof("%q updated according to commit %q from Botkube repo", dstFilePath, sha[:5])
 }
 
 func getBody(url string) string {

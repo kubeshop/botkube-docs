@@ -65,7 +65,7 @@ executors:
         # Configures which K8s resource are allowed.
         resources:
           ["deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps"]
-      # Configures the default Namespace for executing BotKube `kubectl` commands. If not set, uses 'default'.
+      # Configures the default Namespace for executing Botkube `kubectl` commands. If not set, uses 'default'.
       defaultNamespace: default
       # If true, enables commands execution from configured channel only.
       restrictAccess: false
@@ -75,11 +75,11 @@ The default configuration for Helm chart can be found in the [values.yaml](https
 
 ## Merging strategy
 
-When executing a `kubectl` command, BotKube takes into account only bindings for a given execution Namespace. For example:
+When executing a `kubectl` command, Botkube takes into account only bindings for a given execution Namespace. For example:
 
-- `@BotKube get po/botkube -n botkube` - collect `kubectl` executor bindings that include `botkube` or `*.` (all) Namespaces.
-- `@BotKube get po -A` - collect all `kubectl` executor bindings that include `*.` (all) Namespaces.
-- `@BotKube get po` - first, we resolve the execution Namespace. For that, we collect all enabled `kubectl` executor bindings and check the `defaultNamespace` property. If property is not define, we use the `default` Namespace. With resolved execution Namespace, we run the logic define in the first step.
+- `@Botkube get po/botkube -n botkube` - collect `kubectl` executor bindings that include `botkube` or `*.` (all) Namespaces.
+- `@Botkube get po -A` - collect all `kubectl` executor bindings that include `*.` (all) Namespaces.
+- `@Botkube get po` - first, we resolve the execution Namespace. For that, we collect all enabled `kubectl` executor bindings and check the `defaultNamespace` property. If property is not define, we use the `default` Namespace. With resolved execution Namespace, we run the logic define in the first step.
 
 For all collected `kubectl` executors, we merge properties with the following strategy:
 

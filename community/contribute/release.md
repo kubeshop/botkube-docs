@@ -4,7 +4,7 @@ title: "Release instruction"
 sidebar_position: 1
 ---
 
-This document describes how to prepare and publish a new BotKube release.
+This document describes how to prepare and publish a new Botkube release.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ This document describes how to prepare and publish a new BotKube release.
 
 1. Navigate to [**Cut a new release**](https://github.com/kubeshop/botkube/actions/workflows/cut-new-release.yml) workflow.
 2. Click on **Run workflow** drop-down, fill **Version** field. (e.g. `v0.14.0`), and click **Run Workflow**.
-   ![BotKube Release Cut](assets/release_cut_version.png "BotKube Release Cut")
+   ![Botkube Release Cut](assets/release_cut_version.png "Botkube Release Cut")
 3. It will generate all the needed artifacts and tag it with a release candidate tag, e.g. `v0.14.0-rc.1`.
 
    3.1. After final release candidate tests have been successful, continue to step 4.
@@ -24,7 +24,7 @@ This document describes how to prepare and publish a new BotKube release.
    3.2. If bug is detected in the release candidate, create a pull-request with a bug fix against the release branch. Once the pull-request is merged, the [**Prepare next release candidate**](https://github.com/kubeshop/botkube/actions/workflows/next-rc.yml) workflow will be automatically triggered and a new release candidate will be published, e.g. `v0.14.0-rc.2`.
 
 4. Navigate to [**Finalize release**](https://github.com/kubeshop/botkube/actions/workflows/finalize-release.yml) workflow and click on **Run workflow** drop-down and fill **Version** field to finalize specific release. (e.g. `v0.14.0`)
-   ![BotKube Finalize Release](assets/release_finalize.png "BotKube Finalize Release")
+   ![Botkube Finalize Release](assets/release_finalize.png "Botkube Finalize Release")
 5. If you need to do the patch release after you executed the [**Finalize release**](https://github.com/kubeshop/botkube/actions/workflows/finalize-release.yml) workflow, go to [**New patch release**](#new-patch-release).
 
 ### New patch release
@@ -57,9 +57,9 @@ the release steps described above, it will perform following actions;
 
 ### Release Steps
 
-- Go to BotKube Docs [Actions page](https://github.com/kubeshop/botkube-docs/actions), and click **Release workflow**
+- Go to Botkube Docs [Actions page](https://github.com/kubeshop/botkube-docs/actions), and click **Release workflow**
 - Click **Run workflow** drop-down and fill the **Version** input for the next release, e.g. 0.14
-  ![BotKube Docs Release](assets/docs_release.png "BotKube Docs Release")
+  ![Botkube Docs Release](assets/docs_release.png "Botkube Docs Release")
 
   :::warning
   Don't use semantic version format, only provide Major and Minor fields of semantic version like `0.14`

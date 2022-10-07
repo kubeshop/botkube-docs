@@ -4,21 +4,21 @@ title: "Contribute"
 sidebar_position: 1
 ---
 
-# How to Contribute to BotKube
+# How to Contribute to Botkube
 
 We'd love your help!
 
-BotKube is [MIT Licensed](/license/) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
+Botkube is [MIT Licensed](/license/) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
 
 We gratefully welcome improvements to [documentation](https://botkube.io/ "Go to documentation site") as well as to code.
 
 ## Contributing to documentation
 
-You can contribute to documentation by following [these instructions](https://github.com/kubeshop/botkube-docs#contributing "Contributing to BotKube Docs")
+You can contribute to documentation by following [these instructions](https://github.com/kubeshop/botkube-docs#contributing "Contributing to Botkube Docs")
 
-## Compile BotKube from source code
+## Compile Botkube from source code
 
-Before you proceed, make sure you have installed BotKube Slack/Mattermost/Teams app and copied the required token as per the steps documented [here](/docs/installation)
+Before you proceed, make sure you have installed Botkube Slack/Mattermost/Teams app and copied the required token as per the steps documented [here](/docs/installation)
 
 ### Prerequisite
 
@@ -30,15 +30,15 @@ Before you proceed, make sure you have installed BotKube Slack/Mattermost/Teams 
   git clone https://github.com/kubeshop/botkube.git
   ```
 
-Now you can build and run BotKube by one of the following ways
+Now you can build and run Botkube by one of the following ways
 
 ### Build and install on Kubernetes
 
-1. Build BotKube and create a new container image tagged as `ghcr.io/kubeshop/botkube:v9.99.9-dev`. Choose one option:
+1. Build Botkube and create a new container image tagged as `ghcr.io/kubeshop/botkube:v9.99.9-dev`. Choose one option:
 
    - **Single target build for your local K8s cluster**
 
-     This is ideal for running BotKube on a local cluster, e.g. using [kind](https://kind.sigs.k8s.io) or [`minikube`](https://minikube.sigs.k8s.io/docs/).
+     This is ideal for running Botkube on a local cluster, e.g. using [kind](https://kind.sigs.k8s.io) or [`minikube`](https://minikube.sigs.k8s.io/docs/).
 
      Remember to set the `IMAGE_PLATFORM` env var to your target architecture. For example, the command below builds the `linux/arm64` target. By default, the build targets `linux/amd64`.
 
@@ -52,7 +52,7 @@ Now you can build and run BotKube by one of the following ways
 
    - **Multi-arch target builds for any K8s cluster**
 
-     This is ideal for running BotKube on remote clusters.
+     This is ideal for running Botkube on remote clusters.
 
      When tagging your dev image take care to add your target image architecture as a suffix. For example, in the command below we added `-amd64` as our target architecture.
 
@@ -91,11 +91,11 @@ Now you can build and run BotKube by one of the following ways
 
    Check [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) for default options.
 
-### Build and run BotKube locally
+### Build and run Botkube locally
 
-For faster development, you can also build and run BotKube outside K8s cluster.
+For faster development, you can also build and run Botkube outside K8s cluster.
 
-1. Build BotKube binary if you don't want to build the container image, you can build the binary like this,
+1. Build Botkube binary if you don't want to build the container image, you can build the binary like this,
 
    ```sh
    # Fetch the dependencies
@@ -140,7 +140,7 @@ For faster development, you can also build and run BotKube outside K8s cluster.
    CoreDNS is running at https://192.168.39.233:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
    ```
 
-6. Run BotKube binary
+6. Run Botkube binary
    ```sh
    ./botkube
    ```

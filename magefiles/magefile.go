@@ -18,7 +18,7 @@ var (
 
 type Sync mg.Namespace
 
-// Chart synchronize BotKube Helm chart parameters.
+// Chart synchronize Botkube Helm chart parameters.
 func (Sync) Chart() {
 	target.SyncChartParams()
 }

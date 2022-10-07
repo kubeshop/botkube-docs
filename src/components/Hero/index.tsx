@@ -9,10 +9,6 @@ export const Hero = () => {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <h1 className={clsx("heroTitle", styles.heroTitle)}>
-          <img src={useBaseUrl("/images/botkube.png")} alt="BotKube log" className={styles.heroLogo} />
-          BotKube
-        </h1>
         <p className="hero__subtitle">A messaging bot for monitoring and debugging Kubernetes clusters.</p>
         <div className={styles.mainSloganLinks}>
           <Link

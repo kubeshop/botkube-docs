@@ -6,10 +6,10 @@ sidebar_position: 1
 
 ## Install Slack App in Your Slack workspace
 
-BotKube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled
-and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for BotKube deployment.
+Botkube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled
+and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for Botkube deployment.
 
-Follow the steps below to create and install BotKube Slack app to your Slack workspace.
+Follow the steps below to create and install Botkube Slack app to your Slack workspace.
 
 ### Create Slack app
 
@@ -123,7 +123,7 @@ settings:
 </Tabs>
 </div>
 
-### Install BotKube to the Slack workspace
+### Install Botkube to the Slack workspace
 
 Once the application is created, you will be redirected to application details page. Press the **Install your app** button, select the workspace and click **Allow to finish installation**.
 
@@ -162,13 +162,13 @@ Follow the steps to generate an App-Level Token:
    export SLACK_API_APP_TOKEN="${appToken}"
    ```
 
-### Add BotKube user to a Slack channel
+### Add Botkube user to a Slack channel
 
-After installing BotKube app to your Slack workspace, you could see a new bot user with the name "BotKube" added in your workspace. Add that bot to a Slack channel you want to receive notification in. You can add it by inviting **@BotKube** in a channel.
+After installing Botkube app to your Slack workspace, you could see a new bot user with the name "Botkube" added in your workspace. Add that bot to a Slack channel you want to receive notification in. You can add it by inviting **@Botkube** in a channel.
 
-## Install BotKube Backend in Kubernetes cluster
+## Install Botkube Backend in Kubernetes cluster
 
-- We use [Helm](https://helm.sh/) to install BotKube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
+- We use [Helm](https://helm.sh/) to install Botkube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
 - Add **botkube** chart repository:
 
   ```bash
@@ -176,7 +176,7 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
   helm repo update
   ```
 
-- Deploy BotKube backend using **helm install** in your cluster:
+- Deploy Botkube backend using **helm install** in your cluster:
 
   ```bash
   export CLUSTER_NAME={cluster_name}
@@ -195,18 +195,18 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
   where:
 
-  - **SLACK_CHANNEL_NAME** is the channel name where @BotKube is added
-  - **SLACK_API_BOT_TOKEN** is the Token you received after installing BotKube app to your Slack workspace
-  - **SLACK_API_APP_TOKEN** is the Token you received after installing BotKube app to your Slack workspace and generate in App-Level Token section
+  - **SLACK_CHANNEL_NAME** is the channel name where @Botkube is added
+  - **SLACK_API_BOT_TOKEN** is the Token you received after installing Botkube app to your Slack workspace
+  - **SLACK_API_APP_TOKEN** is the Token you received after installing Botkube app to your Slack workspace and generate in App-Level Token section
   - **CLUSTER_NAME** is the cluster name set in the incoming messages
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by BotKube on the cluster
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-  Send **@BotKube ping** in the channel to see if BotKube is running and responding.
+  Send **@Botkube ping** in the channel to see if Botkube is running and responding.
 
-  With the default configuration, BotKube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
@@ -218,14 +218,14 @@ After installing BotKube app to your Slack workspace, you could see a new bot us
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
 
-### Delete BotKube from Slack workspace
+### Delete Botkube from Slack workspace
 
 - Go to the [Slack apps](https://api.slack.com/apps) page,
-- Click on "BotKube", scroll to bottom, and click on "Delete App" button.
+- Click on "Botkube", scroll to bottom, and click on "Delete App" button.
 
-## Remove BotKube from Kubernetes cluster
+## Remove Botkube from Kubernetes cluster
 
-Execute following command to completely remove BotKube and related resources from your cluster.
+Execute following command to completely remove Botkube and related resources from your cluster.
 
 ```bash
 helm uninstall botkube

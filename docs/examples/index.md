@@ -61,7 +61,7 @@ Add following configuration resource_config to monitor Velero backups resource.
           - status.phase
 ```
 
-With this configuration, BotKube will monitor create/delete/error events and updates in _status.phase_ fields in _velero.io/v1/backups_ resource.
+With this configuration, Botkube will monitor create/delete/error events and updates in _status.phase_ fields in _velero.io/v1/backups_ resource.
 
 ![Monitor Velero backups](assets/velero_backup.png "Velero backup")
 

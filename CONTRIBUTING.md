@@ -1,8 +1,8 @@
-# How to Contribute to BotKube
+# How to Contribute to Botkube
 
 We'd love your help!
 
-BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull requests. This document outlines conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
+Botkube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull requests. This document outlines conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
 
 ### Prerequisite
 
@@ -14,7 +14,7 @@ BotKube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
   > **Note**
   > Run `mage -l` to see all possible targets.
 
-- Cloned BotKube documentation repository
+- Cloned Botkube documentation repository
 
   Use the following command to clone it:
 
@@ -79,8 +79,8 @@ Try to squash unimportant commits and rebase your changes on to the `main` branc
 
 ## Support Channels
 
-Join the BotKube-related discussion on Slack!
+Join the Botkube-related discussion on Slack!
 
-Create your Slack account on [BotKube](https://join.botkube.io) workspace.
+Create your Slack account on [Botkube](https://join.botkube.io) workspace.
 
 To report bug or feature, use [GitHub issues](https://github.com/kubeshop/botkube-docs/issues/new/choose).
