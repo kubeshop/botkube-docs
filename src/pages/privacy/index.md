@@ -37,7 +37,7 @@ For identifying Botkube installations, we use unique identifiers generated in th
 
 #### How to opt out
 
-To disable sending the anonymous analytics, provide the `analytics.disable: true` override during Helm chart installation or upgrade. See the [Helm chart parameters](/docs/configuration/helm-chart-parameters/#values) for more details about Helm chart configuration.
+To disable sending the anonymous analytics, provide the `analytics.disable: true` override during Helm chart installation or upgrade. See the [Helm chart parameters](/configuration/helm-chart-parameters/#values) for more details about Helm chart configuration.
 
 ## Website
 
