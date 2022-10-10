@@ -130,5 +130,5 @@ export MATTERMOST_CHANNEL="{channel_name}"
 Execute following command to completely remove Botkube and related resources from your cluster
 
 ```bash
-helm uninstall botkube
+helm uninstall botkube --namespace botkube
 ```

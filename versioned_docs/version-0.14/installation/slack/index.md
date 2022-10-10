@@ -86,5 +86,5 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
 Execute following command to completely remove Botkube and related resources from your cluster.
 
 ```bash
-helm uninstall botkube
+helm uninstall botkube --namespace botkube
 ```
