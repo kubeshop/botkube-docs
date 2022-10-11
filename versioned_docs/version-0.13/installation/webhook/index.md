@@ -54,5 +54,5 @@ Botkube can be integrated with external apps via Webhooks. A webhook is essentia
 Execute following command to completely remove Botkube and related resources from your cluster
 
 ```bash
-helm uninstall botkube
+helm uninstall botkube --namespace botkube
 ```
