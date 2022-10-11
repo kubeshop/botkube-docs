@@ -60,5 +60,5 @@ sidebar_position: 6
 Execute following command to completely remove Botkube and related resources from your cluster
 
 ```bash
-helm uninstall botkube
+helm uninstall botkube --namespace botkube
 ```

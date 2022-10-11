@@ -147,5 +147,5 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 Execute following command to completely remove Botkube and related resources from your cluster.
 
 ```bash
-helm uninstall botkube
+helm uninstall botkube --namespace botkube
 ```
