@@ -56,10 +56,10 @@ metadata:
     botkube.io/disable: "true"
 spec:
   containers:
-  - name: nginx
-    image: nginx:1.14.2
-    ports:
-    - containerPort: 80
+    - name: nginx
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
 ```
 
 ### Send notification to non-default channel
@@ -82,8 +82,8 @@ metadata:
     botkube.io/channel: "forwarded-channel"
 spec:
   containers:
-  - name: nginx
-    image: nginx:1.14.2
-    ports:
-    - containerPort: 80
+    - name: nginx
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
 ```

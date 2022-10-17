@@ -6,6 +6,20 @@ sidebar_position: 1
 
 # Event notifications
 
+Botkube sends notifications according to the [sources](../configuration/source.md) configuration.
+
+## Actionable notifications
+
+If you have [`kubectl` executor enabled](../configuration/executor.md) for a given channel, you can run commands related to a resource from the notification itself. Use the dropdown on the left to select and run a given command:
+
+![Actionable notifications](./assets/actionable-notifications.png)
+
+The command dropdown is disabled for resource deletion events. It uses executor bindings to determine which commands are available for a given resource.
+
+:::info
+Actionable notifications are only available for the [Slack integration](../installation/socketslack/index.md) that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
+:::
+
 ## Managing notifications
 
 Depending upon your configuration, you will receive notifications about Kubernetes resources lifecycle events and their health.
