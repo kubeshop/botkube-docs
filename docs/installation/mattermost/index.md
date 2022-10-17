@@ -90,16 +90,16 @@ export MATTERMOST_CHANNEL="{channel_name}"
   botkube/botkube
   ```
 
-  where,<br/>
+  where:
 
-  - **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running<br/>
-  - **MATTERMOST_CERT** _(optional)_ is the SSL certificate file for HTTPS connection. Place it in Helm directory and specify the path<br/>
-  - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for Botkube user<br/>
-  - **MATTERMOST_TEAM** is the Team name where Botkube is added<br/>
-  - **MATTERMOST_CHANNEL** is the Channel name where Botkube is added and used for communication<br/>
-  - **MATTERMOST_BOT_NAME** is the Mattermost bot username (usually it is `Botkube`)<br/>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster<br/>
+  - **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running,
+  - **MATTERMOST_CERT** _(optional)_ is the SSL certificate file for HTTPS connection. Place it in Helm directory and specify the path,
+  - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for Botkube user,
+  - **MATTERMOST_TEAM** is the Team name where Botkube is added,
+  - **MATTERMOST_CHANNEL** is the Channel name where Botkube is added and used for communication,
+  - **MATTERMOST_BOT_NAME** is the Mattermost bot username (usually it is `Botkube`),
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages,
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster.
 
   - To deploy with TLS, replace **MATTERMOST_CERT** with the location of the SSL certificate file placed in Helm directory. Leave this value to None if deploying without TLS.
 
@@ -108,7 +108,8 @@ export MATTERMOST_CHANNEL="{channel_name}"
 
   Send **@Botkube ping** in the channel to see if Botkube is running and responding.
 
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
+
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
@@ -122,7 +123,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
 
 ## Remove Botkube from Mattermost Team
 
-- Deactivate or remove Botkube user from Mattermost Team. Login as System Admin, in the Menu proceed to System console -> Users -> botkube -> Deactivate<br/>
+- Deactivate or remove Botkube user from Mattermost Team. Login as System Admin, in the Menu proceed to System console -> Users -> botkube -> Deactivate.
 - Archive Channel created for Botkube communication if required.
 
 ## Remove Botkube from Kubernetes cluster

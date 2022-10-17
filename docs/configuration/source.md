@@ -151,7 +151,7 @@ recommendations:
 # The property name under `sources` object is an alias for a given configuration. You can define multiple sources configuration with different names.
 # Key name is used as a binding reference.
 #
-# Format: sources.<alias>
+# Format: sources.{alias}
 sources:
   "k8s-events":
     # Describes Kubernetes source configuration.

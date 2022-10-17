@@ -53,7 +53,7 @@ Follow the steps below to install Botkube Discord app to your Discord server.
    the generated URL contains **YOUR_CLIENT_ID**, Scope and permission details.
 
    ```
-   https://discord.com/api/oauth2/authorize?client_id=<YOUR_CLIENT_ID>&permissions=<SET_OF_PERMISSIONS>&scope=bot
+   https://discord.com/api/oauth2/authorize?client_id={YOUR_CLIENT_ID}&permissions={SET_OF_PERMISSIONS}&scope=bot
    ```
 
 9. Copy and Paste the generated URL in a new tab, select the discord server to which you want to add the bot, click Continue and Authorize Bot addition.
@@ -112,20 +112,21 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   botkube/botkube
   ```
 
-  where,<br/>
+  where:
 
-  - **DISCORD_CHANNEL_ID** is the channel name where @Botkube needs to send notifications<br/>
-  - **DISCORD_BOT_ID** is the Botkube Application Client ID<br/>
-  - **DISCORD_TOKEN** is the Token you received after adding Botkube bot to your Discord Application<br/>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster<br/>
+  - **DISCORD_CHANNEL_ID** is the channel name where @Botkube needs to send notifications,
+  - **DISCORD_BOT_ID** is the Botkube Application Client ID,
+  - **DISCORD_TOKEN** is the Token you received after adding Botkube bot to your Discord Application,
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages,
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster.
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
   Send **@Botkube ping** in the channel to see if Botkube is running and responding.
 
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
+
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
@@ -139,8 +140,8 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
 
 ### Remove Botkube from Discord Server
 
-- Goto Discord Developers Portel <a href="https://discord.com/developers/applications">Applications</a> page<br/>
-- Click on "Botkube" and click on "Delete App" button
+- Goto Discord Developers Portel [Applications](https://discord.com/developers/applications) page,
+- Click on "Botkube" and click on "Delete App" button.
 
 ## Remove Botkube from Kubernetes cluster
 

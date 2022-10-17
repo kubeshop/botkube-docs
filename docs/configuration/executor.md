@@ -40,7 +40,7 @@ Multiple executor bindings are merged. See the [**merging strategy**](#merging-s
 # Map of executors. The `executors` property name is an alias for a given configuration.
 # Key name is used as a binding reference.
 #
-# Format: executors.<alias>
+# Format: executors.{alias}
 executors:
   "kubectl-read-only":
     # Kubectl executor configuration.

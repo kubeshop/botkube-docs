@@ -33,17 +33,18 @@ sidebar_position: 6
   botkube/botkube
   ```
 
-  where,<br/>
+  where:
 
-  - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243 <br/>
-  - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server<br/>
-  - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server<br/>
-  - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which Botkube events will be stored _(default: botkube)_<br/>
+  - **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243,
+  - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server,
+  - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server,
+  - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which Botkube events will be stored _(default: botkube)_.
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
+
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
