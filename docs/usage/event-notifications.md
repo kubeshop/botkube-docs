@@ -20,6 +20,20 @@ The command dropdown is disabled for resource deletion events. It uses executor 
 Actionable notifications are only available for the [Slack integration](../installation/socketslack/index.md) that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
 :::
 
+## Notification formats
+
+Botkube supports two notification formats: `short` and `long`. The `short` format is used by default.
+
+You can change the format by setting the `format` field in the [communication configuration](../configuration/communication/index.md) per a given communication platform.
+
+### Short format
+
+![Short notification](./assets/short-notification.png)
+
+### Long format
+
+![Long notification](./assets/long-notification.png)
+
 ## Managing notifications
 
 Depending upon your configuration, you will receive notifications about Kubernetes resources lifecycle events and their health.

@@ -64,7 +64,7 @@ spec:
 
 ### Send notification to non-default channel
 
-The annotation `botkube.io/channel: <channel_name>` sends events notifications of the annotated object to the mentioned channel.
+The annotation `botkube.io/channel: {channel_name}` sends events notifications of the annotated object to the mentioned channel.
 Notification forwarding via annotation is supported only for Slack, Slack legacy and Mattermost integrations.
 
 :::note
