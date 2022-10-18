@@ -5,8 +5,8 @@ sidebar_position: 4
 ---
 
 :::note
-You can change notification format to - **long** or **short** through settings based on your requirement. Check [configuration](../configuration) for more details.<br/>
-The default notification type is **short**
+You can change notification format to - **long** or **short** through settings based on your requirement. Check [configuration](../configuration) for more details.
+The default notification type is **short**.
 :::
 
 ## Sample Notifications

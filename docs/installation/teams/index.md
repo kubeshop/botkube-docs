@@ -116,7 +116,7 @@ Go to "Publish / Publish to org" and click on **Publish your app** to install th
 An admin has to approve this app in the [Teams Admin Centre](https://admin.teams.microsoft.com/policies/manage-apps).
 
 :::note
-If you face "You don't have permissions to add Botkube to this team.", contact your admin to provide an access to install apps on teams.<br/>
+If you face "You don't have permissions to add Botkube to this team.", contact your admin to provide an access to install apps on teams.
 If you are using a free version of teams which does not have an admin center, you can click on **Download** to download the app manifest and then choose **Upload a custom app** option in the App center to install the app.
 :::
 
@@ -172,16 +172,16 @@ We use this TLS Secret while deploying the Botkube backend.
   botkube/botkube
   ```
 
-  where,
+  where:
 
-  - **APPLICATION_ID** is the Botkube application ID generated while registering Bot to Teams<br/>
-  - **APPLICATION_PASSWORD** is the Botkube application password generated while registering Bot to Teams<br/>
-  - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `Botkube`)<br/>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster<br/>
-  - **HOST** is the Hostname of endpoint provided while registering Botkube to Teams<br/>
-  - **URLPATH** is the path in endpoint URL provided while registering Botkube to Teams<br/>
-  - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination<br/>
+  - **APPLICATION_ID** is the Botkube application ID generated while registering Bot to Teams,
+  - **APPLICATION_PASSWORD** is the Botkube application password generated while registering Bot to Teams,
+  - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `Botkube`),
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages,
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster,
+  - **HOST** is the Hostname of endpoint provided while registering Botkube to Teams,
+  - **URLPATH** is the path in endpoint URL provided while registering Botkube to Teams,
+  - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination.
 
   Configuration syntax is explained [here](../../configuration). A Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 

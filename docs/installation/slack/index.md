@@ -24,7 +24,7 @@ Alternatively, you can install Botkube Slack app [from Slack app directory](http
 
 ### Add Botkube user to a Slack channel
 
-After installing Botkube app to your Slack workspace, you could see a new bot user with the name "Botkube" added in your workspace. Add that bot to a Slack channel you want to receive notification in.<br/> (You can add it by inviting **@Botkube** in a channel)
+After installing Botkube app to your Slack workspace, you could see a new bot user with the name "Botkube" added in your workspace. Add that bot to a Slack channel you want to receive notification in. You can add it by inviting **@Botkube** in a channel.
 
 ## Install Botkube Backend in Kubernetes cluster
 
@@ -52,19 +52,20 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   botkube/botkube
   ```
 
-  where,<br/>
+  where:
 
-  - **SLACK_CHANNEL_NAME** is the channel name where @Botkube is added<br/>
-  - **SLACK_API_BOT_TOKEN** is the Token you received after installing Botkube app to your Slack workspace<br/>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster<br/>
+  - **SLACK_CHANNEL_NAME** is the channel name where @Botkube is added,
+  - **SLACK_API_BOT_TOKEN** is the Token you received after installing Botkube app to your Slack workspace,
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages,
+  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster.
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
   Send **@Botkube ping** in the channel to see if Botkube is running and responding.
 
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
+
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
@@ -78,8 +79,8 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
 
 ### Remove Botkube from Slack workspace
 
-- Goto Slack <a href="https://slack.com/apps/manage">manage apps</a> page<br/>
-- Click on "Botkube" and click on "Remove App" button
+- Goto Slack [manage apps](https://slack.com/apps/manage) page,
+- Click on "Botkube" and click on "Remove App" button.
 
 ## Remove Botkube from Kubernetes cluster
 

@@ -1,7 +1,7 @@
 ---
 id: development
 title: "Custom filter development"
-sidebar_position: 5
+sidebar_position: 2
 ---
 
 You can extend Botkube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct.

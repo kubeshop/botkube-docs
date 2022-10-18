@@ -29,15 +29,16 @@ Botkube can be integrated with external apps via Webhooks. A webhook is essentia
   botkube/botkube
   ```
 
-  where,<br/>
+  where:
 
-  - **WEBHOOK_URL** is an outgoing webook URL to which Botkube will POST the events <br/>
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages<br/>
+  - **WEBHOOK_URL** is an outgoing webook URL to which Botkube will POST the events,
+  - **CLUSTER_NAME** is the cluster name set in the incoming messages.
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.<br/>
+  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
+
   If you wish to monitor only specific resources, follow the steps given below:
 
   1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.

@@ -140,7 +140,6 @@ This instruction guides you through the installation of Botkube and Vault on a K
    ```
 
 6. Install Botkube:
-   <!--- TODO(https://github.com/kubeshop/botkube/issues/595): replace the version with v0.13.0 once released -->
 
    :::note
    You need to clone the https://github.com/kubeshop/botkube first.
@@ -148,7 +147,6 @@ This instruction guides you through the installation of Botkube and Vault on a K
 
    ```bash
    helm install botkube --namespace default \
-   --set image.tag=v9.99.9-dev \
    -f /tmp/values.yaml \
    ./helm/botkube
    ```

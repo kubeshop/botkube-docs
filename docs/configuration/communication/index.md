@@ -96,7 +96,7 @@ For example, bot integrations such as Slack, Mattermost or Discord have multi-ch
 # Map of communication groups. Communication group contains settings for multiple communication platforms.
 # The property name under `communications` object is an alias for a given configuration group. You can define multiple communication groups with different names.
 #
-# Format: communications.<alias>
+# Format: communications.{alias}
 communications:
   "default-group":
     # Settings for Slack.
@@ -105,7 +105,7 @@ communications:
       enabled: false
       # Map of configured channels. The property name under `channels` object is an alias for a given configuration.
       #
-      # Format: channels.<alias>
+      # Format: channels.{alias}
       channels:
         "default":
           # Slack channel name without '#' prefix where you have added Botkube and want to receive notifications in.
@@ -140,7 +140,7 @@ communications:
       team: "MATTERMOST_TEAM"
       # Map of configured channels. The property name under `channels` object is an alias for a given configuration.
       #
-      # Format: channels.<alias>
+      # Format: channels.{alias}
       channels:
         "default":
           # The Mattermost channel name for receiving Botkube alerts.
@@ -195,7 +195,7 @@ communications:
       botID: "DISCORD_BOT_ID"
       # Map of configured channels. The property name under `channels` object is an alias for a given configuration.
       #
-      # Format: channels.<alias>
+      # Format: channels.{alias}
       channels:
         "default":
           # Discord channel ID for receiving Botkube alerts.
@@ -238,7 +238,7 @@ communications:
       skipTLSVerify: false
       # Map of configured indices. The `indices` property name is an alias for a given configuration.
       #
-      # Format: indices.<alias>
+      # Format: indices.{alias}
       indices:
         "default":
           # Configures Elasticsearch index settings.
