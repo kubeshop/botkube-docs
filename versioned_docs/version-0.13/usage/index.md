@@ -11,7 +11,7 @@ Run **/botkubehelp** to find more information about the supported commands.
 
 ![help](assets/help.png)
 
-By default, kubectl command execution is disabled. To enable this feature, set `executors.<configuration-name>.kubectl.enabled: true` in [Executor configuration](../configuration/executor).
+By default, kubectl command execution is disabled. To enable this feature, set `executors.{configuration-name}.kubectl.enabled: true` in [Executor configuration](../configuration/executor).
 
 As suggested in help message, to execute kubectl commands, send message in following format in the channel where Botkube is already added or as a direct message to Botkube.
 
