@@ -4,6 +4,10 @@ title: "Interactive output filtering"
 sidebar_position: 3
 ---
 
+:::info
+Interactive output filtering is only available for the [Slack integration](../installation/socketslack/index.md) that supports interactive messages.
+:::
+
 Sometimes you can get long response from a certain command and you may want to filter that to see a subset of the actual result.
 For each communication platform, you can use the `--filter` flag at the end of your command. To learn more, see the [Flags](./executing-commands.md#filtering-text-output) section.
 
