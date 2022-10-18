@@ -27,7 +27,27 @@ This command needs to be executed from configured channel else use `--cluster-na
 ![get_pods](assets/get_namespaces.png)
 ![get_pods](assets/mm_get_ns.png)
 
-### Checking allowed commands
+## Interactive kubectl commands builder
+
+The interactive `kubectl` command builder allows you to construct a `kubectl` command just by selecting items from dropdowns. It is especially useful with the mobile application when typing the command is harder.
+
+An additional advantage is the resource name dropdown that is pre-populated with all relevant resource names. It increases discoverability and gives you an option to select e.g. a Pod name without the need to type or copy-paste it.
+
+To start the interactive `kubectl` command builder, run **@Botkube k|kc|kubectl** from the configured channel where Botkube is added.
+
+![kubectl command builder](assets/kc-cmd-builder.png)
+
+The following policies are applied:
+
+- Verbs, resource types and namespace dropdowns are narrowed down to the `kubectl` permissions in a given channel,
+- The `kubectl` command preview is displayed only if the command that you built is valid,
+- For resources that are namespace-scoped, the Namespace defined in `executors.{alias}.kubectl.defaultNamespace` is used. If not set, the `default` Namespace is selected.
+
+:::info
+Actionable notifications are only available for the [Slack integration](../installation/socketslack/index.md) that supports interactive messages.
+:::
+
+## Checking allowed commands
 
 While deploying Botkube controller, you can specify which kubectl commands you want to allow Botkube to execute through the [executors configuration](../configuration/executor.md).
 
@@ -35,7 +55,7 @@ To check which commands are allowed for users to execute through Botkube, run **
 
 ![commands_list](assets/commands_list.png)
 
-### Specify cluster name
+## Specify cluster name
 
 If you have installed Botkube backend on multiple clusters, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
 
