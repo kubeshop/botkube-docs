@@ -27,7 +27,7 @@ This command needs to be executed from configured channel else use `--cluster-na
 ![get_pods](assets/get_namespaces.png)
 ![get_pods](assets/mm_get_ns.png)
 
-### Checking allowed commands
+## Checking allowed commands
 
 While deploying Botkube controller, you can specify which kubectl commands you want to allow Botkube to execute through the [executors configuration](../configuration/executor.md).
 
@@ -35,7 +35,7 @@ To check which commands are allowed for users to execute through Botkube, run **
 
 ![commands_list](assets/commands_list.png)
 
-### Specify cluster name
+## Specify cluster name
 
 If you have installed Botkube backend on multiple clusters, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
 
@@ -52,17 +52,17 @@ The flag is ignored in notifier commands as they can be executed from the config
 ![flag_clustername_kubectl](assets/flag_clustername_kubectl.png)
 ![flag_clustername_kubectl](assets/mm_flag_clustername_kubectl.png)
 
-### Filtering text output
+## Filtering text output
 
 Use the `--filter` flag to filter the output of BotKube executor commands. This returns any lines matching the flag's provided value.
 
 The `--filter` flag uses simple string matching. And, only works for BotKube executor commands that return text output, e.g. `kubectl` or `commands list` commands. 
 
-#### Filtering the commands list
+### Filtering the commands list
 
 ![flag_filter_commands_list](assets/flag_filter_commands_list.png)
 
-#### Filtering kubectl output
+### Filtering kubectl output
 
 ![flag_filter_kubectl_get_nodes](assets/flag_filter_kubectl_get_nodes.png)
 ![flag_filter_kubectl_logs](assets/flag_filter_kubectl_logs.png)
