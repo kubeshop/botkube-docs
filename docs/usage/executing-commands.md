@@ -56,7 +56,7 @@ The flag is ignored in notifier commands as they can be executed from the config
 
 Use the `--filter` flag to filter the output of BotKube executor commands. This returns any lines matching the flag's provided value.
 
-The `--filter` flag uses simple string matching. And, only works for BotKube executor commands that return text output, e.g. `kubectl` or `commands list` commands. 
+The `--filter` flag uses simple string matching. And, only works for BotKube executor commands that return text output, e.g. `kubectl` or `commands list` commands.
 
 ### Filtering the commands list
 
