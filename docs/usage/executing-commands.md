@@ -19,7 +19,7 @@ You can also prefix your commands with `kubectl` , `kc` or `k`.
 :::
 
 :::caution
-In future, one of the kubectl prefix (`kubectl` , `kc` or `k`) will be required.
+From version `0.17`, one of the kubectl prefixes (`kubectl` , `kc` or `k`) will always be required.
 :::
 
 This command needs to be executed from configured channel else use `--cluster-name` flag described in the [Specify cluster name](#specify-cluster-name) section.
