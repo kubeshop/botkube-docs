@@ -1,7 +1,7 @@
 ---
 id: filters
-title: "Filters"
-sidebar_position: 3
+title: "Event filters"
+sidebar_position: 4
 ---
 
 # Filters
