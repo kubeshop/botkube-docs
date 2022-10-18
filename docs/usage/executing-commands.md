@@ -72,4 +72,19 @@ The flag is ignored in notifier commands as they can be executed from the config
 ![flag_clustername_kubectl](assets/flag_clustername_kubectl.png)
 ![flag_clustername_kubectl](assets/mm_flag_clustername_kubectl.png)
 
+## Filtering text output
+
+Use the `--filter` flag to filter the output of BotKube executor commands. This returns any lines matching the flag's provided value.
+
+The `--filter` flag uses simple string matching. And, only works for BotKube executor commands that return text output, e.g. `kubectl` or `commands list` commands.
+
+### Filtering the commands list
+
+![flag_filter_commands_list](assets/flag_filter_commands_list.png)
+
+### Filtering kubectl output
+
+![flag_filter_kubectl_get_nodes](assets/flag_filter_kubectl_get_nodes.png)
+![flag_filter_kubectl_logs](assets/flag_filter_kubectl_logs.png)
+
 See [Examples](../examples/#h-examples) for the use cases.
