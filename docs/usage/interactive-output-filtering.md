@@ -5,12 +5,12 @@ sidebar_position: 3
 ---
 
 Sometimes you can get long response from a certain command and you may want to filter that to see a subset of the actual result.
-while you can achieve that with `--filter` param at the end of your command, there is another option to handle that with interactive
-output filtering. Interactivity is achieved via an input action text box where you can add your filter criteria as text and press `Enter`.
+For each communication platform, you can use the `--filter` flag at the end of your command. To learn more, see the [Flags](./executing-commands.md#filtering-text-output) section.
+If you use the the [Slack integration](../installation/socketslack/index.md) that supports interactive messages, there is another option to handle that: interactive output filtering. 
+Interactivity is achieved via an input action text box where you can add your filter criteria as text and press the **Enter** button.
 
-:::info
+### Long response filtering
 Output Filter input text box will be attached to your command response if response has more than 15 lines. Let's see an example for this situation.
-:::
 
 1. List pods with `@Botkube get pods -n kube-system`
 ![metrics_pods](assets/output-filtering-get-pods-metrics.png)
@@ -19,9 +19,8 @@ Output Filter input text box will be attached to your command response if respon
 3. Notice that Filter Output is attached to response. Type `RequestHeaderAuthRequestController` to filter and press `Enter`.
 ![metrics_filter_logs](assets/output-filtering-metrics-logs-filter.png)
 
-:::info
-Command response is uploaded as text file once the actual size of response message reaches the limit of messaging platform. Let's take a look how Filter Output behaves for this situation. 
-:::
+## Attachment response filtering
+Command response is uploaded as text file once the actual size of response message reaches the limit of messaging platform. Let's take a look how Filter Output behaves for this situation.
 
 1. List the pods with `@Botkube get pods -n kube-system`
    ![get_pods](assets/output-filtering-get-pods.png)
