@@ -29,9 +29,9 @@ This command needs to be executed from configured channel else use `--cluster-na
 
 ## Interactive kubectl commands builder
 
-The interactive `kubectl` command builder allows you to construct a `kubectl` command just by selecting items from dropdowns. It is especially useful with the mobile application when typing the command is harder.
+Use the interactive `kubectl` command builder to construct a `kubectl` command just by selecting items from dropdowns. This is especially useful on mobile when typing the command is harder.
 
-An additional advantage is the resource name dropdown that is pre-populated with all relevant resource names. It increases discoverability and gives you an option to select e.g. a Pod name without the need to type or copy-paste it.
+The builder includes a resource name dropdown list. This is pre-populated with all the relevant resource names. It's great for discovering resources with the option to select them. E.g. Just grab a Pod name without needing to type or copy-and-paste.
 
 To start the interactive `kubectl` command builder, run **@Botkube k|kc|kubectl** from the configured channel where Botkube is added.
 
