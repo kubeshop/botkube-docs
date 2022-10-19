@@ -28,6 +28,11 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: magefiles/go.mod
+
       - name: Set git 'user.name' and 'user.email'
         run: |
           git config user.name "${{ env.git-user }}"
@@ -38,7 +43,31 @@ jobs:
           git checkout -b release/${{ inputs.version }}
           git push --set-upstream origin release/${{ inputs.version }}
           npm install
+
+      - name: Update versions in installation docs
+        run: |
+          LATEST_RELEASE_VERSION=$(curl -s -XGET  https://api.github.com/repos/kubeshop/botkube/releases/latest | awk -F'"tag_name": ' '{ print $2 }' | tr -d "\n" | awk -F'"' '{ print $2 }')
+          PREVIOUS_RELEASE_VERSION=$(grep  "\--version" docs/installation/slack/index.md | head -1 | awk -F'--version ' '{print $2}' | awk -F' ' '{print $1}')
+          find ./docs/installation/ -type f -name "*.md" -exec sed -i.bak "s/$PREVIOUS_RELEASE_VERSION/$LATEST_RELEASE_VERSION/g" {} \;
+
+      - name: Synchronize helm parameters
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: "sync:chart"
+        env:
+          BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
+
+      - name: Run docusaurus versoning
+        run: |
           npm run docusaurus docs:version ${{ inputs.version }} 
+
+      - name: Prettier check
+        run: |
+          npm run prettier:fix
+
+      - name: Push changes to remote
+        run: |
           git add .
           git commit -m "Prepare docs for ${{ inputs.version }} release"
           git push

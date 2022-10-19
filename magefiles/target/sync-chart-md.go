@@ -18,7 +18,7 @@ var fileTpl = heredoc.Doc(`
      ---
      id: helm-chart-parameters
      title: Helm chart parameters
-     sidebar_position: 6
+     sidebar_position: 5
      ---
      %s
      `)
@@ -31,22 +31,27 @@ const (
 )
 
 func SyncChartParams() {
-	printer.Title("Synchronizing Helm chart doc...")
+	printer.Title("Synchronizing Helm chart doc ...")
 
-	lastCommitJSON := getBody(urlLastCommit)
-	sha := gjson.Get(lastCommitJSON, "0.sha").String()
+	target := os.Getenv("BOTKUBE_RELEASE_BRANCH")
+	targetIdentifier := "branch"
+	if target == "" {
+		lastCommitJSON := getBody(urlLastCommit)
+		target = gjson.Get(lastCommitJSON, "0.sha").String()
+		targetIdentifier = "commit"
+	}
 
-	url := fmt.Sprintf(urlReadmeBySHAFmt, sha)
+	url := fmt.Sprintf(urlReadmeBySHAFmt, target)
 	rawREADME := getBody(url)
 
-	url = fmt.Sprintf(urlValuesBySHAFmt, sha)
+	url = fmt.Sprintf(urlValuesBySHAFmt, target)
 	readme := strings.ReplaceAll(rawREADME, "./values.yaml", url)
 	readme = strings.TrimPrefix(readme, "# Botkube\n") // remove header
 
 	out := fmt.Sprintf(fileTpl, readme)
 	lo.Must0(os.WriteFile(dstFilePath, []byte(out), 0o644))
 
-	printer.Infof("%q updated according to commit %q from Botkube repo", dstFilePath, sha[:5])
+	printer.Infof("%q updated according to %s %q from Botkube repo", dstFilePath, targetIdentifier, target)
 }
 
 func getBody(url string) string {
