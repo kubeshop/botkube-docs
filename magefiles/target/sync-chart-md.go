@@ -7,46 +7,42 @@ import (
 	"os"
 	"strings"
 
+	"botkube.io/tools/printer"
 	"github.com/MakeNowJust/heredoc/v2"
 	"github.com/samber/lo"
-	"github.com/tidwall/gjson"
-
-	"botkube.io/tools/printer"
 )
 
 var fileTpl = heredoc.Doc(`
      ---
      id: helm-chart-parameters
      title: Helm chart parameters
-     sidebar_position: 6
+     sidebar_position: 5
      ---
      %s
      `)
 
 const (
-	urlLastCommit     = "https://api.github.com/repos/kubeshop/botkube/commits?per_page=1"
 	urlReadmeBySHAFmt = "https://raw.githubusercontent.com/kubeshop/botkube/%s/helm/botkube/README.md"
 	urlValuesBySHAFmt = "https://github.com/kubeshop/botkube/blob/%s/helm/botkube/values.yaml"
 	dstFilePath       = "docs/configuration/helm-chart-parameters.md"
 )
 
 func SyncChartParams() {
-	printer.Title("Synchronizing Helm chart doc...")
+	printer.Title("Synchronizing Helm chart doc for ...")
 
-	lastCommitJSON := getBody(urlLastCommit)
-	sha := gjson.Get(lastCommitJSON, "0.sha").String()
+	botkubeReleaseBranch := os.Getenv("BOTKUBE_RELEASE_BRANCH")
 
-	url := fmt.Sprintf(urlReadmeBySHAFmt, sha)
+	url := fmt.Sprintf(urlReadmeBySHAFmt, botkubeReleaseBranch)
 	rawREADME := getBody(url)
 
-	url = fmt.Sprintf(urlValuesBySHAFmt, sha)
+	url = fmt.Sprintf(urlValuesBySHAFmt, botkubeReleaseBranch)
 	readme := strings.ReplaceAll(rawREADME, "./values.yaml", url)
-	readme = strings.TrimPrefix(readme, "# Botkube\n") // remove header
+	readme = strings.TrimPrefix(readme, "# BotKube\n") // remove header
 
 	out := fmt.Sprintf(fileTpl, readme)
 	lo.Must0(os.WriteFile(dstFilePath, []byte(out), 0o644))
 
-	printer.Infof("%q updated according to commit %q from Botkube repo", dstFilePath, sha[:5])
+	printer.Infof("%q updated according to release branch %q from BotKube repo", dstFilePath, botkubeReleaseBranch)
 }
 
 func getBody(url string) string {
