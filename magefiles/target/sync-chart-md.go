@@ -2,15 +2,16 @@ package target
 
 import (
 	"fmt"
-	"github.com/tidwall/gjson"
 	"io"
 	"net/http"
 	"os"
 	"strings"
 
-	"botkube.io/tools/printer"
 	"github.com/MakeNowJust/heredoc/v2"
 	"github.com/samber/lo"
+	"github.com/tidwall/gjson"
+
+	"botkube.io/tools/printer"
 )
 
 var fileTpl = heredoc.Doc(`
