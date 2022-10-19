@@ -38,10 +38,6 @@ jobs:
           git config user.name "${{ env.git-user }}"
           git config user.email ${{ env.git-email }}
 
-      - name: Retrieve latest Botkube release tag
-        run: |
-
-
       - name: Create a release branch
         run: |
           git checkout -b release/${{ inputs.version }}
@@ -58,6 +54,7 @@ jobs:
         uses: magefile/mage-action@v2
         with:
           version: latest
+          args: "sync:chart"
         env:
           BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
 
@@ -67,7 +64,7 @@ jobs:
 
       - name: Prettier check
         run: |
-          npx prettier --write .
+          npm run prettier:fix
 
       - name: Push changes to remote
         run: |
