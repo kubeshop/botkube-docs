@@ -28,7 +28,7 @@ const (
 )
 
 func SyncChartParams() {
-	printer.Title("Synchronizing Helm chart doc for ...")
+	printer.Title("Synchronizing Helm chart doc ...")
 
 	botkubeReleaseBranch := os.Getenv("BOTKUBE_RELEASE_BRANCH")
 
