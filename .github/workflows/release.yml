@@ -46,7 +46,7 @@ jobs:
 
       - name: Update versions in installation docs
         run: |
-          LATEST_RELEASE_VERSION="${{ inputs.version }}.0"
+          LATEST_RELEASE_VERSION="v${{ inputs.version }}.0"
           PREVIOUS_RELEASE_VERSION=$(grep  "\--version" docs/installation/slack/index.md | head -1 | awk -F'--version ' '{print $2}' | awk -F' ' '{print $1}')
           find ./docs/installation/ -type f -name "*.md" -exec sed -i.bak "s/$PREVIOUS_RELEASE_VERSION/$LATEST_RELEASE_VERSION/g" {} \;
 
