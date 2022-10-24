@@ -62,7 +62,7 @@ function customRedirections() {
       from: "/community",
     },
     {
-      to: "/docs/configuration/filter/",
+      to: "/docs/usage/filters/",
       from: "/filters",
     },
   ];
