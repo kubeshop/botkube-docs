@@ -130,6 +130,6 @@ func WithAllFilters(logger *logrus.Logger, dynamicCli dynamic.Interface, mapper 
 
 - Build the Botkube backend docker image with `make container-image`.
 - Push the image to Dockerhub registry.
-- Install/Upgrade your Botkube deployment (Steps are provided [here](../installation)).
+- Install/Upgrade your Botkube deployment (Steps are provided [here](../)).
 
 _The implementation of built-in filters can be found at: https://github.com/kubeshop/botkube/tree/main/pkg/filterengine/filters_

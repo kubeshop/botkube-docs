@@ -35,6 +35,7 @@ const config = {
               label: `Unreleased 🚧`,
             },
           },
+          routeBasePath: "/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.scss"),
@@ -181,11 +182,11 @@ const config = {
             items: [
               {
                 label: "Installation",
-                to: "/docs/installation",
+                to: "/",
               },
               {
                 label: "Examples",
-                to: "/docs/examples",
+                to: "/examples",
               },
             ],
           },

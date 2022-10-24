@@ -18,7 +18,7 @@ You can contribute to documentation by following [these instructions](https://gi
 
 ## Compile Botkube from source code
 
-Before you proceed, make sure you have installed Botkube Slack/Mattermost/Teams app and copied the required token as per the steps documented [here](/docs/installation)
+Before you proceed, make sure you have installed Botkube Slack/Mattermost/Teams app and copied the required token as per the steps documented [here](/)
 
 ### Prerequisite
 

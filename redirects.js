@@ -54,7 +54,7 @@ function createRedirects(existingPath) {
 function customRedirections() {
   return [
     {
-      to: "/docs/installation/",
+      to: "/",
       from: "/docs",
     },
     {
@@ -62,7 +62,7 @@ function customRedirections() {
       from: "/community",
     },
     {
-      to: "/docs/usage/filters/",
+      to: "/usage/filters/",
       from: "/filters",
     },
   ];
