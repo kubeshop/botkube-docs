@@ -58,6 +58,10 @@ function customRedirections() {
       from: "/docs",
     },
     {
+      to: "/",
+      from: "/installation",
+    },
+    {
       to: "/community/contribute/",
       from: "/community",
     },
