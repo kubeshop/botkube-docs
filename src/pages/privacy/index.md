@@ -9,7 +9,7 @@ title: "Privacy & legal"
 
 ### Privacy Policy
 
-**Last updated** **July 18, 2022**
+**Last updated** **November 17, 2022**
 
 To improve the user experience, Botkube collects anonymized data. It does not collect any identifying information, and all analytics are used only as aggregated collection of data to improve Botkube and adjust its roadmap. The analytics collection is enabled by default with an option to opt-out.
 
@@ -19,6 +19,7 @@ The analytics data we collect is limited to:
 
 - Botkube version,
 - Kubernetes version,
+- Number of cluster nodes (control plane and worker nodes count),
 - Names of enabled integrations (notifiers and bots),
 - Handled events in anonymized form, grouped by the integration (communication platform) name.
 
@@ -30,10 +31,7 @@ The analytics data we collect is limited to:
 
 - App errors (crashes, configuration and notification errors).
 
-For identifying Botkube installations, we use unique identifiers generated in the following way:
-
-- As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace,
-- As an anonymous installation identifier, we use UUID generated during Helm chart installation and persisted in a ConfigMap.
+As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace. 
 
 #### How to opt out
 
