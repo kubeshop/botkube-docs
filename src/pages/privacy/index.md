@@ -31,7 +31,7 @@ The analytics data we collect is limited to:
 
 - App errors (crashes, configuration and notification errors).
 
-As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace. 
+As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace.
 
 #### How to opt out
 
