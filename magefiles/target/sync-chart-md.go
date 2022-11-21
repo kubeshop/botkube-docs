@@ -18,7 +18,7 @@ var fileTpl = heredoc.Doc(`
      ---
      id: helm-chart-parameters
      title: Helm chart parameters
-     sidebar_position: 5
+     sidebar_position: 6
      ---
      %s
      `)

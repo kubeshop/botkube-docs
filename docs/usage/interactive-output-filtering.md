@@ -1,7 +1,7 @@
 ---
 id: interactive-output-filtering
 title: "Interactive output filtering"
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 :::info

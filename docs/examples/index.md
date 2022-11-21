@@ -50,11 +50,12 @@ Add following configuration resource_config to monitor Velero backups resource.
       namespaces:
         include:
           - .*
-      events:
-        - create
-        - update
-        - delete
-        - error
+      event:
+        types:
+          - create
+          - update
+          - delete
+          - error
       updateSetting:
         includeDiff: true
         fields:
