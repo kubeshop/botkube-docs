@@ -46,9 +46,8 @@ actions:
     enabled: false
     # Action display name posted in the channels bound to the same source bindings.
     displayName: "Describe created resource"
-    # Command to execute when the action is triggered. You can use Go template (https://golang.org/pkg/text/template/).
-    # You can use the {{ .Event }}` variable, which contains the event object that triggered the action. See all available event properties on https://github.com/kubeshop/botkube/blob/main/pkg/event/event.go.
-    # The list of helper functions that you can use is available on https://go-task.github.io/slim-sprig/.
+    # Command to execute when the action is triggered. You can use Go template (https://pkg.go.dev/text/template) together with all helper functions defined by Slim-Sprig library (https://go-task.github.io/slim-sprig).
+    # You can use the `{{ .Event }}` variable, which contains the event object that triggered the action. See all available event properties on https://github.com/kubeshop/botkube/blob/main/pkg/event/event.go.
     command: "kubectl describe {{ .Event.TypeMeta.Kind | lower }}{{ if .Event.Namespace }} -n {{ .Event.Namespace }}{{ end }} {{ .Event.Name }}"
 
     # Bindings for a given action.
@@ -65,9 +64,8 @@ actions:
 
     # Action display name posted in the channels bound to the same source bindings.
     displayName: "Show logs on error"
-    # Command to execute when the action is triggered. You can use Go template (https://golang.org/pkg/text/template/).
-    # You can use the {{ .Event }}` variable, which contains the event object that triggered the action. See all available event properties on https://github.com/kubeshop/botkube/blob/main/pkg/event/event.go.
-    # The list of helper functions that you can use is available on https://go-task.github.io/slim-sprig/.
+    # Command to execute when the action is triggered. You can use Go template (https://pkg.go.dev/text/template) together with all helper functions defined by Slim-Sprig library (https://go-task.github.io/slim-sprig).
+    # You can use the `{{ .Event }}` variable, which contains the event object that triggered the action. See all available event properties on https://github.com/kubeshop/botkube/blob/main/pkg/event/event.go.
     command: "kubectl logs {{ .Event.TypeMeta.Kind | lower }}/{{ .Event.Name }} -n {{ .Event.Namespace }}"
 
     # Bindings for a given action.

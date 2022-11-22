@@ -89,7 +89,7 @@ func (f *ObjectAnnotationChecker) Describe() string {
 
 ### 3. Add your logic in the Run() function
 
-Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/kubeshop/botkube/blob/main/pkg/events/events.go).
+Now, put your logic in the **Run()** function to parse resource object, run validation and modify Event struct. The fields in the Event struct can be found [here](https://github.com/kubeshop/botkube/blob/main/pkg/event/event.go).
 
 ```go
 // Run filters and modifies event struct.
