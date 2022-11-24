@@ -224,6 +224,10 @@ If you get 404, please check the ingress configuration or endpoint you configure
    If Botkube responds, send `@Botkube notifier start` to enable notifications.
    ![Teams - check bot health](assets/teams_ping.png "Teams Botkube ping")
 
+   :::warning
+   The MS Teams integration doesn't support persistence for notifications settings. As a result, when Botkube Pod restarts, or automated configuration reload happens, you need each time send `@Botkube notifier start` to re-enable notifications.
+   :::
+
 ## Remove Botkube from Kubernetes cluster
 
 Execute the following command to completely remove Botkube and related resources from your cluster.
@@ -231,3 +235,29 @@ Execute the following command to completely remove Botkube and related resources
 ```bash
 helm uninstall botkube --namespace botkube
 ```
+
+## Troubleshooting
+
+### Botkube doesn't respond
+
+**Symptom**
+
+When you send Botkube command on MS Teams, in Botkube logs you see:
+
+```plaintext
+Failed to parse Teams request. Authentication failed.: Unauthorized: invalid AppId passed on token" bot="MS Teams"
+```
+
+**Remedy**
+
+You need to make sure that the configuration used by Botkube is valid.
+
+1. Connect to the Kubernetes cluster where Botkube is running.
+2. Get and decode the communication Secret details:
+   ```bash
+   kubectl get secret botkube-communication-secret -n botkube --template='{{index .data "comm_config.yaml" | base64decode }}'
+   ```
+3. Make sure that:
+   - The Bot name in `communications.default-group.teams.botName` is equal to the name from the step 2 in [**Add the Bot feature to the App**](#add-the-bot-feature-to-the-app) section.
+   - The password in `communications.default-group.teams.appPassword` is equal to the value from the step 4 in [**Add the Bot feature to the App**](#add-the-bot-feature-to-the-app) section.
+   - The App ID in `communications.default-group.teams.appID` is equal to the value from the step 5 in [**Add the Bot feature to the App**](#add-the-bot-feature-to-the-app) section.
