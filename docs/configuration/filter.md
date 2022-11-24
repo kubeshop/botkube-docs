@@ -1,7 +1,7 @@
 ---
 id: filter
 title: Filter
-sidebar_position: 5
+sidebar_position: 7
 ---
 
 The filter configuration allows you to configure global filters which are used for all processed events. The filters can be disabled or enabled using dedicated commands. See the [Usage](../usage/filters/index.md) document for more details.

@@ -57,7 +57,7 @@ or you are able to pick them from an interactive list:
 
 ![slack-edit-sources](assets/slack-edit-bindings.png)
 
-Changes applied via **@Botkube edit SourceBindings** are applied once the Botkube is restarted. It is an automated process, but may take up to 1 minute.
+When you save the new notification sources, changes are applied once the Botkube is restarted. It is an automated process which usually takes a few seconds.
 
 ### Disable notifications
 
