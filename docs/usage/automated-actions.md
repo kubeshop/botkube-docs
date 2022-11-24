@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Automated actions
 
-Actions allows you to automate your workflows by executing custom commands based on specific events. To read how to configure actions, see the [Action](../configuration/action.md) configuration document.
+Actions allow you to automate your workflows by executing custom commands based on specific events. To read how to configure actions, see the [Action](../configuration/action.md) configuration document.
 
 ## Manage actions
 
