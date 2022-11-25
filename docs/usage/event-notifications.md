@@ -17,7 +17,7 @@ If you have [`kubectl` executor enabled](../configuration/executor.md) for a giv
 The command dropdown is disabled for resource deletion events. It uses executor bindings to determine which commands are available for a given resource.
 
 :::info
-Actionable notifications are only available for the [Slack integration](../installation/socketslack/index.md) that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
+Actionable notifications are only available for the [Slack integration](../installation/slack/index.md) that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
 :::
 
 ## Notification formats

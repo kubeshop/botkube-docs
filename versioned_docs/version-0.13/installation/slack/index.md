@@ -4,6 +4,10 @@ title: Slack
 sidebar_position: 1
 ---
 
+:::danger
+Legacy Slack integration has been deprecated and the old Botkube Slack app will be unapproved from the Slack App Directory on the December 21st 2022. Upgrade Botkube installation to the latest version and follow the new [Slack installation instructions](/installation/socketslack/).
+:::
+
 ## Install Botkube to the Slack workspace
 
 Follow the steps below to install Botkube Slack app to your Slack workspace.

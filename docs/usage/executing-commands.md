@@ -44,7 +44,7 @@ The following policies are applied:
 - For resources that are namespace-scoped, the Namespace defined in `executors.{alias}.kubectl.defaultNamespace` is used. If not set, the `default` Namespace is selected.
 
 :::info
-Actionable notifications are only available for the [Slack integration](../installation/socketslack/index.md) that supports interactive messages.
+Actionable notifications are only available for the [Slack integration](../installation/slack/index.md) that supports interactive messages.
 :::
 
 ## Checking allowed commands

@@ -77,3 +77,7 @@
   margin: 0 0 var(--ifm-list-margin);
   padding-left: var(--ifm-list-left-padding);
 }
+
+.menu__list-item.hidden {
+  display: none;
+}
