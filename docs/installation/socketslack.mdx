@@ -5,10 +5,8 @@ sidebar_position: -1
 sidebar_class_name: hidden
 ---
 
-{/* This file simply redirects old "socketslack" route to the "slack" one, as we deprecated the legacy Slack integration. */}
+Redirecting to new docummentation... If you are not redirected, please click [here](./slack/index.md).
 
-import { Redirect } from "@docusaurus/router";
+import { RelativeRedirect } from "@site/src/components/RelativeRedirect";
 
-{" "}
-
-<Redirect to="./slack" />;
+<RelativeRedirect to="slack" />
