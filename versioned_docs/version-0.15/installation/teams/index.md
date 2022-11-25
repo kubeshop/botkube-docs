@@ -224,6 +224,10 @@ If you get 404, please check the ingress configuration or endpoint you configure
    If Botkube responds, send `@Botkube notifier start` to enable notifications.
    ![Teams - check bot health](assets/teams_ping.png "Teams Botkube ping")
 
+   :::caution
+   The MS Teams integration doesn't support persistence for notifications settings. As a result, when Botkube restarts, e.g. during automated configuration reload, each time you need to send `@Botkube notifier start` to re-enable notifications.
+   :::
+
 ## Remove Botkube from Kubernetes cluster
 
 Execute the following command to completely remove Botkube and related resources from your cluster.

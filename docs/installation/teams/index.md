@@ -224,8 +224,8 @@ If you get 404, please check the ingress configuration or endpoint you configure
    If Botkube responds, send `@Botkube notifier start` to enable notifications.
    ![Teams - check bot health](assets/teams_ping.png "Teams Botkube ping")
 
-   :::warning
-   The MS Teams integration doesn't support persistence for notifications settings. As a result, when Botkube Pod restarts, or automated configuration reload happens, you need each time send `@Botkube notifier start` to re-enable notifications.
+   :::caution
+   The MS Teams integration doesn't support persistence for notifications settings. As a result, when Botkube restarts, e.g. during automated configuration reload, each time you need to send `@Botkube notifier start` to re-enable notifications.
    :::
 
 ## Remove Botkube from Kubernetes cluster
@@ -240,7 +240,7 @@ helm uninstall botkube --namespace botkube
 
 ### Botkube doesn't respond
 
-**Symptom**
+**Symptoms**
 
 When you send Botkube command on MS Teams, in Botkube logs you see:
 
@@ -248,7 +248,7 @@ When you send Botkube command on MS Teams, in Botkube logs you see:
 Failed to parse Teams request. Authentication failed.: Unauthorized: invalid AppId passed on token" bot="MS Teams"
 ```
 
-**Remedy**
+**Solution**
 
 You need to make sure that the configuration used by Botkube is valid.
 
