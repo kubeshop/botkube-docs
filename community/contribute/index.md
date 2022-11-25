@@ -10,7 +10,7 @@ We'd love your help!
 
 Botkube is [MIT Licensed](/license/) and accepts contributions via GitHub pull requests. This document outlines some of the conventions on development workflow, commit message formatting, contact points and other resources to make it easier to get your contributions accepted.
 
-We gratefully welcome improvements to [documentation](https://botkube.io/ "Go to documentation site") as well as to code.
+We gratefully welcome improvements to [documentation](/ "Go to documentation site") as well as to code.
 
 ## Contributing to documentation
 
