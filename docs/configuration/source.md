@@ -38,7 +38,7 @@ There are the following types of constraints:
       - "testing-.*" # ...except any namespace that has `testing-` prefix
   ```
 
-- `labels` - Specify resource labels. The watched resources must have all the specified labels.
+- `labels` - Specify exact match for resource labels. The watched resources must have all the specified labels.
 
   **Example**
 
@@ -48,7 +48,7 @@ There are the following types of constraints:
     environment: "production"
   ```
 
-- `annotations` - Specify resource annotations. The watched resources must have all the specified annotations.
+- `annotations` - Specify exact match for resource annotations. The watched resources must have all the specified annotations.
 
   **Example**
 
