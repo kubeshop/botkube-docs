@@ -10,6 +10,6 @@ By default:
 
 To change the default log level, export a dedicated environment variable following such pattern `LOG_LEVEL_{pluginType}_{pluginRepo}_{pluginName}`, e.g., `LOG_LEVEL_EXECUTOR_BOTKUBE_KUBECTL`. The plugin standard output is logged only if `debug` level is set.
 
-:::note
+:::info
 The plugin name is normalized and all characters different from letters, digits, and the underscore (`_`) are replaced with underscore (`_`).
 :::
