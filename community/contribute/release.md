@@ -47,10 +47,12 @@ the release steps described above, it will perform following actions;
 
 - Creates a release branch like `release-0.15` and pushes to remote
 - Processes Helm Chart to update helm docs, tags it as `v0.15.0-rc.1` and pushes to remote
-- Generates docker images
+- Generates Docker images for Botkube core
+- Builds Botkube plugins (sources and executors)
+- Generates Botkube plugin index YAML file
 - Generates changelog
-- Creates release candidate with changelog body
-- Publishes helm chart
+- Creates draft release candidate with changelog body. Additionally, adds Botkube plugins binaries and index YAML as assets.
+- Publishes Helm chart
 - After release candidate verification and triggering **Finalize Release** workflow, it repeats steps 2,3,4,5 with `v0.15.0`
 
 ## The `botkube-docs` repository
