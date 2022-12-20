@@ -19,13 +19,3 @@ Run **@Botkube help** to find information about the supported commands.
 Run **@Botkube ping** to the channel where Botkube is added. The Botkube will respond you with the **pong** message from all the configured clusters.
 
 For multi-cluster configuration, use the `--cluster-name` flag to get response from the cluster mentioned in the flag. Else check the deployment in Kubernetes cluster in the **botkube** namespace.
-
-### Examples
-
-#### Slack
-
-![ping](assets/ping.png)
-
-#### Mattermost
-
-![ping](assets/mm_ping.png)

@@ -72,7 +72,7 @@ Assume that users ran the following commands:
 
 ```
 @Botkube edit SourceBindings k8s-err-events, k8s-recommendation-events
-@Botkube notifier stop
+@Botkube disable notifications
 ```
 
 Which effectively result in the following config that Botkube sees:

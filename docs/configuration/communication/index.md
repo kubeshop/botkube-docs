@@ -82,10 +82,10 @@ With source bindings, you can specify which events are sent to a given channel (
 
 ## Known limitations
 
-Currently, [Microsoft Teams](../../installation/teams/) integration works differently than other bot integrations, such as Slack or Discord. While Microsoft Teams support multiple channels for forwarding notifications, you need to turn them on with `@Botkube notifier start` on each channel. Microsoft Teams uses source and executor bindings defined under `communications.teams.bindings` property for all channels in the following way:
+Currently, [Microsoft Teams](../../installation/teams/) integration works differently than other bot integrations, such as Slack or Discord. While Microsoft Teams support multiple channels for forwarding notifications, you need to turn them on with `@Botkube enable notifications` on each channel. Microsoft Teams uses source and executor bindings defined under `communications.teams.bindings` property for all channels in the following way:
 
 - Executor bindings apply to all MS Teams channels where Botkube has access to.
-- Source bindings apply to all channels which have notification turned on with `@Botkube notifier start` command.
+- Source bindings apply to all channels which have notification turned on with `@Botkube enable notifications` command.
 
 ## Syntax
 
@@ -174,7 +174,7 @@ communications:
         # Executor bindings apply to all MS Teams channels where Botkube has access to.
         executors:
           - kubectl-read-only
-        # Source bindings apply to all channels which have notification turned on with `@Botkube notifier start` command.
+        # Source bindings apply to all channels which have notification turned on with `@Botkube enable notifications` command.
         sources:
           - k8s-events
       # The path in endpoint URL provided while registering Botkube to MS Teams.

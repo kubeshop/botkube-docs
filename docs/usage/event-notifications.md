@@ -41,7 +41,7 @@ Botkube bot allows you to enable/disable notifications on each configured channe
 
 ### View Botkube configuration
 
-Run **@Botkube notifier showconfig** message from the configured channel where Botkube is added. The bot will reply you with the configuration with which the controller is running.
+Run **@Botkube config** message from the configured channel where Botkube is added. The bot will reply to you with the configuration with which the controller is running.
 
 To see how to update the configuration, see the [Updating the configuration](../configuration/index.md#updating-the-configuration) section in the Configuration document.
 
@@ -61,7 +61,7 @@ When you save the new notification sources, changes are applied once the Botkube
 
 ### Disable notifications
 
-If you want to stop receiving notifications from Botkube, run **@Botkube notifier stop** from the configured channel where Botkube is added. You will no longer receive notifications from the Botkube in a given communication platform.
+If you want to stop receiving notifications from Botkube, run **@Botkube disable notifications** from the configured channel where Botkube is added. You will no longer receive notifications from the Botkube in a given communication platform.
 
 The notification settings are persisted across Botkube app restarts.
 
@@ -69,7 +69,7 @@ The notification settings are persisted across Botkube app restarts.
 
 ### Enable notifications
 
-If you want to receive Botkube notifications again, run **@Botkube notifier start** from the configured channel where Botkube is added.
+If you want to receive Botkube notifications again, run **@Botkube enable notifications** from the configured channel where Botkube is added.
 
 The notification settings are persisted across Botkube app restarts.
 
@@ -81,6 +81,6 @@ For MS Teams integration notifications are disabled by default. You need to turn
 
 ### Check notifier status
 
-Run **@Botkube notifier status** to check if notifications are enabled for a given communication platform.
+Run **@Botkube status notifications** to check if notifications are enabled for a given communication platform.
 
 ![notifier-status](assets/notifier-status.png)

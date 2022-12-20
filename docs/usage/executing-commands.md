@@ -51,7 +51,7 @@ Actionable notifications are only available for the [Slack integration](../insta
 
 While deploying Botkube controller, you can specify which kubectl commands you want to allow Botkube to execute through the [executors configuration](../configuration/executor.md).
 
-To check which commands are allowed for users to execute through Botkube, run **@Botkube commands list**
+To check which commands are allowed for users to execute through Botkube, run **@Botkube list commands**
 
 ![commands_list](assets/commands_list.png)
 
@@ -60,8 +60,6 @@ To check which commands are allowed for users to execute through Botkube, run **
 If you have installed Botkube backend on multiple clusters, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
 
 To get the list of all clusters configured in botkube, you can use the ping command.
-
-![ping](assets/ping.png)
 
 For cluster-specific response, use `--cluster-name` flag to specify the cluster's name on which command needs to be executed.
 Use of this flag allows you to get response from any channel or group where Botkube is added.

@@ -15,13 +15,13 @@ Botkube allows you to manage filters using **@Botkube** commands.
 
 ### List available filters
 
-Run **@Botkube filters list** to get list of available filters and their running status:
+Run **@Botkube list filters** to get list of available filters and their running status:
 
 ![List available filters](assets/filters_list.png)
 
 ### Disable filter
 
-Run **@Botkube filters disable {filter-name}** to disable a filter named `{filter-name}`.
+Run **@Botkube disable filters {filter-name}** to disable a filter named `{filter-name}`.
 
 The filter settings are persisted across Botkube app restarts.
 
@@ -29,7 +29,7 @@ The filter settings are persisted across Botkube app restarts.
 
 ### Enable filter
 
-Run **@Botkube filters enable {filter-name}** to enable a filter named `{filter-name}`.
+Run **@Botkube enable filters {filter-name}** to enable a filter named `{filter-name}`.
 
 The filter settings are persisted across Botkube app restarts.
 
