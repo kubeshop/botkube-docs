@@ -52,11 +52,13 @@ To change the notification sources, you can either run the `helm upgrade` comman
 Depending on the communication platform, the possible options are being printed in response message:
 
 <!-- Is this screen shot valuable? -->
+
 ![discord-edit-sources](assets/discord-edit-bindings.png)
 
 or you are able to pick them from an interactive list:
 
 <!-- Is this screen shot valuable? -->
+
 ![slack-edit-sources](assets/slack-edit-bindings.png)
 
 When you save the new notification sources, changes are applied once the Botkube is restarted. It is an automated process which usually takes a few seconds.
