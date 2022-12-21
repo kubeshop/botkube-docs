@@ -24,17 +24,15 @@ From version `0.17`, one of the kubectl prefixes (`kubectl` , `kc` or `k`) will 
 
 This command needs to be executed from configured channel else use `--cluster-name` flag described in the [Specify cluster name](#specify-cluster-name) section.
 
-![get_pods](assets/get_namespaces.png)
-![get_pods](assets/mm_get_ns.png)
-
 ## Interactive kubectl commands builder
 
 Use the interactive `kubectl` command builder to construct a `kubectl` command just by selecting items from dropdowns. This is especially useful on mobile when typing the command is harder.
 
 The builder includes a resource name dropdown list. This is pre-populated with all the relevant resource names. It's great for discovering resources with the option to select them. E.g. Just grab a Pod name without needing to type or copy-and-paste.
 
-To start the interactive `kubectl` command builder, run **@Botkube k|kc|kubectl** from the configured channel where Botkube is added.
+To start the interactive `kubectl` command builder, run `@Botkube k|kc|kubectl` from the configured channel where Botkube is added.
 
+<!-- can this auto-play? actually show this is interactive -->
 ![kubectl command builder](assets/kc-cmd-builder.png)
 
 The following policies are applied:
@@ -51,9 +49,7 @@ Actionable notifications are only available for the [Slack integration](../insta
 
 While deploying Botkube controller, you can specify which kubectl commands you want to allow Botkube to execute through the [executors configuration](../configuration/executor.md).
 
-To check which commands are allowed for users to execute through Botkube, run **@Botkube list commands**
-
-![commands_list](assets/commands_list.png)
+To check which commands are allowed for users to execute through Botkube, run `@Botkube list commands`
 
 ## Specify cluster name
 
@@ -64,11 +60,6 @@ To get the list of all clusters configured in botkube, you can use the ping comm
 For cluster-specific response, use `--cluster-name` flag to specify the cluster's name on which command needs to be executed.
 Use of this flag allows you to get response from any channel or group where Botkube is added.
 The flag is ignored in notifier commands as they can be executed from the configured channel only.
-
-![flag_clustername_ping](assets/flag_clustername_ping.png)
-![flag_clustername_ping](assets/mm_flag_clustername_ping.png)
-![flag_clustername_kubectl](assets/flag_clustername_kubectl.png)
-![flag_clustername_kubectl](assets/mm_flag_clustername_kubectl.png)
 
 ## Filtering text output
 
