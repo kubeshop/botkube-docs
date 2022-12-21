@@ -185,7 +185,7 @@ We use this TLS Secret while deploying the Botkube backend.
 
   Configuration syntax is explained [here](../../configuration). A Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-- Send **@Botkube ping** in the channel to see if Botkube is running and responding.
+- Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
   With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
 
@@ -221,11 +221,11 @@ If you get 404, please check the ingress configuration or endpoint you configure
 3. Type and select the channel name in which you want to receive notifications.
 
 4. Once added, browse to the channel and type `@Botkube ping` to make sure Botkube is responding.
-   If Botkube responds, send `@Botkube notifier start` to enable notifications.
+   If Botkube responds, send `@Botkube enable notifications` to enable notifications.
    ![Teams - check bot health](assets/teams_ping.png "Teams Botkube ping")
 
    :::caution
-   The MS Teams integration doesn't support persistence for notifications settings. As a result, when Botkube restarts, e.g. during automated configuration reload, each time you need to send `@Botkube notifier start` to re-enable notifications.
+   The MS Teams integration doesn't support persistence for notifications settings. As a result, when Botkube restarts, e.g. during automated configuration reload, each time you need to send `@Botkube enable notifications` to re-enable notifications.
    :::
 
 ## Remove Botkube from Kubernetes cluster

@@ -6,12 +6,6 @@ sidebar_position: 2
 
 You can extend Botkube functionality by writing additional filters. The **FilterEngine** runs these filters on the Event struct before forwarding it as a notification to a channel. These filters can check resource specs, validate some checks and add messages to the Event struct.
 
-We have already defined a filter to add suggestions in the notifications if container image in pod specs is using **latest** tag.
-
-![tag_filter](assets/tag_filter_sh.png)
-
-**Let's see, how we can write a filter like this.**
-
 ## A. Writing a filter
 
 Prerequisites:

@@ -11,29 +11,23 @@ To read how to develop your own filter, see the [Custom filter development](./de
 
 ## Manage filters
 
-Botkube allows you to manage filters using **@Botkube** commands.
+Botkube allows you to manage filters using `@Botkube` commands.
 
 ### List available filters
 
-Run **@Botkube filters list** to get list of available filters and their running status:
-
-![List available filters](assets/filters_list.png)
+Run `@Botkube list filters` to get list of available filters and their running status:
 
 ### Disable filter
 
-Run **@Botkube filters disable {filter-name}** to disable a filter named `{filter-name}`.
+Run `@Botkube disable filter {filter-name}` to disable a filter named `{filter-name}`.
 
 The filter settings are persisted across Botkube app restarts.
-
-![Disable filter](assets/filters_disable.png)
 
 ### Enable filter
 
-Run **@Botkube filters enable {filter-name}** to enable a filter named `{filter-name}`.
+Run `@Botkube enable filter {filter-name}` to enable a filter named `{filter-name}`.
 
 The filter settings are persisted across Botkube app restarts.
-
-![Enable filter](assets/filters_enable.png)
 
 ## Filter and forward events using annotations
 
