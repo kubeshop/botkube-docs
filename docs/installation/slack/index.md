@@ -168,7 +168,7 @@ Follow the steps to generate an App-Level Token:
 
 ### Add Botkube user to a Slack channel
 
-After installing Botkube app to your Slack workspace, you could see a new bot user with the name "Botkube" added in your workspace. Add that bot to a Slack channel you want to receive notification in. You can add it by inviting **@Botkube** in a channel.
+After installing Botkube app to your Slack workspace, you could see a new bot user with the name "Botkube" added in your workspace. Add that bot to a Slack channel you want to receive notification in. You can add it by inviting `@Botkube` in a channel.
 
 ## Install Botkube Backend in Kubernetes cluster
 
@@ -208,7 +208,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-  Send **@Botkube ping** in the channel to see if Botkube is running and responding.
+  Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
   With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
 

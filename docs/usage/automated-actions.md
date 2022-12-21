@@ -10,7 +10,7 @@ Actions allow you to automate your workflows by executing custom commands based 
 
 ## Manage actions
 
-Botkube allows you to manage actions using **@Botkube** commands.
+Botkube allows you to manage actions using `@Botkube` commands.
 
 ### List available actions
 

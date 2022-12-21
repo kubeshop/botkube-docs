@@ -185,7 +185,7 @@ We use this TLS Secret while deploying the Botkube backend.
 
   Configuration syntax is explained [here](../../configuration). A Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-- Send **@Botkube ping** in the channel to see if Botkube is running and responding.
+- Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
   With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
 

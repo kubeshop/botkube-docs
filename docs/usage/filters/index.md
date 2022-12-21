@@ -11,7 +11,7 @@ To read how to develop your own filter, see the [Custom filter development](./de
 
 ## Manage filters
 
-Botkube allows you to manage filters using **@Botkube** commands.
+Botkube allows you to manage filters using `@Botkube` commands.
 
 ### List available filters
 

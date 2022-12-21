@@ -123,7 +123,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
 
-  Send **@Botkube ping** in the channel to see if Botkube is running and responding.
+  Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
   With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
 
