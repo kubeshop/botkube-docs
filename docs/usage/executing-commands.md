@@ -32,9 +32,7 @@ The builder includes a resource name dropdown list. This is pre-populated with a
 
 To start the interactive `kubectl` command builder, run `@Botkube k|kc|kubectl` from the configured channel where Botkube is added.
 
-<!-- can this auto-play? actually show this is interactive -->
-
-![kubectl command builder](assets/kc-cmd-builder.png)
+![kubectl command builder](assets/kc-cmd-builder.gif)
 
 The following policies are applied:
 

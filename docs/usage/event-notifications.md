@@ -41,7 +41,7 @@ Botkube bot allows you to enable/disable notifications on each configured channe
 
 ### View Botkube configuration
 
-Run `@Botkube config` message from the configured channel where Botkube is added. The bot will reply to you with the configuration with which the controller is running.
+Run `@Botkube show config` message from the configured channel where Botkube is added. The bot will reply to you with the configuration with which the controller is running.
 
 To see how to update the configuration, see the [Updating the configuration](../configuration/index.md#updating-the-configuration) section in the Configuration document.
 
@@ -67,6 +67,6 @@ The notification settings are persisted across Botkube app restarts.
 For MS Teams integration notifications are disabled by default. You need to turn them on manually using this command.
 :::
 
-### Check notifier status
+### Check notifications status
 
 Run `@Botkube status notifications` to check if notifications are enabled for a given communication platform.
