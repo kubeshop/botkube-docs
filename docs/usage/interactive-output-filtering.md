@@ -9,9 +9,9 @@ Interactive output filtering is only available for the [Slack integration](../in
 :::
 
 Sometimes you can get long response from a certain command and you may want to filter that to see a subset of the actual result.
-For each communication platform, you can use the `--filter` flag at the end of your command. To learn more, see the [Flags](./executing-commands.md#filtering-text-output) section.
+For each communication platform, you can use the `--filter` flag at the end of your command. To learn more, see the [Flags](executor/index.md#filtering-kubectl-output) section.
 
-If you use the the [Slack integration](../installation/slack/index.md) that supports interactive messages, there is another option to handle that: interactive output filtering.
+If you use the [Slack integration](../installation/slack/index.md) that supports interactive messages, there is another option to handle that: interactive output filtering.
 Interactivity is achieved via an input action text box where you can add your filter criteria as text and press the **Enter** button.
 
 ### Long response filtering

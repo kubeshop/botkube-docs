@@ -12,6 +12,10 @@ This document describes how to prepare and publish a new Botkube release.
 
 ## The `botkube` repository
 
+:::info
+Draft GitHub releases need to be manually checked and marked as pre-releases or published directly in the GitHub UI.
+:::
+
 ### New minor or major release
 
 1. Navigate to [**Cut a new release**](https://github.com/kubeshop/botkube/actions/workflows/cut-new-release.yml) workflow.

@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Filters
 
-Filters allows you to process incoming events and filter out the ones you don't want to see.
+Filters allow you to process incoming events and filter out the ones you don't want to see.
 To read how to develop your own filter, see the [Custom filter development](./development.md) guide.
 
 ## Manage filters

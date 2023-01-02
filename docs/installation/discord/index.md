@@ -101,6 +101,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   ```bash
   export CLUSTER_NAME={cluster_name}
   export ALLOW_KUBECTL={allow_kubectl}
+  export ALLOW_HELM={allow_helm}
 
   helm install --version v0.16.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.discord.enabled=true \
@@ -109,6 +110,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   --set communications.default-group.discord.token=${DISCORD_TOKEN} \
   --set settings.clusterName=${CLUSTER_NAME} \
   --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+  --set 'executors.helm.botkube/helm.enabled'=${ALLOW_HELM} \
   botkube/botkube
   ```
 
@@ -118,7 +120,8 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   - **DISCORD_BOT_ID** is the Botkube Application Client ID,
   - **DISCORD_TOKEN** is the Token you received after adding Botkube bot to your Discord Application,
   - **CLUSTER_NAME** is the cluster name set in the incoming messages,
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster.
+  - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
+  - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).

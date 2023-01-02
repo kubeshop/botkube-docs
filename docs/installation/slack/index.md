@@ -185,6 +185,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   ```bash
   export CLUSTER_NAME={cluster_name}
   export ALLOW_KUBECTL={allow_kubectl}
+  export ALLOW_HELM={allow_helm}
   export SLACK_CHANNEL_NAME={channel_name}
 
   helm install --version v0.16.0 botkube --namespace botkube --create-namespace \
@@ -194,6 +195,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   --set communications.default-group.socketSlack.botToken=${SLACK_API_BOT_TOKEN} \
   --set settings.clusterName=${CLUSTER_NAME} \
   --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+  --set 'executors.helm.botkube/helm.enabled'=${ALLOW_HELM} \
   botkube/botkube
   ```
 
@@ -203,7 +205,8 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   - **SLACK_API_BOT_TOKEN** is the Token you received after installing Botkube app to your Slack workspace
   - **SLACK_API_APP_TOKEN** is the Token you received after installing Botkube app to your Slack workspace and generate in App-Level Token section
   - **CLUSTER_NAME** is the cluster name set in the incoming messages
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster
+  - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
+  - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
 
   Configuration syntax is explained [here](../../configuration).
   Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
