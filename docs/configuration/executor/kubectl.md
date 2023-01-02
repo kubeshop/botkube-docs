@@ -4,7 +4,7 @@ title: Kubectl
 sidebar_position: 2
 ---
 
-The `kubectl` executor allows you to run the `kubectl` command directly in chat window of each communication platform.
+The `kubectl` executor allows you to run the `kubectl` command directly in the chat window of each communication platform.
 
 ## Enabling plugin
 

@@ -16,7 +16,7 @@ At least one `helm` executor needs to be enabled and bound to a given channel.
 
 ## Supported commands
 
-The Helm executor plugin has the exact same syntax as the Helm CLI. However, no all commands and flags are supported. If not supported flag is specified, you will get a dedicated error, e.g:
+The Helm executor plugin has the exact same syntax as the Helm CLI. However, not all commands and flags are supported. If an unsupported flag is specified, you will get a dedicated error, e.g:
 
 ```
 The "--wait" flag is not supported by the Botkube Helm plugin. Please remove it.

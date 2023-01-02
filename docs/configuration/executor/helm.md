@@ -6,7 +6,7 @@ sidebar_position: 3
 
 The Botkube Helm executor plugin allows you to run the `helm` command directly in the chat window of each communication platform.
 
-The Helm plugin is hosted by the official Botkube plugin repository. To enable the Helm plugin, make sure that the `botkube` repository is defined `plugins` the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
+The Helm plugin is hosted by the official Botkube plugin repository. To enable the Helm plugin, make sure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
 
 ```yaml
 plugins:
