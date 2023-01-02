@@ -4,20 +4,53 @@ title: "Architecture"
 sidebar_position: 6
 ---
 
-Botkube backend communicates with Kubernetes API Server to monitor Kubernetes events and forwards them to communication mediums like Slack/Mattermost/MS Teams. It also reads messages from users and sends response accordingly.
+This document describes high-level Botkube architecture, all components in the system and interactions between them.
 
-## Botkube Backend Architecture
+Botkube is split into two main parts:
 
-![architecture](assets/architecture.png#light-bg)
+- Botkube Core: Botkube binary that serves as a bridge between communication platforms (e.g. Slack, Discord) and Botkube plugins (sources and executors).
+- [Botkube plugins](../plugin): The executable binaries that communicate with Botkube Core over an RPC interface. Botkube supports two types of plugins, respectively called Source plugins and Executor plugins.
 
-**Informer Controller:** Registers informers to kube-apiserver to watch events on the configured Kubernetes resources. It forwards the incoming Kubernetes event to the Event Manager
+## Components
 
-**Event Manager:** Extracts required fields from Kubernetes event object and creates a new Botkube event struct. It passes Botkube event struct to the Filter Engine
+The following diagram visualizes all main components in the system.
 
-**Filter Engine:** Takes the Kubernetes object and Botkube event struct and runs Filters on them. Each filter runs some validations on the Kubernetes object and modifies the messages in the Botkube event struct if required.
+![Architecture](assets/arch-light.svg#gh-light-mode-only)![Architecture](assets/arch-dark.svg#gh-dark-mode-only)
 
-**Event Notifier:** Finally, notifier sends Botkube event over the configured communication channel.
+### Plugin manager
 
-**Bot Interface:** Bot interface takes care of authenticating and managing connections with communication mediums like Slack/Mattermost/MS Teams. It reads/sends messages from/to communication mediums.
+Plugin manager takes care of downloading enabled and bound plugins, running a given plugin binary and maintaining the gRPC connection. Under the hood, the [`go-plugin`](https://github.com/hashicorp/go-plugin/) library is used. Plugin manager is responsible both for the executor and source plugins.
 
-**Executor:** Executes Botkube or kubectl command and sends back the result to the Bot interface.
+### Plugin executor bridge
+
+Plugin executor bridge is resolving the received Botkube command, calling the respective plugin, and sending back the response to a given communication platform.
+
+### Executor
+
+Executor is a binary that implements the [executor](https://github.com/kubeshop/botkube/blob/main/proto/executor.proto) Protocol Buffers contract. Executor runs a given command and returns the response in a synchronous way. For example, running `kubectl` or `helm` commands.
+
+Streaming command response is not supported. As a result, commands like `helm install --wait` doesn't work well, as the response won't be sent until the command finishes.
+
+The `kubectl` is a built-in Botkube executor. It will be extracted in the future Botkube releases.
+
+### Plugin source bridge
+
+Plugin source bridge is dispatching received source events to all configured communication channels.
+
+### Source
+
+Source is a binary that implements the [source](https://github.com/kubeshop/botkube/blob/main/proto/source.proto) Protocol Buffers contract. Source starts asynchronous streaming of domain-specific events. For example, streaming Kubernetes events.
+
+The `kubernetes` is a built-in Botkube source. It will be extracted in the future Botkube releases.
+
+### Filter Engine
+
+Filter engine filters out received events based on configured policies. To learn more about available filters, see the [filter](../configuration/filter.md) documentation.
+
+### Bot
+
+Bot represents a bidirectional communication platform. Each bot is responsible for authenticating, managing connections, and providing an interface for receiving and sending messages for a given platform like Slack, Discord, etc. Connection is mostly done via WebSocket.
+
+### Sink
+
+Sink represents a unidirectional communication platform. Each sink is responsible for authenticating, managing connections, and providing an interface for sending messages for a given platform like Elasticsearch, outgoing webhook, etc.
