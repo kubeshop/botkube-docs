@@ -1,38 +1,22 @@
 ---
-id: executor
-title: Executor
-sidebar_position: 4
+id: kubectl
+title: Kubectl
+sidebar_position: 2
 ---
 
-The executor configuration allows you to define multiple executor configurations that can be later referred in [communication](./communication) bindings. For example, take a look on such executor definition:
+The `kubectl` executor allows you to run the `kubectl` command directly in chat window of each communication platform.
 
-```yaml
-executors:
-  "kubectl-global": # This is an executor configuration name, which is referred in communication bindings.
-    kubectl:
-      # ... trimmed ...
 
-  "kubectl-team-a-only": # This is an executor configuration name, which is referred in communication bindings
-    kubectl:
-      # ... trimmed ...
+## Enabling plugin
+
+To enable `kubectl` executor, add `--set executors.{configuration-name}.kubectl.enabled: true` to a given Helm install command. By default, just the read-only `kubectl` commands are supported.
+
+You can change that by adjusting the `rbac` property in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file or by using the `--set-json` flag, e.g.:
+```bash
+--set-json 'rbac.rules=[{"apiGroups": ["*"], "resources": ["*"], "verbs": ["get","watch","list","create","delete"]}]'
 ```
 
-This can be later used by the communication platforms:
-
-```yaml
-communications:
-  "default-group":
-    slack:
-      channels:
-        "default":
-          bindings:
-            executors: # The order is important for merging strategy.
-              - kubectl-global # The executor configuration name
-              - kubectl-team-a-only # The executor configuration name
-          # ... trimmed ...
-```
-
-Multiple executor bindings are merged. See the [**merging strategy**](#merging-strategy) section for more details. For all available executor configuration properties, see the [**syntax**](#syntax) section.
+Additionally, you need to make sure that a given `verbs` and `resources` are allowed by a specific `kubectl` executor configuration.
 
 ## Syntax
 

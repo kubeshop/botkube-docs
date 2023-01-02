@@ -23,3 +23,11 @@ The plugin standard output is logged only if `debug` level is set.
 :::info
 The plugin name is normalized and all characters different from letters, digits, and the underscore (`_`) are replaced with underscore (`_`).
 :::
+
+To change the log level for a given plugin directly in the Botkube deployment, specify `extraEnv` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file. For example:
+
+```yaml
+extraEnv:
+  - name: LOG_LEVEL_EXECUTOR_BOTKUBE_HELM
+    value: "debug"
+```
