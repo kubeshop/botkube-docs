@@ -25,6 +25,7 @@ The "--wait" flag is not supported by the Botkube Helm plugin. Please remove it.
 ### Read-only commands
 
 List of the read-only commands:
+
 - `@Botkube helm help` - shows the general Helm plugin help message.
 - `@Botkube helm list` - lists all releases on cluster where Botkube is installed.
   - The `--filter` flag is reserved by Botkube. As a result, to use the Helm filter functionality use `-f` instead, e.g. `helm list -f 'ara[a-z]+'`.
@@ -36,12 +37,11 @@ List of the read-only commands:
 For the read-write commands the Botkube RBAC needs to be adjusted. For more information, see the [**Enabling plugin**](../../configuration/executor/helm.md#enabling-plugin) section.
 
 List of the read-write commands:
+
 - `@Botkube helm rollback` - rolls back a given release to a previous revision.
 - `@Botkube helm test` - runs tests for a given release.
 - `@Botkube helm uninstall` - uninstalls a given release.
 - `@Botkube helm upgrade` - upgrades a given release.
 - `@Botkube helm install` - installs a given chart to cluster where Botkube is installed. There are two different ways you to install a Helm chart:
-   	1. By absolute URL: `helm install mynginx https://example.com/charts/nginx-1.2.3.tgz`
-   	2. By chart reference and repo url: `helm install --repo https://example.com/charts/ mynginx nginx`
-
-
+  - By absolute URL: `helm install mynginx https://example.com/charts/nginx-1.2.3.tgz`
+  - By chart reference and repo url: `helm install --repo https://example.com/charts/ mynginx nginx`

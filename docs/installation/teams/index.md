@@ -156,6 +156,7 @@ We use this TLS Secret while deploying the Botkube backend.
   ```bash
   export CLUSTER_NAME={cluster_name}
   export ALLOW_KUBECTL={allow_kubectl}
+  export ALLOW_HELM={allow_helm}
   export HOST={host} # e.g. example.com
 
   helm install --version v0.16.0 botkube --namespace botkube --create-namespace \
@@ -165,6 +166,7 @@ We use this TLS Secret while deploying the Botkube backend.
   --set communications.default-group.teams.botName=${BOT_NAME} \
   --set settings.clusterName=${CLUSTER_NAME} \
   --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+  --set 'executors.helm.botkube/helm.enabled'=${ALLOW_HELM} \
   --set ingress.create=true \
   --set ingress.host=${HOST} \
   --set ingress.tls.enabled=true \
@@ -178,7 +180,8 @@ We use this TLS Secret while deploying the Botkube backend.
   - **APPLICATION_PASSWORD** is the Botkube application password generated while registering Bot to Teams,
   - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `Botkube`),
   - **CLUSTER_NAME** is the cluster name set in the incoming messages,
-  - **ALLOW_KUBECTL** set true to allow kubectl command execution by Botkube on the cluster,
+  - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
+  - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
   - **HOST** is the Hostname of endpoint provided while registering Botkube to Teams,
   - **URLPATH** is the path in endpoint URL provided while registering Botkube to Teams,
   - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination.

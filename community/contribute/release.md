@@ -13,7 +13,7 @@ This document describes how to prepare and publish a new Botkube release.
 ## The `botkube` repository
 
 :::info
-Draft GitHub releases need to be manually checked and marked as pre-releases in GitHub.
+Draft GitHub releases need to be manually checked and marked as pre-releases or published directly in the GitHub UI.
 :::
 
 ### New minor or major release

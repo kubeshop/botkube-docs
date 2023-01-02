@@ -6,12 +6,12 @@ sidebar_position: 2
 
 The `kubectl` executor allows you to run the `kubectl` command directly in chat window of each communication platform.
 
-
 ## Enabling plugin
 
 To enable `kubectl` executor, add `--set executors.{configuration-name}.kubectl.enabled: true` to a given Helm install command. By default, just the read-only `kubectl` commands are supported.
 
 You can change that by adjusting the `rbac` property in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file or by using the `--set-json` flag, e.g.:
+
 ```bash
 --set-json 'rbac.rules=[{"apiGroups": ["*"], "resources": ["*"], "verbs": ["get","watch","list","create","delete"]}]'
 ```
