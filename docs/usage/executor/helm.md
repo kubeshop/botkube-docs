@@ -14,6 +14,14 @@ To execute `helm` commands, send message in the following format in the channel 
 
 At least one `helm` executor needs to be enabled and bound to a given channel.
 
+:::caution
+Using the interactive filter input field causes the Helm command to be re-executed. Be careful when using it for read-write commands.
+
+![Interactive Helm install filtering](./assets/helm-install-filter.png)
+
+This issue is tracked in [botkube#907](https://github.com/kubeshop/botkube/issues/907).
+:::
+
 ## Supported commands
 
 The Helm executor plugin has the exact same syntax as the Helm CLI. However, not all commands and flags are supported. If an unsupported flag is specified, you will get a dedicated error, e.g:
