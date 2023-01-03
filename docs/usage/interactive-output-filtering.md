@@ -8,6 +8,11 @@ sidebar_position: 4
 Interactive output filtering is only available for the [Slack integration](../installation/slack/index.md) that supports interactive messages.
 :::
 
+:::caution
+Using the interactive filter input field causes the command to be re-executed. Be careful when using it for read-write commands.
+This issue is tracked in [botkube#907](https://github.com/kubeshop/botkube/issues/907).
+:::
+
 Sometimes you can get long response from a certain command and you may want to filter that to see a subset of the actual result.
 For each communication platform, you can use the `--filter` flag at the end of your command. To learn more, see the [Flags](executor/index.md#filtering-kubectl-output) section.
 
