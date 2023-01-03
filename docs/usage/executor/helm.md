@@ -30,6 +30,11 @@ The Helm executor plugin has the exact same syntax as the Helm CLI. However, not
 The "--wait" flag is not supported by the Botkube Helm plugin. Please remove it.
 ```
 
+Additionally, the following flag syntax is not supported:
+
+- No whitespace between short flag name and its value. Instead of `-oyaml`, use `-o yaml`.
+- Merging multiple short flags together. Instead of `-Aa`, use `-A -a`.
+
 ### Read-only commands
 
 List of the read-only commands:
