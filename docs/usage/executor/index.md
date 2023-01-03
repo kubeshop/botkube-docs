@@ -6,7 +6,7 @@ sidebar_position: 1
 
 While deploying Botkube, you can specify which [executors](../../configuration/executor) you want to enable.
 
-To check which commands are allowed for users to execute through Botkube, run `@Botkube list commands`
+To check which executors are enabled, run `@Botkube list executors`
 
 ## Specify cluster name
 
@@ -26,11 +26,7 @@ The flag is ignored in notifier commands as they can be executed from the config
 
 Use the `--filter` flag to filter the output of BotKube executor commands. This returns any lines matching the flag's provided value.
 
-The `--filter` flag uses simple string matching. And, only works for BotKube executor commands that return text output, e.g. `kubectl` or `commands list` commands.
-
-### Filtering the commands list
-
-![flag_filter_commands_list](../assets/flag_filter_commands_list.png)
+The `--filter` flag uses simple string matching. And, only works for BotKube executor commands that return text output, e.g. `kubectl` or `list executors` commands.
 
 ### Filtering `kubectl` output
 
