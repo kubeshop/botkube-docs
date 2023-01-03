@@ -6,7 +6,7 @@ sidebar_position: 1
 
 While deploying Botkube, you can specify which [executors](../../configuration/executor) you want to enable.
 
-To check which executors are enabled for users to execute through Botkube, run `@Botkube list executors`
+To check which executors are enabled, run `@Botkube list executors`
 
 ## Specify cluster name
 
