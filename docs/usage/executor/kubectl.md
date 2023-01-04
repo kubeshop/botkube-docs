@@ -4,21 +4,17 @@ title: "Kubectl"
 sidebar_position: 2
 ---
 
+:::caution
+From version `0.17`, one of the kubectl prefixes (`kubectl` , `kc` or `k`) are always required.
+:::
+
 Botkube allows you to execute `kubectl` commands on your Kubernetes cluster. By default, kubectl command execution is disabled. See the [**Enabling plugin**](../../configuration/executor/kubectl.md#enabling-plugin) section from the `kubectl` configuration documentation.
 
 To execute the `kubectl` commands, send message in following format in the channel where Botkube is already added:
 
 ```
-@Botkube {kubectl command with or without `kubectl` prefix} [--cluster-name {cluster_name}]
+@Botkube k|kc|kubectl [verb] [resource] [flags]
 ```
-
-:::info
-You can also prefix your commands with `kubectl` , `kc` or `k`.
-:::
-
-:::caution
-From version `0.17`, one of the kubectl prefixes (`kubectl` , `kc` or `k`) will always be required.
-:::
 
 This command needs to be executed from configured channel.
 
