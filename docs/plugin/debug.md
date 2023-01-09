@@ -1,4 +1,8 @@
-# Debugging
+---
+id: debugging
+title: "Debugging"
+sidebar_position: 7
+---
 
 Embedded logging allows you to access more information about the runtime operations of Botkube plugins.
 
