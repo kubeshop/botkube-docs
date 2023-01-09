@@ -13,7 +13,7 @@ To enable `kubectl` executor, add `--set executors.{configuration-name}.kubectl.
 You can change that by adjusting the `rbac` property in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file or by using the `--set-json` flag, e.g.:
 
 ```bash
---set-json 'rbac.rules=[{"apiGroups": ["*"], "resources": ["*"], "verbs": ["get","watch","list","create","delete,"update","patch"]}]'
+--set-json 'rbac.rules=[{"apiGroups": ["*"], "resources": ["*"], "verbs": ["get","watch","list","create","delete","update","patch"]}]'
 ```
 
 Additionally, you need to make sure that a given `verbs` and `resources` are allowed by a specific `kubectl` executor configuration.

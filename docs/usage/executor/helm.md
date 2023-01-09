@@ -57,4 +57,4 @@ List of the read-write commands:
 - `@Botkube helm upgrade` - upgrades a given release.
 - `@Botkube helm install` - installs a given chart to cluster where Botkube is installed. There are two different ways you to install a Helm chart:
   - By absolute URL: `helm install mynginx https://example.com/charts/nginx-1.2.3.tgz`
-  - By chart reference and repo url: `helm install --repo https://example.com/charts/ mynginx nginx`
+  - By chart reference and repository URL: `helm install --repo https://example.com/charts/ mynginx nginx`
