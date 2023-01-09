@@ -201,7 +201,7 @@ We use this TLS Secret while deploying the Botkube backend.
      helm install --version v0.16.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
+  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
 
 ### Verify if Botkube endpoint is reachable
 

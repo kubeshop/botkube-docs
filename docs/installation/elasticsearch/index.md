@@ -54,11 +54,11 @@ sidebar_position: 6
      helm install --version v0.16.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
+  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
 
 ## Remove Botkube
 
-Execute following command to completely remove Botkube and related resources from your cluster
+Execute following command to completely remove Botkube and related resources from your cluster:
 
 ```bash
 helm uninstall botkube --namespace botkube

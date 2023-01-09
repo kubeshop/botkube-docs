@@ -31,7 +31,7 @@ Botkube can be integrated with external apps via Webhooks. A webhook is essentia
 
   where:
 
-  - **WEBHOOK_URL** is an outgoing webook URL to which Botkube will POST the events,
+  - **WEBHOOK_URL** is an outgoing webhook URL to which Botkube will POST the events,
   - **CLUSTER_NAME** is the cluster name set in the incoming messages.
 
   Configuration syntax is explained [here](../../configuration).
@@ -48,11 +48,11 @@ Botkube can be integrated with external apps via Webhooks. A webhook is essentia
      helm install --version v0.16.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
+  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
 
 ## Remove Botkube
 
-Execute following command to completely remove Botkube and related resources from your cluster
+Execute following command to completely remove Botkube and related resources from your cluster:
 
 ```bash
 helm uninstall botkube --namespace botkube
