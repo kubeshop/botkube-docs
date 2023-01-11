@@ -17,6 +17,10 @@ The following diagram visualizes all main components in the system.
 
 ![Architecture](assets/arch-light.svg#gh-light-mode-only)![Architecture](assets/arch-dark.svg#gh-dark-mode-only)
 
+### Plugin repository
+
+A plugin repository is a place where plugin binaries and index file are stored. This repository must be publicly available and supports downloading assets via HTTP(s). Any static file server can be used, for instance: GitHub Pages, `s3`, `gcs`, etc.
+
 ### Plugin manager
 
 Plugin manager takes care of downloading enabled and bound plugins, running a given plugin binary and maintaining the gRPC connection. Under the hood, the [`go-plugin`](https://github.com/hashicorp/go-plugin/) library is used. Plugin manager is responsible both for the executor and source plugins.

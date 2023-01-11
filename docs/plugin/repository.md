@@ -89,7 +89,9 @@ gh release create v1.0.0 \
  ./plugins-index.yaml
 ```
 
-You can also use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. To do that, add the following workflow under `.github/workflows/release.yml` in your repository:
+### Automation
+
+You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. To do that, add the following workflow under `.github/workflows/release.yml` in your repository:
 
 ```yaml
 name: Official Release
@@ -176,12 +178,10 @@ GitHub allows you to serve static pages via GitHub Pages. When you generate the 
 3. Commit and push copied files:
 
    ```bash
-   cd /tmp/botkube-charts
+   cd /tmp/botkube-plugins
    git add -A
    git commit -m "Release Botkube plugins"
    git push
-   cd -
-   rm -rf /tmp/botkube-charts
    ```
 
 4. Remove cloned `gh-pages`:
@@ -192,6 +192,75 @@ GitHub allows you to serve static pages via GitHub Pages. When you generate the 
    ```
 
 In such setup, you can use your default branch to store your plugins code, and the `gh-pages` branch as a plugin repository.
+
+### Automation
+
+You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. To do that, add the following workflow under `.github/workflows/release.yml` in your repository:
+
+```yaml
+name: Deploy Botkube plugins GitHub Pages
+
+on:
+  push:
+    tags:
+      - "*"
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: "go.mod"
+          cache: true
+
+      - name: Build plugins binaries
+        uses: goreleaser/goreleaser-action@v3
+        with:
+          version: latest
+          args: build --rm-dist
+
+      - name: Generate plugins index.yaml
+        env:
+          PLUGIN_DOWNLOAD_URL_BASE_PATH: "https://${{github.repository_owner}}.github.io/${{ github.event.repository.name }}"
+        run: |
+          go run github.com/kubeshop/botkube/hack -binaries-path "./dist"
+      - name: Publish GitHub release
+        run: |
+          mkdir public
+          mv dist/executor_* public/
+          mv dist/source_* public/
+          mv plugins-index.yaml public/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: public
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+```
 
 ## Use hosted plugins
 

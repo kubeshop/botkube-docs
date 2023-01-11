@@ -6,7 +6,7 @@ sidebar_position: 6
 
 This document describes how to identify and resolve issues that might occur.
 
-### You don't receive source events
+### Missing source events
 
 **Symptoms**
 
@@ -33,7 +33,7 @@ You don't get event message on a given communication platform even though the ev
 
 - [Make sure that your plugin didn't crash](#plugin-process-exited).
 
-### You don't receive executor response
+### Missing executor response
 
 **Symptoms**
 
@@ -63,7 +63,7 @@ You run a given executor command in a chat window, but you don't get any respons
 
 **Symptoms**
 
-In Botkube logs, you will see an error similar to:
+In Botkube logs, you see an error similar to:
 
 ```bash
 ERRO[2023-01-09T21:21:25+01:00] plugin process exited                         error="exit status 1" path=/tmp/plugins/botkube/executor_v0.13.0_echo pid=71127 plugin=botkube/echo
@@ -77,7 +77,7 @@ It means that your plugin exited once it was started by Botkube [plugin manager]
 
 **Symptoms**
 
-In Botkube logs, you will see an error similar to:
+In Botkube logs, you see an error similar to:
 
 ```bash
 2023/01/09 21:37:04 while starting plugins manager: not found source plugin called "cm-test" in "botkube" repository

@@ -18,6 +18,7 @@ This tutorial shows you how to build a custom `echo` executor that responds with
 
 - Basic understanding of the Go language.
 - [Go](https://golang.org/doc/install) at least 1.18.
+  - See [go.mod](https://github.com/kubeshop/botkube/blob/main/go.mod#L1) for the recommended version used by Botkube team.
 - [GoReleaser](https://goreleaser.com/) at least 1.13.
 
 ### Develop plugin business logic
@@ -76,7 +77,7 @@ This tutorial shows you how to build a custom `echo` executor that responds with
    // Metadata returns details about the Echo plugin.
    func (EchoExecutor) Metadata(context.Context) (api.MetadataOutput, error) {
      return api.MetadataOutput{
-       Version:     "0.0.1",
+       Version:     "1.0.0",
        Description: "Echo sends back the command that was specified.",
      }, nil
    }
@@ -101,10 +102,10 @@ This tutorial shows you how to build a custom `echo` executor that responds with
 
 ## Build plugin binaries
 
-Now it's time to build your plugin. For that purpose we will use GoReleaser. It simplifies building Go binaries for different architectures.
+Now it's time to build your plugin. For that purpose, we will use GoReleaser. It simplifies building Go binaries for different architectures. The important thing is to produce the binaries for the architecture of the host platform where Botkube is running. Adjust the `goos`, `goarch`, and `goarm` properties based on your needs.
 
 :::note
-Instead of GoReleaser, you can use another tool of your choice. The important thing is to produce the binaries for the architecture of the host platform where Botkube is running.
+Instead of GoReleaser, you can use another tool of your choice.
 :::
 
 1. Create the GoReleaser configuration file:
@@ -117,7 +118,6 @@ Instead of GoReleaser, you can use another tool of your choice. The important th
 
    builds:
      - id: echo
-       main: cmd/echo/main.go
        binary: executor_echo_{{ .Os }}_{{ .Arch }}
 
        no_unique_dist_dir: true
