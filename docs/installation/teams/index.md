@@ -46,7 +46,7 @@ Then, configure your app by following the steps below,
    | App name / Short name                 | Botkube                                                                                                                                                                       |
    | Descriptions / Short description      | Botkube is a bot for your Kubernetes cluster                                                                                                                                  |
    | Descriptions / Long description       | Botkube helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources. |
-   | Version                               | 0.16.0                                                                                                                                                                        |
+   | Version                               | 0.17.0                                                                                                                                                                        |
    | Developer Information / Developer ... | Botkube                                                                                                                                                                       |
    | Developer Information / Website       | https://botkube.io                                                                                                                                                            |
    | App URLs / Privacy policy             | https://botkube.io/privacy                                                                                                                                                    |
@@ -159,7 +159,7 @@ We use this TLS Secret while deploying the Botkube backend.
   export ALLOW_HELM={allow_helm}
   export HOST={host} # e.g. example.com
 
-  helm install --version v0.16.0 botkube --namespace botkube --create-namespace \
+  helm install --version v0.17.0 botkube --namespace botkube --create-namespace \
   --set communications.default-group.teams.enabled=true \
   --set communications.default-group.teams.appID=${APPLICATION_ID} \
   --set communications.default-group.teams.appPassword=${APPLICATION_PASSWORD} \
@@ -198,7 +198,7 @@ We use this TLS Secret while deploying the Botkube backend.
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
      ```
-     helm install --version v0.16.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     helm install --version v0.17.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
