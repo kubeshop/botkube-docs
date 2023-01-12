@@ -269,7 +269,8 @@ To use the plugins that you published, add your repository under `plugins` in th
 ```yaml
 plugins:
   repositories:
-    repo-name: https://example.com/plugins-index.yaml
+    repo-name:
+      url: https://example.com/plugins-index.yaml
 ```
 
 Once the plugin repository is added, you can refer to it in the `executor` or `sources` section.

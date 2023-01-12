@@ -15,7 +15,8 @@ This document describes steps for running Botkube core locally together with a l
    ```yaml
    plugins:
      repositories:
-       local-repo: https://localhost:8080/plugins-index.yaml
+       local-repo:
+         url: https://localhost:8080/plugins-index.yaml
 
    executors:
      "plugin-based":
