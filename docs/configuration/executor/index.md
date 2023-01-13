@@ -37,7 +37,8 @@ To use the Botkube executor plugins, first you need to define the plugins reposi
 ```yaml
 plugins:
   repositories:
-    repo-name: https://example.com/plugins-index.yaml
+    repo-name:
+      url: https://example.com/plugins-index.yaml
 ```
 
 Next, you can configure executor from a given repository:
