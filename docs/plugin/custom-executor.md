@@ -12,7 +12,7 @@ Plugin executor is a binary that implements the [executor](https://github.com/ku
 
 This tutorial shows you how to build a custom `echo` executor that responds with a command that was specified by the user in a chat window.
 
-![echo-demo](assets/echo-demo.gif)
+TODO: GIF
 
 ## Prerequisites
 
