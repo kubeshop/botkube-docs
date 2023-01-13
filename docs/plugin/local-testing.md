@@ -4,7 +4,7 @@ title: "Local testing"
 sidebar_position: 6
 ---
 
-This document describes steps for running Botkube core locally together with a local file server for serving your plugins during development phase.
+This document describes steps for running Botkube core locally together with a local file server for serving your plugins during development phase. This documents assumes that you have used [`botkube-plugins-template`](https://github.com/mszostok/botkube-plugins-template).
 
 **Steps**
 
@@ -20,12 +20,12 @@ This document describes steps for running Botkube core locally together with a l
 
    executors:
      "plugin-based":
-       local-repo/executor-name@v1.0.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+       local-repo/executor-name: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
          enabled: true
          config: {} # Plugin's specific configuration.
    sources:
      "plugin-based":
-       local-repo/source-name@v1.0.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+       local-repo/source-name: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
          enabled: true
          config: {} # Plugin's specific configuration.
 
@@ -33,7 +33,19 @@ This document describes steps for running Botkube core locally together with a l
      # Enable a given communication platform and define bindings to a given executor and source plugins.
    ```
 
-3. Start static plugins' server:
+3. Export Botkube plugins cache directory:
+
+   ```bash
+   export BOTKUBE_PLUGINS_CACHE__DIR="/tmp/plugins"
+   ```
+
+4. Export Botkube repository path cloned in the first step:
+
+   ```bash
+   export BOTKUBE_REPO_PATH={botkube_repo_path}
+   ```
+
+5. Start static plugins' server:
 
    ```bash
    # Use https://github.com/vercel/serve
@@ -44,28 +56,16 @@ This document describes steps for running Botkube core locally together with a l
    If Botkube runs on external Kubernetes cluster, you can use the tunneling software, for example [`ngrok`](https://ngrok.com/). It creates an externally addressable URL for a port you open locally on your machine.
    :::
 
-4. Export Botkube plugins cache directory:
-
-   ```bash
-   export BOTKUBE_PLUGINS_CACHE__DIR="/tmp/plugins"
-   ```
-
-5. Export Botkube repository path cloned in the first step:
-
-   ```bash
-   export BOTKUBE_REPO_PATH={botkube_repo_path}
-   ```
-
 6. In other terminal window, run:
 
    ```bash
    # rebuild plugins only for current GOOS and GOARCH
-   goreleaser build --rm-dist --snapshot --single-target &&
+   make build-plugins-single &&
    # regenerate index
-   go run github.com/kubeshop/botkube/hack -binaries-path "./dist" -url-base-path "http://localhost:8080/dist" &&
+   env PLUGIN_DOWNLOAD_URL_BASE_PATH="http://localhost:8080/dist" make gen-plugin-index &&
    # remove cached plugins
    rm -rf $BOTKUBE_PLUGINS_CACHE__DIR &&
-   # start botkube to fetch fresh plugins
+   # start Botkube
    ${BOTKUBE_REPO_PATH}/botkube
    ```
 

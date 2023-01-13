@@ -14,6 +14,8 @@ This tutorial shows you how to build a custom `ticker` source that emits an even
 
 TODO: GIF
 
+For a final implementation, see a [Botkube quick start repository](./template.md).
+
 ## Prerequisites
 
 - Basic understanding of the Go language.
@@ -74,7 +76,7 @@ TODO: GIF
 4. Download imported dependencies:
 
    ```bash
-   	go mod tidy
+   go mod tidy
    ```
 
 5. Add the required `Metadata` method:

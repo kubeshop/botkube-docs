@@ -14,6 +14,8 @@ This tutorial shows you how to build a custom `echo` executor that responds with
 
 TODO: GIF
 
+For a final implementation, see a [Botkube quick start repository](./template.md).
+
 ## Prerequisites
 
 - Basic understanding of the Go language.
