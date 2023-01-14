@@ -5,7 +5,7 @@ sidebar_position: 1
 ---
 
 :::info
-[Legacy Slack integration](/0.14/installation/slack/) known from previous Botkube versions has been deprecated and the old Botkube Slack app will be unapproved from the Slack App Directory on the December 21st 2022. Follow the tutorial below to use the new Slack integration.
+[Legacy Slack integration](/0.14/installation/slack/) known from previous Botkube versions has been deprecated and removed from the Slack App Directory. Follow the tutorial below to use the new Slack integration.
 :::
 
 ## Install Slack App in Your Slack workspace
@@ -224,7 +224,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
      helm install --version v0.17.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime)
+  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
 
 ### Delete Botkube from Slack workspace
 
@@ -233,7 +233,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
 
 ## Remove Botkube from Kubernetes cluster
 
-Execute following command to completely remove Botkube and related resources from your cluster.
+Execute following command to completely remove Botkube and related resources from your cluster:
 
 ```bash
 helm uninstall botkube --namespace botkube
