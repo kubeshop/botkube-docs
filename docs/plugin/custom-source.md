@@ -12,7 +12,7 @@ Source is a binary that implements the [source](https://github.com/kubeshop/botk
 
 This tutorial shows you how to build a custom `ticker` source that emits an event each time the configured time duration elapses.
 
-TODO: GIF
+![ticker-demo](./assets/ticker-demo.gif)
 
 For a final implementation, see a [Botkube quick start repository](./template.md).
 
@@ -51,6 +51,7 @@ For a final implementation, see a [Botkube quick start repository](./template.md
    	"github.com/hashicorp/go-plugin"
    	"github.com/kubeshop/botkube/pkg/api"
    	"github.com/kubeshop/botkube/pkg/api/source"
+   	"gopkg.in/yaml.v3"
    )
 
    // Config holds executor configuration.
@@ -163,6 +164,7 @@ Instead of GoReleaser, you can use another tool of your choice. The important th
 
    ```yaml
    cat << EOF > .goreleaser.yaml
+   project_name: botkube-plugins
    before:
      hooks:
        - go mod download
