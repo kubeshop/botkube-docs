@@ -10,11 +10,11 @@ Source is a binary that implements the [source](https://github.com/kubeshop/botk
 
 ## Goal
 
-This tutorial shows you how to build a custom `ticker` source that emits an event each time the configured time duration elapses.
+This tutorial shows you how to build a custom `ticker` source that emits an event at a specified interval.
 
 ![ticker-demo](./assets/ticker-demo.gif)
 
-For a final implementation, see a [Botkube quick start repository](./template.md).
+For a final implementation, see the [Botkube template repository](./quick-start.md).
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ For a final implementation, see a [Botkube quick start repository](./template.md
 
    // Config holds executor configuration.
    type Config struct {
-   	Duration time.Duration
+   	Interval time.Duration
    }
 
    // Ticker implements the Botkube source plugin interface.
@@ -87,7 +87,7 @@ For a final implementation, see a [Botkube quick start repository](./template.md
    func (Ticker) Metadata(_ context.Context) (api.MetadataOutput, error) {
    	return api.MetadataOutput{
    		Version:     "0.1.0",
-   		Description: "Emits an event each time the configured time duration elapses.",
+   		Description: "Emits an event at a specified interval.",
    	}, nil
    }
    ```
@@ -104,7 +104,7 @@ For a final implementation, see a [Botkube quick start repository](./template.md
    		return source.StreamOutput{}, err
    	}
 
-   	ticker := time.NewTicker(cfg.Duration)
+   	ticker := time.NewTicker(cfg.Interval)
    	out := source.StreamOutput{
    		Output: make(chan []byte),
    	}
@@ -129,7 +129,7 @@ For a final implementation, see a [Botkube quick start repository](./template.md
    func mergeConfigs(configs []*source.Config) (Config, error) {
    	// default config
    	finalCfg := Config{
-   		Duration: time.Minute,
+   		Interval: time.Minute,
    	}
 
    	for _, inputCfg := range configs {
@@ -139,8 +139,8 @@ For a final implementation, see a [Botkube quick start repository](./template.md
    			return Config{}, fmt.Errorf("while unmarshalling YAML config: %w", err)
    		}
 
-   		if cfg.Duration != 0 {
-   			finalCfg.Duration = cfg.Duration
+   		if cfg.Interval != 0 {
+   			finalCfg.Interval = cfg.Interval
    		}
    	}
 
@@ -221,12 +221,12 @@ sources:
     botkube/ticker:
       enabled: true
       config:
-        duration: 1s
+        interval: 1s
   "ticker-team-b":
     botkube/ticker:
       enabled: true
       config:
-        duration: 2m
+        interval: 2m
 ```
 
-This means that two different `botkube/ticker` plugin configurations were bound to the `all-teams` Slack channel. Under `source.StreamInput{}.Configs`, you will find the list of configurations in the YAML format as specified under the `config` property for each bound and enabled sources. The order of the configuration is the same as specified under the `bindings.sources` property. It's up to the plugin author to merge the passed configurations. In this case, the plugin author can override the `duration` property based on the config order, so `ticker-team-b` will take precedence as the last item on the list.
+This means that two different `botkube/ticker` plugin configurations were bound to the `all-teams` Slack channel. Under `source.StreamInput{}.Configs`, you will find the list of configurations in the YAML format as specified under the `config` property for each bound and enabled sources. The order of the configuration is the same as specified under the `bindings.sources` property. It's up to the plugin author to merge the passed configurations. In this case, the plugin author can override the `interval` property based on the config order, so `ticker-team-b` will take precedence as the last item on the list.

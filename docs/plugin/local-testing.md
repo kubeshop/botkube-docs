@@ -6,11 +6,15 @@ sidebar_position: 6
 
 This document describes steps for running Botkube core locally together with a local file server for serving your plugins during development phase.
 
+**Prerequisite**
+
+- [Node.js](https://nodejs.org/en/download/), to use `npx`
+
 **Steps**
 
 1. Follow steps from [`CONTRIBUTING.md`](https://github.com/kubeshop/botkube/blob/main/CONTRIBUTING.md#build-and-run-locally) about running Botkube locally.
 
-2. Edit the `comm_config.yaml` file. Add plugins repository, plugin configuration and bind them to enabled communication platform:
+2. Create a file with your plugins' repository, plugin configuration and bindings for enabled communication platform:
 
    ```yaml
    plugins:
@@ -33,10 +37,7 @@ This document describes steps for running Botkube core locally together with a l
      # Enable a given communication platform and define bindings to a given executor and source plugins.
    ```
 
-   For example, for Slack and example `echo` and `ticker` plugins, run:
-   :::note
-   Do not forget to fill the `appToken` and `botToken` properties.
-   :::
+   For example, for Slack and example `echo` and `ticker` plugins provide `appToken` and `botToken` and create `/tmp/config-values.yaml` with the following values:
 
    <details>
      <summary>Create /tmp/config-values.yaml</summary>
@@ -74,12 +75,14 @@ This document describes steps for running Botkube core locally together with a l
                  - 'plugin-based'
          appToken: "" # provide your token starting with xapp-1-
          botToken: "" # provide your token starting with xoxb-
+   settings:
+     clusterName: local-dev
    EOF
    ```
 
    </details>
 
-3. Start static plugins' server:
+3. In your plugin project directory, start a static plugin server:
 
    ```bash
    # Use https://github.com/vercel/serve

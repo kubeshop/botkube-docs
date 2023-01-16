@@ -9,6 +9,7 @@ To learn more about the Botkube plugin system, follow the recommended steps:
 
 - Get familiar with the Botkube [architecture](../architecture).
 - Enable and configure the [Helm](../configuration/executor/helm.md) executor.
+- Use the [template repository](./quick-start.md).
 - Learn how to develop a custom [executor](custom-executor.md) or [source](custom-source.md) plugin.
 - [Distribute the plugins](repository.md) that you built.
 
