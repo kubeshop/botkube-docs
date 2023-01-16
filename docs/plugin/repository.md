@@ -6,7 +6,7 @@ sidebar_position: 5
 
 A plugin repository is a place where you store your plugin binaries. This repository must be publicly available and supports downloading assets via HTTP(s). This document explains how to create Botkube plugin repositories by providing examples based on GitHub functionality. However, any static file server can be used, for instance: `s3`, `gcs`, etc.
 
-This document describes how to set up such repository. If you use or plan to use GitHub you can adapt the [template repository](./template.md) that has all batteries included to start developing and hosting Botkube plugins right a way.
+This document describes how to set up such repository. If you use or plan to use GitHub you can adapt the [template repository](./template.md) that has batteries included to start developing and hosting Botkube plugins right away.
 
 # Index file
 
@@ -93,7 +93,7 @@ gh release create v1.0.0 \
 
 ### Automation
 
-You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. The [`botkube-plugins-template`](https://github.com/mszostok/botkube-plugins-template/blob/main/.github/workflows/release.yml) repository has this release out-of-the-box. You can copy and adjust it for your needs if needed.
+You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. See the [`release` workflow](https://github.com/mszostok/botkube-plugins-template/blob/main/.github/workflows/release.yml) on the `botkube-plugins-template` repository for the out-of-the-box solution, which you can use and modify if needed.
 
 ## GitHub pages
 
@@ -149,7 +149,7 @@ In such setup, you can use your default branch to store your plugins code, and t
 
 ### Automation
 
-You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. The [`botkube-plugins-template`](https://github.com/mszostok/botkube-plugins-template/blob/main/.github/workflows/pages-release.yml) repository has this release out-of-the-box. You can copy and adjust it for your needs if needed.
+You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. See the [`pages-release` workflow](https://github.com/mszostok/botkube-plugins-template/blob/main/.github/workflows/pages-release.yml) on the `botkube-plugins-template` repository for the out-of-the-box solution, which you can use and modify if needed.
 
 ## Use hosted plugins
 

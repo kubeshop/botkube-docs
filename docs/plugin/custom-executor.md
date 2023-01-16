@@ -14,7 +14,7 @@ This tutorial shows you how to build a custom `echo` executor that responds with
 
 ![echo-demo](./assets/echo-demo.gif)
 
-For a final implementation, see a [Botkube quick start repository](./template.md).
+For a final implementation, see the [Botkube template repository](./template.md).
 
 ## Prerequisites
 
