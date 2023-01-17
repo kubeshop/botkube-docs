@@ -37,7 +37,7 @@ This document describes steps for running Botkube core locally together with a l
      # Enable a given communication platform and define bindings to a given executor and source plugins.
    ```
 
-   For example, for Slack and example `echo` and `ticker` plugins provide `appToken` and `botToken` and create `/tmp/config-values.yaml` with the following values:
+   For example, for Slack and example `echo` and `ticker` plugins, provide `appToken` and `botToken` and run the script:
 
    <details>
      <summary>Create /tmp/config-values.yaml</summary>
@@ -54,13 +54,13 @@ This document describes steps for running Botkube core locally together with a l
        local-repo/echo:
          enabled: true
          config:
-           changeResponseToUpperCase: true
+           transformResponseToUpperCase: true
    sources:
      "plugin-based":
        local-repo/ticker:
          enabled: true
          config:
-           duration: 5s
+           interval: 5s
    communications:
      default-group:
        socketSlack:

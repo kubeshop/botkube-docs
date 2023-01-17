@@ -123,7 +123,6 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    	return out, nil
    }
 
-
    // mergeConfigs merges all input configuration. In our case we don't have complex merge strategy,
    // the last one that was specified wins :)
    func mergeConfigs(configs []*source.Config) (Config, error) {
