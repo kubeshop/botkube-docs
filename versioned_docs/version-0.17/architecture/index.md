@@ -9,13 +9,17 @@ This document describes high-level Botkube architecture, all components in the s
 Botkube is split into two main parts:
 
 - Botkube Core: Botkube binary that serves as a bridge between communication platforms (e.g. Slack, Discord) and Botkube plugins (sources and executors).
-- [Botkube plugins](../plugin): The executable binaries that communicate with Botkube Core over an RPC interface. Botkube supports two types of plugins, respectively called Source plugins and Executor plugins.
+- [Botkube plugins](../plugin/index.md): The executable binaries that communicate with Botkube Core over an RPC interface. Botkube supports two types of plugins, respectively called Source plugins and Executor plugins.
 
 ## Components
 
 The following diagram visualizes all main components in the system.
 
 ![Architecture](assets/arch-light.svg#gh-light-mode-only)![Architecture](assets/arch-dark.svg#gh-dark-mode-only)
+
+### Plugin repository
+
+A plugin repository is a place where plugin binaries and index file are stored. This repository must be publicly available and supports downloading assets via HTTP(s). Any static file server can be used, for instance: GitHub Pages, `s3`, `gcs`, etc.
 
 ### Plugin manager
 
