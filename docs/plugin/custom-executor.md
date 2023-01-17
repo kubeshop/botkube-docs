@@ -12,7 +12,9 @@ Plugin executor is a binary that implements the [executor](https://github.com/ku
 
 This tutorial shows you how to build a custom `echo` executor that responds with a command that was specified by the user in a chat window.
 
-![echo-demo](assets/echo-demo.gif)
+![echo-demo](./assets/echo-demo.gif)
+
+For a final implementation, see the [Botkube template repository](./quick-start.md).
 
 ## Prerequisites
 
@@ -112,6 +114,7 @@ Instead of GoReleaser, you can use another tool of your choice.
 
    ```yaml
    cat << EOF > .goreleaser.yaml
+   project_name: botkube-plugins
    before:
      hooks:
        - go mod download

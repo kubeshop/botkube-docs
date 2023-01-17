@@ -6,6 +6,8 @@ sidebar_position: 5
 
 A plugin repository is a place where you store your plugin binaries. This repository must be publicly available and supports downloading assets via HTTP(s). This document explains how to create Botkube plugin repositories by providing examples based on GitHub functionality. However, any static file server can be used, for instance: `s3`, `gcs`, etc.
 
+This document describes how to set up such repository. If you use or plan to use GitHub you can adapt the [template repository](./quick-start.md) that has batteries included to start developing and hosting Botkube plugins right away.
+
 # Index file
 
 Your plugin repository must contain at least one index file and one plugin binary. Depending on your needs and preferences, you can create one or more index files to categorize your plugins. You can host both the executor and source plugins in a single repository. You can also include them in the same index file.
@@ -91,55 +93,7 @@ gh release create v1.0.0 \
 
 ### Automation
 
-You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. To do that, add the following workflow under `.github/workflows/release.yml` in your repository:
-
-```yaml
-name: Official Release
-
-on:
-  push:
-    tags:
-      - "*"
-
-jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version-file: "go.mod"
-          cache: true
-
-      - name: Build plugins binaries
-        uses: goreleaser/goreleaser-action@v3
-        with:
-          version: latest
-          args: build --rm-dist
-
-      - name: Generate plugins index.yaml
-        env:
-          PLUGIN_DOWNLOAD_URL_BASE_PATH: "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}"
-        run: |
-          go run github.com/kubeshop/botkube/hack -binaries-path "./dist"
-      - name: Publish GitHub release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release create "${GITHUB_REF#refs/tags/}" \
-          --generate-notes \
-          ./dist/source_* \
-          ./dist/executor_* \
-          ./plugins-index.yaml
-```
-
-This workflow uses GoReleaser that was described in the [**Build plugin binaries**](custom-executor.md#build-plugin-binaries) section.
+You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. See the [`release` workflow](https://github.com/kubeshop/botkube-plugins-template/blob/main/.github/workflows/release.yml) on the `botkube-plugins-template` repository for the out-of-the-box solution, which you can use and modify if needed.
 
 ## GitHub pages
 
@@ -195,72 +149,7 @@ In such setup, you can use your default branch to store your plugins code, and t
 
 ### Automation
 
-You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. To do that, add the following workflow under `.github/workflows/release.yml` in your repository:
-
-```yaml
-name: Deploy Botkube plugins GitHub Pages
-
-on:
-  push:
-    tags:
-      - "*"
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version-file: "go.mod"
-          cache: true
-
-      - name: Build plugins binaries
-        uses: goreleaser/goreleaser-action@v3
-        with:
-          version: latest
-          args: build --rm-dist
-
-      - name: Generate plugins index.yaml
-        env:
-          PLUGIN_DOWNLOAD_URL_BASE_PATH: "https://${{github.repository_owner}}.github.io/${{ github.event.repository.name }}"
-        run: |
-          go run github.com/kubeshop/botkube/hack -binaries-path "./dist"
-      - name: Publish GitHub release
-        run: |
-          mkdir public
-          mv dist/executor_* public/
-          mv dist/source_* public/
-          mv plugins-index.yaml public/
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: public
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-```
+You can use [GitHub Actions](https://docs.github.com/en/actions) to publish Botkube plugins automatically each time a new tag is pushed. See the [`pages-release` workflow](https://github.com/kubeshop/botkube-plugins-template/blob/main/.github/workflows/pages-release.yml) on the `botkube-plugins-template` repository for the out-of-the-box solution, which you can use and modify if needed.
 
 ## Use hosted plugins
 
