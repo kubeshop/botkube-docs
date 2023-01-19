@@ -2,7 +2,7 @@ package target
 
 import (
 	"fmt"
-	"github.com/MakeNowJust/heredoc"
+	"github.com/MakeNowJust/heredoc/v2"
 	"io"
 	"net/http"
 	"os"
