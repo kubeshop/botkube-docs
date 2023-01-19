@@ -44,7 +44,7 @@ jobs:
           git push --set-upstream origin release/${{ inputs.version }}
           npm install
 
-      - name: Update versions in installation docs
+      - name: Update versions in installation docs v2
         run: |
           LATEST_RELEASE_VERSION="${{ inputs.version }}.0"
           PREVIOUS_RELEASE_VERSION_WITH_PREFIX=$(grep  "\--version" docs/installation/slack/index.md | head -1 | awk -F'--version ' '{print $2}' | awk -F' ' '{print $1}')
