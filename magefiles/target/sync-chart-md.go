@@ -58,10 +58,7 @@ func SyncChartParams() {
 func ValidateRelease() {
 	version := os.Getenv("BOTKUBE_RELEASE_VERSION")
 	printer.Title("Validating release ...")
-	release := lo.Must1(get(fmt.Sprintf(urlReleaseByTagFmt, version)))
-
-	printer.Infof("Validated %q", release)
-
+	lo.Must1(get(fmt.Sprintf(urlReleaseByTagFmt, version)))
 }
 
 func get(url string) (string, error) {
