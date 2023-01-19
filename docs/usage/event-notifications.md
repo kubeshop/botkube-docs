@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Event notifications
 
-Botkube sends notifications according to the [sources](../configuration/source.md) configuration.
+Botkube sends notifications according to the [sources](../configuration/source/index.md) configuration.
 
 ## Actionable notifications
 

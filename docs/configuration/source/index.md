@@ -1,7 +1,7 @@
 ---
 id: source
 title: Source
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 The source settings contains:
@@ -16,7 +16,7 @@ Sources are bound to specific channels in the communications configuration. To l
 
 ## Kubernetes resource events
 
-A Kubernetes source produces events for configured Kubernetes resources. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, read the [Communication](./communication/index.md) and [Action](./action.md) documents.
+A Kubernetes source produces events for configured Kubernetes resources. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, read the [Communication](../communication/index.md) and [Action](../action.md) documents.
 
 ### Event and resource constraints
 
