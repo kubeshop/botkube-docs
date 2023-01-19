@@ -3,7 +3,6 @@ module botkube.io/tools
 go 1.18
 
 require (
-	github.com/MakeNowJust/heredoc/v2 v2.0.1
 	github.com/carolynvs/magex v0.8.1
 	github.com/fatih/color v1.13.0
 	github.com/magefile/mage v1.13.0
@@ -13,6 +12,7 @@ require (
 )
 
 require (
+	github.com/MakeNowJust/heredoc v1.0.0 // indirect
 	github.com/mattn/go-colorable v0.1.9 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/tidwall/match v1.1.1 // indirect

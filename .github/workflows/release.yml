@@ -33,6 +33,14 @@ jobs:
         with:
           go-version-file: magefiles/go.mod
 
+      - name: Validate release version
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: "sync:validateRelease"
+        env:
+          BOTKUBE_RELEASE_VERSION: "${{ inputs.version }}.0"
+
       - name: Set git 'user.name' and 'user.email'
         run: |
           git config user.name "${{ env.git-user }}"
