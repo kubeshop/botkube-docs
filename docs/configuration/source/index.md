@@ -12,7 +12,7 @@ The source settings contains:
 - Settings to monitor updates for the specific resource fields,
 - Ability to turn on/off specific recommendations per a given source.
 
-Sources are bound to specific channels in the communications configuration. To learn more, read the [Source and Executor Bindings](./communication/#source-and-executor-bindings) section.
+Sources are bound to specific channels in the communications configuration. To learn more, read the [Source and Executor Bindings](../communication/#source-and-executor-bindings) section.
 
 ## Kubernetes resource events
 
