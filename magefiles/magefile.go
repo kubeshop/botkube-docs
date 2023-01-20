@@ -12,7 +12,8 @@ var (
 	Default = Sync.Chart
 
 	Aliases = map[string]interface{}{
-		"gen": Sync.Chart,
+		"gen":             Sync.Chart,
+		"validateRelease": Sync.ValidateRelease,
 	}
 )
 
@@ -21,6 +22,11 @@ type Sync mg.Namespace
 // Chart synchronize Botkube Helm chart parameters.
 func (Sync) Chart() {
 	target.SyncChartParams()
+}
+
+// ValidateRelease checks if given release exists in Botkube repository.
+func (Sync) ValidateRelease() {
+	target.ValidateRelease()
 }
 
 // CheckLinks detects dead links in documentation.
