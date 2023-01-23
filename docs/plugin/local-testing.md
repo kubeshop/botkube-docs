@@ -1,7 +1,7 @@
 ---
 id: local-testing
 title: "Local testing"
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 This document describes steps for running Botkube core locally together with a local file server for serving your plugins during development phase.
