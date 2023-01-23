@@ -13,6 +13,12 @@ sidebar_position: 1
 Botkube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled
 and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for Botkube deployment.
 
+:::warning
+**Multi-cluster caveat:** The architecture of socket-based Slack apps is different from the older Slack app. If you would like to use [Botkube executors](../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube Slack app for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
+
+To learn more about the Slack Socket API limitation, see the [comment](https://github.com/slackapi/bolt-js/issues/1263#issuecomment-1006372826) in the official Slack bot framework repository.
+:::
+
 Follow the steps below to create and install Botkube Slack app to your Slack workspace.
 
 ### Create Slack app
