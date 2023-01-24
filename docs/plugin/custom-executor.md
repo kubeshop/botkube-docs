@@ -87,6 +87,8 @@ For a final implementation, see the [Botkube template repository](./quick-start.
 
    The `Metadata` method returns basic information about your plugin. This data is used when the plugin index is generated in an automated way. You will learn more about that in the next steps.
 
+   Ąs a part of the `Metadata` method, you can define the plugin dependencies. To learn more about them, see the [Dependencies](./dependencies.md) document.
+
 6. Add the required `Execute` method:
 
    ```go
