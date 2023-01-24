@@ -114,6 +114,7 @@ const config = {
           srcDark: "images/botkube-white.svg",
         },
         items: [
+          { to: "blog", label: "Blog", position: "left" }, // or position: 'right'
           {
             type: "doc",
             docId: "installation/installation",
