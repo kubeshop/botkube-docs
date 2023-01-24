@@ -1,11 +1,11 @@
 ---
 title: Getting started with Botkube executors
-slug: welcome-docusaurus-v2
+slug: custom-executors
 authors:
-- name: "Mateusz Szostok"
-  title: "Botkube Maintainer"
-  url: https://github.com/mszostok
-  image_url: https://avatars.githubusercontent.com/u/17568639?s=250
+  - name: "Mateusz Szostok"
+    title: "Botkube Maintainer"
+    url: https://github.com/mszostok
+    image_url: https://avatars.githubusercontent.com/u/17568639?s=250
 ---
 
 Botkube gives you fast and simple access to your clusters right from your communication platform. It does that by sending Kubernetes notifications (via [_sources_](https://docs.botkube.io/architecture/#source)) and allowing you to run `kubectl` and `helm` commands (via [_executors_](https://docs.botkube.io/architecture/#executor)) straight from the platform (Slack, Discord, Microsoft Teams and Mattermost).
@@ -55,6 +55,7 @@ Such approach allows us to decouple the Botkube core and its extensions. Thanks 
 - Write extensions in any language as gRPC is used
 
 From the end-user's perspective, you can:
+
 - Specify and use multiple plugin repositories at the same time
 - Enable different plugin versions within the same Botkube version
 
@@ -126,6 +127,7 @@ import Gist from 'react-gist';
    <Gist id="39fc1614e2849319314786fc53efe52d" />
 
    For each `Execute` method call, Botkube attaches the list of associated configurations. The input parameters are defined by the user, when enabling a given plugin:
+
    ```yaml
    executors:
      "plugin-based":
@@ -179,6 +181,11 @@ import Gist from 'react-gist';
    The `gh` CLI doesn't accept fine-grained access tokens. As a workaround, you can use the [Go SDK](https://gist.github.com/mszostok/defa5a5390e87b4f011b986742f714d8).
    :::
 
+9. The last part is to download our dependencies.
+
+   <Gist id="46caa050ec651eb656f99e32c657821b" />
+
+   We already improved this step and in the 0.18 version Botkube will download defined [dependencies automatically](https://docs.botkube.io/next/plugin/dependencies). For now, you can use the `pluginx.DownloadDependencies` function to call our downloader explicitly. The syntax will remain the same.
 
 Congrats! The `gh` plugin is finally implemented. Now, let's play a DevOps role! 😈 In the next section, I will show you how to build and release your brand-new executor plugin.
 
@@ -221,6 +228,7 @@ git tag v1.0.0
 ```
 
 Next, let's push our changes and the new tag:
+
 ```bash
 git push
 git push --tags
@@ -270,9 +278,9 @@ In the description of a new GitHub release, you will see the repository URL that
 
 4. Depending on the selected platform, add the `plugin-based` executor binding. For Slack, it looks like this:
 
-  ```bash
-  --set communications.default-group.socketSlack.channels.default.bindings.executors=['plugin-based']
-  ```
+   ```bash
+   --set communications.default-group.socketSlack.channels.default.bindings.executors=['plugin-based']
+   ```
 
 If you follow all the steps above, you will have all the necessary flags allowing you to install Botkube with the `gh` executor!
 
