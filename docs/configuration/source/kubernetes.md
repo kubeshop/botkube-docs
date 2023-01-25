@@ -64,11 +64,11 @@ There are the following types of constraints:
 
   Possible values:
 
-    - `create`,
-    - `update`,
-    - `delete`,
-    - `error`,
-    - `all`, which is equal to all of the above.
+  - `create`,
+  - `update`,
+  - `delete`,
+  - `error`,
+  - `all`, which is equal to all of the above.
 
   **Example**
 
