@@ -118,7 +118,7 @@ import Gist from 'react-gist';
 
 3. Great! At this stage you already have a functional Botkube executor plugin. However, for now, it only responds with a hard-coded "Aloha!" greeting. But it can do that already on all supported communication platforms.
 
-   ![](./assets/demo-gh-aloha.png)
+   ![](./assets/demo-gh-aloha.gif)
 
    Don't worry, in the next steps, we will implement our business logic.
 
