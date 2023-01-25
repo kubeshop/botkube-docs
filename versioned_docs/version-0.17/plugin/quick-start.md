@@ -29,4 +29,11 @@ and two example release jobs:
    - GitHub releases, defined at `.github/workflows/release.yml` in your GitHub repository.
    - GitHub Pages, defined at `.github/workflows/pages-release.yml` in your GitHub repository.
 
+   If you pick the GitHub Pages, a further configuration is needed:
+
+   1. In project settings, enable [publishing GitHub Pages via GitHub Action](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow).
+   2. Adjust the `github-pages` deployment environment. You can either:
+      - remove the deployment environment if you don't need any protection rules
+      - add an environment protection rule so that you can deploy pages on each new tag. If you use tagging like `vX.Y.Z`, you can add the `v*` rule. As an alternative, can select **All branches** from the dropdown.
+
 4. Update the README.md file to describe the plugins that you created.
