@@ -264,6 +264,7 @@ In the description of a new GitHub release, you will see the repository URL that
    ```bash
    export REPOSITORY={repo} # format OWNER/REPO_NAME, e.g. kubeshop/botkube
    export GITHUB_TOKEN={token}
+   export PLUGINS_URL={plugin_index_url}
    ```
 
 3. Add the `gh` executor related configuration:
@@ -286,26 +287,33 @@ If you follow all the steps above, you will have all the necessary flags allowin
 
 Here's an example of a full command that you should have constructed for Slack installation:
 
-```bash
-export SLACK_CHANNEL_NAME={channel_name}
-export SLACK_APP_TOKEN={token}
-export SLACK_BOT_TOKEN={token}
-export REPOSITORY={repo} # format OWNER/REPO_NAME, e.g. kubeshop/botkube
-export GITHUB_TOKEN={token}
+<Gist id="d8828c7eb80e72bba5fbbf442991eb7e" />
 
-helm install --version v0.17.0 botkube --namespace botkube --create-namespace \
---set communications.default-group.socketSlack.enabled=true \
---set communications.default-group.socketSlack.channels.default.name=${SLACK_CHANNEL_NAME} \
---set communications.default-group.socketSlack.channels.default.bindings.executors=['plugin-based'] \
---set communications.default-group.socketSlack.appToken=${SLACK_APP_TOKEN} \
---set communications.default-group.socketSlack.botToken=${SLACK_BOT_TOKEN} \
-# example configuration for `gh` executor
--f https://gist.github.com/mszostok/88e6852f93429928d1183e52226921fc/raw \
---set 'plugins.repositories.botkube-plugins.url'=${PLUGINS_URL} \
---set 'executors.plugin-based.botkube-plugins/gh.config.github.repository'=${REPOSITORY} \
---set 'executors.plugin-based.botkube-plugins/gh.config.github.token'=${GITHUB_TOKEN} \
-botkube/botkube
-```
+### Testing
+
+1. Navigate to your communication channel
+2. On a given channel, run:
+
+   ```bash
+   @Botkube list executors
+   ```
+
+   It should return information about enabled `gh` executor:
+   ![](./assets/list-exec.png)
+
+3. Create a failing Job:
+
+   ```bash
+   kubectl create -f https://gist.github.com/mszostok/a07230db374e48b9f88491e197d708fd/raw
+   ```
+
+   After a few second, you should see a new alert on your channel:
+   ![](./assets/alert.png)
+
+4. To create a GitHub issue for a given alert, run:
+   ```bash
+   @Botkube gh create issue job/oops -n botkube
+   ```
 
 ## Summary
 
