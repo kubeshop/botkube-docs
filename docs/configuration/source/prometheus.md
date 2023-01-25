@@ -1,7 +1,7 @@
 ---
 id: prometheus
 title: Prometheus
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 The Botkube Prometheus source plugin allows you to fetch alerts from AlertManager of Prometheus deployment and notify in configured platforms.
