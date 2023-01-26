@@ -22,7 +22,7 @@ To make it simple but functional, I will show you how to develop an executor tha
 
 ### Why it's worth it
 
-Because with just a few lines of code, we will automate the process of creating a GitHub issue that out-of-the box contains Kubernetes-specific information useful for further debugging. All of that, directly from Slack, Discord, Mattermost, or MS Teams! No need for connecting to your cluster in your terminal, installing and running `kubectl` commands and copy-pasting fetched details into your browser.
+With just a few lines of code, we will automate the process of creating a GitHub issue that out-of-the box contains Kubernetes-specific information useful for further debugging. All of that, directly from Slack, Discord, Mattermost, or MS Teams! No need for connecting to your cluster in your terminal, installing and running `kubectl` commands and copy-pasting fetched details into your browser.
 
 Instead, you will be able to type `@Botkube gh create issue pod/foo` from any device that has access to your chat, including mobile apps.
 
@@ -69,6 +69,8 @@ To quickly onboard you to Botkube plugins, we maintain the [kubeshop/botkube-plu
 **TODO:** Embed a ~5min video where we show all the steps from this how-to blog post.
 :::
 
+To check out the entire code, visit the [Botkube GitHub repository](https://github.com/kubeshop/botkube/tree/main/cmd/executor/gh/main.go).
+
 ### Repository setup
 
 1. Navigate to [`botkube-plugins-template`](https://github.com/kubeshop/botkube-plugins-template).
@@ -96,7 +98,15 @@ To quickly onboard you to Botkube plugins, we maintain the [kubeshop/botkube-plu
 
 Voilà! You are already an owner of fully functional Botkube plugins. Now it's time to add your own brick by creating a GitHub executor.
 
+:::note
+In this blog post, we use only GitHub releases that work out-of-the-box. Releasing plugins on GitHub Pages requires additional setup. To support them too, see the [use template](https://docs.botkube.io/plugin/quick-start#use-template) document.
+:::
+
 ### Develop GitHub executor
+
+:::note
+To make the code-snippets more readable, I skipped the error handling. However, it will be useful if you will add error handling for the final implementation. You can check the [full `gh` source-code](https://github.com/kubeshop/botkube/tree/main/cmd/executor/gh/main.go) for the reference.
+:::
 
 import Gist from 'react-gist';
 
@@ -270,8 +280,6 @@ In the description of a new GitHub release, you will see the repository URL that
 3. Add the `gh` executor related configuration:
 
    ```bash
-   # example configuration for `gh` executor
-   -f https://gist.github.com/mszostok/88e6852f93429928d1183e52226921fc/raw \
    --set 'plugins.repositories.botkube-plugins.url'=${PLUGINS_URL} \
    --set 'executors.plugin-based.botkube-plugins/gh.config.github.repository'=${REPOSITORY} \
    --set 'executors.plugin-based.botkube-plugins/gh.config.github.token'=${GITHUB_TOKEN} \
@@ -303,16 +311,15 @@ Here's an example of a full command that you should have constructed for Slack i
 
 3. Create a failing Job:
 
-   ```bash
-   kubectl create -f https://gist.github.com/mszostok/a07230db374e48b9f88491e197d708fd/raw
-   ```
+   <Gist id="0fb29dfc368c7deea898923d336d84b4" />
 
    After a few second, you should see a new alert on your channel:
    ![](./assets/alert.png)
 
 4. To create a GitHub issue for a given alert, run:
+
    ```bash
-   @Botkube gh create issue job/oops -n botkube
+   @Botkube gh create issue job/oops
    ```
 
 ## Summary
@@ -343,6 +350,6 @@ Thank you for taking the time to learn about Botkube 🙌
 
 ### Resources
 
-- The GitHub repository with the `gh` executor [source-code](https://github.com/kubeshop/botkube-plugins-template)
+- The GitHub repository with the `gh` executor [source-code](https://github.com/kubeshop/botkube/tree/main/cmd/executor/gh/main.go)
 - [Official Botkube documentation](https://docs.botkube.io)
 - [Creating automated actions](https://docs.botkube.io/configuration/action)
