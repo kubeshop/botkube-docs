@@ -86,16 +86,12 @@ For a final implementation, see the [Botkube template repository](./quick-start.
        Value: heredoc.Doc(`{
           "$schema": "http://json-schema.org/draft-04/schema#",
           "title": "botkube/echo",
-          "description": "example echo plugin",
+          "description": "Echo is an example Botkube executor plugin.",
           "type": "object",
           "properties": {
-            "formatOptions": {
-              "description": "options to format echoed string",
-              "type": "array",
-              "items": [
-                "type": "string",
-                "enum": ["bold", "italic"]
-              ]
+            "changeResponseToUpperCase": {
+              "description": "When changeResponseToUpperCase is true, the echoed string will be in upper case",
+              "type": "boolean"
             }
           },
           "required": []
@@ -120,6 +116,10 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    }
    ```
 
+   The `Execute` method is the heart of your executor plugin. This method runs your business logic and returns the output as plain text. Next, the Botkube core sends back the response to a given communication platform.
+
+   For each `Execute` method call, Botkube attaches the list of associated configurations. You will learn more about that in the [**Passing configuration to your plugin**](#passing-configuration-to-your-plugin) section.
+
 7. Add the required `Help` method:
 
    ```go
@@ -128,16 +128,12 @@ For a final implementation, see the [Botkube template repository](./quick-start.
     return interactive.Message{
       Base: interactive.Base{
         Body: interactive.Body{
-          CodeBlock: "echo prints out given input string",
+          CodeBlock: "Echo prints out given input string.",
         },
       },
     }, nil
    }
    ```
-
-   The `Execute` method is the heart of your executor plugin. This method runs your business logic and returns the output as plain text. Next, the Botkube core sends back the response to a given communication platform.
-
-   For each `Execute` method call, Botkube attaches the list of associated configurations. You will learn more about that in the [**Passing configuration to your plugin**](#passing-configuration-to-your-plugin) section.
 
 ## Build plugin binaries
 
