@@ -47,6 +47,7 @@ For a final implementation, see the [Botkube template repository](./quick-start.
      "context"
      "fmt"
 
+     "github.com/MakeNowJust/heredoc"
      "github.com/hashicorp/go-plugin"
      "github.com/kubeshop/botkube/pkg/api"
      "github.com/kubeshop/botkube/pkg/api/executor"
@@ -77,10 +78,33 @@ For a final implementation, see the [Botkube template repository](./quick-start.
 
    ```go
    // Metadata returns details about the Echo plugin.
-   func (EchoExecutor) Metadata(context.Context) (api.MetadataOutput, error) {
+   func (*EchoExecutor) Metadata(context.Context) (api.MetadataOutput, error) {
      return api.MetadataOutput{
        Version:     "1.0.0",
        Description: "Echo sends back the command that was specified.",
+       JSONSchema: api.JSONSchema{
+       Value: heredoc.Doc(`{
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "botkube/echo",
+          "description": "example echo plugin",
+          "type": "object",
+          "properties": {
+            "formatOptions": {
+              "description": "options to format echoed string",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "bold",
+                  "italic"
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": []
+        }`),
+       },
      }, nil
    }
    ```
@@ -93,7 +117,7 @@ For a final implementation, see the [Botkube template repository](./quick-start.
 
    ```go
    // Execute returns a given command as a response.
-   func (EchoExecutor) Execute(_ context.Context, in executor.ExecuteInput) (executor.ExecuteOutput, error) {
+   func (*EchoExecutor) Execute(_ context.Context, in executor.ExecuteInput) (executor.ExecuteOutput, error) {
     return executor.ExecuteOutput{
       Data: fmt.Sprintf("Echo: %s", in.Command),
     }, nil
@@ -103,6 +127,21 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    The `Execute` method is the heart of your executor plugin. This method runs your business logic and returns the output as plain text. Next, the Botkube core sends back the response to a given communication platform.
 
    For each `Execute` method call, Botkube attaches the list of associated configurations. You will learn more about that in the [**Passing configuration to your plugin**](#passing-configuration-to-your-plugin) section.
+
+7. Add the required `Help` method:
+
+   ```go
+   // Help returns help message
+   func (*EchoExecutor) Help(ctx context.Context) (interactive.Message, error) {
+    return interactive.Message{
+      Base: interactive.Base{
+        Body: interactive.Body{
+          CodeBlock: "Echo prints out given input string.",
+        },
+      },
+    }, nil
+   }
+   ```
 
 ## Build plugin binaries
 
