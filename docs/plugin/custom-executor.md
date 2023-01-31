@@ -86,14 +86,22 @@ For a final implementation, see the [Botkube template repository](./quick-start.
        Value: heredoc.Doc(`{
           "$schema": "http://json-schema.org/draft-04/schema#",
           "title": "botkube/echo",
-          "description": "Echo is an example Botkube executor plugin.",
+          "description": "example echo plugin",
           "type": "object",
           "properties": {
-            "changeResponseToUpperCase": {
-              "description": "When changeResponseToUpperCase is true, the echoed string will be in upper case",
-              "type": "boolean"
+            "formatOptions": {
+              "description": "options to format echoed string",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "bold",
+                  "italic"
+                ]
+              }
             }
           },
+          "additionalProperties": false,
           "required": []
         }`),
        },
