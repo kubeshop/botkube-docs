@@ -6,12 +6,30 @@ sidebar_position: 1
 
 While deploying Botkube, you can specify which [executors](../../configuration/executor) you want to enable.
 
-To check which executors are enabled, run `@Botkube list executors`
+To check which executors are enabled, and get the aliases configured for them, run `@Botkube list executors`.
+
+## Aliases
+
+Alias is a shortcut for a longer command or just a part of it. It can be defined for all commands, including executor plugins and built-in Botkube commands. When you use an alias, the command is replaced with the underlying command before executing it. For example, `@Botkube k get pods` is replaced with `@Botkube kubectl get pods` before executing it.
+
+Once you configured aliases, you can use them interchangeably with a full command. For example:
+
+- `k` as `kubectl`,
+- `kgp` as `kubectl get pods`,
+- `kgpa` as `kubectl get pods -A`,
+- `hh` as `helm history`,
+- `a` as `list actions`, the built-in Botkube command,
+
+and so on. Your imagination is the limit!
+
+Aliases are defined globally for the whole Botkube installation. To see which aliases are available for current conversation, run `@Botkube list aliases`.
+
+To learn how to configure aliases and see the default configuration, see the [Alias](../../configuration/alias.md) section.
 
 ## Specify cluster name
 
-:::info
-Multi-cluster approach is supported only the Mattermost and Discord integrations.
+:::warning
+Multi-cluster approach is supported only for the Mattermost and Discord integrations. Slack and Microsoft Teams integrations require separate Slack or Microsoft Teams apps for each Botkube installation.
 :::
 
 If you have installed Botkube backend on multiple clusters, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
