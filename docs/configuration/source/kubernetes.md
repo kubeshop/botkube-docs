@@ -1,24 +1,16 @@
 ---
-id: source
-title: Source
+id: kubernetes
+title: Kubernetes
 sidebar_position: 2
 ---
 
-The source settings contains:
+A `kubernetes` source produces events for configured Kubernetes resources. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, read the Communication and Action documents.
 
-- Resource list you want to watch,
-- Namespaces you want to filter,
-- The type of events you want to get notifications about,
-- Settings to monitor updates for the specific resource fields,
-- Ability to turn on/off specific recommendations per a given source.
+## Enabling source
 
-Sources are bound to specific channels in the communications configuration. To learn more, read the [Source and Executor Bindings](./communication/#source-and-executor-bindings) section.
+To enable Kubernetes source, add `--set 'sources.{configuration-name}.kubernetes.enabled=true'` to a given Helm install command.
 
-## Kubernetes resource events
-
-A Kubernetes source produces events for configured Kubernetes resources. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, read the [Communication](./communication/index.md) and [Action](./action.md) documents.
-
-### Event and resource constraints
+## Event and resource constraints
 
 Define constraints for Kubernetes events to narrow down the events you want to receive.
 
@@ -106,7 +98,7 @@ There are the following types of constraints:
     message: "^Back-off.*" # match all events with message starting with `Back-off`
   ```
 
-### Merging strategy
+## Merging strategy
 
 When a channel binds to more than one source, the resource notifications are merged across all sources.
 
@@ -165,7 +157,7 @@ Meaning, channel `monitor-config` will receive notifications for `v1/configmaps`
 
 For every source, you can configure recommendations related to Kubernetes resources.
 
-### Merging Strategy
+## Merging Strategy
 
 Recommendations take a different approach from the [Kubernetes resource events merge strategy](#kubernetes-resource-events).
 
