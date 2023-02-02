@@ -13,7 +13,7 @@ sources:
       # ... trimmed ...
 
   "prometheus-firing-alerts": # This is a source configuration name, which is referred in communication bindings.
-    prometheus:
+    botkube/prometheus:
       # ... trimmed ...
 ```
 

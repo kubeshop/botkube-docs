@@ -6,9 +6,9 @@ sidebar_position: 2
 
 A `kubernetes` source produces events for configured Kubernetes resources. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, read the Communication and Action documents.
 
-## Enabling plugin
+## Enabling source
 
-To enable Kubernetes plugin, add `--set 'sources.{configuration-name}.kubernetes.enabled=true'` to a given Helm install command.
+To enable Kubernetes source, add `--set 'sources.{configuration-name}.kubernetes.enabled=true'` to a given Helm install command.
 
 ## Event and resource constraints
 
