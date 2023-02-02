@@ -32,7 +32,7 @@ sources:
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.
         url: "http://localhost:9090" # Prometheus host to fetch alerts via Prometheus HTTP API
-        alertStates: ["firing", "pending", "inactive"] # Provided alert states will overwrite default values. For example, Prometheus plugin will notify for only `firing` alerts if `alertStates` is `["firing"]`. 
+        alertStates: ["firing", "pending", "inactive"] # Provided alert states will overwrite default values. For example, Prometheus plugin will notify for only `firing` alerts if `alertStates` is `["firing"]`.
         ignoreOldAlerts: true # If set to true, only the alerts that active since Botkube deployment start time. Otherwise, plugin will fetch all the alerts available in AlertManager on Botkube start.
 ```
 
