@@ -50,5 +50,3 @@ The `--filter` flag uses simple string matching. And, only works for BotKube exe
 
 ![flag_filter_kubectl_get_nodes](../assets/flag_filter_kubectl_get_nodes.png)
 ![flag_filter_kubectl_logs](../assets/flag_filter_kubectl_logs.png)
-
-See [Examples](../../examples) for the use cases.
