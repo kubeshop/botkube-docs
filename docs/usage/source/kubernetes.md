@@ -9,3 +9,5 @@ Botkube allows you to consume `kubernetes` events on your Kubernetes cluster. By
 Once it is enabled, Botkube Kubernetes plugin will consume Kubernetes events and send them to configured platforms as shown below.
 
 ![Pod Created](./assets/pod-created.png))
+
+See [Examples](../../examples) for the example Kubernetes event notifications.
