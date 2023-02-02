@@ -1,6 +1,7 @@
 ---
 id: plugin
 title: "Plugins"
+sidebar_position: 4
 ---
 
 The Botkube plugin system allows you to extend the Botkube core with custom logic. For example, call or receive events from third-party services.
