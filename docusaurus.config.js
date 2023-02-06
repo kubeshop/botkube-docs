@@ -184,10 +184,6 @@ const config = {
                 label: "Installation",
                 to: "/",
               },
-              {
-                label: "Examples",
-                to: "/examples",
-              },
             ],
           },
           {
