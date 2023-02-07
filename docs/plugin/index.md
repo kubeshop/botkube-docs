@@ -1,6 +1,6 @@
 ---
 id: plugin
-title: "Plugins"
+title: "Plugin Development"
 sidebar_position: 4
 ---
 
