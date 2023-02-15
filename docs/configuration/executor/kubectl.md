@@ -4,19 +4,26 @@ title: Kubectl
 sidebar_position: 2
 ---
 
-The `kubectl` executor allows you to run the `kubectl` command directly in the chat window of each communication platform.
+The Botkube Kubectl executor plugin allows you to run the `kubectl` command directly in the chat window of each communication platform.
+
+The Kubectl plugin is hosted by the official Botkube plugin repository. To enable the Helm plugin, make sure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
+
+```yaml
+plugins:
+  repositories:
+    botkube:
+      url: https://github.com/kubeshop/botkube/releases/download/v0.19.0/plugins-index.yaml
+```
 
 ## Enabling plugin
 
-To enable `kubectl` executor, add `--set executors.{configuration-name}.kubectl.enabled: true` to a given Helm install command. By default, just the read-only `kubectl` commands are supported.
+To enable `kubectl` executor, add `--set 'executors.{configuration-name}.botkube/kubectl.enabled=true'` to a given Helm install command. By default, just the read-only `kubectl` commands are supported.
 
 You can change that by adjusting the `rbac` property in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file or by using the `--set-json` flag, e.g.:
 
 ```bash
 --set-json 'rbac.rules=[{"apiGroups": ["*"], "resources": ["*"], "verbs": ["get","watch","list","create","delete","update","patch"]}]'
 ```
-
-Additionally, you need to make sure that a given `verbs` and `resources` are allowed by a specific `kubectl` executor configuration.
 
 ## Syntax
 
@@ -26,53 +33,42 @@ Additionally, you need to make sure that a given `verbs` and `resources` are all
 #
 # Format: executors.{alias}
 executors:
-  "kubectl-read-only":
+  "plugin-based":
     # Kubectl executor configuration.
     kubectl:
-      namespaces:
-        # Include contains a list of allowed Namespaces.
-        # It can also contain a regex expressions:
-        #  - ".*" - to specify all Namespaces.
-        include:
-          - ".*"
-        # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
-        # It can also contain a regex expressions:
-        #  - "test-.*" - to specify all Namespaces with `test-` prefix.
-        #exclude: []
-      # If true, enables `kubectl` commands execution.
       enabled: false
-      # List of allowed `kubectl` commands.
-      commands:
-        # Configures which `kubectl` methods are allowed.
-        verbs:
-          ["api-resources", "api-versions", "cluster-info", "describe", "diff", "explain", "get", "logs", "top", "auth"]
-        # Configures which K8s resource are allowed.
-        resources:
-          ["deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps"]
-      # Configures the default Namespace for executing Botkube `kubectl` commands. If not set, uses 'default'.
-      defaultNamespace: default
-      # If true, enables commands execution from configured channel only.
-      restrictAccess: false
+      config:
+        # Configures the default Namespace for executing Botkube `kubectl` commands. If not set, uses the 'default'.
+        defaultNamespace: "default"
+        # Configures the interactive kubectl command builder.
+        interactiveBuilder:
+          allowed:
+            # Configures which K8s namespace are displayed in namespace dropdown.
+            # If not specified, plugin needs to have access to fetch all Namespaces, otherwise Namespace dropdown won't be visible at all.
+            namespaces: ["default"]
+            # Configures which `kubectl` methods are displayed in commands dropdown.
+            verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
+            # Configures which K8s resource are displayed in resources dropdown.
+            resources:
+              [
+                "deployments",
+                "pods",
+                "namespaces",
+                "daemonsets",
+                "statefulsets",
+                "storageclasses",
+                "nodes",
+                "configmaps",
+                "services",
+                "ingresses",
+              ]
 ```
 
 The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
 
 ## Merging strategy
 
-When executing a `kubectl` command, Botkube takes into account only bindings for a given execution Namespace. For example:
-
-- `@Botkube kubectl get po/botkube -n botkube` - collect `kubectl` executor bindings that include `botkube` or `*.` (all) Namespaces.
-- `@Botkube kubectl get po -A` - collect all `kubectl` executor bindings that include `*.` (all) Namespaces.
-- `@Botkube kubectl get po` - first, we resolve the execution Namespace. For that, we collect all enabled `kubectl` executor bindings and check the `defaultNamespace` property. If property is not define, we use the `default` Namespace. With resolved execution Namespace, we run the logic define in the first step.
-
-For all collected `kubectl` executors, we merge properties with the following strategy:
-
-- `commands.verbs` - append
-- `commands.resources` - append
-- `commands.defaultNamespace` - override
-- `commands.restrictAccess` - override
-
-The order of the binding list is important as it impacts properties that are overridden. The priority is given to the last binding specified on the list.
+For all collected `kubectl` executors bindings, configuration properties are overridden based on the order of the binding list. The priority is given to the last binding specified on the list. Empty properties are omitted.
 
 ### Example
 
@@ -87,51 +83,51 @@ communications:
           name: "random"
           bindings:
             executors:
-              - kubectl-pod
-              - kubectl-wait
-              - kubectl-all-ns
-              - kubectl-exec
+              - kubectl-one
+              - kubectl-two
+              - kubectl-three
 
 executors:
-  "kubectl-pod":
+  "kubectl-one":
     kubectl:
       enabled: true
-      namespaces:
-        include: ["botkube", "default"]
-      commands:
-        verbs: ["get"]
-        resources: ["pods"]
-      restrictAccess: false
-  "kubectl-wait":
+      config:
+        defaultNamespace: "default"
+        interactiveBuilder:
+          allowed:
+            verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
+            resources:
+              [
+                "deployments",
+                "pods",
+                "namespaces",
+                "daemonsets",
+                "statefulsets",
+                "storageclasses",
+                "nodes",
+                "configmaps",
+                "services",
+                "ingresses",
+              ]
+  "kubectl-two":
     kubectl:
       enabled: true
-      namespaces:
-        include: ["botkube", "default"]
-      commands:
-        verbs: ["wait"]
-      restrictAccess: true
-  "kubectl-all-ns":
-    kubectl:
-      enabled: true
-      namespaces:
-        include:
-          - ".*"
-      commands:
-        verbs: ["get"]
-        resources: ["deployments"]
-  "kubectl-exec":
+      config:
+        interactiveBuilder:
+          allowed:
+            namespaces: ["default"]
+            verbs: ["api-resources", "top"]
+  "kubectl-three":
     kubectl:
       enabled: false
-      namespaces:
-        include: ["botkube", "default"]
-      commands:
-        verbs: ["exec"]
-      restrictAccess: false
+      config:
+        interactiveBuilder:
+          allowed:
+            namespaces: ["kube-system"]
 ```
 
 We can see that:
 
-- For `botkube` and `default` Namespaces, we can execute `get` and `wait` commands for Pods. This is the result of merging `kubectl-pod` and `kubectl-wait`.
-- For all Namespaces we can execute `get` for Deployments, as specified by `kubectl-all-ns`.
-- The `exec` command is not allowed as the `kubectl-exec` binding is disabled (`kubectl.enabled` is set to `false`).
-- The `kubectl` works in a restricted access because the `kubectl-wait` binding is the **last one** which is both enabled and sets the `restrictAccess` property to `true`.
+- Only the `default` namespace is displayed in the interactive command builder. This is a result of merging `kubectl-one` and `kubectl-two`. The `kubectl-three` binding is not take into account as it's disabled.
+- Only the `api-resources` and `top` verbs are displayed in the interactive command builder as they are overridden by the `kubectl-two`.
+- All resources defined in `kubectl-one` are displayed in the interactive command builder as other enabled bindings don't override this property.
