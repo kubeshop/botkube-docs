@@ -57,7 +57,7 @@ actions:
         - k8s-create-events
       # Executors configuration used to execute a configured command.
       executors:
-        - kubectl-read-only
+        - k8s-default-tools
   "show-logs-on-error":
     # If true, enables the action.
     enabled: false
@@ -75,5 +75,5 @@ actions:
         - k8s-err-with-logs-events
       # Executors configuration used to execute a configured command.
       executors:
-        - kubectl-read-only
+        - k8s-default-tools
 ```

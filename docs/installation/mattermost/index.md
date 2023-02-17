@@ -87,7 +87,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
   --set communications.default-group.mattermost.channels.default.name=${MATTERMOST_CHANNEL} \
   --set communications.default-group.mattermost.botName=${MATTERMOST_BOT_NAME} \
   --set settings.clusterName=${CLUSTER_NAME} \
-  --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+  --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
   --set 'executors.helm.botkube/helm.enabled'=${ALLOW_HELM} \
   botkube/botkube
   ```

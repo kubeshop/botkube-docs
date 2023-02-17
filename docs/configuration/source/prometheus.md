@@ -27,7 +27,7 @@ To enable Prometheus plugin, add `--set 'sources.prometheus.botkube/prometheus.e
 #
 # Format: sources.{alias}
 sources:
-  "plugin-based":
+  "prom":
     botkube/prometheus: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.

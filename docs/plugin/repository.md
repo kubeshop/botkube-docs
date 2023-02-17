@@ -169,12 +169,12 @@ Once the plugin repository is added, you can refer to it in the `executor` or `s
 
 ```yaml
 executors:
-  "plugin-based":
+  "plugins":
     repo-name/executor-name@v1.0.0: # Plugin name syntax: {repo}/{plugin}[@{version}]. If version is not provided, the latest version from repository is used.
       enabled: true
       config: {} # Plugin's specific configuration.
 sources:
-  "plugin-based":
+  "plugins":
     repo-name/source-name@v1.0.0: # Plugin name syntax: {repo}/{plugin}[@{version}]. If version is not provided, the latest version from repository is used.
       enabled: true
       config: {} # Plugin's specific configuration.

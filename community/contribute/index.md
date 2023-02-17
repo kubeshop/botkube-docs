@@ -82,7 +82,7 @@ Now you can build and run Botkube by one of the following ways
    --set communications.default-group.slack.channels.default.name=${SLACK_CHANNEL_NAME} \
    --set communications.default-group.slack.token=${SLACK_API_BOT_TOKEN} \
    --set settings.clusterName=${CLUSTER_NAME} \
-   --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+   --set executors.k8s-default-tools.kubectl.enabled=${ALLOW_KUBECTL} \
    --set image.registry=${IMAGE_REGISTRY} \
    --set image.repository=${IMAGE_REPOSITORY} \
    --set image.tag=v9.99.9-dev \

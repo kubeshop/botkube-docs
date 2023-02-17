@@ -109,7 +109,7 @@ Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) t
   --set communications.default-group.discord.botID=${DISCORD_BOT_ID} \
   --set communications.default-group.discord.token=${DISCORD_TOKEN} \
   --set settings.clusterName=${CLUSTER_NAME} \
-  --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+  --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
   --set 'executors.helm.botkube/helm.enabled'=${ALLOW_HELM} \
   botkube/botkube
   ```

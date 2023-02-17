@@ -27,12 +27,23 @@ You can also use any of the [configured aliases](../../configuration/alias.md) -
 
 ![kubectl command builder](./assets/kc-cmd-builder.gif)
 
-The following policies are applied:
+### Limitations
 
-- Verbs, resource types and namespace dropdowns are narrowed down to the `kubectl` permissions in a given channel,
-- The `kubectl` command preview is displayed only if the command that you built is valid,
-- For resources that are namespace-scoped, the Namespace defined in `executors.{alias}.kubectl.defaultNamespace` is used. If not set, the `default` Namespace is selected.
+Keep in mind that the interactive command builder may not support all the commands that you can run just by typing them directly in a chat window. The following policies are applied:
 
-:::info
-Actionable notifications are only available for the [Slack integration](docs/installation/slack/index.md) that supports interactive messages.
-:::
+- Under verbs' dropdown, we display verbs that are defined under the `interactiveBuilder.allowed.verbs` configuration.
+  :::tip
+  The default verbs for the `kubectl` plugin found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
+  If you ServiceAccount allow running other actions such as `delete`, you can add them directly under [`interactiveBuilder.allowed.verbs`](../../configuration/executor/kubectl.md#syntax).
+  :::
+
+- Under resources' dropdown, we display resources that are defined under the `interactiveBuilder.allowed.resources` configuration and are allowed for already selected verb. For example, for the `logs` verb we display only `pods`, `statefulsets`, `deployments`, and `daemonsets`.
+  :::tip
+  The default resources for the `kubectl` plugin found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
+
+  If you ServiceAccount allow access to more resources, you can add them directly under [`interactiveBuilder.allowed.resources`](../../configuration/executor/kubectl.md#syntax).
+  :::
+
+- For resources that are namespace-scoped, under namespaces' dropdown, we display `interactiveBuilder.allowed.namespaces` if defined. If static namespaces are not specified, plugin needs to have access to fetch all Namespaces, otherwise Namespace dropdown won't be visible at all.
+
+- The `kubectl` command preview is displayed only if the command that you built is valid, and you have permission to run it.
