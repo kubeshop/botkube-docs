@@ -33,7 +33,7 @@ You can change that by adjusting the `rbac` property in the [values.yaml](https:
 #
 # Format: executors.{alias}
 executors:
-  "plugin-based":
+  "k8s-tools":
     botkube/helm: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.

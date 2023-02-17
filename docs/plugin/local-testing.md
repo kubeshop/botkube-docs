@@ -23,12 +23,12 @@ This document describes steps for running Botkube core locally together with a l
          url: http://localhost:8080/plugins-index.yaml
 
    executors:
-     "plugin-based":
+     "plugins":
        local-repo/executor-name: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
          enabled: true
          config: {} # Plugin's specific configuration.
    sources:
-     "plugin-based":
+     "plugins":
        local-repo/source-name: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
          enabled: true
          config: {} # Plugin's specific configuration.
@@ -50,13 +50,13 @@ This document describes steps for running Botkube core locally together with a l
          url: http://localhost:8080/plugins-index.yaml
 
    executors:
-     "plugin-based":
+     "plugins":
        local-repo/echo:
          enabled: true
          config:
            transformResponseToUpperCase: true
    sources:
-     "plugin-based":
+     "plugins":
        local-repo/ticker:
          enabled: true
          config:
@@ -70,9 +70,9 @@ This document describes steps for running Botkube core locally together with a l
              name: random
              bindings:
                executors:
-                 - 'plugin-based'
+                 - 'plugins'
                sources:
-                 - 'plugin-based'
+                 - 'plugins'
          appToken: "" # provide your token starting with xapp-1-
          botToken: "" # provide your token starting with xoxb-
    settings:

@@ -45,7 +45,7 @@ Next, you can configure source from a given repository:
 
 ```yaml
 sources:
-  "plugin-based":
+  "plugins":
     repo-name/source-name@v1.0.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true
       config: {}
@@ -61,7 +61,7 @@ For all source configuration properties, see the [**syntax**](#syntax) section.
 #
 # Format: sources.{alias}
 sources:
-  "plugin-based":
+  "prom":
     botkube/prometheus@v1.0.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.

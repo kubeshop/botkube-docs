@@ -34,7 +34,7 @@ communications:
           name: general
           bindings:
             executors: # Executors configuration for a given channel
-              - kubectl-read-only
+              - k8s-default-tools
             sources: # Notification sources configuration for a given channel
               - k8s-events
         "random": # Your own alias for the channel configuration
@@ -55,7 +55,7 @@ communications:
             disabled: true
           bindings:
             executors: # Executors configuration for a given channel
-              - kubectl-read-only
+              - k8s-default-tools
             sources: # Notification sources configuration for a given channel
               - k8s-events
 ```
@@ -65,12 +65,12 @@ The example YAML configuration definition results in the following configuration
 For Slack **Workspace 1**, as defined by the first communication group (`first-group`):
 
 - Notifications from `k8s-events` source are sent to the `general` and `random` channels.
-- Commands from the `kubectl-read-only` configuration can be executed in the `general` channel. On `random` channel executors are not configured.
+- Commands from the `k8s-default-tools` configuration can be executed in the `general` channel. On `random` channel executors are not configured.
 
 For Slack **Workspace 2**, as defined by the second communication group (`second-group`):
 
 - Notifications are configured to be sent from the `k8s-events` source to the `general` channel. They are disabled by default, and can be enabled with `@Botkube` command or during Botkube upgrade.
-- Commands from the `kubectl-read-only` configuration can be executed in the `general` channel.
+- Commands from the `k8s-default-tools` configuration can be executed in the `general` channel.
 
 ## Source and Executor Bindings
 
@@ -116,7 +116,7 @@ communications:
           bindings:
             # Executors configuration for a given channel.
             executors:
-              - kubectl-read-only
+              - k8s-default-tools
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events
@@ -152,7 +152,7 @@ communications:
           bindings:
             # Executors configuration for a given channel.
             executors:
-              - kubectl-read-only
+              - k8s-default-tools
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events
@@ -173,7 +173,7 @@ communications:
       bindings:
         # Executor bindings apply to all MS Teams channels where Botkube has access to.
         executors:
-          - kubectl-read-only
+          - k8s-default-tools
         # Source bindings apply to all channels which have notification turned on with `@Botkube enable notifications` command.
         sources:
           - k8s-events
@@ -207,7 +207,7 @@ communications:
           bindings:
             # Executors configuration for a given channel.
             executors:
-              - kubectl-read-only
+              - k8s-default-tools
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events

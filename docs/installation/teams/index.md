@@ -165,7 +165,7 @@ We use this TLS Secret while deploying the Botkube backend.
   --set communications.default-group.teams.appPassword=${APPLICATION_PASSWORD} \
   --set communications.default-group.teams.botName=${BOT_NAME} \
   --set settings.clusterName=${CLUSTER_NAME} \
-  --set executors.kubectl-read-only.kubectl.enabled=${ALLOW_KUBECTL} \
+  --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
   --set 'executors.helm.botkube/helm.enabled'=${ALLOW_HELM} \
   --set ingress.create=true \
   --set ingress.host=${HOST} \

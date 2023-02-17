@@ -33,9 +33,9 @@ You can change that by adjusting the `rbac` property in the [values.yaml](https:
 #
 # Format: executors.{alias}
 executors:
-  "plugin-based":
+  "k8s-tools":
     # Kubectl executor configuration.
-    kubectl:
+    botkube/kubectl:
       enabled: false
       config:
         # Configures the default Namespace for executing Botkube `kubectl` commands. If not set, uses the 'default'.
@@ -49,19 +49,7 @@ executors:
             # Configures which `kubectl` methods are displayed in commands dropdown.
             verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
             # Configures which K8s resource are displayed in resources dropdown.
-            resources:
-              [
-                "deployments",
-                "pods",
-                "namespaces",
-                "daemonsets",
-                "statefulsets",
-                "storageclasses",
-                "nodes",
-                "configmaps",
-                "services",
-                "ingresses",
-              ]
+            resources: ["deployments", "pods", "namespaces"]
 ```
 
 The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
@@ -96,19 +84,7 @@ executors:
         interactiveBuilder:
           allowed:
             verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
-            resources:
-              [
-                "deployments",
-                "pods",
-                "namespaces",
-                "daemonsets",
-                "statefulsets",
-                "storageclasses",
-                "nodes",
-                "configmaps",
-                "services",
-                "ingresses",
-              ]
+            resources: ["deployments", "pods", "namespaces"]
   "kubectl-two":
     kubectl:
       enabled: true

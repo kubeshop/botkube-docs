@@ -33,14 +33,13 @@ Keep in mind that the interactive command builder may not support all the comman
 
 - Under verbs' dropdown, we display verbs that are defined under the `interactiveBuilder.allowed.verbs` configuration.
   :::tip
-  By default, the following verbs are allowed: `api-resources`, `api-versions`, `cluster-info`, `describe`, `explain`, `get`, `logs`, `top`.
-
+  The default verbs for the `kubectl` plugin found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
   If you ServiceAccount allow running other actions such as `delete`, you can add them directly under [`interactiveBuilder.allowed.verbs`](../../configuration/executor/kubectl.md#syntax).
   :::
 
 - Under resources' dropdown, we display resources that are defined under the `interactiveBuilder.allowed.resources` configuration and are allowed for already selected verb. For example, for the `logs` verb we display only `pods`, `statefulsets`, `deployments`, and `daemonsets`.
   :::tip
-  By default, the following resources are allowed: `deployments`, `pods`, `namespaces`, `daemonsets`, `statefulsets`, `storageclasses`, `nodes`, `configmaps`, `services`, `ingresses`.
+  The default resources for the `kubectl` plugin found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
 
   If you ServiceAccount allow access to more resources, you can add them directly under [`interactiveBuilder.allowed.resources`](../../configuration/executor/kubectl.md#syntax).
   :::
