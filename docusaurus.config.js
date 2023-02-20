@@ -41,7 +41,10 @@ const config = {
           customCss: require.resolve("./src/css/custom.scss"),
         },
         gtag: {
-          trackingID: process.env.GOOGLE_TAG_MANAGER_TRACKING_ID || "gtm-dev",
+          trackingID: process.env.GOOGLE_TAG_TRACKING_ID || "gtag-dev",
+        },
+        googleTagManager: {
+          containerId: process.env.GOOGLE_TAG_MANAGER_CONTAINER_ID || "gtm-dev",
         },
       }),
     ],
