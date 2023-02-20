@@ -85,24 +85,20 @@ For a final implementation, see the [Botkube template repository](./quick-start.
        JSONSchema: api.JSONSchema{
        Value: heredoc.Doc(`{
           "$schema": "http://json-schema.org/draft-04/schema#",
-          "title": "botkube/echo",
-          "description": "example echo plugin",
+          "title": "echo",
+          "description": "Example echo plugin",
           "type": "object",
           "properties": {
             "formatOptions": {
-              "description": "options to format echoed string",
+              "description": "Options to format echoed string",
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [
-                  "bold",
-                  "italic"
-                ]
+                "enum": [ "bold", "italic" ]
               }
             }
           },
-          "additionalProperties": false,
-          "required": []
+          "additionalProperties": false
         }`),
        },
      }, nil
@@ -118,13 +114,14 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    ```go
    // Execute returns a given command as a response.
    func (*EchoExecutor) Execute(_ context.Context, in executor.ExecuteInput) (executor.ExecuteOutput, error) {
-    return executor.ExecuteOutput{
-      Data: fmt.Sprintf("Echo: %s", in.Command),
-    }, nil
+   	return executor.ExecuteOutput{
+   		Message: api.NewCodeBlockMessage(response, true),
+   	}, nil
    }
    ```
 
-   The `Execute` method is the heart of your executor plugin. This method runs your business logic and returns the output as plain text. Next, the Botkube core sends back the response to a given communication platform.
+   The `Execute` method is the heart of your executor plugin. This method runs your business logic and returns the execution output. Next, the Botkube core sends back the response to a given communication platform.
+   If the communication platform supports interactivity, you can construct and return interactive messages containing buttons, dropdowns, input text, and more complex formatting. To learn more about it, see the [Interactive Messages](./interactivity.md) guide.
 
    For each `Execute` method call, Botkube attaches the list of associated configurations. You will learn more about that in the [**Passing configuration to your plugin**](#passing-configuration-to-your-plugin) section.
 
@@ -132,16 +129,25 @@ For a final implementation, see the [Botkube template repository](./quick-start.
 
    ```go
    // Help returns help message
-   func (*EchoExecutor) Help(ctx context.Context) (interactive.Message, error) {
-    return interactive.Message{
-      Base: interactive.Base{
-        Body: interactive.Body{
-          CodeBlock: "Echo prints out given input string.",
-        },
-      },
-    }, nil
+   func (EchoExecutor) Help(context.Context) (api.Message, error) {
+   	btnBuilder := api.NewMessageButtonBuilder()
+   	return api.Message{
+   		Sections: []api.Section{
+   			{
+   				Base: api.Base{
+   					Header:      "Run `echo` commands",
+   					Description: description,
+   				},
+   				Buttons: []api.Button{
+   					btnBuilder.ForCommandWithDescCmd("Run", "echo 'hello world'"),
+   				},
+   			},
+   		},
+   	}, nil
    }
    ```
+
+   You can use `api.NewCodeBlockMessage` or `api.NewPlaintextMessage` helper functions, or construct your own message.
 
 ## Build plugin binaries
 
@@ -220,28 +226,26 @@ executors:
         formatOptions: ["bold"]
 ```
 
-This means that two different `botkube/echo` plugin configurations were bound to the `all-teams` Slack channel. Under `executor.ExecuteInput{}.Configs`, you will find the list of configurations in the YAML format as specified under the `config` property for each bound and enabled executor. The order of the configuration is the same as specified under the `bindings.executors` property. It's up to the plugin author to merge the passed configurations. For example:
+This means that two different `botkube/echo` plugin configurations were bound to the `all-teams` Slack channel. Under `executor.ExecuteInput{}.Configs`, you will find the list of configurations in the YAML format as specified under the `config` property for each bound and enabled executor. The order of the configuration is the same as specified under the `bindings.executors` property. It's up to the plugin author to merge the passed configurations. You can use our helper function from the plugin extension package (`pluginx`).
 
 ```go
+import (
+	"context"
+	"github.com/kubeshop/botkube/pkg/api/executor"
+	"github.com/kubeshop/botkube/pkg/pluginx"
+)
+
 // Config holds the executor configuration.
 type Config struct {
-	FormatOptions []string `yaml:"options"`
+	FormatOptions []string `yaml:"options,omitempty"`
 }
 
 func (EchoExecutor) Execute(_ context.Context, in executor.ExecuteInput) (executor.ExecuteOutput, error) {
-	formatOptions := map[string]struct{}{}
-	for _, inputCfg := range in.Configs {
-		var cfg Config
-		err := yaml.Unmarshal(inputCfg.RawYAML, &cfg)
-		if err != nil {
-			return executor.ExecuteOutput{}, err
-		}
-
-		for _, opt := range cfg.FormatOptions {
-			formatOptions[opt] = struct{}{}
-		}
+	var cfg Config
+	err := pluginx.MergeExecutorConfigs(in.Configs, &cfg)
+	if err != nil {
+		return executor.ExecuteOutput{}, err
 	}
-
 	// rest logic
 }
 ```
