@@ -9,7 +9,7 @@ Some of our communication platforms support interactive messages. If interactivi
 In this guide, we describe how interactivity applies to messages, and show you how to build ones.
 
 :::tip
-For an example implementation, see the [`msg` executor source-code](https://github.com/mszostok/botkube-plugins-template/blob/main/cmd/msg/main.go).
+For an example implementation, see the [`msg` executor source-code](https://github.com/kubeshop/botkube-plugins-template/blob/main/cmd/msg/main.go).
 :::
 
 ![demo](./assets/demo-msg.gif)
