@@ -4,11 +4,11 @@ title: Kubernetes
 sidebar_position: 2
 ---
 
-A `kubernetes` source produces events for configured Kubernetes resources. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, read the Communication and Action documents.
+A `kubernetes` source plugin produces events for configured Kubernetes resources. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, read the Communication and Action documents.
 
 ## Enabling source
 
-To enable Kubernetes source, add `--set 'sources.{configuration-name}.kubernetes.enabled=true'` to a given Helm install command.
+To enable Kubernetes source, add `--set 'sources.{configuration-name}.botkube/kubernetes.enabled=true'` to a given Helm install command.
 
 ## Event and resource constraints
 
@@ -177,132 +177,23 @@ event:
       - "^Back-off.*" # ...except those starting with `Back-off`
 ```
 
-## Merging strategy
-
-When a channel binds to more than one source, the resource notifications are merged across all sources.
-
-Let's say you have a resource defined in more than one source but wired with different events and namespaces.
-
-```yaml
-sources:
-  "k8s-events":
-    kubernetes:
-      resources:
-        - type: v1/configmaps
-          namespaces:
-            include:
-              - (botk.*|default)
-          event:
-            types:
-              - create
-              - update
-              - delete
-  "k8s-updates":
-    kubernetes:
-      resources:
-        - type: v1/configmaps
-          namespaces:
-            include:
-              - botkube
-          event:
-            types:
-              - update
-```
-
-The bound channel `monitor-config` (below) will notify on the merged events and namespaces across all resource/source definitions.
-
-```yaml
-communications:
-  "default-group":
-    slack:
-      # ... trimmed ...
-      channels:
-        "monitor-config":
-          name: "monitor-config"
-          # ... trimmed ...
-          bindings:
-            # ... trimmed ...
-            sources:
-              - k8s-events
-              - k8s-updates
-```
-
-Meaning, channel `monitor-config` will receive notifications for `v1/configmaps` events matching,
-
-- the `botk.*|default` and `botkube` namespaces.
-- the `create`, `delete` and `update` event types.
-
-## Recommendations
+### Recommendations
 
 You can configure recommendations related to Kubernetes resources.
 
-## Merging Strategy
-
-Recommendations take a different approach from the [Kubernetes resource events merge strategy](#kubernetes-resource-events).
-
-If multiple source bindings are specified for a given communication channel, the recommendations are merged with an override strategy. The order of bindings here is important, as it affects the final values of properties. The priority is given to the last binding specified on the list.
-
-Consider the following example source configuration:
+### Filters
+The filter configuration allows you to configure filters which are used for all processed Kubernetes events. 
 
 ```yaml
-sources:
-  "first-source":
-    kubernetes:
-      # ... trimmed ...
-      recommendations:
-        pod:
-          labelsSet: true
-          noLatestImageTag: false
-        ingress:
-          backendServiceValid: false
-  "second-source":
-    kubernetes:
-      # ... trimmed ...
-      recommendations:
-        pod:
-          noLatestImageTag: true
-        ingress:
-          backendServiceValid: false
-          tlsSecretValid: true
-  "third-source":
-    kubernetes:
-      # ... trimmed ...
-      recommendations:
-        pod:
-          noLatestImageTag: false
-        ingress:
-          backendServiceValid: true
-```
-
-And the following source bindings:
-
-```yaml
-communications:
-  "default-group":
-    slack:
-      # ... trimmed ...
-      channels:
-        "random":
-          name: "random"
-          # ... trimmed ...
-          bindings:
-            # ... trimmed ...
-            sources:
-              - first-source
-              - second-source
-              - third-source
-```
-
-In a result, for the `random` channel, the merged recommendation configuration is as follows:
-
-```yaml
-recommendations:
-  pod:
-    noLatestImageTag: false # set in `first-source`, overriden in `third-source` with the same value
-    labelsSet: true # set to `true` in `first-source`, other sources didn't specify its value
-  ingress:
-    backendServiceValid: true # set in `first-source` and `second-source` to `false`, overriden in `third-source` to `true`
-    tlsSecretValid: true # set in `second-source`
+# Filter settings for various sources.
+# Currently, all filters are globally enabled or disabled.
+# You can enable or disable filters with `@Botkube filters` commands.
+filters:
+  kubernetes:
+    # If true, enables support for `botkube.io/disable` and `botkube.io/channel` resource annotations.
+    objectAnnotationChecker: true
+    # If true, filters out Node-related events that are not important.
+    nodeEventsChecker: true
 ```
 
 ## Syntax
@@ -319,248 +210,277 @@ sources:
     displayName: "Kubernetes Recommendations"
     # Describes Kubernetes source configuration.
     # See the `values.yaml` file for full object.
-    kubernetes:
-      # Describes configuration for various recommendation insights.
-      recommendations:
-        # Recommendations for Pod Kubernetes resource.
-        pod:
-          # If true, notifies about Pod containers that use `latest` tag for images.
-          noLatestImageTag: true
-          # If true, notifies about Pod resources created without labels.
-          labelsSet: true
-        # Recommendations for Ingress Kubernetes resource.
-        ingress:
-          # If true, notifies about Ingress resources with invalid backend service reference.
-          backendServiceValid: true
-          # If true, notifies about Ingress resources with invalid TLS secret reference.
-          tlsSecretValid: true
+    botkube/kubernetes:
+      enabled: true
+      config:
+        # Describes configuration for various recommendation insights.
+        recommendations:
+          # Recommendations for Pod Kubernetes resource.
+          pod:
+            # If true, notifies about Pod containers that use `latest` tag for images.
+            noLatestImageTag: true
+            # If true, notifies about Pod resources created without labels.
+            labelsSet: true
+          # Recommendations for Ingress Kubernetes resource.
+          ingress:
+            # If true, notifies about Ingress resources with invalid backend service reference.
+            backendServiceValid: true
+            # If true, notifies about Ingress resources with invalid TLS secret reference.
+            tlsSecretValid: true
 
   "k8s-all-events":
     displayName: "Kubernetes Info"
     # Describes Kubernetes source configuration.
     # See the `values.yaml` file for full object.
-    kubernetes:
-      # Describes namespaces for every Kubernetes resources you want to watch or exclude.
-      # These namespaces are applied to every resource specified in the resources list.
-      # However, every specified resource can override this by using its own namespaces object.
-      namespaces: &k8s-events-namespaces
-        # Include contains a list of allowed Namespaces.
-        # It can also contain regex expressions:
-        #  `- ".*"` - to specify all Namespaces.
-        include:
-          - ".*"
-        # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
-        # It can also contain regex expressions:
-        #  `- "test-.*"` - to specif all Namespaces with `test-` prefix.
-        # Exclude list is checked before the Include list.
-        # exclude: []
-
-      # Describes event constraints for Kubernetes resources.
-      # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
-      event:
-        # Lists all event types to be watched.
-        types:
-          - create
-          - delete
-          - error
-        # Optional list of exact values or regex patterns to filter events by event reason.
-        # Skipped, if both include/exclude lists are empty.
-        reason:
-          # Include contains a list of allowed values. It can also contain regex expressions.
-          include: []
-          # Exclude contains a list of values to be ignored even if allowed by Include. It can also contain regex expressions.
+    botkube/kubernetes:
+      enabled: true
+      config:
+        # -- Logging configuration
+        log:
+          # -- Log level
+          level: info
+        # Describes namespaces for every Kubernetes resources you want to watch or exclude.
+        # These namespaces are applied to every resource specified in the resources list.
+        # However, every specified resource can override this by using its own namespaces object.
+        namespaces: &k8s-events-namespaces
+          # Include contains a list of allowed Namespaces.
+          # It can also contain regex expressions:
+          #  `- ".*"` - to specify all Namespaces.
+          include:
+            - ".*"
+          # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
+          # It can also contain regex expressions:
+          #  `- "test-.*"` - to specif all Namespaces with `test-` prefix.
           # Exclude list is checked before the Include list.
-          exclude: []
-        # Optional list of exact values or regex patterns to filter event by event message. Skipped, if both include/exclude lists are empty.
-        # If a given event has multiple messages, it is considered a match if any of the messages match the constraints.
-        message:
-          # Include contains a list of allowed values. It can also contain regex expressions.
-          include: []
-          # Exclude contains a list of values to be ignored even if allowed by Include. It can also contain regex expressions.
-          # Exclude list is checked before the Include list.
-          exclude: []
+          # exclude: []
 
-      # Filters Kubernetes resources to watch by annotations. Each resource needs to have all the specified annotations.
-      # Regex expressions are not supported.
-      annotations: {}
-      # Filters Kubernetes resources to watch by labels. Each resource needs to have all the specified labels.
-      # Regex expressions are not supported.
-      labels: {}
+        # Describes event constraints for Kubernetes resources.
+        # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
+        event:
+          # Lists all event types to be watched.
+          types:
+            - create
+            - delete
+            - error
+          # Optional list of exact values or regex patterns to filter events by event reason.
+          # Skipped, if both include/exclude lists are empty.
+          reason:
+            # Include contains a list of allowed values. It can also contain regex expressions.
+            include: []
+            # Exclude contains a list of values to be ignored even if allowed by Include. It can also contain regex expressions.
+            # Exclude list is checked before the Include list.
+            exclude: []
+          # Optional list of exact values or regex patterns to filter event by event message. Skipped, if both include/exclude lists are empty.
+          # If a given event has multiple messages, it is considered a match if any of the messages match the constraints.
+          message:
+            # Include contains a list of allowed values. It can also contain regex expressions.
+            include: []
+            # Exclude contains a list of values to be ignored even if allowed by Include. It can also contain regex expressions.
+            # Exclude list is checked before the Include list.
+            exclude: []
 
-      # Describes the Kubernetes resources to watch.
-      # Resources are identified by its type in `{group}/{version}/{kind (plural)}` format. Examples: `apps/v1/deployments`, `v1/pods`.
-      # Each resource can override the namespaces and event configuration by using dedicated `event` and `namespaces` field.
-      # Also, each resource can specify its own `annotations`, `labels` and `name` regex.
-      # See the `values.yaml` file for full object.
-      resources:
-        - type: v1/pods
-        #          namespaces:             # Overrides 'source'.kubernetes.namespaces
-        #            include:
-        #              - ".*"
-        #            exclude: []
-        #          annotations: {}         # Overrides 'source'.kubernetes.annotations
-        #          labels: {}              # Overrides 'source'.kubernetes.labels
-        #          # Optional resource name constraints.
-        #          name:
-        #            # Include contains a list of allowed values. It can also contain regex expressions.
-        #            include: []
-        #            # Exclude contains a list of values to be ignored even if allowed by Include. It can also contain regex expressions.
-        #            # Exclude list is checked before the Include list.
-        #            exclude: []
-        #          event:
-        #            # Overrides 'source'.kubernetes.event.reason
-        #            reason:
-        #              include: []
-        #              exclude: []
-        #            # Overrides 'source'.kubernetes.event.message
-        #            message:
-        #              include: []
-        #              exclude: []
-        #            # Overrides 'source'.kubernetes.event.types
-        #            types:
-        #              - create
+        # Filters Kubernetes resources to watch by annotations. Each resource needs to have all the specified annotations.
+        # Regex expressions are not supported.
+        annotations: {}
+        # Filters Kubernetes resources to watch by labels. Each resource needs to have all the specified labels.
+        # Regex expressions are not supported.
+        labels: {}
 
-        - type: v1/services
-        - type: networking.k8s.io/v1/ingresses
-        - type: v1/nodes
-        - type: v1/namespaces
-        - type: v1/persistentvolumes
-        - type: v1/persistentvolumeclaims
-        - type: v1/configmaps
-        - type: rbac.authorization.k8s.io/v1/roles
-        - type: rbac.authorization.k8s.io/v1/rolebindings
-        - type: rbac.authorization.k8s.io/v1/clusterrolebindings
-        - type: rbac.authorization.k8s.io/v1/clusterroles
-        - type: apps/v1/daemonsets
-          event: # Overrides 'source'.kubernetes.event
-            types:
-              - create
-              - update
-              - delete
-              - error
-          updateSetting:
-            includeDiff: true
-            fields:
-              - spec.template.spec.containers[*].image
-              - status.numberReady
-        - type: batch/v1/jobs
-          event: # Overrides 'source'.kubernetes.event
-            types:
-              - create
-              - update
-              - delete
-              - error
-          updateSetting:
-            includeDiff: true
-            fields:
-              - spec.template.spec.containers[*].image
-              - status.conditions[*].type
-        - type: apps/v1/deployments
-          event: # Overrides 'source'.kubernetes.event
-            types:
-              - create
-              - update
-              - delete
-              - error
-          updateSetting:
-            includeDiff: true
-            fields:
-              - spec.template.spec.containers[*].image
-              - status.availableReplicas
-        - type: apps/v1/statefulsets
-          event: # Overrides 'source'.kubernetes.event
-            types:
-              - create
-              - update
-              - delete
-              - error
-          updateSetting:
-            includeDiff: true
-            fields:
-              - spec.template.spec.containers[*].image
-              - status.readyReplicas
-        ## Custom resource example
-        # - type: velero.io/v1/backups
-        #   namespaces:
-        #     include:
-        #       - ".*"
-        #     exclude:
-        #       -
-        #   event:
-        #     types:
-        #       - create
-        #       - update
-        #       - delete
-        #       - error
-        #   updateSetting:
-        #     includeDiff: true
-        #     fields:
-        #       - status.phase
+        # Describes the Kubernetes resources to watch.
+        # Resources are identified by its type in `{group}/{version}/{kind (plural)}` format. Examples: `apps/v1/deployments`, `v1/pods`.
+        # Each resource can override the namespaces and event configuration by using dedicated `event` and `namespaces` field.
+        # Also, each resource can specify its own `annotations`, `labels` and `name` regex.
+        # See the `values.yaml` file for full object.
+        resources:
+          - type: v1/pods
+          #          namespaces:             # Overrides 'source'.kubernetes.namespaces
+          #            include:
+          #              - ".*"
+          #            exclude: []
+          #          annotations: {}         # Overrides 'source'.kubernetes.annotations
+          #          labels: {}              # Overrides 'source'.kubernetes.labels
+          #          # Optional resource name constraints.
+          #          name:
+          #            # Include contains a list of allowed values. It can also contain regex expressions.
+          #            include: []
+          #            # Exclude contains a list of values to be ignored even if allowed by Include. It can also contain regex expressions.
+          #            # Exclude list is checked before the Include list.
+          #            exclude: []
+          #          event:
+          #            # Overrides 'source'.kubernetes.event.reason
+          #            reason:
+          #              include: []
+          #              exclude: []
+          #            # Overrides 'source'.kubernetes.event.message
+          #            message:
+          #              include: []
+          #              exclude: []
+          #            # Overrides 'source'.kubernetes.event.types
+          #            types:
+          #              - create
+
+          - type: v1/services
+          - type: networking.k8s.io/v1/ingresses
+          - type: v1/nodes
+          - type: v1/namespaces
+          - type: v1/persistentvolumes
+          - type: v1/persistentvolumeclaims
+          - type: v1/configmaps
+          - type: rbac.authorization.k8s.io/v1/roles
+          - type: rbac.authorization.k8s.io/v1/rolebindings
+          - type: rbac.authorization.k8s.io/v1/clusterrolebindings
+          - type: rbac.authorization.k8s.io/v1/clusterroles
+          - type: apps/v1/daemonsets
+            event: # Overrides 'source'.kubernetes.event
+              types:
+                - create
+                - update
+                - delete
+                - error
+            updateSetting:
+              includeDiff: true
+              fields:
+                - spec.template.spec.containers[*].image
+                - status.numberReady
+          - type: batch/v1/jobs
+            event: # Overrides 'source'.kubernetes.event
+              types:
+                - create
+                - update
+                - delete
+                - error
+            updateSetting:
+              includeDiff: true
+              fields:
+                - spec.template.spec.containers[*].image
+                - status.conditions[*].type
+          - type: apps/v1/deployments
+            event: # Overrides 'source'.kubernetes.event
+              types:
+                - create
+                - update
+                - delete
+                - error
+            updateSetting:
+              includeDiff: true
+              fields:
+                - spec.template.spec.containers[*].image
+                - status.availableReplicas
+          - type: apps/v1/statefulsets
+            event: # Overrides 'source'.kubernetes.event
+              types:
+                - create
+                - update
+                - delete
+                - error
+            updateSetting:
+              includeDiff: true
+              fields:
+                - spec.template.spec.containers[*].image
+                - status.readyReplicas
+          ## Custom resource example
+          # - type: velero.io/v1/backups
+          #   namespaces:
+          #     include:
+          #       - ".*"
+          #     exclude:
+          #       -
+          #   event:
+          #     types:
+          #       - create
+          #       - update
+          #       - delete
+          #       - error
+          #   updateSetting:
+          #     includeDiff: true
+          #     fields:
+          #       - status.phase
+        # List of available commands that can be used in actionable items under kubernetes events.
+        commands:
+          # -- Configures which verbs are available in actionable items.
+          verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
+          # -- Configure which resources are available in actionable items.
+          resources: ["deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps", "services", "ingresses"]
+        # -- Filter settings for various sources.
+        # Currently, all filters are globally enabled or disabled.
+        # You can enable or disable filters with `@Botkube enable/disable filters` commands.
+        # @default -- See the `values.yaml` file for full object.
+        filters:
+          kubernetes:
+            # -- If true, enables support for `botkube.io/disable` and `botkube.io/channel` resource annotations.
+            objectAnnotationChecker: true
+            # -- If true, filters out Node-related events that are not important.
+            nodeEventsChecker: true
 
   "k8s-err-events":
     displayName: "Kubernetes Errors"
 
     # Describes Kubernetes source configuration.
     # See the `values.yaml` file for full object.
-    kubernetes:
-      # Describes namespaces for every Kubernetes resources you want to watch or exclude.
-      # These namespaces are applied to every resource specified in the resources list.
-      # However, every specified resource can override this by using its own namespaces object.
-      namespaces: *k8s-events-namespaces
+    botkube/kubernetes:
+      enabled: true
+      config:
+        # Describes namespaces for every Kubernetes resources you want to watch or exclude.
+        # These namespaces are applied to every resource specified in the resources list.
+        # However, every specified resource can override this by using its own namespaces object.
+        namespaces: *k8s-events-namespaces
 
-      # Describes event constraints for Kubernetes resources.
-      # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
-      event:
-        # Lists all event types to be watched.
-        types:
-          - error
+        # Describes event constraints for Kubernetes resources.
+        # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
+        event:
+          # Lists all event types to be watched.
+          types:
+            - error
 
-      # Describes the Kubernetes resources you want to watch.
-      # See the `values.yaml` file for full object.
-      resources:
-        - type: v1/pods
-        - type: v1/services
-        - type: networking.k8s.io/v1/ingresses
-        - type: v1/nodes
-        - type: v1/namespaces
-        - type: v1/persistentvolumes
-        - type: v1/persistentvolumeclaims
-        - type: v1/configmaps
-        - type: rbac.authorization.k8s.io/v1/roles
-        - type: rbac.authorization.k8s.io/v1/rolebindings
-        - type: rbac.authorization.k8s.io/v1/clusterrolebindings
-        - type: rbac.authorization.k8s.io/v1/clusterroles
-        - type: apps/v1/deployments
-        - type: apps/v1/statefulsets
-        - type: apps/v1/daemonsets
-        - type: batch/v1/jobs
+        # Describes the Kubernetes resources you want to watch.
+        # See the `values.yaml` file for full object.
+        resources:
+          - type: v1/pods
+          - type: v1/services
+          - type: networking.k8s.io/v1/ingresses
+          - type: v1/nodes
+          - type: v1/namespaces
+          - type: v1/persistentvolumes
+          - type: v1/persistentvolumeclaims
+          - type: v1/configmaps
+          - type: rbac.authorization.k8s.io/v1/roles
+          - type: rbac.authorization.k8s.io/v1/rolebindings
+          - type: rbac.authorization.k8s.io/v1/clusterrolebindings
+          - type: rbac.authorization.k8s.io/v1/clusterroles
+          - type: apps/v1/deployments
+          - type: apps/v1/statefulsets
+          - type: apps/v1/daemonsets
+          - type: batch/v1/jobs
+            
   "k8s-err-with-logs-events":
     displayName: "Kubernetes Errors for resources with logs"
 
     # Describes Kubernetes source configuration.
     # See the `values.yaml` file for full object.
     kubernetes:
-      # Describes namespaces for every Kubernetes resources you want to watch or exclude.
-      # These namespaces are applied to every resource specified in the resources list.
-      # However, every specified resource can override this by using its own namespaces object.
-      namespaces: *k8s-events-namespaces
+      enabled: true
+      config:
+        # Describes namespaces for every Kubernetes resources you want to watch or exclude.
+        # These namespaces are applied to every resource specified in the resources list.
+        # However, every specified resource can override this by using its own namespaces object.
+        namespaces: *k8s-events-namespaces
 
-      # Describes event constraints for Kubernetes resources.
-      # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
-      event:
-        # Lists all event types to be watched.
-        types:
-          - error
+        # Describes event constraints for Kubernetes resources.
+        # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
+        event:
+          # Lists all event types to be watched.
+          types:
+            - error
 
-      # Describes the Kubernetes resources you want to watch.
-      # See the `values.yaml` file for full object.
-      resources:
-        - type: v1/pods
-        - type: apps/v1/deployments
-        - type: apps/v1/statefulsets
-        - type: apps/v1/daemonsets
-        - type: batch/v1/jobs
-        # `apps/v1/replicasets` excluded on purpose - to not show logs twice for a given higher-level resource (e.g. Deployment)
+        # Describes the Kubernetes resources you want to watch.
+        # See the `values.yaml` file for full object.
+        resources:
+          - type: v1/pods
+          - type: apps/v1/deployments
+          - type: apps/v1/statefulsets
+          - type: apps/v1/daemonsets
+          - type: batch/v1/jobs
+          # `apps/v1/replicasets` excluded on purpose - to not show logs twice for a given higher-level resource (e.g. Deployment)
 
   "k8s-create-events":
     displayName: "Kubernetes Resource Created Events"
@@ -568,31 +488,33 @@ sources:
     # Describes Kubernetes source configuration.
     # See the `values.yaml` file for full object.
     kubernetes:
-      # Describes namespaces for every Kubernetes resources you want to watch or exclude.
-      # These namespaces are applied to every resource specified in the resources list.
-      # However, every specified resource can override this by using its own namespaces object.
-      namespaces: *k8s-events-namespaces
+      enabled: true
+      config:
+        # Describes namespaces for every Kubernetes resources you want to watch or exclude.
+        # These namespaces are applied to every resource specified in the resources list.
+        # However, every specified resource can override this by using its own namespaces object.
+        namespaces: *k8s-events-namespaces
 
-      # Describes event constraints for Kubernetes resources.
-      # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
-      event:
-        # Lists all event types to be watched.
-        types:
-          - create
+        # Describes event constraints for Kubernetes resources.
+        # These constraints are applied for every resource specified in the `resources` list, unless they are overridden by the resource's own `events` object.
+        event:
+          # Lists all event types to be watched.
+          types:
+            - create
 
-      # Describes the Kubernetes resources you want to watch.
-      # See the `values.yaml` file for full object.
-      resources:
-        - type: v1/pods
-        - type: v1/services
-        - type: networking.k8s.io/v1/ingresses
-        - type: v1/nodes
-        - type: v1/namespaces
-        - type: v1/configmaps
-        - type: apps/v1/deployments
-        - type: apps/v1/statefulsets
-        - type: apps/v1/daemonsets
-        - type: batch/v1/jobs
+        # Describes the Kubernetes resources you want to watch.
+        # See the `values.yaml` file for full object.
+        resources:
+          - type: v1/pods
+          - type: v1/services
+          - type: networking.k8s.io/v1/ingresses
+          - type: v1/nodes
+          - type: v1/namespaces
+          - type: v1/configmaps
+          - type: apps/v1/deployments
+          - type: apps/v1/statefulsets
+          - type: apps/v1/daemonsets
+          - type: batch/v1/jobs
 
   "prometheus":
     ## Prometheus source configuration
