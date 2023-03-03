@@ -9,7 +9,7 @@ The source configuration allows you to define multiple source configurations tha
 ```yaml
 sources:
   "k8s-recommendation-alerts": # This is a source configuration name, which is referred in communication bindings.
-    kubernetes:
+    botkube/kubernetes:
       # ... trimmed ...
 
   "prometheus-firing-alerts": # This is a source configuration name, which is referred in communication bindings.
@@ -69,13 +69,14 @@ sources:
 
   "k8s-recommendation-events":
     # Built-in kubernetes source configuration.
-    kubernetes:
+    botkube/kubernetes:
       enabled: true
-      # Kubernetes configuration
-      recommendations:
-        pod:
-          noLatestImageTag: true
-      # ... trimmed ...
+      config:
+        # Kubernetes configuration
+        recommendations:
+          pod:
+            noLatestImageTag: true
+        # ... trimmed ...
 
 # Configuration for Botkube executors and sources plugins.
 plugins:

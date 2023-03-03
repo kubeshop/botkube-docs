@@ -179,10 +179,37 @@ event:
 
 ### Recommendations
 
-You can configure recommendations related to Kubernetes resources.
+You can configure recommendations related to Kubernetes resources. Currently, Kubernetes source plugin can send recommendation about 2 resources: `Pods` and `Ingresses`.
+
+**Example**
+
+In order to send recommendation for the Pods that have containers with `latest` tag or the Pods without labels, use the following configuration.
+
+```yaml
+recommendations:
+  # Recommendations for Pod Kubernetes resource.
+  pod:
+    # If true, notifies about Pod containers that use `latest` tag for images.
+    noLatestImageTag: true
+    # If true, notifies about Pod resources created without labels.
+    labelsSet: true
+```
+
+If you want to receive recommendations for Ingress that contains invalid backend service definition or TLS secret, use the following configuration.
+
+```yaml
+recommendations:
+  # Recommendations for Ingress Kubernetes resource.
+  ingress:
+    # If true, notifies about Ingress resources with invalid backend service reference.
+    backendServiceValid: true
+    # If true, notifies about Ingress resources with invalid TLS secret reference.
+    tlsSecretValid: true
+```
 
 ### Filters
-The filter configuration allows you to configure filters which are used for all processed Kubernetes events. 
+
+The filter configuration allows you to configure filters which are used for all processed Kubernetes events.
 
 ```yaml
 # Filter settings for various sources.
@@ -400,7 +427,19 @@ sources:
           # -- Configures which verbs are available in actionable items.
           verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
           # -- Configure which resources are available in actionable items.
-          resources: ["deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps", "services", "ingresses"]
+          resources:
+            [
+              "deployments",
+              "pods",
+              "namespaces",
+              "daemonsets",
+              "statefulsets",
+              "storageclasses",
+              "nodes",
+              "configmaps",
+              "services",
+              "ingresses",
+            ]
         # -- Filter settings for various sources.
         # Currently, all filters are globally enabled or disabled.
         # You can enable or disable filters with `@Botkube enable/disable filters` commands.
@@ -451,13 +490,13 @@ sources:
           - type: apps/v1/statefulsets
           - type: apps/v1/daemonsets
           - type: batch/v1/jobs
-            
+
   "k8s-err-with-logs-events":
     displayName: "Kubernetes Errors for resources with logs"
 
     # Describes Kubernetes source configuration.
     # See the `values.yaml` file for full object.
-    kubernetes:
+    botkube/kubernetes:
       enabled: true
       config:
         # Describes namespaces for every Kubernetes resources you want to watch or exclude.
@@ -487,7 +526,7 @@ sources:
 
     # Describes Kubernetes source configuration.
     # See the `values.yaml` file for full object.
-    kubernetes:
+    botkube/kubernetes:
       enabled: true
       config:
         # Describes namespaces for every Kubernetes resources you want to watch or exclude.
