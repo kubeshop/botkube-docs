@@ -108,7 +108,7 @@ For a final implementation, see the [Botkube template repository](./quick-start.
 
    	ticker := time.NewTicker(cfg.Interval)
    	out := source.StreamOutput{
-   		Output: make(chan []byte),
+   		Event: make(chan source.Event),
    	}
 
    	go func() {
@@ -117,7 +117,9 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    			case <-ctx.Done():
    				ticker.Stop()
    			case <-ticker.C:
-   				out.Output <- []byte("Ticker Event")
+   				out.Event <- source.Event{
+             Message: api.NewPlaintextMessage("Ticker Event", true), 
+          }
    			}
    		}
    	}()
