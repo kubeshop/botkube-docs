@@ -118,8 +118,8 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    				ticker.Stop()
    			case <-ticker.C:
    				out.Event <- source.Event{
-             Message: api.NewPlaintextMessage("Ticker Event", true),
-          }
+                       Message: api.NewPlaintextMessage("Ticker Event", true),
+                   }
    			}
    		}
    	}()
