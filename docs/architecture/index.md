@@ -47,10 +47,6 @@ Source is a binary that implements the [source](https://github.com/kubeshop/botk
 
 The `kubernetes` is a built-in Botkube source. It will be extracted in the future Botkube releases.
 
-### Filter Engine
-
-Filter engine filters out received events based on configured policies. To learn more about available filters, see the [filter](../configuration/filter.md) documentation.
-
 ### Bot
 
 Bot represents a bidirectional communication platform. Each bot is responsible for authenticating, managing connections, and providing an interface for receiving and sending messages for a given platform like Slack, Discord, etc. Connection is mostly done via WebSocket.
