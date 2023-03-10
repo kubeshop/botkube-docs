@@ -12,7 +12,7 @@ The Helm plugin is hosted by the official Botkube plugin repository. To enable t
 plugins:
   repositories:
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v0.17.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v0.18.0/plugins-index.yaml
 ```
 
 ## Enabling plugin
