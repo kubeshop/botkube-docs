@@ -12,6 +12,8 @@ import (
 	"botkube.io/tools/shellx"
 )
 
+const markdownLinkCheckVersion = "3.10.3"
+
 var ignoredFiles = []string{
 	"docs/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
 }
@@ -45,7 +47,7 @@ func ensureMarkdownLinkCheck() {
 		printer.Infof("Using installed markdown-link-check")
 		return
 	}
-	shellx.Cmdf(`npm install --location=global markdown-link-check`).RunV()
+	shellx.Cmdf(`npm install --location=global markdown-link-check@%s`, markdownLinkCheckVersion).RunV()
 }
 
 func shouldSkipPath(d fs.DirEntry, path string) bool {
