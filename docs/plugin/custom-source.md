@@ -54,7 +54,7 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    	"gopkg.in/yaml.v3"
    )
 
-   // Config holds executor configuration.
+   // Config holds source configuration.
    type Config struct {
    	Interval time.Duration
    }
@@ -205,7 +205,7 @@ Now it's time to [test it locally with Botkube](local-testing.md). Once you're d
 
 ## Passing configuration to your plugin
 
-Sometimes your executor plugin requires a configuration specified by the end-user. Botkube supports such requirement and provides an option to specify plugin configuration under `config`. An example Botkube configuration looks like this:
+Sometimes your source plugin requires a configuration specified by the end-user. Botkube supports such requirement and provides an option to specify plugin configuration under `config`. An example Botkube configuration looks like this:
 
 ```yaml
 communications:
@@ -233,3 +233,81 @@ sources:
 ```
 
 This means that two different `botkube/ticker` plugin configurations were bound to the `all-teams` Slack channel. Under `source.StreamInput{}.Configs`, you will find the list of configurations in the YAML format as specified under the `config` property for each bound and enabled sources. The order of the configuration is the same as specified under the `bindings.sources` property. It's up to the plugin author to merge the passed configurations. In this case, the plugin author can override the `interval` property based on the config order, so `ticker-team-b` will take precedence as the last item on the list.
+
+## Passing kube config to your plugin
+
+You can request botkube to generate and pass kubeconfig file to your plugin by adding RBAC section
+to your plugin configuration. The following example requests a kubeconfig that impersonates
+user **User.rbac.authorization.k8s.io** `read-only-user`.
+
+```yaml
+sources:
+  "echo-team-a":
+    botkube/kubernets:
+      enabled: true
+      context:
+        user:
+          type: Static
+          static:
+            values: read-only-user
+```
+
+The kubeconfig is available in `source.StreamInput` as a slice of bytes.
+There are two options to instantiate a kubernetes go client with this config.
+
+1. From bytes
+
+```go
+import (
+	"context"
+	"k8s.io/client-go/tools/clientcmd"
+	"k8s.io/client-go/kubernetes"
+	"github.com/kubeshop/botkube/pkg/api/source"
+	"github.com/kubeshop/botkube/pkg/pluginx"
+)
+
+func (Ticker) Stream(ctx context.Context, in source.StreamInput) (source.StreamOutput, error) {
+	config, err := clientcmd.RESTConfigFromKubeConfig(in.Context.KubeConfig)
+	if err != nil {
+		return source.StreamOutput{}, err
+	}
+	clientset, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		return source.StreamOutput{}, err
+	}
+	...
+}
+```
+
+2. From file
+
+```go
+import (
+	"context"
+	"k8s.io/client-go/tools/clientcmd"
+	"k8s.io/client-go/kubernetes"
+	"github.com/kubeshop/botkube/pkg/api/source"
+	"github.com/kubeshop/botkube/pkg/pluginx"
+)
+
+func (Ticker) Stream(ctx context.Context, in source.StreamInput) (source.StreamOutput, error) {
+	kubeConfigPath, deleteFn, err := pluginx.PersistKubeConfig(ctx, in.Context.KubeConfig)
+	if err != nil {
+		return source.StreamOutput{}, fmt.Errorf("while writing kubeconfig file: %w", err)
+	}
+	defer func() {
+		if deleteErr := deleteFn(ctx); deleteErr != nil {
+			fmt.Fprintf(os.Stderr, "failed to delete kubeconfig file %s: %v", kubeConfigPath, deleteErr)
+		}
+	}()
+	config, err := clientcmd.BuildConfigFromFlags("", kubeConfigPath)
+	if err != nil {
+		return source.StreamOutput{}, err
+	}
+	clientset, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		return source.StreamOutput{}, err
+	}
+  ...
+}
+```
