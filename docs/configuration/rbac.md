@@ -26,7 +26,7 @@ kubeconfig generation.
 
 ![diagram](assets/botkube-read-only.png "diagram")
 
-#### Configuration
+### Configuration
 
 Each executor and source plugin can provide a `context` section with `rbac` config.
 This config is used to generate a dedicated kube config.
