@@ -212,6 +212,10 @@ communications:
     verbs: ["get", "watch", "list"]
 ```
 
+:::tip
+You can use `extraObjects` section in helm [values.yaml](https://github.com/kubeshop/botkube/blob/eaebb069029bf248580f0e7f307bcd994dd0bc67/helm/botkube/values.yaml#L897) for the ClusterRoles and ClusterRoleBindings.
+:::
+
 ### Limitations
 
 #### Shared file system
