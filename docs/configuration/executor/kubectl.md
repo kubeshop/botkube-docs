@@ -50,6 +50,15 @@ executors:
             verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
             # Configures which K8s resource are displayed in resources dropdown.
             resources: ["deployments", "pods", "namespaces"]
+      context:
+        # RBAC configuration for this plugin.
+        rbac:
+          group:
+            # Static impersonation for given group.
+            type: Static
+            static:
+              # Name of group.rbac.authorization.k8s.io the plugin role will be bound to.
+              values: [botkube-plugins-default]
 ```
 
 The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
@@ -104,6 +113,6 @@ executors:
 
 We can see that:
 
-- Only the `default` namespace is displayed in the interactive command builder. This is a result of merging `kubectl-one` and `kubectl-two`. The `kubectl-three` binding is not take into account as it's disabled.
+- Only the `default` namespace is displayed in the interactive command builder. This is a result of merging `kubectl-one` and `kubectl-two`. The `kubectl-three` binding is not taken into account as it's disabled.
 - Only the `api-resources` and `top` verbs are displayed in the interactive command builder as they are overridden by the `kubectl-two`.
 - All resources defined in `kubectl-one` are displayed in the interactive command builder as other enabled bindings don't override this property.

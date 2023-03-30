@@ -40,6 +40,15 @@ executors:
         helmDriver: "secret" # Allowed values are configmap, secret, memory.
         helmCacheDir: "/tmp/helm/.cache"
         helmConfigDir: "/tmp/helm/"
+      context:
+        # RBAC configuration for this plugin.
+        rbac:
+          group:
+            # Static impersonation for given group.
+            type: Static
+            static:
+              # Name of group.rbac.authorization.k8s.io the plugin role will be bound to.
+              values: [botkube-plugins-default]
 ```
 
 ## Merging strategy

@@ -11,6 +11,7 @@ user **User.rbac.authorization.k8s.io** `read-only-user`. For more information r
 can access kubeconfig in their `Stream()` function in `source.StreamInput`.
 
 RBAC config for an example plugin:
+
 ```yaml
 executors:
   "reader-team-a":
