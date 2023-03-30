@@ -242,8 +242,8 @@ user **User.rbac.authorization.k8s.io** `read-only-user`.
 
 ```yaml
 sources:
-  "echo-team-a":
-    botkube/kubernets:
+  "ticker-team-a":
+    botkube/ticker:
       enabled: true
       context:
         user:
