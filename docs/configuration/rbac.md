@@ -17,7 +17,7 @@ kubeconfig generation.
 ### Architecture
 
 Botkube uses its own cluster credentials to generate a temporary kubeconfig and the temporary kubeconfig
-only impersonates the requested user/group. To learn more about user impersonation refer to [kubernets docs](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation).
+only [impersonates](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation) the requested user/group.
 
 For source plugins the kubeconfig is generated once - during plugin startup.
 For executor plugins the kubeconfig is generated every time a command is sent to the plugin, which allows
