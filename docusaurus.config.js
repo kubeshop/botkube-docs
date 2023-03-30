@@ -9,7 +9,7 @@ const { createRedirects, redirects } = require("./redirects");
 const config = {
   title: "Botkube",
   tagline: "Messaging bot for monitoring and debugging Kubernetes clusters",
-  url: "https://botkube.io/",
+  url: "https://docs.botkube.io/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -194,7 +194,7 @@ const config = {
             items: [
               {
                 label: "Twitter",
-                to: "https://twitter.com/thekubeshop",
+                to: "https://twitter.com/Botkube_io",
               },
             ],
           },
