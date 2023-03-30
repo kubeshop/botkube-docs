@@ -50,7 +50,7 @@ executors:
           user:
             type: Static
             static:
-              values: kubectl-read-only
+              value: kubectl-read-only
 ```
 
 Here we define a plugin with _Static_ mapping to **User.rbac.authorization.k8s.io** `kubectl-read-only`.
