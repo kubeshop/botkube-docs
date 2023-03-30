@@ -20,7 +20,7 @@
 
 ## Overview
 
-This repository contains source code of the Botkube documentation website, accessible under the [botkube.io](https://botkube.io) address. The documentation source files reside under the [**content**](./docs) directory.
+This repository contains source code of the Botkube documentation website, accessible under the [docs.botkube.io](https://docs.botkube.io) address. The documentation source files reside under the [**content**](./docs) directory.
 
 ## Contributing
 

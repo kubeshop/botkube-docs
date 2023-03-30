@@ -43,7 +43,7 @@ To disable sending the anonymous analytics, provide the `analytics.disable: true
 
 **Last updated** **July 06, 2022**
 
-This Cookie Policy explains how Kubeshop ("**Company**", "**we**", "**us**", and "**our**") uses cookies and similar technologies to recognize you when you visit our websites at [https://botkube.io](https://botkube.io), ("**Websites**"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
+This Cookie Policy explains how Kubeshop ("**Company**", "**we**", "**us**", and "**our**") uses cookies and similar technologies to recognize you when you visit our websites at [https://docs.botkube.io](https://docs.botkube.io), ("**Websites**"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
 
 In some cases we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.
 
@@ -125,7 +125,7 @@ _This cookie policy was created using [Termly’s Cookie Consent Manager](https:
 
 **WEBSITE DISCLAIMER**
 
-The information provided by Kubeshop (“we,” “us”, or “our”) on [https://botkube.io/](https://botkube.io/) (the “Site”) is for general informational purposes only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on the Site. UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS SOLELY AT YOUR OWN RISK.
+The information provided by Kubeshop (“we,” “us”, or “our”) on [https://docs.botkube.io/](https://docs.botkube.io/) (the “Site”) is for general informational purposes only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on the Site. UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS SOLELY AT YOUR OWN RISK.
 
 **EXTERNAL LINKS DISCLAIMER**
 
