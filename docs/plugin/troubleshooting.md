@@ -1,7 +1,7 @@
 ---
 id: troubleshooting.md
 title: "Troubleshooting"
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 This document describes how to identify and resolve issues that might occur.

@@ -1,7 +1,7 @@
 ---
 id: dependencies
 title: "Dependencies"
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 Plugins can depend on other binaries, which are then downloaded by Botkube along with a given plugin. This is supported for both executor and source plugins.

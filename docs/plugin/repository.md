@@ -1,7 +1,7 @@
 ---
 id: repo
 title: "Repository"
-sidebar_position: 6
+sidebar_position: 8
 ---
 
 A plugin repository is a place where you store your plugin binaries. This repository must be publicly available and supports downloading assets via HTTP(s). This document explains how to create Botkube plugin repositories by providing examples based on GitHub functionality. However, any static file server can be used, for instance: `s3`, `gcs`, etc.
