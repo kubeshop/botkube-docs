@@ -203,7 +203,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   --set communications.default-group.socketSlack.botToken=${SLACK_API_BOT_TOKEN} \
   --set settings.clusterName=${CLUSTER_NAME} \
   --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
-  --set 'executors.helm.botkube/helm.enabled'=${ALLOW_HELM} \
+  --set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM} \
   botkube/botkube
   ```
 
