@@ -19,11 +19,9 @@ plugins:
 
 To enable `kubectl` executor, add `--set 'executors.{configuration-name}.botkube/kubectl.enabled=true'` to a given Helm install command. By default, just the read-only `kubectl` commands are supported.
 
-You can change that by adjusting the `rbac` property in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file or by using the `--set-json` flag, e.g.:
-
-```bash
---set-json 'rbac.rules=[{"apiGroups": ["*"], "resources": ["*"], "verbs": ["get","watch","list","create","delete","update","patch"]}]'
-```
+For enabling commands that require create, update or delete rules, you need to create specific
+(Cluster)Role and (Cluster)RoleBinding and reference it from plugin's `context` configuration.
+To learn more refer to the [RBAC section](../rbac.md).
 
 ## Syntax
 
@@ -50,6 +48,15 @@ executors:
             verbs: ["api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top"]
             # Configures which K8s resource are displayed in resources dropdown.
             resources: ["deployments", "pods", "namespaces"]
+      context:
+        # RBAC configuration for this plugin.
+        rbac:
+          group:
+            # Static impersonation for given group.
+            type: Static
+            static:
+              # Name of group.rbac.authorization.k8s.io the plugin role will be bound to.
+              values: [botkube-plugins-default]
 ```
 
 The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
@@ -104,6 +111,6 @@ executors:
 
 We can see that:
 
-- Only the `default` namespace is displayed in the interactive command builder. This is a result of merging `kubectl-one` and `kubectl-two`. The `kubectl-three` binding is not take into account as it's disabled.
+- Only the `default` namespace is displayed in the interactive command builder. This is a result of merging `kubectl-one` and `kubectl-two`. The `kubectl-three` binding is not taken into account as it's disabled.
 - Only the `api-resources` and `top` verbs are displayed in the interactive command builder as they are overridden by the `kubectl-two`.
 - All resources defined in `kubectl-one` are displayed in the interactive command builder as other enabled bindings don't override this property.

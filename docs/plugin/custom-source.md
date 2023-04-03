@@ -54,7 +54,7 @@ For a final implementation, see the [Botkube template repository](./quick-start.
    	"gopkg.in/yaml.v3"
    )
 
-   // Config holds executor configuration.
+   // Config holds source configuration.
    type Config struct {
    	Interval time.Duration
    }
@@ -205,7 +205,7 @@ Now it's time to [test it locally with Botkube](local-testing.md). Once you're d
 
 ## Passing configuration to your plugin
 
-Sometimes your executor plugin requires a configuration specified by the end-user. Botkube supports such requirement and provides an option to specify plugin configuration under `config`. An example Botkube configuration looks like this:
+Sometimes your source plugin requires a configuration specified by the end-user. Botkube supports such requirement and provides an option to specify plugin configuration under `config`. An example Botkube configuration looks like this:
 
 ```yaml
 communications:

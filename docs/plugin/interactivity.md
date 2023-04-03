@@ -1,7 +1,7 @@
 ---
 id: interactive-messages
 title: "Interactive messages"
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 Some of our communication platforms support interactive messages. If interactivity is supported the `IsInteractivitySupported` property under source or execution context is set to **true**.

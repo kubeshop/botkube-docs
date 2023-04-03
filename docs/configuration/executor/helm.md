@@ -19,11 +19,9 @@ plugins:
 
 To enable Helm plugin, add `--set 'executors.helm.botkube/helm.enabled=true'` to a given Helm install command. By default, just the read-only Helm commands are supported.
 
-You can change that by adjusting the `rbac` property in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file or by using the `--set-json` flag, e.g.:
-
-```bash
---set-json 'rbac.rules=[{"apiGroups": ["*"], "resources": ["*"], "verbs": ["get","watch","list","create","delete","update","patch"]}]'
-```
+For enabling commands that require create, update or delete rules, you need to create specific
+(Cluster)Role and (Cluster)RoleBinding and reference it from plugin's `context` configuration.
+To learn more refer to the [RBAC section](../rbac.md).
 
 ## Syntax
 
@@ -40,6 +38,15 @@ executors:
         helmDriver: "secret" # Allowed values are configmap, secret, memory.
         helmCacheDir: "/tmp/helm/.cache"
         helmConfigDir: "/tmp/helm/"
+      context:
+        # RBAC configuration for this plugin.
+        rbac:
+          group:
+            # Static impersonation for given group.
+            type: Static
+            static:
+              # Name of group.rbac.authorization.k8s.io the plugin role will be bound to.
+              values: [botkube-plugins-default]
 ```
 
 ## Merging strategy
