@@ -24,7 +24,7 @@ For executor plugins the kubeconfig is generated every time a command is sent to
 for greater flexibility, such as including the name of the channel the command was sent from in the
 kubeconfig generation.
 
-![diagram](assets/botkube-read-only.png "diagram")
+![diagram](assets/botkube-read-only.svg "diagram")
 
 ### Configuration
 
