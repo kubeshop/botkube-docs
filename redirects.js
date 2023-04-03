@@ -66,7 +66,7 @@ function customRedirections() {
       from: "/community",
     },
     {
-      to: "/usage/filters/",
+      to: "/0.18/usage/filters/",
       from: "/filters",
     },
   ];
