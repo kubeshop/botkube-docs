@@ -44,7 +44,8 @@ This instruction guides you through the installation of Botkube and Vault on a K
 
    ```bash
    # Write the token to Vault
-   vault kv put secret/slack token={token}
+   vault kv put -mount=secret slack-app-token token={xapp-...}
+   vault kv put -mount=secret slack-bot-token token={xoxb-...}
    ```
 
 3. Enable Vault's Kubernetes authentication:
@@ -57,7 +58,10 @@ This instruction guides you through the installation of Botkube and Vault on a K
 
    ```bash
    vault policy write internal-app - <<EOF
-   path "secret/data/slack" {
+   path "secret/data/slack-app-token" {
+     capabilities = ["read"]
+   }
+   path "secret/data/slack-bot-token" {
      capabilities = ["read"]
    }
    EOF
@@ -96,33 +100,43 @@ This instruction guides you through the installation of Botkube and Vault on a K
          name: vault-database
        spec:
          provider: vault
-         secretObjects:
-           - data:
-               - key: token
-                 objectName: "slack-token"
-             secretName: communication-slack
-             type: Opaque
          parameters:
-           vaultAddress: "http://vault.default:8200"
            roleName: "database"
+           vaultAddress: "http://vault.default:8200"
            objects: |
-             - objectName: "slack-token"
-               secretPath: "secret/data/slack"
+             - objectName: "slack-app-token"
+               secretPath: "secret/data/slack-app-token"
                secretKey: "token"
+             - objectName: "slack-bot-token"
+               secretPath: "secret/data/slack-bot-token"
+               secretKey: "token"
+         secretObjects:
+         - secretName: communication-slack
+           type: Opaque
+           data:
+           - objectName: "slack-app-token"
+             key: "slack-app-token"
+           - objectName: "slack-bot-token"
+             key: "slack-bot-token"
 
    communications:
      # Settings for Slack
-     slack:
+     socketSlack:
        enabled: true
        channel: 'random'
        # token - specified via env variable
 
    extraEnv:
-     - name: COMMUNICATIONS_SLACK_TOKEN
+     - name: COMMUNICATIONS_SOCKETSLACK_APPTOKEN
        valueFrom:
          secretKeyRef:
            name: communication-slack
-           key: token
+           key: slack-app-token
+     - name: COMMUNICATIONS_SOCKETSLACK_BOTTOKEN
+       valueFrom:
+         secretKeyRef:
+           name: communication-slack
+           key: slack-bot-token
 
    extraVolumeMounts:
      - name: secrets-store-inline
