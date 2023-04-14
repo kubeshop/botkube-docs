@@ -127,12 +127,12 @@ This instruction guides you through the installation of Botkube and Vault on a K
        # token - specified via env variable
 
    extraEnv:
-     - name: COMMUNICATIONS_SOCKETSLACK_APPTOKEN
+     - name: BOTKUBE_COMMUNICATIONS_DEFAULT-GROUP_SOCKET__SLACK_APP__TOKEN
        valueFrom:
          secretKeyRef:
            name: communication-slack
            key: slack-app-token
-     - name: COMMUNICATIONS_SOCKETSLACK_BOTTOKEN
+     - name: BOTKUBE_COMMUNICATIONS_DEFAULT-GROUP_SOCKET__SLACK_BOT__TOKEN
        valueFrom:
          secretKeyRef:
            name: communication-slack
