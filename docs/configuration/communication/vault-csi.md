@@ -44,8 +44,8 @@ This instruction guides you through the installation of Botkube and Vault on a K
 
    ```bash
    # Write the token to Vault
-   vault kv put -mount=secret slack-app-token token={xapp-...}
-   vault kv put -mount=secret slack-bot-token token={xoxb-...}
+   vault kv put -mount=secret slack-app-token token=xapp-...
+   vault kv put -mount=secret slack-bot-token token=xoxb-...
    ```
 
 3. Enable Vault's Kubernetes authentication:
