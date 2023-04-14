@@ -120,11 +120,12 @@ This instruction guides you through the installation of Botkube and Vault on a K
              key: "slack-bot-token"
 
    communications:
-     # Settings for Slack
-     socketSlack:
-       enabled: true
-       channel: 'random'
-       # token - specified via env variable
+     'default-group':
+     # Settings for SocketSlack
+       socketSlack:
+         enabled: true
+         channels: {} # configure your channels
+         # token - specified via env variable
 
    extraEnv:
      - name: BOTKUBE_COMMUNICATIONS_DEFAULT-GROUP_SOCKET__SLACK_APP__TOKEN
