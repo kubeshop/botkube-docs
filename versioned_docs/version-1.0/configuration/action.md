@@ -29,7 +29,7 @@ Each action defines the `command` property which defines a command to be execute
 
 The following variables are available:
 
-- `{{ .Event }}` - the event object that triggered the action. See all available event properties in the [`event.go`](https://github.com/kubeshop/botkube/blob/main/pkg/event/event.go) file.
+- `{{ .Event }}` - the event object that triggered the action. See all available event properties in the [`event.go`](https://github.com/kubeshop/botkube/blob/main/internal/source/kubernetes/event/event.go) file.
 
 There are multiple helper functions supported by the templating engine. To learn more, read the documentation on the [`slim-sprig`](https://go-task.github.io/slim-sprig/) library page.
 
