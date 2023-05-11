@@ -62,7 +62,7 @@ For all source configuration properties, see the [**syntax**](#syntax) section.
 # Format: sources.{alias}
 sources:
   "plugin-based":
-    botkube/prometheus@v1.0.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+    botkube/prometheus@v1.0.1: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.
         url: "http://localhost:9090"

@@ -179,7 +179,9 @@ event:
 
 ### Recommendations
 
-You can configure recommendations related to Kubernetes resources. Currently, Kubernetes source plugin can send recommendation about 2 resources: `Pods` and `Ingresses`.
+You can configure recommendations related to Kubernetes resources. Recommendations respect [namespaces](#namespaces) constraint regex patterns.
+
+Currently, Kubernetes source plugin can send recommendation about 2 resources: `Pods` and `Ingresses`.
 
 **Example**
 
