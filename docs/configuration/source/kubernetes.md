@@ -181,6 +181,8 @@ event:
 
 You can configure recommendations related to Kubernetes resources. Currently, Kubernetes source plugin can send recommendation about 2 resources: `Pods` and `Ingresses`.
 
+Recommendations respect other constraints, so you can configure recommendations for all resources or only for a subset of resources with eg. [namespaces](#namespaces) or [resource name](#resource-name).
+
 **Example**
 
 In order to send recommendation for the Pods that have containers with `latest` tag or the Pods without labels, use the following configuration.
