@@ -196,7 +196,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   export ALLOW_HELM={allow_helm}
   export SLACK_CHANNEL_NAME={channel_name}
 
-  helm install --version v1.0.0 botkube --namespace botkube --create-namespace \
+  helm install --version v1.0.1 botkube --namespace botkube --create-namespace \
   --set communications.default-group.socketSlack.enabled=true \
   --set communications.default-group.socketSlack.channels.default.name=${SLACK_CHANNEL_NAME} \
   --set communications.default-group.socketSlack.appToken=${SLACK_API_APP_TOKEN} \
@@ -229,7 +229,7 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
      ```
-     helm install --version v1.0.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     helm install --version v1.0.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).

@@ -62,7 +62,7 @@ For all executor configuration properties, see the [**syntax**](#syntax) section
 # Format: executors.{alias}
 executors:
   "plugin-based":
-    botkube/helm@v1.0.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+    botkube/helm@v1.0.1: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.
         helmDriver: "secret"
