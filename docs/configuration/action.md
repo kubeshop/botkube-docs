@@ -77,3 +77,8 @@ actions:
       executors:
         - k8s-default-tools
 ```
+
+## RBAC
+
+The `ChannelName` RBAC policy is not supported for automated actions at this time.
+Use the `Static` RBAC policy instead. For more information read the [RBAC](./rbac.md) documentation.
