@@ -36,6 +36,10 @@ Supported mapping:
 - **Static** mapping - user or group impersonation, always the same subject for given plugin
 - **Channel** mapping - name of the channel is used as subject for group impersonation, only available for executor plugins
 
+:::note
+Automated actions only support **Static** mapping.
+:::
+
 #### Example - kubectl executor with read-only RBAC
 
 In this example a single executor plugin is defined with static RBAC that maps to user `kubectl-read-only`.
