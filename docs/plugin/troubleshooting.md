@@ -71,7 +71,7 @@ ERRO[2023-01-09T21:21:25+01:00] plugin process exited                         er
 
 **Solution**
 
-It means that your plugin exited once it was started by Botkube [plugin manager](../architecture/index.md#plugin-manager). To start you plugin again, you need to restart the Botkube core process, as a crashed won't be restarted automatically. This issue is tracked in [botkube#878](https://github.com/kubeshop/botkube/issues/878). You need to make sure that our plugin doesn't exit once it's started. You should return each error on Botkube plugin interface, instead of crashing your application. To see your plugin standard output [set the `debug` for a given plugin](debug.md).
+It means that your plugin exited once it was started by Botkube [plugin manager](../architecture/index.md#plugin-manager). To start your plugin again, you need to restart the Botkube core process, as crashed plugins aren't restarted automatically. This issue is tracked in [botkube#878](https://github.com/kubeshop/botkube/issues/878). You need to make sure that our plugin doesn't exit once it's started. You should return each error on Botkube plugin interface, instead of crashing your application. To see your plugin standard output [set the `debug` for a given plugin](debug.md).
 
 ### Plugin not found error
 
@@ -87,3 +87,20 @@ In Botkube logs, you see an error similar to:
 
 - Make sure that a given repository is defined under `plugins.repository`.
 - Check that a given entry is defined in a given repository index file. You should find under `entries` a plugin with a given name, version and type (source or executor).
+
+### Botkube is killed by readiness probe while downloading plugins
+
+**Symptoms**
+
+In environments with low internet bandwidth Botkube might get killed by the readiness probe before it finishes downloading all plugins.
+The solution to this problem is to increase the wait time of the readiness probe.
+
+**Solution**
+
+To increase the wait time of the readiness probe, you need to set the `initialDelaySeconds` property in
+[values.yaml](https://github.com/kubeshop/botkube/blob/9e450fb63666b03118ee51fcf9b7eb6c3b74cbcf/helm/botkube/values.yaml#L794-L821)
+to a higher value. For example:
+
+```
+--set deployment.readinessProbe.initialDelaySeconds=180
+```
