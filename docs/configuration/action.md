@@ -4,7 +4,7 @@ title: Action
 sidebar_position: 5
 ---
 
-The action configuration allows you to automate your workflow by defining commands that are executed on an incoming event. Similar to communication platforms, Actions use [source bindings](source/index.md) to define the event sources (command triggers) and [executor bindings](../configuration/executor) to run a given command.
+The action configuration allows you to automate your workflow by defining commands that are executed on an incoming event. Similar to communication platforms, actions use [source bindings](source/index.md) to define the event sources (command triggers) and [executor bindings](../configuration/executor) to run a given command.
 
 The actions can be disabled and enabled using dedicated commands. See the [Automated Actions](../usage/automated-actions.md) usage document for more details.
 
