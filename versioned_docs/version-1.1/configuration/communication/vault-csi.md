@@ -89,7 +89,7 @@ This instruction guides you through the installation of Botkube and Vault on a K
    --set syncSecret.enabled=true
    ```
 
-5. Create BotKue installation parameters:
+5. Create Botkube installation parameters:
 
    ```yaml
    cat > /tmp/values.yaml << ENDOFFILE
