@@ -16,11 +16,11 @@ kubeconfig generation.
 
 ### Architecture
 
-Botkube uses its own cluster credentials to generate a temporary kubeconfig and the temporary kubeconfig
+Botkube uses its own cluster credentials to generate a temporary kubeconfig, and the temporary kubeconfig
 only [impersonates](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation) the requested user/group.
 
-For source plugins the kubeconfig is generated once - during plugin startup.
-For executor plugins the kubeconfig is generated every time a command is sent to the plugin, which allows
+For source plugins, the kubeconfig is generated once - during plugin startup.
+For executor plugins, the kubeconfig is generated every time a command is sent to the plugin, which allows
 for greater flexibility, such as including the name of the channel the command was sent from in the
 kubeconfig generation.
 
