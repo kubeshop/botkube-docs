@@ -23,7 +23,7 @@ sidebar_position: 6
   export ELASTICSEARCH_PASSWORD={elasticsearch_password}
   export ELASTICSEARCH_INDEX_NAME={elasticsearch_index_name}
 
-  helm install --version v1.1.0 botkube --namespace botkube --create-namespace \
+  helm install --version v1.1.1 botkube --namespace botkube --create-namespace \
   --set communications.default-group.elasticsearch.enabled=true \
   --set communications.default-group.elasticsearch.server=${ELASTICSEARCH_ADDRESS} \
   --set communications.default-group.elasticsearch.username=${ELASTICSEARCH_USERNAME} \
@@ -51,7 +51,7 @@ sidebar_position: 6
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
      ```
-     helm install --version v1.1.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     helm install --version v1.1.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).

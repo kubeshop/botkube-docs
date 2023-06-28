@@ -62,7 +62,7 @@ For all executor configuration properties, see the [**syntax**](#syntax) section
 # Format: executors.{alias}
 executors:
   "k8s-tools":
-    botkube/helm@v1.1.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+    botkube/helm@v1.1.1: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.
         helmDriver: "secret"
@@ -78,7 +78,7 @@ plugins:
   repositories:
     # This repository serves officially supported Botkube plugins.
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.1.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.1.1/plugins-index.yaml
     # Other 3rd party repositories.
     repo-name:
       url: https://example.com/plugins-index.yaml
