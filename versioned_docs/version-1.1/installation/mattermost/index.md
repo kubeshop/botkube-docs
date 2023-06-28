@@ -78,7 +78,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
   export ALLOW_KUBECTL={allow_kubectl}
   export ALLOW_HELM={allow_helm}
 
-  helm install --version v1.1.0 botkube --namespace botkube --create-namespace \
+  helm install --version v1.1.1 botkube --namespace botkube --create-namespace \
   --set communications.default-group.mattermost.enabled=true \
   --set communications.default-group.mattermost.url=${MATTERMOST_SERVER_URL} \
   --set communications.default-group.mattermost.cert=${MATTERMOST_CERT} \
@@ -119,7 +119,7 @@ export MATTERMOST_CHANNEL="{channel_name}"
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
      ```
-     helm install --version v1.1.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     helm install --version v1.1.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).

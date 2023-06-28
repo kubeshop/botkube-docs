@@ -159,7 +159,7 @@ We use this TLS Secret while deploying the Botkube backend.
   export ALLOW_HELM={allow_helm}
   export HOST={host} # e.g. example.com
 
-  helm install --version v1.1.0 botkube --namespace botkube --create-namespace \
+  helm install --version v1.1.1 botkube --namespace botkube --create-namespace \
   --set communications.default-group.teams.enabled=true \
   --set communications.default-group.teams.appID=${APPLICATION_ID} \
   --set communications.default-group.teams.appPassword=${APPLICATION_PASSWORD} \
@@ -198,7 +198,7 @@ We use this TLS Secret while deploying the Botkube backend.
   2. Pass the YAML file as a flag to `helm install` command, e.g.:
 
      ```
-     helm install --version v1.1.0 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
+     helm install --version v1.1.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
      ```
 
   Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).

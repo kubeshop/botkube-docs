@@ -12,7 +12,7 @@ The Prometheus plugin is hosted by the official Botkube plugin repository. To en
 plugins:
   repositories:
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.1.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.1.1/plugins-index.yaml
 ```
 
 ## Enabling plugin
