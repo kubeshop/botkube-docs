@@ -40,11 +40,12 @@ Flags:
 ```
 
 Supported Botkube bot platforms for migration:
-* Socket Slack
-* Discord
-* Mattermost
+
+- Socket Slack
+- Discord
+- Mattermost
 
 Limitations:
-* RBAC is defaulted
-* Plugins are sourced from Botkube repository
 
+- RBAC is defaulted
+- Plugins are sourced from Botkube repository
