@@ -1,7 +1,7 @@
 ---
-id: getting-started
-title: "Getting Started"
-sidebar_position: 1
+id: cli
+title: "CLI"
+sidebar_position: 6
 ---
 
 # Getting Started
