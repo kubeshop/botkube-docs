@@ -24,6 +24,11 @@ func (Sync) Chart() {
 	target.SyncChartParams()
 }
 
+// CLI synchronize Botkube CLI docs.
+func (Sync) CLI() {
+	target.SyncCLIDocs()
+}
+
 // ValidateRelease checks if given release exists in Botkube repository.
 func (Sync) ValidateRelease() {
 	target.ValidateRelease()

@@ -1,0 +1,100 @@
+---
+id: getting-started
+title: "Getting Started"
+sidebar_position: 1
+---
+
+# Getting Started
+
+Botkube includes a command-line interface (CLI) that you can use to interact with Botkube and Botkube Cloud from your terminal, or from a script.
+
+## Installation
+
+Select tab depending on the system you use:
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs groupId="cli">
+<TabItem value="macos" label="MacOS" default>
+
+```shell
+curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_darwin_amd64
+```
+
+Copy to binary directory:
+
+```shell
+chmod +x botkube && mv botkube /usr/local/bin/botkube
+```
+
+</TabItem>
+
+<TabItem value="linux" label="Linux">
+
+```shell
+curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_linux_amd64
+```
+
+Copy to binary directory:
+
+```shell
+chmod +x botkube && mv botkube /usr/local/bin/botkube
+```
+
+</TabItem>
+
+<TabItem value="windows" label="Windows">
+
+```shell
+curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_windows_amd64.exe
+```
+
+For Windows, you will add it to the `%PATH%`.
+
+</TabItem>
+
+<TabItem value="manual" label="Manual Download">
+
+To manually install Botkube CLI:
+
+1. Download the binary for the version and platform of your choice from the [GitHub releases page](https://github.com/kubeshop/botkube/releases).
+2. Move it to a location in the PATH. For example:
+
+   ```shell
+   mv botkube_linux_amd64 /usr/local/bin/botkube
+   ```
+
+   For Windows, you will need to add it to the `%PATH%`.
+
+</TabItem>
+
+</Tabs>
+
+## First use
+
+For the commands that are nested under `cloud` command you first need to authenticate with Botkube cloud by running:
+
+```bash
+botkube login
+```
+
+If credentials are valid, the output is:
+
+```shell
+Login Succeeded
+```
+
+All available commands you can simply discover by running `botkube --help` or `botkube <command> -h` to see the help output which corresponds to a given command.
+
+## Autocompletion
+
+To learn how to enable autocompletion for your shell, run:
+
+```bash
+botkube completion --help
+```
+
+> **NOTE:** Be sure to **restart your shell** after installing autocompletion.
+
+When you start typing a `botkube` command, press the `<tab>` character to show a list of available completions. Type `-<tab>` to show available flag completions.

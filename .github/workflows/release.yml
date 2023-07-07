@@ -68,6 +68,14 @@ jobs:
         env:
           BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
 
+      - name: Synchronize CLI docs
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: "sync:cli"
+        env:
+          BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
+
       - name: Run docusaurus versioning
         run: |
           npm run docusaurus docs:version ${{ inputs.version }}
