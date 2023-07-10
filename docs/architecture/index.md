@@ -1,7 +1,7 @@
 ---
 id: architecture
 title: "Architecture"
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 This document describes high-level Botkube architecture, all components in the system and interactions between them.
