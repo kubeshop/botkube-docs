@@ -59,6 +59,8 @@ jobs:
           PREVIOUS_RELEASE_VERSION=${PREVIOUS_RELEASE_VERSION_WITH_PREFIX:1}
           find ./docs/installation/ -type f -name "*.md" -exec sed -i.bak "s/$PREVIOUS_RELEASE_VERSION/$LATEST_RELEASE_VERSION/g" {} \;
           find ./docs/configuration/ -type f -name "*.md" -exec sed -i.bak "s/$PREVIOUS_RELEASE_VERSION/$LATEST_RELEASE_VERSION/g" {} \;
+          find ./docs/cli/ -type f -name "*.md" -exec sed -i.bak "s/$PREVIOUS_RELEASE_VERSION/$LATEST_RELEASE_VERSION/g" {} \;
+          find ./docs/cli/ -type f -name "*.mdx" -exec sed -i.bak "s/$PREVIOUS_RELEASE_VERSION/$LATEST_RELEASE_VERSION/g" {} \;
 
       - name: Synchronize helm parameters
         uses: magefile/mage-action@v2

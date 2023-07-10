@@ -1,10 +1,10 @@
 ---
-id: migrate
-title: "Migrating from Botkube Open Source"
+id: migrating-installation-to-botkube-cloud
+title: "Migrating installation to Botkube Cloud"
 sidebar_position: 2
 ---
 
-## Migrating from Botkube Open Source
+## Migrating installation to Botkube Cloud
 
 If you have started using Botkube with the Open Source installation, you have the option to migrate this instance to be managed using [Botkube Cloud](https://app.botkube.io/).
 
