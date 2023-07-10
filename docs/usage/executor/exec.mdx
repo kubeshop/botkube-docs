@@ -181,6 +181,12 @@ message:
 
 The tutorial template allows you to define a custom response for a given command. For example, when the trigger command is set to `trigger.comand.prefix: "quickstart helm"` and a user types `@Botkube x run quickstart helm`, the command itself is not executed. Instead, a defined tutorial message is returned.
 
+![quickstart](./assets/x-quickstart.png)
+
+### Syntax
+
+Here is an example syntax to return tutorial with two predefined buttons:
+
 ```yaml
 type: "tutorial"
 message:

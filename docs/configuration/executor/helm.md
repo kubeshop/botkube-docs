@@ -17,11 +17,9 @@ plugins:
 
 ## Enabling plugin
 
-To enable Helm plugin, add `--set 'executors.helm.botkube/helm.enabled=true'` to a given Helm install command. By default, just the read-only Helm commands are supported.
+To enable Helm plugin, add `--set 'executors.k8s-default-tools.botkube/helm.enabled=true'` to a given Helm install command. By default, just the read-only Helm commands are supported.
 
-For enabling commands that require create, update or delete rules, you need to create specific
-(Cluster)Role and (Cluster)RoleBinding and reference it from plugin's `context` configuration.
-To learn more refer to the [RBAC section](../rbac.md).
+For enabling commands that require create, update or delete rules, you need to create specific (Cluster)Role and (Cluster)RoleBinding and reference it from plugin's `context` configuration. To learn more refer to the [RBAC section](../rbac.md).
 
 ## Syntax
 
@@ -48,6 +46,8 @@ executors:
               # Name of group.rbac.authorization.k8s.io the plugin role will be bound to.
               values: [botkube-plugins-default]
 ```
+
+The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
 
 ## Merging strategy
 
