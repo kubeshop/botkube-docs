@@ -11,7 +11,7 @@ It supports interactivity in the form of buttons and dropdowns. You can easily u
 ![x-demo](./assets/demo-x.gif)
 
 :::note
-To shorten the command, the `x` alias is used in all examples. Make sure you have it configured for your Botkube installation.
+To shorten the command, the `x` alias is used in all examples. Make sure you have it configured for your Botkube installation according to [Alias configuration](../../configuration/alias) document.
 
 ```yaml
 aliases:
@@ -55,11 +55,11 @@ To execute a CLI command, run:
 - `@Botkube x run flux get sources git`
 
 :::tip
-For convenience, you can configure a Botkube alias to simplify running `helm` commands:
+For convenience, you can configure a Botkube alias to simplify running `flux` commands:
 
 ```yaml
 aliases:
-  helm:
+  flux:
     command: x run flux
     displayName: "Flux CLI alias"
 ```
@@ -90,23 +90,19 @@ templates:
 
 Supported template types:
 
-- `parser:table:space`
-- `wrapper`
-- `tutorial`
+- [`parser:table:space`](#table-parser)
+- [`wrapper`](#wrapper)
+- [`tutorial`](#tutorial)
 
 Navigate to the [`exec`](https://github.com/kubeshop/botkube/tree/main/cmd/executor/x/templates) plugin directory to see official examples.
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
-<Tabs groupId="templates">
-<TabItem value="table-parser" label="Table parser" default>
+## Table parser
 
 The `parser:table:space` template knows how to convert space-separated tables into an interactive message. This allows you to select a single item from a dropdown and perform additional actions in the context of the selected item without typing anything.
 
 For example, such a table:
 
-```
+```shell
 NAME       	NAMESPACE  	REVISION	UPDATED                                	STATUS  	CHART                	APP VERSION
 psql       	default    	1       	2023-04-27 19:30:48.042056 +0200 CEST  	deployed	postgresql-12.2.7    	15.2.0
 traefik    	kube-system	1       	2023-04-19 20:58:57.709052559 +0000 UTC	deployed	traefik-10.19.300    	2.6.2
@@ -157,9 +153,7 @@ message:
     Chart:       {{ .Chart }}
 ```
 
-</TabItem>
-
-<TabItem value="wrapper" label="Wrapper" default>
+## Wrapper
 
 The wrapper template allows adding extra buttons to the CLI output without modifying the output itself. It's useful to attach some pre-defined commands.
 
@@ -183,9 +177,7 @@ message:
       style: "primary"
 ```
 
-</TabItem>
-
-<TabItem value="tutorial" label="Tutorial" default>
+## Tutorial
 
 The tutorial template allows you to define a custom response for a given command. For example, when the trigger command is set to `trigger.comand.prefix: "quickstart helm"` and a user types `@Botkube x run quickstart helm`, the command itself is not executed. Instead, a defined tutorial message is returned.
 
@@ -210,6 +202,3 @@ message:
       description: "{{BotName}} helm version"
       command: "{{BotName}} x run helm version"
 ```
-
-</TabItem>
-</Tabs>
