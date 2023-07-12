@@ -18,7 +18,7 @@ plugins:
 ## Enabling plugin
 
 To enable the `doctor` executor, add `--set 'executors.ai.botkube/doctor.enabled=true'` to a given Helm install command. The `doctor` plugin uses ChatGPT for diagnosing problems, so you need to obtain an API Key from the OpenAI website [here](https://beta.openai.com/account/api-keys) and set it as follows:
-`--set 'executors.k8s-default-tools.botkube/doctor.config.apiKey=<Open AI Api Key>'`
+`--set 'executors.ai.botkube/doctor.config.apiKey=<Open AI Api Key>'`
 
 ## Syntax
 
