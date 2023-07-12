@@ -26,7 +26,7 @@ The remainder of this guide covers installation of the Botkube Socket-mode Slack
 - Must be installed manually into your Slack workspace using the provided configuration
 - Slack channels must be managed manually and you need to ensure the Botkube bot is invited to any channel you want to use with Botkube
 - When using executor plugins (e.g. kubectl, helm) in a multi-cluster environment, each cluster needs to have a dedicated Botkube Slack bot in order to route commands to the correct cluster. See the Multi-cluster warning below.
-:::
+  :::
 
 ## Install Slack App in Your Slack workspace
 
