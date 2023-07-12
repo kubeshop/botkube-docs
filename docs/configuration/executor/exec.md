@@ -30,18 +30,18 @@ For enabling commands that require create, update or delete rules, you need to c
 # Format: executors.{alias}
 executors:
   bins-management:
-    # X executor configuration.
+    # Exec executor configuration.
     # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
-    botkube/x:
+    botkube/exec:
       enabled: false
-      # Custom x plugin configuration.
+      # Custom Exec plugin configuration.
       config:
         # An array of templates that define how to convert the command output into an interactive message.
         templates:
           # Link to templates source
           # It uses the go-getter library, which supports multiple URL formats (such as HTTP, Git repositories, or S3) and is able to unpack archives.
           # For more details, see the documentation at https://github.com/hashicorp/go-getter.
-          - ref: github.com/kubeshop/botkube//cmd/executor/x/templates?ref=main
+          - ref: github.com/kubeshop/botkube//cmd/executor/exec/templates?ref=main
       context:
         # RBAC configuration for this plugin.
         rbac:
