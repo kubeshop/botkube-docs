@@ -6,7 +6,7 @@ sidebar_position: 5
 
 The Botkube Doctor executor plugin allows you to run the `doctor` command directly in the chat window of each communication platform. Doctor is a ChatGPT integration project that knows how to diagnose Kubernetes problems and suggest solutions.
 
-The Doctor plugin is hosted by the official Botkube plugin repository. To enable the Helm plugin, make sure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
+The Doctor plugin is hosted by the official Botkube plugin repository. To enable the Doctor plugin, make sure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
 
 ```yaml
 plugins:
