@@ -4,38 +4,40 @@ title: Slack
 sidebar_position: 1
 ---
 
-:::info
+## Botkube Slack App Versions
+
 There are two versions of the Botkube Slack App available:
 
-**Botkube Cloud Slack App**
+### Botkube Cloud Slack App
 
-The Botkube Cloud Slack App requires an account and subscription in the Botkube Web App and offers several advanced features:
+The Botkube Cloud Slack App requires an account and subscription in the [Botkube Web App](https://app.botkube.io) and offers several advanced features:
 
-- Multi-cluster executor support with a single Slack App
 - One-click installation into your Slack workspace
+- Multi-cluster executor support with a single Slack App
 - Manage Slack channels directly from the Botkube web app and ensure the Botkube bot is invited to the correct channels
 
 The Botkube Cloud Slack App uses Botkube's cloud services to manage channels and route executor commands. Events and alerts are sent directly from your cluster to your Slack workspace for reliable, fast notifications.
 
 You can try out the Botkube Cloud Slack App for free by creating an account in the [Botkube Web App](https://app.botkube.io) and starting a free trial. You do not need to follow the steps in this guide to use the Botkube Cloud Slack App.
 
-**Botkube Socket Slack App**
+### Botkube Socket Slack App
 
 The remainder of this guide covers installation of the Botkube Socket-mode Slack App. The Socket-mode app works with the open source Botkube engine and does not require an account or subscription. The Botkube Socket-mode Slack App has the following caveats:
 
 - Must be installed manually into your Slack workspace using the provided configuration
 - Slack channels must be managed manually and you need to ensure the Botkube bot is invited to any channel you want to use with Botkube
 - When using executor plugins (e.g. kubectl, helm) in a multi-cluster environment, each cluster needs to have a dedicated Botkube Slack bot in order to route commands to the correct cluster. See the Multi-cluster warning below.
-  :::
 
-## Install Slack App in Your Slack workspace
+## Install Socket Slack App in Your Slack workspace
 
 Botkube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for Botkube deployment.
 
 :::warning
-**Multi-cluster caveat:** The architecture of socket-based Slack apps is different from the older Slack app. If you would like to use [Botkube executors](../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube Slack app for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
+**Multi-cluster caveat:** The architecture of socket-based Slack apps has a limitation on the routing of executor commands. If you would like to use [Botkube executors](../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube Slack app for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
 
 To learn more about the Slack Socket API limitation, see the [comment](https://github.com/slackapi/bolt-js/issues/1263#issuecomment-1006372826) in the official Slack bot framework repository.
+
+The [Botkube Cloud Slack App](#botkube-cloud-slack-app) does not have this limitation.
 :::
 
 Follow the steps below to create and install Botkube Slack app to your Slack workspace.
