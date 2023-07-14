@@ -8,7 +8,7 @@ A `kubernetes` source plugin produces events for configured Kubernetes resources
 
 ## Enabling source
 
-To enable Kubernetes source, add `--set 'sources.{configuration-name}.botkube/kubernetes.enabled=true'` to a given Helm install command.
+To enable Kubernetes source, add `--set 'sources.{configuration-name}.botkube/kubernetes.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md).
 
 ## Event and resource constraints
 

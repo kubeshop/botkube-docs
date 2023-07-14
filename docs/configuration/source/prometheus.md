@@ -17,7 +17,7 @@ plugins:
 
 ## Enabling plugin
 
-To enable Prometheus plugin, add `--set 'sources.prometheus.botkube/prometheus.enabled=true'` to a given Helm install command.
+To enable Prometheus plugin, add `--set 'sources.prometheus.botkube/prometheus.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md).
 
 ## Syntax
 

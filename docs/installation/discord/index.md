@@ -4,7 +4,13 @@ title: Discord
 sidebar_position: 4
 ---
 
-## Install Botkube to the Discord Server:
+## Prerequisites
+
+- Botkube CLI installed according to the [Getting Started guide](../../cli/getting-started.mdx#installation)
+- Access to Kubernetes cluster
+- Discord server account
+
+## Install Botkube to the Discord Server
 
 Follow the steps below to install Botkube Discord app to your Discord server.
 
@@ -86,70 +92,48 @@ Follow the steps below to install Botkube Discord app to your Discord server.
 Follow the first 4 mins of this [Video Tutorial](https://youtu.be/8o25pRbXdFw) to understand the process visually.
 :::
 
-### Install Botkube Backend in Kubernetes cluster
+### Install Botkube in Kubernetes cluster
 
-- We use [Helm](https://helm.sh/) to install Botkube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **botkube** chart repository:
+To deploy Botkube agent in your cluster, run:
 
-  ```bash
-  helm repo add botkube https://charts.botkube.io
-  helm repo update
-  ```
+```bash
+export CLUSTER_NAME={cluster_name}
+export ALLOW_KUBECTL={allow_kubectl}
+export ALLOW_HELM={allow_helm}
 
-- Deploy Botkube backend using **helm install** in your cluster:
+botkube install --version v1.1.1 \
+--set communications.default-group.discord.enabled=true \
+--set communications.default-group.discord.channels.default.id=${DISCORD_CHANNEL_ID} \
+--set communications.default-group.discord.botID=${DISCORD_BOT_ID} \
+--set communications.default-group.discord.token=${DISCORD_TOKEN} \
+--set settings.clusterName=${CLUSTER_NAME} \
+--set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
+--set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM}
+```
 
-  ```bash
-  export CLUSTER_NAME={cluster_name}
-  export ALLOW_KUBECTL={allow_kubectl}
-  export ALLOW_HELM={allow_helm}
+where:
 
-  helm install --version v1.1.1 botkube --namespace botkube --create-namespace \
-  --set communications.default-group.discord.enabled=true \
-  --set communications.default-group.discord.channels.default.id=${DISCORD_CHANNEL_ID} \
-  --set communications.default-group.discord.botID=${DISCORD_BOT_ID} \
-  --set communications.default-group.discord.token=${DISCORD_TOKEN} \
-  --set settings.clusterName=${CLUSTER_NAME} \
-  --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
-  --set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM} \
-  botkube/botkube
-  ```
+- **DISCORD_CHANNEL_ID** is the channel name where @Botkube needs to send notifications,
+- **DISCORD_BOT_ID** is the Botkube Application Client ID,
+- **DISCORD_TOKEN** is the Token you received after adding Botkube bot to your Discord Application,
+- **CLUSTER_NAME** is the cluster name set in the incoming messages,
+- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
+- **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
 
-  where:
+Configuration syntax is explained [here](../../configuration).
+All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
 
-  - **DISCORD_CHANNEL_ID** is the channel name where @Botkube needs to send notifications,
-  - **DISCORD_BOT_ID** is the Botkube Application Client ID,
-  - **DISCORD_TOKEN** is the Token you received after adding Botkube bot to your Discord Application,
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages,
-  - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
-  - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
-
-  Configuration syntax is explained [here](../../configuration).
-  Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
-
-  Send `@Botkube ping` in the channel to see if Botkube is running and responding.
-
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
-
-  If you wish to monitor only specific resources, follow the steps given below:
-
-  1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
-  2. Pass the YAML file as a flag to `helm install` command, e.g.:
-
-     ```
-     helm install --version v1.1.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-     ```
-
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
+Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
 ### Remove Botkube from Discord Server
 
-- Goto Discord Developers Portel [Applications](https://discord.com/developers/applications) page,
+- Go to Discord Developers Portal [Applications](https://discord.com/developers/applications) page,
 - Click on "Botkube" and click on "Delete App" button.
 
 ## Remove Botkube from Kubernetes cluster
 
-Execute following command to completely remove Botkube and related resources from your cluster:
+Execute the following command to completely remove Botkube and related resources from your cluster:
 
 ```bash
-helm uninstall botkube --namespace botkube
+botkube uninstall
 ```

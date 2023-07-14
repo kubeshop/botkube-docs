@@ -17,9 +17,7 @@ import (
 const (
 	cliDocsDstPath = "docs/cli/commands"
 
-	// TODO: revert before merge
-	//cliDocsSrcURL  = "github.com/kubeshop/botkube//cmd/cli/docs?ref=main"
-	cliDocsSrcURL = "github.com/mszostok/botkube//cmd/cli/docs?ref=add-gen-docs"
+	cliDocsSrcURLFmt = "github.com/kubeshop/botkube//cmd/cli/docs?ref=%s"
 )
 
 var (
@@ -34,6 +32,7 @@ func SyncCLIDocs() {
 
 	target, targetIdentifier := GetBotkubeRepoTargetCommit()
 
+	cliDocsSrcURL := fmt.Sprintf(cliDocsSrcURLFmt, target)
 	lo.Must0(Download(context.Background(), cliDocsSrcURL, cliDocsDstPath))
 
 	lo.Must0(os.WriteFile(filepath.Join(cliDocsDstPath, "_category_.json"), []byte(commandsCategory), 0o644))

@@ -19,7 +19,9 @@ settings:
   log:
     # Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
     level: info
-    # If true, disable ANSI colors in logging.
+    # Configures log format. Allowed values: `text`, `json`.
+    formatter: json
+    # If true, disable ANSI colors in logging. Ignored when `json` formatter is used.
     disableColors: false
 
 # Parameters for the Config Watcher container.

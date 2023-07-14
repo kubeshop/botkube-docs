@@ -28,6 +28,12 @@ The remainder of this guide covers installation of the Botkube Socket-mode Slack
 - Slack channels must be managed manually and you need to ensure the Botkube bot is invited to any channel you want to use with Botkube
 - When using executor plugins (e.g. kubectl, helm) in a multi-cluster environment, each cluster needs to have a dedicated Botkube Slack bot in order to route commands to the correct cluster. See the Multi-cluster warning below.
 
+## Prerequisites
+
+- Botkube CLI installed according to the [Getting Started guide](../../cli/getting-started.mdx#installation)
+- Access to Kubernetes cluster
+- Slack Workspace admin access
+
 ## Install Socket Slack App in Your Slack workspace
 
 Botkube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for Botkube deployment.
@@ -200,61 +206,39 @@ Follow the steps to generate an App-Level Token:
 
 After installing Botkube app to your Slack workspace, you could see a new bot user with the name "Botkube" added in your workspace. Add that bot to a Slack channel you want to receive notification in. You can add it by inviting `@Botkube` in a channel.
 
-## Install Botkube Backend in Kubernetes cluster
+## Install Botkube in Kubernetes cluster
 
-- We use [Helm](https://helm.sh/) to install Botkube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **botkube** chart repository:
+To deploy Botkube agent in your cluster, run:
 
-  ```bash
-  helm repo add botkube https://charts.botkube.io
-  helm repo update
-  ```
+```bash
+export CLUSTER_NAME={cluster_name}
+export ALLOW_KUBECTL={allow_kubectl}
+export ALLOW_HELM={allow_helm}
+export SLACK_CHANNEL_NAME={channel_name}
 
-- Deploy Botkube backend using **helm install** in your cluster:
+botkube install --version v1.1.1 \
+--set communications.default-group.socketSlack.enabled=true \
+--set communications.default-group.socketSlack.channels.default.name=${SLACK_CHANNEL_NAME} \
+--set communications.default-group.socketSlack.appToken=${SLACK_API_APP_TOKEN} \
+--set communications.default-group.socketSlack.botToken=${SLACK_API_BOT_TOKEN} \
+--set settings.clusterName=${CLUSTER_NAME} \
+--set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
+--set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM}
+```
 
-  ```bash
-  export CLUSTER_NAME={cluster_name}
-  export ALLOW_KUBECTL={allow_kubectl}
-  export ALLOW_HELM={allow_helm}
-  export SLACK_CHANNEL_NAME={channel_name}
+where:
 
-  helm install --version v1.1.1 botkube --namespace botkube --create-namespace \
-  --set communications.default-group.socketSlack.enabled=true \
-  --set communications.default-group.socketSlack.channels.default.name=${SLACK_CHANNEL_NAME} \
-  --set communications.default-group.socketSlack.appToken=${SLACK_API_APP_TOKEN} \
-  --set communications.default-group.socketSlack.botToken=${SLACK_API_BOT_TOKEN} \
-  --set settings.clusterName=${CLUSTER_NAME} \
-  --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
-  --set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM} \
-  botkube/botkube
-  ```
+- **SLACK_CHANNEL_NAME** is the channel name where @Botkube is added
+- **SLACK_API_BOT_TOKEN** is the Token you received after installing Botkube app to your Slack workspace
+- **SLACK_API_APP_TOKEN** is the Token you received after installing Botkube app to your Slack workspace and generate in App-Level Token section
+- **CLUSTER_NAME** is the cluster name set in the incoming messages
+- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
+- **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
 
-  where:
+Configuration syntax is explained [here](../../configuration).
+All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
 
-  - **SLACK_CHANNEL_NAME** is the channel name where @Botkube is added
-  - **SLACK_API_BOT_TOKEN** is the Token you received after installing Botkube app to your Slack workspace
-  - **SLACK_API_APP_TOKEN** is the Token you received after installing Botkube app to your Slack workspace and generate in App-Level Token section
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages
-  - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
-  - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
-
-  Configuration syntax is explained [here](../../configuration).
-  Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
-
-  Send `@Botkube ping` in the channel to see if Botkube is running and responding.
-
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
-
-  If you wish to monitor only specific resources, follow the steps given below:
-
-  1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
-  2. Pass the YAML file as a flag to `helm install` command, e.g.:
-
-     ```
-     helm install --version v1.1.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-     ```
-
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
+Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
 ### Delete Botkube from Slack workspace
 
@@ -263,8 +247,8 @@ After installing Botkube app to your Slack workspace, you could see a new bot us
 
 ## Remove Botkube from Kubernetes cluster
 
-Execute following command to completely remove Botkube and related resources from your cluster:
+Execute the following command to completely remove Botkube and related resources from your cluster:
 
 ```bash
-helm uninstall botkube --namespace botkube
+botkube uninstall
 ```

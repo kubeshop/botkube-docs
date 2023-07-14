@@ -35,13 +35,30 @@ To update Botkube configuration, you can either:
 - upgrade Botkube installation with Helm,
 - or use dedicated `@Botkube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Usage](../usage/index.md) document for more details.
 
-If you wish to change the configuration with Helm, create a `/tmp/values.yaml` file that contains the new values and use the **helm upgrade** command:
+If you wish to change the configuration with Helm, create a `/tmp/values.yaml` file that contains the new values and run:
 
-```bash
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs groupId="upgrade">
+<TabItem value="cli" label="Botkube CLI" default>
+
+```shell
+botkube install -f /tmp/values.yaml
+```
+
+</TabItem>
+
+<TabItem value="helm" label="Helm CLI">
+
+```shell
 helm upgrade -n botkube botkube -f /tmp/values.yaml helm/botkube --wait
 ```
 
-As both Helm release upgrade and some of the `@Botkube` commands modify the same configuration, it is merged during the **helm upgrade** command.
+</TabItem>
+</Tabs>
+
+As both Helm release upgrade and some of the `@Botkube` commands modify the same configuration, it is merged during command execution.
 Whenever you specify a new value in the `/tmp/values.yaml` file, it will override the existing value in the configuration.
 
 ### Preventing overrides by default Helm chart values

@@ -4,6 +4,11 @@ title: Mattermost
 sidebar_position: 3
 ---
 
+## Prerequisites
+
+- Botkube CLI installed according to the [Getting Started guide](../../cli/getting-started.mdx#installation)
+- Access to Kubernetes cluster
+
 ## Install Botkube to the Mattermost team
 
 Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
@@ -60,69 +65,42 @@ export MATTERMOST_CHANNEL="{channel_name}"
 
 ## Install Botkube in Kubernetes cluster
 
-- We use [Helm](https://helm.sh/) to install Botkube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **botkube** chart repository:
+To deploy Botkube agent in your cluster, run:
 
-  ```bash
-  helm repo add botkube https://charts.botkube.io
-  helm repo update
-  ```
+```bash
+export MATTERMOST_SERVER_URL={mattermost_server_url}
+export MATTERMOST_TEAM={mattermost_team_name}
+export CLUSTER_NAME={cluster_name}
+export ALLOW_KUBECTL={allow_kubectl}
+export ALLOW_HELM={allow_helm}
 
-- Deploy Botkube backend using **helm install** in your cluster:
+botkube install --version v1.1.1 \
+--set communications.default-group.mattermost.enabled=true \
+--set communications.default-group.mattermost.url=${MATTERMOST_SERVER_URL} \
+--set communications.default-group.mattermost.token=${MATTERMOST_TOKEN} \
+--set communications.default-group.mattermost.team=${MATTERMOST_TEAM} \
+--set communications.default-group.mattermost.channels.default.name=${MATTERMOST_CHANNEL} \
+--set communications.default-group.mattermost.botName=${MATTERMOST_BOT_NAME} \
+--set settings.clusterName=${CLUSTER_NAME} \
+--set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
+--set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM}
+```
 
-  ```bash
-  export MATTERMOST_SERVER_URL={mattermost_server_url}
-  export MATTERMOST_CERT={mattermost_cert_path}
-  export MATTERMOST_TEAM={mattermost_team_name}
-  export CLUSTER_NAME={cluster_name}
-  export ALLOW_KUBECTL={allow_kubectl}
-  export ALLOW_HELM={allow_helm}
+where:
 
-  helm install --version v1.1.1 botkube --namespace botkube --create-namespace \
-  --set communications.default-group.mattermost.enabled=true \
-  --set communications.default-group.mattermost.url=${MATTERMOST_SERVER_URL} \
-  --set communications.default-group.mattermost.cert=${MATTERMOST_CERT} \
-  --set communications.default-group.mattermost.token=${MATTERMOST_TOKEN} \
-  --set communications.default-group.mattermost.team=${MATTERMOST_TEAM} \
-  --set communications.default-group.mattermost.channels.default.name=${MATTERMOST_CHANNEL} \
-  --set communications.default-group.mattermost.botName=${MATTERMOST_BOT_NAME} \
-  --set settings.clusterName=${CLUSTER_NAME} \
-  --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
-  --set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM} \
-  botkube/botkube
-  ```
+- **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running,
+- **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for Botkube user,
+- **MATTERMOST_TEAM** is the Team name where Botkube is added,
+- **MATTERMOST_CHANNEL** is the Channel name where Botkube is added and used for communication,
+- **MATTERMOST_BOT_NAME** is the Mattermost bot username (usually it is `Botkube`),
+- **CLUSTER_NAME** is the cluster name set in the incoming messages,
+- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
+- **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
 
-  where:
+Configuration syntax is explained [here](../../configuration).
+All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
 
-  - **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running,
-  - **MATTERMOST_CERT** _(optional)_ is the SSL certificate file for HTTPS connection. Place it in Helm directory and specify the path,
-  - **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for Botkube user,
-  - **MATTERMOST_TEAM** is the Team name where Botkube is added,
-  - **MATTERMOST_CHANNEL** is the Channel name where Botkube is added and used for communication,
-  - **MATTERMOST_BOT_NAME** is the Mattermost bot username (usually it is `Botkube`),
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages,
-  - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
-  - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
-
-  - To deploy with TLS, replace **MATTERMOST_CERT** with the location of the SSL certificate file placed in Helm directory. Leave this value to None if deploying without TLS.
-
-    Configuration syntax is explained [here](../../configuration).
-    Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
-
-  Send `@Botkube ping` in the channel to see if Botkube is running and responding.
-
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
-
-  If you wish to monitor only specific resources, follow the steps given below:
-
-  1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
-  2. Pass the YAML file as a flag to `helm install` command, e.g.:
-
-     ```
-     helm install --version v1.1.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-     ```
-
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
+Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
 ## Remove Botkube from Mattermost Team
 
@@ -131,8 +109,8 @@ export MATTERMOST_CHANNEL="{channel_name}"
 
 ## Remove Botkube from Kubernetes cluster
 
-Execute following command to completely remove Botkube and related resources from your cluster:
+Execute the following command to completely remove Botkube and related resources from your cluster:
 
 ```bash
-helm uninstall botkube --namespace botkube
+botkube uninstall
 ```

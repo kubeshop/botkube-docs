@@ -4,24 +4,15 @@ title: "Microsoft Teams"
 sidebar_position: 5
 ---
 
-1. Register Botkube as a bot with Microsoft Bot Framework.
-2. Deploy the Botkube controller.
-3. Add the Botkube app to a channel and enable notifications.
-
 ## Prerequisites
 
-Unlike Slack/Mattermost, MS Teams apps communicate with backends by sending POST requests to the public endpoints. So to establish communications between Teams app and respective backend, it needs to be reachable from the outside world.
+- Botkube CLI installed according to the [Getting Started guide](../../cli/getting-started.mdx#installation)
+- Access to Kubernetes cluster
+- MS Teams account
+- Ability to expose endpoints using [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources.
+  Unlike Slack/Mattermost, MS Teams apps communicate with backends by sending POST requests to the public endpoints. So to establish communications between Teams app and respective backend, it needs to be reachable from the outside world.
 
-Now there are few different ways to enable access to the K8s Service from the outside cluster.
-We will be discussing the most common way i.e exposing using [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources.
-
-Before we start, make sure you have -
-
-- a domain name with the ability to configure DNS
-- TLS cert and key for the registered domain name to configure SSL termination
-- nginx-ingress controller deployed on your cluster
-
-## A. Register Botkube as a bot with Microsoft Bot Framework.
+## Register Botkube as a bot with Microsoft Bot Framework.
 
 We will use the "Developer Portal for Teams" to register and install Botkube as an app on MS Teams.
 
@@ -120,7 +111,7 @@ If you face "You don't have permissions to add Botkube to this team.", contact y
 If you are using a free version of teams which does not have an admin center, you can click on **Download** to download the app manifest and then choose **Upload a custom app** option in the App center to install the app.
 :::
 
-## B. Deploy Botkube controller
+## Deploy Botkube
 
 The Botkube app we created on Teams sends messages to the endpoint we provided while configuring the app. To POST the requests to the Botkube controller, it needs to be reachable from the outside world.
 
@@ -141,67 +132,44 @@ kubectl create namespace botkube
 kubectl create secret tls botkube-tls -n botkube --cert=/path/to/cert.pem --key=/path/to/privatekey.pem
 ```
 
-We use this TLS Secret while deploying the Botkube backend.
+We use this TLS Secret while deploying Botkube.
 
-- We use [Helm](https://helm.sh/) to install Botkube in Kubernetes. Follow [this](https://docs.helm.sh/using_helm/#installing-helm) guide to install helm if you don't have it installed already.
-- Add **botkube** chart repository:
+To deploy Botkube agent in your cluster, run:
 
-  ```bash
-  helm repo add botkube https://charts.botkube.io
-  helm repo update
-  ```
+```bash
+export CLUSTER_NAME={cluster_name}
+export ALLOW_KUBECTL={allow_kubectl}
+export ALLOW_HELM={allow_helm}
+export HOST={host} # e.g. example.com
 
-- Deploy Botkube backend using **helm install** in your cluster:
+botkube install --version v1.1.1 --namespace botkube \
+--set communications.default-group.teams.enabled=true \
+--set communications.default-group.teams.appID=${APPLICATION_ID} \
+--set communications.default-group.teams.appPassword=${APPLICATION_PASSWORD} \
+--set communications.default-group.teams.botName=${BOT_NAME} \
+--set settings.clusterName=${CLUSTER_NAME} \
+--set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
+--set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM} \
+--set ingress.create=true \
+--set ingress.host=${HOST} \
+--set ingress.tls.enabled=true \
+--set ingress.tls.secretName=botkube-tls
+```
 
-  ```bash
-  export CLUSTER_NAME={cluster_name}
-  export ALLOW_KUBECTL={allow_kubectl}
-  export ALLOW_HELM={allow_helm}
-  export HOST={host} # e.g. example.com
+where:
 
-  helm install --version v1.1.1 botkube --namespace botkube --create-namespace \
-  --set communications.default-group.teams.enabled=true \
-  --set communications.default-group.teams.appID=${APPLICATION_ID} \
-  --set communications.default-group.teams.appPassword=${APPLICATION_PASSWORD} \
-  --set communications.default-group.teams.botName=${BOT_NAME} \
-  --set settings.clusterName=${CLUSTER_NAME} \
-  --set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
-  --set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM} \
-  --set ingress.create=true \
-  --set ingress.host=${HOST} \
-  --set ingress.tls.enabled=true \
-  --set ingress.tls.secretName=botkube-tls \
-  botkube/botkube
-  ```
+- **APPLICATION_ID** is the Botkube application ID generated while registering Bot to Teams,
+- **APPLICATION_PASSWORD** is the Botkube application password generated while registering Bot to Teams,
+- **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `Botkube`),
+- **CLUSTER_NAME** is the cluster name set in the incoming messages,
+- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
+- **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
+- **HOST** is the Hostname of endpoint provided while registering Botkube to Teams,
 
-  where:
+Configuration syntax is explained [here](../../configuration).
+All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
 
-  - **APPLICATION_ID** is the Botkube application ID generated while registering Bot to Teams,
-  - **APPLICATION_PASSWORD** is the Botkube application password generated while registering Bot to Teams,
-  - **BOT_NAME** is the bot name set while registering Bot to Teams (usually it is `Botkube`),
-  - **CLUSTER_NAME** is the cluster name set in the incoming messages,
-  - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
-  - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
-  - **HOST** is the Hostname of endpoint provided while registering Botkube to Teams,
-  - **URLPATH** is the path in endpoint URL provided while registering Botkube to Teams,
-  - **TLS_SECRET_NAME** is the K8s TLS secret name for the SSL termination.
-
-  Configuration syntax is explained [here](../../configuration). A Full Helm chart parameters list is documented [here](../../configuration/helm-chart-parameters).
-
-- Send `@Botkube ping` in the channel to see if Botkube is running and responding.
-
-  With the default configuration, Botkube will watch all the resources in all the namespaces for _create_, _delete_ and _error_ events.
-
-  If you wish to monitor only specific resources, follow the steps given below:
-
-  1. Create a new `config.yaml` file and add Kubernetes resource configuration as described on the [source](../../configuration/source) page.
-  2. Pass the YAML file as a flag to `helm install` command, e.g.:
-
-     ```
-     helm install --version v1.1.1 --name botkube --namespace botkube --create-namespace -f /path/to/config.yaml --set=...other args..
-     ```
-
-  Alternatively, you can also update the configuration at runtime as documented [here](../../configuration/#updating-the-configuration-at-runtime).
+Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
 ### Verify if Botkube endpoint is reachable
 
@@ -233,10 +201,10 @@ If you get 404, please check the ingress configuration or endpoint you configure
 
 ## Remove Botkube from Kubernetes cluster
 
-Execute the following command to completely remove Botkube and related resources from your cluster.
+Execute the following command to completely remove Botkube and related resources from your cluster:
 
 ```bash
-helm uninstall botkube --namespace botkube
+botkube uninstall
 ```
 
 ## Troubleshooting
