@@ -17,7 +17,7 @@ plugins:
 
 ## Enabling plugin
 
-To enable `exec` plugin, add `--set 'executors.bins-management.botkube/exec=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md). By default, the read-only `KUBECONFIG` is assigned.
+To enable `exec` plugin, add `--set 'executors.bins-management.botkube/exec.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md). By default, the read-only `KUBECONFIG` is assigned.
 
 For enabling commands that require create, update or delete rules, you need to create specific (Cluster)Role and (Cluster)RoleBinding and reference it from plugin's `context` configuration. To learn more refer to the [RBAC section](../rbac.md).
 
