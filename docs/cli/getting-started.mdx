@@ -30,15 +30,31 @@ brew install kubeshop/botkube/botkube
 brew install kubeshop/botkube/botkube
 ```
 
+<hr />
+
+Alternatively, you can use `curl` to download the CLI binary:
+
+```shell
+curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_linux_amd64
+```
+
+Copy the binary to the appropriate directory:
+
+```shell
+chmod +x botkube && mv botkube /usr/local/bin/botkube
+```
+
 </TabItem>
 
 <TabItem value="windows" label="Windows">
+
+Use [`curl`](https://curl.se/windows/) to download the CLI binary:
 
 ```shell
 curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_windows_amd64.exe
 ```
 
-For Windows, you will add it to the `%PATH%`.
+Add it to the `%PATH%` environment variable.
 
 </TabItem>
 
@@ -58,7 +74,7 @@ To manually install Botkube CLI:
 2. Move it to a location in the PATH. For example:
 
    ```shell
-   mv botkube /usr/local/bin/botkube
+   chmod +x botkube && mv botkube /usr/local/bin/botkube
    ```
 
    For Windows, you will need to add it to the `%PATH%`.
