@@ -10,18 +10,19 @@ import { IntegrationList } from "@site/src/components/IntegrationList";
 Botkube has two components that need to be installed.
 
 1. Botkube App Integration in your Slack/Mattermost/Microsoft Teams/Discord
-2. Botkube backend for the App in your Kubernetes cluster
+2. Botkube agent in your Kubernetes cluster
 
 ## Feature map
 
-| Feature                                     | Slack              | Mattermost         | MS Teams           | Discord            | Elastic Search     | Webhook            |
-| ------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| K8s Event push                              | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Kubectl commands                            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA                 | NA                 |
-| Multi cluster support                       | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Per-channel command execution configuration | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | NA                 | NA                 |
-| Interactive messages                        | :heavy_check_mark: | :x:                | :x:                | :x:                | NA                 | NA                 |
-| Actionable notifications                    | :heavy_check_mark: | :x:                | :x:                | :x:                | NA                 | NA                 |
+| Feature                                                | Cloud Slack        | Slack              | Mattermost         | MS Teams           | Discord            | Elastic Search     | Webhook            |
+| ------------------------------------------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| K8s Event push                                         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Executor plugins (e.g. `kubectl`, `helm`, etc.)        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA                 | NA                 |
+| Source plugins (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Multi cluster support                                  | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Per-channel command execution configuration            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | NA                 | NA                 |
+| Interactive messages                                   | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                | NA                 | NA                 |
+| Actionable notifications                               | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                | NA                 | NA                 |
 
 ## Integrations
 
@@ -37,7 +38,7 @@ Botkube has two components that need to be installed.
 />
 
 :::tip
-You can use a single Botkube backend to serve all the interfaces - Slack, Mattermost, Microsoft Teams, ElasticSearch and Webhook. <br/>
+You can use a single Botkube agent to serve all the interfaces - Slack, Mattermost, Microsoft Teams, ElasticSearch and Webhook. <br/>
 You just need to enable required mediums through the settings and add a necessary configuration.<br/>
 _see the [configuration](../configuration) section for more information_
 :::

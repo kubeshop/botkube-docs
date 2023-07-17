@@ -29,7 +29,7 @@ Botkube bot allows you to enable/disable notifications on each configured channe
 
 Run `@Botkube show config` message from the configured channel where Botkube is added. The bot will reply to you with the configuration with which the controller is running.
 
-To see how to update the configuration, see the [Updating the configuration](../configuration/index.md#updating-the-configuration) section in the Configuration document.
+To see how to update the configuration, see the [Updating the configuration](../configuration/index.mdx#updating-the-configuration) section in the Configuration document.
 
 ### Change notification sources
 

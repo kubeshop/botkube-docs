@@ -19,13 +19,7 @@ import TabItem from "@theme/TabItem";
 <TabItem value="macos" label="MacOS" default>
 
 ```shell
-curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_darwin_amd64
-```
-
-Copy to binary directory:
-
-```shell
-chmod +x botkube && mv botkube /usr/local/bin/botkube
+brew install kubeshop/botkube/botkube
 ```
 
 </TabItem>
@@ -33,10 +27,18 @@ chmod +x botkube && mv botkube /usr/local/bin/botkube
 <TabItem value="linux" label="Linux">
 
 ```shell
+brew install kubeshop/botkube/botkube
+```
+
+<hr />
+
+Alternatively, you can use `curl` to download the CLI binary:
+
+```shell
 curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_linux_amd64
 ```
 
-Copy to binary directory:
+Copy the binary to the appropriate directory:
 
 ```shell
 chmod +x botkube && mv botkube /usr/local/bin/botkube
@@ -46,11 +48,13 @@ chmod +x botkube && mv botkube /usr/local/bin/botkube
 
 <TabItem value="windows" label="Windows">
 
+Use [`curl`](https://curl.se/windows/) to download the CLI binary:
+
 ```shell
 curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_windows_amd64.exe
 ```
 
-For Windows, you will add it to the `%PATH%`.
+Add it to the `%PATH%` environment variable.
 
 </TabItem>
 
@@ -58,11 +62,19 @@ For Windows, you will add it to the `%PATH%`.
 
 To manually install Botkube CLI:
 
-1. Download the binary for the version and platform of your choice from the [GitHub releases page](https://github.com/kubeshop/botkube/releases).
+1. Download the binary for the version and platform of your choice from the [GitHub releases page](https://github.com/kubeshop/botkube/releases). Alternately, run:
+
+   ```shell
+   export OS="" # allowed values: darwin, linux, windows
+   export ARCH="" # allowed values: amd64, arm64, armv7
+   #export SUFFIX=".exec" # uncomment if OS is `windows`
+   curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube_${OS}_${ARCH}${SUFFIX}
+   ```
+
 2. Move it to a location in the PATH. For example:
 
    ```shell
-   mv botkube_linux_amd64 /usr/local/bin/botkube
+   chmod +x botkube && mv botkube /usr/local/bin/botkube
    ```
 
    For Windows, you will need to add it to the `%PATH%`.

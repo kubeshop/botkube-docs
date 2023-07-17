@@ -17,7 +17,7 @@ plugins:
 
 ## Enabling plugin
 
-To enable `kubectl` executor, add `--set 'executors.k8s-default-tools.botkube/kubectl.enabled=true'` to a given Helm install command. By default, just the read-only `kubectl` commands are supported.
+To enable `kubectl` executor, add `--set 'executors.k8s-default-tools.botkube/kubectl.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md). By default, just the read-only `kubectl` commands are supported.
 
 For enabling commands that require create, update or delete rules, you need to create specific (Cluster)Role and (Cluster)RoleBinding and reference it from plugin's `context` configuration. To learn more refer to the [RBAC section](../rbac.md).
 
