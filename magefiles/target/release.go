@@ -13,9 +13,10 @@ import (
 )
 
 const (
-	urlLastCommit               = "https://api.github.com/repos/kubeshop/botkube/commits?per_page=1"
-	urlReleaseByTagFmt          = "https://api.github.com/repos/kubeshop/botkube/releases/tags/v%s"
-	BotkubeReleaseBranchEnvName = "BOTKUBE_RELEASE_BRANCH"
+	urlLastCommit                = "https://api.github.com/repos/kubeshop/botkube/commits?per_page=1"
+	urlReleaseByTagFmt           = "https://api.github.com/repos/kubeshop/botkube/releases/tags/v%s"
+	BotkubeReleaseBranchEnvName  = "BOTKUBE_RELEASE_BRANCH"
+	BotkubeReleaseVersionEnvName = "BOTKUBE_RELEASE_VERSION"
 )
 
 func GetBotkubeRepoTargetCommit() (string, string) {
@@ -31,9 +32,11 @@ func GetBotkubeRepoTargetCommit() (string, string) {
 }
 
 func ValidateRelease() {
-	version := os.Getenv(BotkubeReleaseBranchEnvName)
+	version := os.Getenv(BotkubeReleaseVersionEnvName)
 	printer.Title("Validating release ...")
-	lo.Must1(get(fmt.Sprintf(urlReleaseByTagFmt, version)))
+	gitURL := fmt.Sprintf(urlReleaseByTagFmt, version)
+	printer.Infof("Checking if %s exits\n", gitURL)
+	lo.Must1(get(gitURL))
 }
 
 func get(url string) (string, error) {
