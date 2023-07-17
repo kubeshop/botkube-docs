@@ -16,15 +16,9 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs groupId="cli">
-<TabItem value="macos" label="MacOS" default>
+<TabItem value="macos-arm64" label="Mac with Apple Silicon" default>
 
-```shell
-brew install kubeshop/botkube/botkube
-```
-
-</TabItem>
-
-<TabItem value="linux" label="Linux">
+Use <a href="https://brew.sh" target="_blank" rel="noreferrer">Homebrew</a> to install the latest Botkube CLI:
 
 ```shell
 brew install kubeshop/botkube/botkube
@@ -32,52 +26,77 @@ brew install kubeshop/botkube/botkube
 
 <hr />
 
-Alternatively, you can use `curl` to download the CLI binary:
+Alternatively, download the Botkube CLI binary and move it to a directory under your `$PATH`:
+
+```shell
+curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube-darwin-arm64
+chmod +x botkube && mv botkube /usr/local/bin/botkube
+```
+
+</TabItem>
+
+<TabItem value="macos-amd64" label="Mac with Intel chip" default>
+
+Use <a href="https://brew.sh" target="_blank" rel="noreferrer">Homebrew</a> to install the latest Botkube CLI:
+
+```shell
+brew install kubeshop/botkube/botkube
+```
+
+<hr />
+
+Alternatively, download the Botkube CLI binary and move it to a directory under your `$PATH`:
+
+```shell
+curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube-darwin-amd64
+chmod +x botkube && mv botkube /usr/local/bin/botkube
+```
+
+</TabItem>
+
+<TabItem value="linux" label="Linux">
+
+Download the Botkube CLI binary and move it to a directory under your `$PATH`:
 
 ```shell
 curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube-linux-amd64
+chmod +x botkube && mv botkube /usr/local/bin/botkube
 ```
 
-Copy the binary to the appropriate directory:
+<hr />
+
+Alternatively, if you use <a href="https://brew.sh" target="_blank" rel="noreferrer">Homebrew</a>, you can use it to install the latest Botkube CLI:
 
 ```shell
-chmod +x botkube && mv botkube /usr/local/bin/botkube
+brew install kubeshop/botkube/botkube
 ```
 
 </TabItem>
 
 <TabItem value="windows" label="Windows">
 
-Use [`curl`](https://curl.se/windows/) to download the CLI binary:
+Use <a href="https://curl.se/windows/" target="_blank" rel="noreferrer">curl</a> to download the Botkube CLI binary:
 
 ```shell
 curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube-windows-amd64.exe
 ```
 
-Add it to the `%PATH%` environment variable.
+Move the binary to a directory under your `%PATH%`.
 
 </TabItem>
 
-<TabItem value="manual" label="Manual Download">
+<TabItem value="other" label="Other">
 
-To manually install Botkube CLI:
+Use <a href="https://curl.se" target="_blank" rel="noreferrer">curl</a> to download the Botkube CLI binary:
 
-1. Download the binary for the version and platform of your choice from the [GitHub releases page](https://github.com/kubeshop/botkube/releases). Alternately, run:
+```shell
+export OS="" # allowed values: darwin, linux, windows
+export ARCH="" # allowed values: amd64, arm64, armv7
+#export SUFFIX=".exe" # uncomment if OS is 'windows'
+curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube-${OS}-${ARCH}${SUFFIX}
+```
 
-   ```shell
-   export OS="" # allowed values: darwin, linux, windows
-   export ARCH="" # allowed values: amd64, arm64, armv7
-   #export SUFFIX=".exe" # uncomment if OS is `windows`
-   curl -Lo botkube https://github.com/kubeshop/botkube/releases/download/v1.1.1/botkube-${OS}-${ARCH}${SUFFIX}
-   ```
-
-2. Move it to a location in the PATH. For example:
-
-   ```shell
-   chmod +x botkube && mv botkube /usr/local/bin/botkube
-   ```
-
-   For Windows, you will need to add it to the `%PATH%`.
+Move the binary to a directory under your `PATH`.
 
 </TabItem>
 
