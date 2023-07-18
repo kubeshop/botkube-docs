@@ -182,6 +182,7 @@ Follow the steps to obtain the Bot Token:
    ```shell
    export SLACK_API_BOT_TOKEN="{botToken}"
    ```
+   If you are using the cloud version of Botkube, then there is no need to excute the above cmd, instead just copy the bot token and paste it directly at the cloud version where it is needed.
 
 ### Generate and obtain App-Level Token
 
@@ -201,6 +202,7 @@ Follow the steps to generate an App-Level Token:
    ```shell
    export SLACK_API_APP_TOKEN="${appToken}"
    ```
+   If you are using the cloud version of Botkube, then there is no need to excute the above cmd, instead just copy the API token and paste it directly at the cloud version where it is needed.
 
 ### Add Botkube user to a Slack channel
 
