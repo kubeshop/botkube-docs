@@ -32,7 +32,7 @@ export MATTERMOST_BOT_NAME="{bot_name}"
 
 ### 3. Manage Roles for Botkube user
 
-Login as System Admin, in the Menu, proceed to **System console > Users**. For Botkube user, Manage Roles and allow tokens and post_all access.
+Login as System Admin, in the Menu, proceed to **System console > Users**. For Botkube user, Manage Roles and select System Admin role.
 
 ![mm_botkube_roles](assets/mm_botkube_roles.png)
 
