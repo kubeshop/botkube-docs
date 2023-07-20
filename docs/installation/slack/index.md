@@ -82,6 +82,7 @@ oauth_config:
     bot:
       - channels:read
       - app_mentions:read
+      - reactions:write
       - chat:write
       - files:write
       - users:read # Remote configuration only: Used to get Real Name for audit reporting
@@ -113,6 +114,7 @@ oauth_config:
     bot:
       - groups:read
       - app_mentions:read
+      - reactions:write
       - chat:write
       - files:write
       - users:read # Remote configuration only: Used to get Real Name for audit reporting
@@ -145,6 +147,7 @@ oauth_config:
       - channels:read
       - groups:read
       - app_mentions:read
+      - reactions:write
       - chat:write
       - files:write
       - users:read # Remote configuration only: Used to get Real Name for audit reporting
