@@ -4,15 +4,15 @@
 
 The Botkube team is a group of dedicated individuals with a common focus on developing innovative solutions in the technology landscape. With AI getting more and more widely used, the team saw an opportunity to explore the potential of AI-powered chatbots in the DevOps space.
 
-A significant event that played a crucial role in shaping the trajectory of the ChatGPT plugin was the company-wide hackathon organized by Kubeshop. The hackathon was a great opportunity for the team to brainstorm ideas and collaborate on projects that would help people making Kubernetes life easier, simpler and faster.
+A significant event that played a crucial role in shaping the trajectory of the ChatGPT plugin was the company-wide hackathon organized by Kubeshop. The hackathon was a great opportunity for the team to brainstorm ideas and collaborate on projects that would help people make Kubernetes life easier, simpler and faster.
 
 This blog post aims to document the entire process involved in the creation of the Botkube ChatGPT plugin. From the initial spark of the idea during the hackathon to the final stages of implementation, we'll take you on a behind-the-scenes journey. Expect insights into the challenges, breakthroughs, and collaborative efforts that went into making this vision a reality.
 
 ## Ideation Phase: The Company-Wide Hackathon
 
-It all started with the internal Kubeshop hackathon. During this intense and collaborative event, team members from diverse backgrounds came together to brainstorm, experiment, and find novel solutions to challenges in the Kubernetes space, as a part of the existing projects in Kubeshop portfolio. The hackathon's theme was to help Developers, Testers, DevOPS, SRE’s or their managers with making Kubernetes life easier, simpler, faster. In 48 hours, the teams had to come up with an idea, build a prototype, and present their proof-of-concept solution to the judges.
+It all started with the internal Kubeshop hackathon. During this intense and collaborative event, team members from diverse backgrounds came together to brainstorm, experiment, and find novel solutions to challenges in the Kubernetes space, as a part of the existing projects in Kubeshop portfolio. The hackathon's theme was to help Developers, Testers, DevOps, SRE’s or their managers with making Kubernetes life easier, simpler, and faster. In 48 hours, the teams had to come up with an idea, build a prototype, and present their proof-of-concept solution to the judges.
 
-The Botkube team came up with 14 different ideas. As the hackathon time was limited, the team had to filter out the ideas we should focus on. After a series of dicussions and internal voting, we decided to improve the Botkube onboarding experience. This consisted of 4 different parts:
+The Botkube team came up with 14 different ideas. As the hackathon time was limited, the team had to filter out the ideas we should focus on. After several discussions and internal voting, we decided to improve the Botkube onboarding experience. This consisted of 4 different parts:
 
 - Botkube Cloud Migration Tool, to seamlessly migrate existing Botkube installation to Botkube Cloud.
 - Botkube Cloud Instance Builder, a convenient drag-and-drop UI tool to configure Botkube instance.
@@ -33,25 +33,25 @@ The button would pass the error data to the ChatGPT plugin, which would use retu
 
 Another use case we considered is answering human questions directly from the chat. The user would be able to ask questions like "How to create a Pod?" or "How to troubleshoot non-working Service?" and get an AI-generated response. This would be useful for new users who are not familiar with Kubernetes concepts and terminology.
 
-Final part of this phase was to come up with a name for the plugin. This was one of the hardest challenges.
+The final part of this phase was to come up with a name for the plugin. This was one of the hardest challenges.
 
 > There are only two hard things in Computer Science: cache invalidation and naming things.
 >
 > -- Phil Karlton
 
-We decided to call it "Doctor", as it would help users to diagnose and fix Kubernetes issues. 🩺
+We decided to call it "Doctor", as it would help users to diagnose and fix Kubernetes issues.
 
 ## Development Process
 
 The enthusiasm and dedication displayed by the team during the ideation phase laid a strong foundation for the development of the ChatGPT plugin. As we already knew what we wanted to develop, we had to decide on the specific technologies and tools to use.
 
-Choosing plugin language was the first step. Botkube plugin API uses Hashicorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) gRPC interface. While it has cross-language support, we decided to stick to Go as it is the primary language used in Botkube. We also wanted to leverage existing Go SDK and pipelines we set up for Botkube Go codebase.
+Choosing plugin language was the first step. Botkube plugin API uses Hashicorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) gRPC interface. While it has cross-language support, we decided to stick to Go as it is the primary language used in Botkube. We also wanted to leverage the existing Go SDK and pipelines we set up for the Botkube Go codebase.
 
 The next step was a bit more challenging: choosing the right AI model. We wanted to use a pre-trained model to avoid the need for training data and the time-consuming training process. The most important thing was to be able to answer Kubernetes-related questions efficiently. After careful consideration, we decided to use OpenAI's GPT-3 (`text-davinci-003`) model for the chatbot.
 
-While ChatGPT integration is very straightforward, another little challenge was to construct a prompt which produces predictable results, and to parse the response from the model, so that we could render interactive output for a user. After a little bit of testing and experimenting, we achieved the desired result.
+While ChatGPT integration is very straightforward, another little challenge was to construct a prompt that produces predictable results and to parse the response from the model, so that we could render interactive output for a user. After a little bit of testing and experimenting, we achieved the desired result.
 
-Last part was to integrate the ChatGPT plugin into Kubernetes source plugin which watches for Kubernetes events and send notifications to the chat interface. We extended the Kubernetes plugin with `extraButtons` configuration property which accepts command templates and renders them as interactive buttons as a part of each notification:
+The last part was to integrate the ChatGPT plugin into Kubernetes source plugin, which watches for Kubernetes events and sends notifications to the chat interface. We extended the Kubernetes plugin with `extraButtons` configuration property, which accepts command templates and renders them as interactive buttons as a part of each notification:
 
 ```yaml
 k8s-err-events-with-ai-support: # Source configuration name
