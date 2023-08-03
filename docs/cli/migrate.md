@@ -30,7 +30,6 @@ Supported Botkube platforms:
 
 The following list contains current limitations that we will address in the near future:
 
-- All custom RBAC settings assigned to plugins are ignored and will be replaced by default read-only permissions.
 - All 3rd-party plugins are ignored.
 - Minimal supported Botkube version is v1.0.0.
 
