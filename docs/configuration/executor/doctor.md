@@ -17,7 +17,7 @@ plugins:
 
 ## Enabling plugin
 
-To enable the `doctor` executor, add `--set 'executors.ai.botkube/doctor.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md). The `doctor` plugin uses ChatGPT for diagnosing problems, so you need to obtain an API Key from the OpenAI website [here](https://platform.openai.com/account/api-keys) and set it as follows:
+To enable the `doctor` executor, add `--set 'executors.ai.botkube/doctor.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md). The `doctor` plugin uses ChatGPT for diagnosing problems, so you need to obtain an API Key from the OpenAI website as described [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key) and set it as follows:
 `--set 'executors.ai.botkube/doctor.config.apiKey=<Open AI Api Key>'`
 
 ## Syntax
