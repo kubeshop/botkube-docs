@@ -6,7 +6,9 @@ import styles from "./index.module.scss";
 export const CookiesMessageBanner: FC = () => {
   const cookies = new Cookies();
 
-  if (!cookies || cookies.get("accepts-cookies")) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if (!cookies || cookies.get("accepts-cookies") || window.globalParams?.cookie?.hide) {
     return null;
   }
 

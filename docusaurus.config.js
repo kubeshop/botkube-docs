@@ -57,6 +57,8 @@ const config = {
     },
   ],
 
+  clientModules: [require.resolve("./src/clientModules/cloud-communication.ts")],
+
   plugins: [
     "docusaurus-plugin-sass",
     [
