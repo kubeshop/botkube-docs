@@ -19,7 +19,6 @@ Supported Botkube bot platforms for migration:
 
 Limitations:
 
-- RBAC is defaulted
 - Plugins are sourced from Botkube repository
 
 Use label selector to choose which Botkube pod you want to migrate. By default it's set to app=botkube.

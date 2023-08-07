@@ -30,7 +30,7 @@ Supported Botkube platforms:
 
 The following list contains current limitations that we will address in the near future:
 
-- All custom RBAC settings assigned to plugins are ignored and will be replaced by default read-only permissions.
+- `extraObjects` in Botkube [helm configurations](https://github.com/kubeshop/botkube/blob/593746a70d9eb23469c28e5c0274c9a40a7b651d/helm/botkube/values.yaml#L1040) are ignored. If you have any extra resources under `extraObjects` section, you need to migrate them on your own.
 - All 3rd-party plugins are ignored.
 - Minimal supported Botkube version is v1.0.0.
 
