@@ -2,13 +2,16 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import CookieBanner, { Cookies } from "react-cookie-banner";
 import styles from "./index.module.scss";
+import { DocsConfigWindow } from "@site/src/clientModules/embed";
 
 export const CookiesMessageBanner: FC = () => {
   const cookies = new Cookies();
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  if (!cookies || cookies.get("accepts-cookies") || window.globalParams?.cookie?.hide) {
+  if (
+    !cookies ||
+    cookies.get("accepts-cookies") ||
+    (window as DocsConfigWindow).displayConfig?.cookieBanner.forceHide
+  ) {
     return null;
   }
 
