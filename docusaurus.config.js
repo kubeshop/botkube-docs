@@ -57,6 +57,8 @@ const config = {
     },
   ],
 
+  clientModules: [require.resolve("./src/clientModules/embed.ts")],
+
   plugins: [
     "docusaurus-plugin-sass",
     [
