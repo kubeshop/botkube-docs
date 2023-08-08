@@ -8,8 +8,12 @@ export interface DocsConfigWindow extends Window {
   };
 }
 
-if (ExecutionEnvironment.canUseDOM) {
-  document.addEventListener("DOMContentLoaded", function () {
+if (ExecutionEnvironment.canUseDOM && ExecutionEnvironment.canUseEventListeners && typeof window !== "undefined") {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!window) {
+      return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const isEmbedded = urlParams.get("embedded");
     if (!isEmbedded) {

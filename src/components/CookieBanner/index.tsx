@@ -10,7 +10,7 @@ export const CookiesMessageBanner: FC = () => {
   if (
     !cookies ||
     cookies.get("accepts-cookies") ||
-    (window as DocsConfigWindow).displayConfig?.cookieBanner.forceHide
+    (typeof window !== "undefined" && (window as DocsConfigWindow).displayConfig?.cookieBanner.forceHide)
   ) {
     return null;
   }
