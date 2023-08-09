@@ -28,4 +28,4 @@ The Socket-mode app works with the open-source Botkube engine and does not requi
 - Slack channels must be managed manually, and you need to ensure the Botkube bot is invited to any channel you want to use with Botkube
 - When using executor plugins (e.g. kubectl, helm) in a multi-cluster environment, each cluster needs to have a dedicated Botkube Slack bot in order to route commands to the correct cluster.
 
-Follow the [Socket Slack](socket-slack/self_hosted.md) here for more details.
+Follow the [Socket Slack](socket-slack/self-hosted.md) here for more details.

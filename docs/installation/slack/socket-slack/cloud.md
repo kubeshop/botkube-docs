@@ -33,8 +33,8 @@ sidebar_position: 3
 5. Provide the Slack app details as described follows and click `Next` button.
 
    - **Display :** This is the name of the Slack app which will be displayed in your platform list.
-   - **App Token:** Grab `SLACK_API_APP_TOKEN` as described [here](./self_hosted.md#generate-and-obtain-app-level-token).
-   - **Bot Token:** Grab `SLACK_API_BOT_TOKEN` as described [here](./self_hosted.md#obtain-bot-token).
+   - **App Token:** Grab `SLACK_API_APP_TOKEN` as described [here](./self-hosted.md#generate-and-obtain-app-level-token).
+   - **Bot Token:** Grab `SLACK_API_BOT_TOKEN` as described [here](./self-hosted.md#obtain-bot-token).
    - **Channel Name:** Slack channel where you can execute Botkube commands and receive notification.
 
    ![Cloud Slack Credentials](../assets/cloud_slack_credentials.png "Cloud Slack credentials")
