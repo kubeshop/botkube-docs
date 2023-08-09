@@ -1,6 +1,6 @@
 ---
-id: custom_slack_self_hosted
-title: Self Hosted
+id: self-hosted
+title: Socket Slack for self-hosted Botkube
 sidebar_position: 2
 ---
 
