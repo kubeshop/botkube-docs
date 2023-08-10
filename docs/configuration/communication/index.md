@@ -8,6 +8,7 @@ The communication settings contains:
 
 - Configuration for communication platforms scoped in separate communication groups,
 - Platform-specific options, such as multi-channel configuration for platforms that support channels.
+
 ## Communication groups
 
 Communication group is a way to aggregate separate configurations for a set of communication platforms. You can specify multiple communication groups, and, in a result, support multiple Slack or Mattermost workspaces, Discord servers, or Elasticsearch server instances.
@@ -152,7 +153,7 @@ communications:
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events
-   
+
     # Settings for MS Teams.
     teams:
       # If true, enables MS Teams bot.
@@ -201,7 +202,7 @@ communications:
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events
-      
+
     # Settings for Elasticsearch.
     elasticsearch:
       # If true, enables Elasticsearch.
