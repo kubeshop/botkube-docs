@@ -2,18 +2,23 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import CookieBanner, { Cookies } from "react-cookie-banner";
 import styles from "./index.module.scss";
-import { DocsConfigWindow } from "@site/src/clientModules/embed";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 
 export const CookiesMessageBanner: FC = () => {
-  const cookies = new Cookies();
-
-  if (
-    !cookies ||
-    cookies.get("accepts-cookies") ||
-    (typeof window !== "undefined" && (window as DocsConfigWindow).displayConfig?.cookieBanner.forceHide)
-  ) {
+  const isBrowser = useIsBrowser();
+  if (!isBrowser) {
     return null;
   }
+
+  const cookies = new Cookies();
+
+  if (!cookies || cookies.get("accepts-cookies") || isSiteEmbedded()) {
+    console.log("disable cookie banner");
+    return null;
+  }
+
+  console.log("enable cookie banner");
 
   return (
     <CookieBanner
@@ -31,3 +36,13 @@ export const CookiesMessageBanner: FC = () => {
     />
   );
 };
+
+function isSiteEmbedded(): boolean {
+  if (!ExecutionEnvironment.canUseDOM || typeof window === "undefined") {
+    return false;
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const embeddedValue = urlParams.get("embedded");
+  return embeddedValue === "true";
+}
