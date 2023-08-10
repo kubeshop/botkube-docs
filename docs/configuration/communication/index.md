@@ -122,7 +122,6 @@ communications:
       # Slack token.
       token: "SLACK_API_TOKEN"
 
-
     # Settings for Mattermost.
     mattermost:
       # If true, enables Mattermost bot.
@@ -153,8 +152,7 @@ communications:
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events
-      
-
+   
     # Settings for MS Teams.
     teams:
       # If true, enables MS Teams bot.
@@ -205,7 +203,6 @@ communications:
             sources:
               - k8s-events
       
-
     # Settings for Elasticsearch.
     elasticsearch:
       # If true, enables Elasticsearch.
