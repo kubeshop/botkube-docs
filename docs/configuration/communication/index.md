@@ -172,7 +172,6 @@ communications:
           - k8s-events
       # The path in endpoint URL provided while registering Botkube to MS Teams.
       messagePath: "/bots/teams"
-      notification:
       # The Service port for bot endpoint on Botkube container.
       port: 3978
 
