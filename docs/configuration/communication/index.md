@@ -7,7 +7,7 @@ sidebar_position: 1
 The communication settings contains:
 
 - Configuration for communication platforms scoped in separate communication groups,
-- Platform-specific options, such as multi-channel configuration for platforms that support channels, or option to toggle notification type to short or long.
+- Platform-specific options, such as multi-channel configuration for platforms that support channels.
 
 ## Communication groups
 
@@ -122,9 +122,6 @@ communications:
               - k8s-events
       # Slack token.
       token: "SLACK_API_TOKEN"
-      notification:
-        # Configures notification type that are sent. Possible values: `short`, `long`.
-        type: short
 
     # Settings for Mattermost.
     mattermost:
@@ -156,9 +153,6 @@ communications:
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events
-      notification:
-        # Configures notification type that are sent. Possible values: `short`, `long`.
-        type: short
 
     # Settings for MS Teams.
     teams:
@@ -179,9 +173,6 @@ communications:
           - k8s-events
       # The path in endpoint URL provided while registering Botkube to MS Teams.
       messagePath: "/bots/teams"
-      notification:
-        # Configures notification type that are sent. Possible values: `short`, `long`.
-        type: short
       # The Service port for bot endpoint on Botkube container.
       port: 3978
 
@@ -211,9 +202,6 @@ communications:
             # Notification sources configuration for a given channel.
             sources:
               - k8s-events
-      notification:
-        # Configures notification type that are sent. Possible values: `short`, `long`.
-        type: short
 
     # Settings for Elasticsearch.
     elasticsearch:
