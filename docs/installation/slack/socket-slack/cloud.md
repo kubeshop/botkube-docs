@@ -148,15 +148,11 @@ Once the application is created, you will be redirected to application details p
 
 ### Obtain Bot Token
 
-Follow the steps to obtain the Bot Token:
-
 1. Select **OAuth & Permissions** section on the left sidebar. On this page you can copy the bot token which starts with `xoxb...`.
 
    ![Retrieve Slack Bot Token](../assets/slack_retrieve_bot_token.png "Slack Bot Token")
 
-:::tip
-Please note down the `Bot User Oauth Token` for the next step.
-:::
+2. Note down the `Bot User OAuth Token`. You will use the value when creating a Botkube Cloud instance.
 
 ### Generate and obtain App-Level Token
 
@@ -171,7 +167,7 @@ Follow the steps to generate an App-Level Token:
 
    ![Retrieve App-Level Token](../assets/slack_retrieve_app_token.png "Slack Retrieve App Token")
 
-Please note down the `Token` for the next step.
+1. Note down the `Token`. You will use the value when creating a Botkube Cloud instance.
 
 ## Create a Botkube Cloud Instance
 
@@ -193,10 +189,10 @@ Please note down the `Token` for the next step.
 
 5. Provide the Slack app details as described follows and click `Next` button.
 
-   - **Display :** This is the name of the Slack app which will be displayed in your platform list.
-   - **App Token:** Use the app token noted down in the previous step.
-   - **Bot Token:** Use the bot token noted down in the previous step.
-   - **Channel Name:** Slack channel where you can execute Botkube commands and receive notification.
+   - **Display Name:** This is the name of the Slack app which will be displayed in your platform list.
+   - **App Token:** Use the app token noted down in one of the previous steps.
+   - **Bot Token:** Use the bot user token noted down in one of the previous steps.
+   - **Channel Name:** Provide Slack channel name(s) where you can execute Botkube commands and receive notifications. This will be configured in the next step.
 
    ![Cloud Slack Credentials](../assets/cloud_slack_credentials.png "Cloud Slack credentials")
 
