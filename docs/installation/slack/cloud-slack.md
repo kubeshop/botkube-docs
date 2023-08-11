@@ -10,7 +10,11 @@ The Botkube Cloud Slack App uses Botkube Cloud services to manage channels and r
 
 - A Botkube Cloud account with active subscription.
 
-  You can try out the Botkube Cloud Slack App for free by creating an account in the [Botkube Web App](https://app.botkube.io) and starting a free trial.
+You can try out the Botkube Cloud Slack App for free by creating an account in the [Botkube Web App](https://app.botkube.io) and starting a free trial. You will need an active subscription to continue using the Botkube Cloud Slack App after the trial period.
+
+:::warning
+Once you downgrade your subscription to free, you will not be able to use Botkube commands whereas you will continue to receive notification from Slack.
+:::
 
 ## Create a Botkube Cloud Instance with Cloud Slack
 
@@ -57,6 +61,30 @@ The Botkube Cloud Slack App uses Botkube Cloud services to manage channels and r
 10. Follow the instructions in the summary page to deploy Botkube into your environment.
 
 ![Cloud Slack Summary](assets/cloud_slack_summary.png "Cloud Slack summary")
+
+## Using Botkube Cloud Slack App
+
+You can start using Botkube Cloud Slack App by typing `@Botkube cloud help` in the Slack channel you configured in one of the previous steps.
+
+![Cloud Slack Command Help](assets/cloud_slack_command_help.png "Cloud Slack command help")
+
+### Listing Cloud Instances
+
+You can list all the Botkube Cloud instances by typing `@Botkube cloud list instances` in the Slack channel or click the button `List connected instances` in the help command response.
+Besides the instance `name`, `ID`, and `status` in the list response, you can also see a button `Get details` that you can click to go to instance details on Botkube Cloud Dashboard.
+
+![Cloud Slack List Instances](assets/cloud_slack_command_list_instances.png "Cloud Slack list instances")
+
+### Setting Default Cloud Instances
+
+Once a Botkube command is executed, it will be handled on target kubernetes cluster specified with `--cluster-name` flag. However, this is an optional flag,
+where if you have not specified it, Botkube Cloud will select the first instance. However, you can also achieve setting default instance with command `@Botkube cloud set default-instance instance_id`.
+
+![Cloud Slack Set Default Instances](assets/cloud_slack_command_set_default.png "Cloud Slack set default instance")
+
+After this point, all of your commands will be executed on the default instance. Moreover, if you want to execute a command on all the target clusters, you can use `--all-clusters` flag.
+
+![Cloud Slack All Clusters](assets/cloud_slack_command_all_clusters.png "Cloud Slack all clusters")
 
 ## Clean up
 
