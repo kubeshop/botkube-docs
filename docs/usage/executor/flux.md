@@ -4,7 +4,8 @@ title: "Flux"
 sidebar_position: 5
 ---
 
-Botkube offers seamless execution of Flux CLI commands within your Kubernetes cluster. By default, Flux command execution is disabled. To enable it, refer to the [**Enabling plugin**](../../configuration/executor/flux.md#enabling-plugin) section.
+Botkube offers seamless execution of Flux CLI commands within your Kubernetes cluster. By default, Flux command execution is disabled. To enable it, refer to the [
+**Enabling plugin**](../../configuration/executor/flux.md#enabling-plugin) section.
 
 To execute the `flux` CLI commands, send a message in the channel where Botkube is present. For example:
 
@@ -86,4 +87,50 @@ extraObjects:
       - kind: Group
         name: flux-read-patch
         apiGroup: rbac.authorization.k8s.io
+```
+
+### GitHub automation
+
+To enhance your workflow's efficiency, you can use the [GitHub Events](../../configuration/source/github-events.md) source for automatic notification of pull request events, complete with an integrated `flux diff` button.
+
+```yaml
+sources:
+  github-events:
+    displayName: "GitHub Events"
+    botkube/github-events:
+      enabled: true
+      config:
+        github:
+          auth:
+            accessToken: "ghp_" # GitHub PAT
+
+        repositories:
+          - name: { owner }/{name}
+            on:
+              pullRequests:
+                  - types: [ "open" ]
+                    paths:
+                      # Patterns for included file changes in pull requests.
+                      include: [ 'kustomize/.*' ]
+                    notificationTemplate:
+                      extraButtons:
+                        - displayName: "Flux Diff"
+                          commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
+```
+
+Don't forget to incorporate the `github-events` source into your communication platform bindings. For instance:
+
+```yaml
+communications:
+  default-group:
+    socketSlack:
+      enabled: true
+      channels:
+        default:
+          name: random
+          bindings:
+            sources:
+              - github-events
+            executors:
+              - flux
 ```

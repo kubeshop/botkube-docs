@@ -164,6 +164,29 @@ By default, we use [conditional requests](https://docs.github.com/en/rest/overvi
 
 For a configured `refreshDuration` we call the [`/repos/{owner}/{repo}/pulls`](https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28#list-pull-requests) endpoint for all registered repositories. It's configured to fetch 100 pull requests that were recently modified. We ignore all events that were already processed.
 
+#### Matching criteria
+
+If no matching criteria are specified, all pull requests will be reported. For example:
+
+```yaml
+repositories:
+  - name: owner/repo1
+    on:
+      pullRequests: []
+```
+
+To narrow down emitted events, you can specify at least one of the available criteria:
+
+- `types`: This is a list of pull request types for which the event should be triggered. The allowed types are: `open`, `closed`, `merged`.
+
+- `paths.include`: This is a list of file patterns for which the event should be triggered. It supports [Go regular expressions](https://github.com/google/re2/wiki/Syntax). For example: `["kustomize/.*"]`.
+
+- `paths.exclude`: This is a list of file patterns for which the event should not be triggered. It also supports [Go regular expressions](https://github.com/google/re2/wiki/Syntax). For example: `['.*\.js']`. This exclusion criteria takes precedence over `paths.include`.
+
+- `labels.include`: This is a list of label patterns for which the event should be triggered. It supports [Go regular expressions](https://github.com/google/re2/wiki/Syntax). For example: `["backend-.*"]`.
+
+- `labels.exclude`: This is a list of label patterns for which the event should not be triggered. It supports [Go regular expressions](https://github.com/google/re2/wiki/Syntax). For example: `['bug']`. This exclusion criteria takes precedence over `labels.include`.
+
 #### Templating
 
 You can customize the notification template with additional buttons:
@@ -186,6 +209,17 @@ This API is not built to serve real-time use cases. Depending on the time of day
 :::
 
 The Events API covers various event types. Refer to the [GitHub event types](https://docs.github.com/en/webhooks-and-events/events/github-event-types) page for more information.
+
+#### Matching criteria
+
+To retrieve relevant events, you must define at least one entry within the `events` property. For instance:
+
+```yaml
+events:
+  - type: "WatchEvent"
+```
+
+If you provide an empty list `events: []`, no events will be emitted.
 
 #### Templating
 
