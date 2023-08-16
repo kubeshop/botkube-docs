@@ -1,12 +1,10 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-// import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import versions from '@site/versions.json';
 import VersionsArchived from '@site/versionsArchived.json';
 const VersionsArchivedList = Object.entries(VersionsArchived);
-// import ArchivedVersions from '@site/archivedVersions.json';
 
 // importing container component 
 import Container from '@site/src/components/v1/Container';
@@ -49,7 +47,6 @@ export default function VersionsPage() {
                   <td>
                     <Link to="next/">Documentation</Link>
                   </td>
-               
                 </tr>
               </tbody>
             </table>
@@ -58,7 +55,6 @@ export default function VersionsPage() {
             <p>
               Here you can find documentation for previous versions of BotKube.
             </p>
-
             <table>
               <tbody>
                 {versions.map(
@@ -77,11 +73,10 @@ export default function VersionsPage() {
               </tbody>   
               </table>
 
-              <h3 id="archive">Archived Versions</h3>
+              <h3 id="archive">Archived Versions </h3>
             <p>
               Here you can find documentation for archived versions of BotKube.
             </p>
-               
             <table>
               <tbody>
                 {Object.entries(VersionsArchived).map(
@@ -97,19 +92,8 @@ export default function VersionsPage() {
                 )}
               </tbody>
             </table>
-               
-               
-               
-               
          </Container>
             </div>
-
-            
-
-                
-
-
         </Layout>
       );
-
 }
