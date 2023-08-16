@@ -32,7 +32,7 @@ export default function VersionsPage() {
                 <tr>
                   <th>{latestVersion}</th>
                   <td>
-                    <Link to="https://docs.botkube.io/">Documentation</Link>
+                    <Link to="/">Documentation</Link>
                   </td>
                 </tr>
               </tbody>
@@ -47,7 +47,7 @@ export default function VersionsPage() {
                 <tr>
                   <th>Unreleased</th>
                   <td>
-                    <Link to="/docs/next/">Documentation</Link>
+                    <Link to="next/">Documentation</Link>
                   </td>
                
                 </tr>

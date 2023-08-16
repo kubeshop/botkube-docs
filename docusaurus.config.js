@@ -165,7 +165,7 @@ const config = {
 
               {
                 to: '/versions',
-                label: 'All version',
+                label: 'All versions',
               },
             ],
           },
