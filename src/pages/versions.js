@@ -73,7 +73,7 @@ export default function VersionsPage() {
               </tbody>   
               </table>
 
-              <h3 id="archive">Archived Versions </h3>
+              {/* <h3 id="archive">Archived Versions </h3>
             <p>
               Here you can find documentation for archived versions of BotKube.
             </p>
@@ -91,7 +91,7 @@ export default function VersionsPage() {
                     )
                 )}
               </tbody>
-            </table>
+            </table> */}
          </Container>
             </div>
         </Layout>

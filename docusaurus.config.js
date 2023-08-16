@@ -133,23 +133,23 @@ const config = {
             type: "docsVersionDropdown",
             position: "right",
             dropdownItemsAfter: [
-              {
-                type: 'html',
-                value: '<hr class="dropdown-separator">',
-              },
-              {
-                type: 'html',
-                className: 'dropdown-archived-versions',
-                value: '<b>Archived versions</b>',
+              // {
+              //   type: 'html',
+              //   value: '<hr class="dropdown-separator">',
+              // },
+              // {
+              //   type: 'html',
+              //   className: 'dropdown-archived-versions',
+              //   value: '<b>Archived versions</b>',
 
-              },
+              // },
             
-              ...ArchivedVersionsDropdownItems.map(
-                  ([versionName, versionUrl]) => ({
-                    label: versionName,
-                    href: versionUrl,
-                  }),
-                ),
+              // ...ArchivedVersionsDropdownItems.map(
+              //     ([versionName, versionUrl]) => ({
+              //       label: versionName,
+              //       href: versionUrl,
+              //     }),
+              //   ),
 
                 {
                 type: 'html',
