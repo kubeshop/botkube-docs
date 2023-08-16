@@ -143,7 +143,7 @@ const config = {
               {
                 type: 'html',
                 className: 'dropdown-archived-versions',
-                value: '<b>All Versions</b>',
+                value: '<b>Archived versions</b>',
 
               },
               // archivedversions.map(
@@ -158,9 +158,14 @@ const config = {
                   }),
                 ),
 
+                {
+                type: 'html',
+                value: '<hr class="dropdown-separator">',
+              },
+
               {
                 to: '/versions',
-                label: 'version',
+                label: 'All version',
               },
             ],
           },
