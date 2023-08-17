@@ -4,8 +4,6 @@ const path = require("path");
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const { createRedirects, redirects } = require("./redirects");
-const VersionsArchived = require('./versionsArchived.json');
-// const ArchivedVersionsDropdownItems = Object.entries(VersionsArchived).splice(0,5,);
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -122,15 +120,6 @@ const config = {
             position: "left",
             label: "Documentation",
           },
-
-        //  navbar trial
-          // {
-
-
-          // },
-        
-
-
           {
             type: "doc",
             docId: "contribute/contribute",
@@ -142,25 +131,7 @@ const config = {
             type: "docsVersionDropdown",
             position: "right",
             dropdownItemsAfter: [
-              // {
-              //   type: 'html',
-              //   value: '<hr class="dropdown-separator">',
-              // },
-              // {
-              //   type: 'html',
-              //   className: 'dropdown-archived-versions',
-              //   value: '<b>Archived versions</b>',
-
-              // },
-            
-              // ...ArchivedVersionsDropdownItems.map(
-              //     ([versionName, versionUrl]) => ({
-              //       label: versionName,
-              //       href: versionUrl,
-              //     }),
-              //   ),
-
-                {
+              {
                 type: 'html',
                 value: '<hr class="dropdown-separator">',
               },
