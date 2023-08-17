@@ -45,8 +45,6 @@ Plugin source bridge is dispatching received source events to all configured com
 
 Source is a binary that implements the [source](https://github.com/kubeshop/botkube/blob/main/proto/source.proto) Protocol Buffers contract. Source starts asynchronous streaming of domain-specific events. For example, streaming Kubernetes events.
 
-The `kubernetes` is a built-in Botkube source. It will be extracted in the future Botkube releases.
-
 ### Bot
 
 Bot represents a bidirectional communication platform. Each bot is responsible for authenticating, managing connections, and providing an interface for receiving and sending messages for a given platform like Slack, Discord, etc. Connection is mostly done via WebSocket.
