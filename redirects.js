@@ -66,7 +66,7 @@ function customRedirections() {
       from: "/community",
     },
     {
-      to: "/0.18/usage/filters/",
+      to: "/configuration/source/kubernetes/",
       from: "/filters",
     },
   ];

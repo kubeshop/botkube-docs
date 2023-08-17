@@ -5,23 +5,18 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import versions from "@site/versions.json";
 import VersionsArchived from "@site/versionsArchived.json";
 
-// importing container component
-import Container from "@site/src/components/v1/container";
-import "@site/src/components/v1/cascading.css";
-
 export default function VersionsPage() {
   const { siteConfig } = useDocusaurusContext();
   const latestVersion = versions[0];
   return (
     <Layout>
-      <div className="wrapperV1">
-        <Container className="docsContainer">
+        <main className="container margin-vert--lg">
           <div></div>
           <header>
             <h2>{`${siteConfig.title} Versions`}</h2>
           </header>
           <h3 id="latest">Current version (Stable)</h3>
-          <p>Latest stable version of Botkube</p>
+          <p>The latest stable version</p>
           <table>
             <tbody>
               <tr>
@@ -33,8 +28,8 @@ export default function VersionsPage() {
             </tbody>
           </table>
 
-          <h3 id="rc">Latest version</h3>
-          <p>Here you can find the latest unreleased documentation and code.</p>
+          <h3 id="unreleased">Next version</h3>
+          <p>Here you can find the documentation for unreleased version.</p>
           <table>
             <tbody>
               <tr>
@@ -47,7 +42,7 @@ export default function VersionsPage() {
           </table>
 
           <h3 id="archive">Past Versions</h3>
-          <p>Here you can find documentation for previous versions of BotKube.</p>
+          <p>Here you can find documentation for previous versions.</p>
           <table>
             <tbody>
               {versions.map(
@@ -64,8 +59,8 @@ export default function VersionsPage() {
             </tbody>
           </table>
 
-          <h3 id="archive">Archived Versions </h3>
-          <p>Here you can find documentation for archived versions of BotKube.</p>
+          <h3 id="archive">Archived Versions</h3>
+          <p>{`Here you can find documentation for archived, no longer maintained ${siteConfig.title} versions.`}</p>
           <table>
             <tbody>
               {Object.entries(VersionsArchived).map(
@@ -81,8 +76,7 @@ export default function VersionsPage() {
               )}
             </tbody>
           </table>
-        </Container>
-      </div>
+        </main>
     </Layout>
   );
 }
