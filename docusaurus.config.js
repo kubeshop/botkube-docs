@@ -132,13 +132,12 @@ const config = {
             position: "right",
             dropdownItemsAfter: [
               {
-                type: 'html',
+                type: "html",
                 value: '<hr class="dropdown-separator">',
               },
-
               {
-                to: '/versions',
-                label: 'All versions',
+                to: "/versions",
+                label: "All versions",
               },
             ],
           },
