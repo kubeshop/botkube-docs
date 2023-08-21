@@ -69,7 +69,7 @@ executors:
       enabled: true
       # ...
       context:
-        rbac: {} # enable Kubeconfig generation with default RBAC configuration
+        rbac: {} # enable kubeconfig generation
 ```
 
 However, such configuration will generate a kubeconfig with empty impersonation config, which effectively means an anonymous access to the Kubernetes API.
