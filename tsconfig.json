@@ -6,12 +6,6 @@
     "baseUrl": ".",
     "alwaysStrict": true,
     "strictNullChecks": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "module": "es6",
-    "declarationMap": false,
-    "esModuleInterop": true
+    "resolveJsonModule": true
   }
 }

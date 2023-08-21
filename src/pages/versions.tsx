@@ -1,50 +1,49 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import React from "react";
 import Link from "@docusaurus/Link";
-import Translate from "@docusaurus/Translate";
 import { useVersions, useLatestVersion } from "@docusaurus/plugin-content-docs/client";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
-import archivedVersions from "@site/versionsArchived.json";
-import versions from "@site/versions.json";
-import React from "react";
+import archivedVersionsMap from "@site/versions-archived.json";
 
 const docsPluginId = undefined; // Default docs plugin instance
-
-function DocumentationLabel() {
-  return <Translate id="versionsPage.versionEntry.link">Documentation</Translate>;
-}
 
 export default function Version(): JSX.Element {
   const {
     siteConfig: { organizationName, projectName },
   } = useDocusaurusContext();
-  const { siteConfig } = useDocusaurusContext();
-  const versionplugin = useVersions(docsPluginId);
+  if (!organizationName || !projectName) {
+    throw new Error("organizationName and projectName can't be empty");
+  }
+  const versions = useVersions(docsPluginId);
   const latestVersion = useLatestVersion(docsPluginId);
-  const currentVersion = versionplugin.find(version => version.name === "current")!;
+  const currentVersion = versions.find(version => version.name === "current");
+  if (!currentVersion) {
+    throw new Error("Cannot find `current` version.");
+  }
+  const pastVersions = versions.filter(version => version !== latestVersion && version.name !== "current");
+  const archivedVersions = Object.entries(archivedVersionsMap);
 
   return (
-    <Layout title="Versions" description="Botkube all documented site versions">
+    <Layout title="Versions" description="All Botkube versions">
       <main className="container margin-vert--lg">
-        <Heading as="h1">
-          <Translate id="versionsPage.title">Botkube documentation versions</Translate>
-        </Heading>
+        <Heading as="h1">Botkube versions</Heading>
+        <p>This page lists all documented versions of Botkube.</p>
 
         <div className="margin-bottom--lg">
-          <Heading as="h3" id="next">
-            <Translate id="versionsPage.current.title">Current version (Stable)</Translate>
+          <Heading as="h3" id="current">
+            Current version (Stable)
           </Heading>
-          <p>
-            <Translate id="versionsPage.current.description">The latest stable version.</Translate>
-          </p>
+          <p>The latest stable version.</p>
           <table>
             <tbody>
               <tr>
                 <th>{latestVersion.label}</th>
                 <td>
-                  <Link to={latestVersion.path}>
-                    <DocumentationLabel />
-                  </Link>
+                  <Link to={latestVersion.path}>Documentation</Link>
+                </td>
+                <td>
+                  <Link to={getChangelogUrl(organizationName, projectName, latestVersion.name)}>Release changelog</Link>
                 </td>
               </tr>
             </tbody>
@@ -53,22 +52,16 @@ export default function Version(): JSX.Element {
 
         {currentVersion !== latestVersion && (
           <div className="margin-bottom--lg">
-            <Heading as="h3" id="latest">
-              <Translate id="versionsPage.next.title">Next version (Unreleased)</Translate>
+            <Heading as="h3" id="unreleased">
+              Next version (Unreleased)
             </Heading>
-            <p>
-              <Translate id="versionsPage.next.description">
-                Here you can find the documentation for unreleased version.
-              </Translate>
-            </p>
+            <p>Here you can find the documentation for unreleased version.</p>
             <table>
               <tbody>
                 <tr>
                   <th>{currentVersion.label}</th>
                   <td>
-                    <Link to={currentVersion.path}>
-                      <DocumentationLabel />
-                    </Link>
+                    <Link to={currentVersion.path}>Documentation</Link>
                   </td>
                 </tr>
               </tbody>
@@ -76,60 +69,60 @@ export default function Version(): JSX.Element {
           </div>
         )}
 
-        <div className="margin-bottom--lg">
-          <Heading as="h3" id="archive">
-            <Translate id="versionsPage.archived.title">Past versions</Translate>
-          </Heading>
-          <p>
-            <Translate id="versionsPage.archived.description">
-              Here you can find documentation for previous versions.
-            </Translate>
-          </p>
+        {pastVersions.length > 0 && (
+          <div className="margin-bottom--lg">
+            <Heading as="h3" id="previous">
+              Previous versions
+            </Heading>
+            <p>Here you can find documentation for previous Botkube versions.</p>
 
-          <table>
-            <tbody>
-              {versions.map(
-                version =>
-                  version !== latestVersion.label && (
-                    <tr key={version}>
-                      <th>{version}</th>
-                      <td>
-                        <Link to={`${version}/`}>Documentation</Link>
-                      </td>
-                    </tr>
-                  ),
-              )}
-            </tbody>
-          </table>
-        </div>
+            <table>
+              <tbody>
+                {pastVersions.map(version => (
+                  <tr key={version.name}>
+                    <th>{version.name}</th>
+                    <td>
+                      <Link to={version.path}>Documentation</Link>
+                    </td>
+                    <td>
+                      <Link to={getChangelogUrl(organizationName, projectName, version.name)}>Release changelog</Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
-        <div className="margin-bottom--lg">
-          <Heading as="h3" id="legacy">
-            <Translate id="versionsPage.legacy.title">Archived Versions</Translate>
-          </Heading>
-          <p>
-            <Translate id="versionsPage.legacy.description">
-              Here you can find documentation for archived, no longer maintained Botkube versions.
-            </Translate>
-          </p>
+        {archivedVersions.length > 0 && (
+          <div className="margin-bottom--lg">
+            <Heading as="h3" id="archived">
+              Archived Versions
+            </Heading>
+            <p>Here you can find documentation for archived, no longer maintained Botkube versions.</p>
 
-          <table>
-            <tbody>
-              {Object.entries(archivedVersions).map(
-                ([version, versionUrl]) =>
-                  version !== latestVersion && (
-                    <tr key={version}>
-                      <th>{version}</th>
-                      <td>
-                        <Link to={versionUrl}>Documentation</Link>
-                      </td>
-                    </tr>
-                  ),
-              )}
-            </tbody>
-          </table>
-        </div>
+            <table>
+              <tbody>
+                {archivedVersions.map(([version, versionUrl]) => (
+                  <tr key={version}>
+                    <th>{version}</th>
+                    <td>
+                      <Link to={versionUrl}>Documentation</Link>
+                    </td>
+                    <td>
+                      <Link to={getChangelogUrl(organizationName, projectName, version)}>Release changelog</Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </main>
     </Layout>
   );
 }
+
+const getChangelogUrl = (orgName: string, projName: string, version: string) => {
+  return `https://github.com/${orgName}/${projName}/releases/tag/v${version}.0`;
+};
