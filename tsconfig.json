@@ -12,9 +12,6 @@
     "allowJs": true,
     "module": "es6",
     "declarationMap": false,
-    "sourceMap": false,
-    "importHelpers": true,
-    "esModuleInterop": true,
-    "noEmitHelpers": true
+    "esModuleInterop": true
   }
 }
