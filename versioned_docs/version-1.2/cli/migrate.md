@@ -18,6 +18,10 @@ Supported Botkube platforms:
 
 ## Steps
 
+:::note
+Export valid `KUBECONFIG` environment variable before running migration command.
+:::
+
 1. [Install Botkube CLI](./getting-started.mdx#installation)
 2. [Login into Botkube Cloud](./getting-started.mdx#first-use)
 3. Run Botkube migrate:
