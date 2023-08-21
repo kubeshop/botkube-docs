@@ -232,4 +232,4 @@ sources:
         interval: 2m
 ```
 
-This means that two different `botkube/ticker` plugin configurations were bound to the `all-teams` Slack channel. Under `source.StreamInput{}.Configs`, you will find the list of configurations in the YAML format as specified under the `config` property for each bound and enabled sources. The order of the configuration is the same as specified under the `bindings.sources` property. It's up to the plugin author to merge the passed configurations. In this case, the plugin author can override the `interval` property based on the config order, so `ticker-team-b` will take precedence as the last item on the list.
+This means that two different `botkube/ticker` plugin configurations were bound to the `all-teams` Slack channel. For each bound configuration [Botkube source dispatcher](../architecture/index.md#plugin-source-bridge) calls `Stream` method with the configuration specified under the `bindings.sources` property.
