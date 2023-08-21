@@ -127,9 +127,21 @@ const config = {
             position: "left",
             label: "Community",
           },
+
           {
             type: "docsVersionDropdown",
             position: "right",
+
+            dropdownItemsAfter: [
+              {
+                type: "html",
+                value: '<hr class="dropdown-separator">',
+              },
+              {
+                to: "/versions",
+                label: "All versions",
+              },
+            ],
           },
           {
             href: "https://github.com/kubeshop/botkube",

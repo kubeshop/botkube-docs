@@ -25,6 +25,7 @@
   "dependencies": {
     "@docusaurus/core": "^2.4.1",
     "@docusaurus/plugin-client-redirects": "^2.4.1",
+    "@docusaurus/plugin-content-docs": "^2.4.1",
     "@docusaurus/plugin-google-gtag": "^2.4.1",
     "@docusaurus/plugin-google-tag-manager": "^2.4.1",
     "@docusaurus/plugin-ideal-image": "^2.4.1",
@@ -42,7 +43,7 @@
   "devDependencies": {
     "@docusaurus/eslint-plugin": "^2.4.1",
     "@docusaurus/module-type-aliases": "^2.4.1",
-    "@tsconfig/docusaurus": "^1.0.5",
+    "@tsconfig/docusaurus": "^1.0.7",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
