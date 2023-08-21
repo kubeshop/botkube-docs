@@ -5,12 +5,10 @@ import { useVersions, useLatestVersion } from "@docusaurus/plugin-content-docs/c
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import archivedVersions from "@site/versionsArchived.json";
-import versions1 from "@site/versions.json";
+import versions from "@site/versions.json";
 import React from "react";
 
 const docsPluginId = undefined; // Default docs plugin instance
-
-const VersionsArchivedList = Object.entries(archivedVersions);
 
 function DocumentationLabel() {
   return <Translate id="versionsPage.versionEntry.link">Documentation</Translate>;
@@ -21,16 +19,9 @@ export default function Version(): JSX.Element {
     siteConfig: { organizationName, projectName },
   } = useDocusaurusContext();
   const { siteConfig } = useDocusaurusContext();
-  const version = useVersions(docsPluginId);
+  const versionplugin = useVersions(docsPluginId);
   const latestVersion = useLatestVersion(docsPluginId);
-  const currentVersion = version.find(version => version.name === "current")!;
-  const pastVersions = version.filter(
-    version => version !== latestVersion && version.name !== "current" && version.label >= `1.0`,
-  );
-
-  const archived = version.filter(
-    version => version !== latestVersion && version.name !== "current" && version < 0.18,
-  );
+  const currentVersion = versionplugin.find(version => version.name === "current")!;
 
   return (
     <Layout title="Versions" description="Botkube all documented site versions">
@@ -55,7 +46,7 @@ export default function Version(): JSX.Element {
                     <DocumentationLabel />
                   </Link>
                 </td>
-               </tr>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -85,10 +76,9 @@ export default function Version(): JSX.Element {
           </div>
         )}
 
-        {/* {(pastVersions.length < 4 || VersionsArchivedList.length > 0) && ( */}
-        <div className="margin-bottom--lg">
+          <div className="margin-bottom--lg">
           <Heading as="h3" id="archive">
-            <Translate id="versionsPage.archived.title">Past versions (Not maintained anymore)</Translate>
+            <Translate id="versionsPage.archived.title">Past versions</Translate>
           </Heading>
           <p>
             <Translate id="versionsPage.archived.description">
@@ -97,8 +87,9 @@ export default function Version(): JSX.Element {
           </p>
 
           <table>
-            <tbody>
-              {versions1.map(
+
+          <tbody>
+              {versions.map(
                 version =>
                   version !== latestVersion.label && (
                     <tr key={version}>
@@ -115,7 +106,7 @@ export default function Version(): JSX.Element {
 
         <div className="margin-bottom--lg">
           <Heading as="h3" id="legacy">
-            <Translate id="versionsPage.legacy.title">Archived Versions (Legacy)</Translate>
+            <Translate id="versionsPage.legacy.title">Archived Versions</Translate>
           </Heading>
           <p>
             <Translate id="versionsPage.legacy.description">

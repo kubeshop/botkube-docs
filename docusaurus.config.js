@@ -68,15 +68,6 @@ const config = {
         sidebarPath: require.resolve("./sidebarsCommunity.js"),
       },
     ],
-    // [
-    //   "@docusaurus/plugin-content-docs/client",
-    //   {
-    //     id: 'community',
-    //     path: 'community',
-    //     routeBasePath: 'community',
-    //   }
-    // ],
-
     [
       "@docusaurus/plugin-ideal-image",
       {
@@ -136,9 +127,12 @@ const config = {
             position: "left",
             label: "Community",
           },
+          
           {
             type: "docsVersionDropdown",
             position: "right",
+            
+
             dropdownItemsAfter: [
               {
                 type: "html",
