@@ -127,11 +127,10 @@ const config = {
             position: "left",
             label: "Community",
           },
-          
+
           {
             type: "docsVersionDropdown",
             position: "right",
-            
 
             dropdownItemsAfter: [
               {

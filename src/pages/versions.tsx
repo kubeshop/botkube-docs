@@ -76,7 +76,7 @@ export default function Version(): JSX.Element {
           </div>
         )}
 
-          <div className="margin-bottom--lg">
+        <div className="margin-bottom--lg">
           <Heading as="h3" id="archive">
             <Translate id="versionsPage.archived.title">Past versions</Translate>
           </Heading>
@@ -87,8 +87,7 @@ export default function Version(): JSX.Element {
           </p>
 
           <table>
-
-          <tbody>
+            <tbody>
               {versions.map(
                 version =>
                   version !== latestVersion.label && (
