@@ -5,7 +5,7 @@ sidebar_position: 1
 ---
 
 :::info
-[Legacy Slack integration](/0.14/installation/slack/) known from previous Botkube versions has been deprecated and removed from the Slack App Directory. Follow the tutorial below to use the new Slack integration.
+Legacy Slack integration known from previous Botkube versions has been deprecated and removed from the Slack App Directory. Follow the tutorial below to use the new Slack integration.
 :::
 
 ## Install Slack App in Your Slack workspace
