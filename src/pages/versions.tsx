@@ -56,7 +56,7 @@ export default function Version(): JSX.Element {
           // format: v1.2.3-rc.1+build.123
           const versionParts = rel.tag_name
             .replace("v", "") // remove leading v
-            .split("+")[0] // remove build identifier
+            .split("+")[0] // remove build identifier; it might be provided without the pre-release identifier
             .split("-")[0] // remove pre-release identifier
             .split("."); // split into major, minor, patch
 

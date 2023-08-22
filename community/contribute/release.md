@@ -78,3 +78,14 @@ the release steps described above, it will perform following actions;
 - Updates `./versions.json` file,
 - Creates new sidebar in `./versioned_sidebars`,
 - Creates an automatic PR against `main` branch
+
+### Archiving the older versions
+
+Currently, archiving older versions is manual. To archive an older version, follow these steps:
+
+- Remove the version from `versions.json`
+- Remove all files under `versioned_docs/version-{version}`
+- Remove sidebar file under `versioned_sidebars/version-{version}-sidebars.json`
+- Add the version to `archived_versions.json` with a working link to the archived version.
+
+  You can find the link from the Cloudflare Pages job run, e.g. https://github.com/kubeshop/botkube-docs/runs/15868100283.
