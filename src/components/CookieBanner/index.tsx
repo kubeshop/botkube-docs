@@ -14,11 +14,8 @@ export const CookiesMessageBanner: FC = () => {
   const cookies = new Cookies();
 
   if (!cookies || cookies.get("accepts-cookies") || isSiteEmbedded()) {
-    console.log("disable cookie banner");
     return null;
   }
-
-  console.log("enable cookie banner");
 
   return (
     <CookieBanner
