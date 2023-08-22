@@ -6,7 +6,7 @@ sidebar_position: 4
 
 Botkube allows plugins to access Kubernetes API by defining [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) rules as part of plugin `context.rbac` configuration. Kubeconfig generation needs to be requested by defining `context.rbac` property.
 
-Based on this configuration Botkube generates a temporary [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) file with user and/or group impersonation.
+Based on this configuration Botkube generates a temporary [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) with user and/or group impersonation.
 This kubeconfig is available to plugins in the `Execute` and `Stream` contexts.
 
 ## Architecture
@@ -14,14 +14,13 @@ This kubeconfig is available to plugins in the `Execute` and `Stream` contexts.
 Botkube uses its own cluster credentials to generate a temporary kubeconfig, and the kubeconfig uses [user/group impersonation](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation).
 
 For source plugins, the kubeconfig is generated once - during plugin startup.
-For executor plugins, the kubeconfig is generated every time a command is sent to the plugin, which allows greater flexibility, such as including the name of the channel the command was sent from in the
-kubeconfig generation.
+For executor plugins, the kubeconfig is generated every time a command is sent to the plugin, which allows greater flexibility, such as including the name of the channel the command was sent from.
 
 ![diagram](assets/botkube-read-only.svg "diagram")
 
 ## Configuration
 
-Each executor and source plugin can provide a `context` section with `rbac` config. This config is used to generate a dedicated kubeconfig.
+For each executor and source plugin, you can define a `context.rbac` configuration. This config is used to generate a dedicated kubeconfig.
 
 ```yaml
 executors:
@@ -84,7 +83,7 @@ rbac:
     - apiGroups: ["*"]
       resources: ["*"]
       verbs: ["get", "watch", "list"]
-  staticGroupName: &static-group-name "botkube-plugins-default" # group name used in the `values.yaml` file for default plugins
+  staticGroupName: "botkube-plugins-default" # group name used in the `values.yaml` file for default plugins
 ```
 
 See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.3.0/helm/botkube/values.yaml#L48-L53) for more details.
@@ -143,26 +142,6 @@ This paragraph contains examples of RBAC configuration for different use cases.
 You can use `extraObjects` override during Botkube installation. See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.3.0/helm/botkube/values.yaml#L1059) for more details.
 :::
 
-### Use default RBAC configuration
-
-In this example, a single executor plugin is defined with default RBAC configuration.
-
-Consider the following Botkube config:
-
-```yaml
-executors:
-  "kubectl":
-    botkube/kubectl@v1:
-      enabled: true
-      # ...
-      context:
-        rbac: {} # enable Kubeconfig generation with default RBAC configuration
-```
-
-Let's assume this plugin is bound to at least one channel.
-
-In a result, the plugin can access Kubernetes API according to the default configuration described
-
 ### Kubectl executor with read-only Pod access based on static group mapping
 
 In this example an executor plugin is defined with static RBAC that maps to group `read-pods`.
@@ -189,24 +168,24 @@ Let's assume this plugin is bound to at least one channel.
 1. Consider the following Kubernetes RBAC configuration:
 
    ```yaml
-     apiVersion: rbac.authorization.k8s.io/v1
-     kind: ClusterRole
-     metadata:
-       name: kubectl-read-pods
-     rules:
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRole
+   metadata:
+     name: kubectl-read-pods
+   rules:
      - apiGroups: [""]
        resources: ["pods"]
        verbs: ["get", "watch", "list"]
-     ---
-     apiVersion: rbac.authorization.k8s.io/v1
-     kind: ClusterRoleBinding
-     metadata:
-       name: kubectl-read-pods
-     roleRef:
-       apiGroup: rbac.authorization.k8s.io
-       kind: ClusterRole
-       name: kubectl-read-pods
-     subjects:
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRoleBinding
+   metadata:
+     name: kubectl-read-pods
+   roleRef:
+     apiGroup: rbac.authorization.k8s.io
+     kind: ClusterRole
+     name: kubectl-read-pods
+   subjects:
      - kind: Group
        name: read-pods # <-- this is the group name used in Botkube config
        apiGroup: rbac.authorization.k8s.io
@@ -237,26 +216,26 @@ In this example a single source plugin is defined with static RBAC that maps to 
 1. Consider the following Kubernetes RBAC configuration:
 
    ```yaml
-     apiVersion: rbac.authorization.k8s.io/v1
-     kind: ClusterRole
-     metadata:
-       name: reader
-     rules:
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRole
+   metadata:
+     name: reader
+   rules:
      - apiGroups: ["*"]
        resources: ["*"]
        verbs: ["get", "watch", "list"]
-     ---
-     apiVersion: rbac.authorization.k8s.io/v1
-     kind: ClusterRoleBinding
-     metadata:
-       name: reader
-     roleRef:
-       apiGroup: rbac.authorization.k8s.io
-       kind: ClusterRole
-       name: reader
-     subjects:
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRoleBinding
+   metadata:
+     name: reader
+   roleRef:
+     apiGroup: rbac.authorization.k8s.io
+     kind: ClusterRole
+     name: reader
+   subjects:
      - kind: User
-       name: kubernetes-read-only
+       name: kubernetes-read-only # <-- this is the username used in Botkube config
        apiGroup: rbac.authorization.k8s.io
    ```
 
@@ -300,49 +279,49 @@ In this example **kubectl** executor plugin is configured with channel name mapp
 1. Consider the following Kubernetes RBAC configuration:
 
    ```yaml
-     apiVersion: rbac.authorization.k8s.io/v1
-     kind: ClusterRoleBinding
-     metadata:
-       name: editor
-     roleRef:
-       apiGroup: rbac.authorization.k8s.io
-       kind: ClusterRole
-       name: editor
-     subjects:
-     - kind: Group
-       name: ch-1
-       apiGroup: rbac.authorization.k8s.io
-     ---
-     apiVersion: rbac.authorization.k8s.io/v1
-     kind: ClusterRole
-     metadata:
-       name: editor
-     rules:
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRole
+   metadata:
+     name: editor
+   rules:
      - apiGroups: ["*"]
        resources: ["*"]
        verbs: ["get", "watch", "list", "update", "create", "delete"]
-     ---
-     apiVersion: rbac.authorization.k8s.io/v1
-     kind: ClusterRoleBinding
-     metadata:
-       name: read-only
-     roleRef:
-       apiGroup: rbac.authorization.k8s.io
-       kind: ClusterRole
-       name: read-only
-     subjects:
-     - kind: Group
-       name: ch-2
-       apiGroup: rbac.authorization.k8s.io
-     ---
-     apiVersion: rbac.authorization.k8s.io/v1
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRoleBinding
+   metadata:
+     name: editor
+   roleRef:
+     apiGroup: rbac.authorization.k8s.io
      kind: ClusterRole
-     metadata:
-       name: read-only
-     rules:
+     name: editor
+   subjects:
+     - kind: Group
+       name: ch-1 # <-- channel name used in Botkube config
+       apiGroup: rbac.authorization.k8s.io
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRole
+   metadata:
+     name: read-only
+   rules:
      - apiGroups: ["*"]
        resources: ["*"]
        verbs: ["get", "watch", "list"]
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRoleBinding
+   metadata:
+     name: read-only
+   roleRef:
+     apiGroup: rbac.authorization.k8s.io
+     kind: ClusterRole
+     name: read-only
+   subjects:
+     - kind: Group
+       name: ch-2 # <-- channel name used in Botkube config
+       apiGroup: rbac.authorization.k8s.io
    ```
 
 In a result, users in channel `ch-1` can execute all kubectl commands, while users in channel `ch-2` can only execute read-only commands.
