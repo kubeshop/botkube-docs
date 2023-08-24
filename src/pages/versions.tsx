@@ -1,12 +1,22 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import React from "react";
+import React, { FC } from "react";
 import Link from "@docusaurus/Link";
+import Admonition from "@theme/Admonition";
 import { useVersions, useLatestVersion } from "@docusaurus/plugin-content-docs/client";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import archivedVersionsMap from "@site/versions-archived.json";
+import { useGitHubReleases } from "../hooks/github-releases";
 
 const docsPluginId = undefined; // Default docs plugin instance
+
+const ReleaseChangelogLink: FC<{ url: string; isFetchingReleases: boolean }> = ({ isFetchingReleases, url }) => {
+  if (isFetchingReleases) {
+    return <>⏳ Loading...</>;
+  }
+
+  return <Link to={url}>Release changelog</Link>;
+};
 
 export default function Version(): JSX.Element {
   const {
@@ -23,12 +33,33 @@ export default function Version(): JSX.Element {
   }
   const pastVersions = versions.filter(version => version !== latestVersion && version.name !== "current");
   const archivedVersions = Object.entries(archivedVersionsMap);
+  const [releases, isFetchingReleases] = useGitHubReleases(organizationName, projectName);
+
+  const getChangelogUrl = (minorMajorVersion: string) => {
+    const release = releases.get(minorMajorVersion);
+
+    if (!release) {
+      // fallback to a predictable, but not necessarily latest release
+      return `https://github.com/${organizationName}/${projectName}/releases/tag/v${minorMajorVersion}.0`;
+    }
+
+    return release.url;
+  };
 
   return (
     <Layout title="Versions" description="All Botkube versions">
       <main className="container margin-vert--lg">
         <Heading as="h1">Botkube versions</Heading>
         <p>This page lists all documented versions of Botkube.</p>
+
+        {!isFetchingReleases && releases.size === 0 && (
+          <Admonition type="caution">
+            <p>
+              Couldn't fetch the latest GitHub releases. While release changelog links will still work, they may not
+              point to the latest patch releases.
+            </p>
+          </Admonition>
+        )}
 
         <div className="margin-bottom--lg">
           <Heading as="h3" id="current">
@@ -43,7 +74,10 @@ export default function Version(): JSX.Element {
                   <Link to={latestVersion.path}>Documentation</Link>
                 </td>
                 <td>
-                  <Link to={getChangelogUrl(organizationName, projectName, latestVersion.name)}>Release changelog</Link>
+                  <ReleaseChangelogLink
+                    url={getChangelogUrl(latestVersion.name)}
+                    isFetchingReleases={isFetchingReleases}
+                  />
                 </td>
               </tr>
             </tbody>
@@ -85,7 +119,10 @@ export default function Version(): JSX.Element {
                       <Link to={version.path}>Documentation</Link>
                     </td>
                     <td>
-                      <Link to={getChangelogUrl(organizationName, projectName, version.name)}>Release changelog</Link>
+                      <ReleaseChangelogLink
+                        url={getChangelogUrl(version.name)}
+                        isFetchingReleases={isFetchingReleases}
+                      />
                     </td>
                   </tr>
                 ))}
@@ -110,7 +147,7 @@ export default function Version(): JSX.Element {
                       <Link to={versionUrl}>Documentation</Link>
                     </td>
                     <td>
-                      <Link to={getChangelogUrl(organizationName, projectName, version)}>Release changelog</Link>
+                      <ReleaseChangelogLink url={getChangelogUrl(version)} isFetchingReleases={isFetchingReleases} />
                     </td>
                   </tr>
                 ))}
@@ -122,7 +159,3 @@ export default function Version(): JSX.Element {
     </Layout>
   );
 }
-
-const getChangelogUrl = (orgName: string, projName: string, version: string) => {
-  return `https://github.com/${orgName}/${projName}/releases/tag/v${version}.0`;
-};
