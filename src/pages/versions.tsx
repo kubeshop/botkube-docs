@@ -1,23 +1,14 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import Link from "@docusaurus/Link";
 import Admonition from "@theme/Admonition";
 import { useVersions, useLatestVersion } from "@docusaurus/plugin-content-docs/client";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import archivedVersionsMap from "@site/versions-archived.json";
+import { useGitHubReleases } from "../hooks/github-releases";
 
 const docsPluginId = undefined; // Default docs plugin instance
-
-type Release = {
-  tagName: string;
-  url: string;
-  patchVersion: number;
-};
-
-type ReleaseMap = Map<string, Release>;
-
-type GHReleaseList = { draft: boolean; prerelease: boolean; tag_name: string; html_url: string }[];
 
 const ReleaseChangelogLink: FC<{ url: string; isFetchingReleases: boolean }> = ({ isFetchingReleases, url }) => {
   if (isFetchingReleases) {
@@ -42,49 +33,10 @@ export default function Version(): JSX.Element {
   }
   const pastVersions = versions.filter(version => version !== latestVersion && version.name !== "current");
   const archivedVersions = Object.entries(archivedVersionsMap);
-  const [releaseMap, setReleaseMap] = useState<ReleaseMap>(new Map<string, Release>());
-  const [isFetchingReleases, setIsFetchingReleases] = useState(true);
-
-  const getPublishedReleases: () => Promise<ReleaseMap | undefined> = async () => {
-    try {
-      // naive assumption that we won't have more than 100 releases anytime soon
-      const res = await fetch(`https://api.github.com/repos/${organizationName}/${projectName}/releases?per_page=100`);
-      const jsonRes = (await res.json()) as GHReleaseList;
-      return jsonRes
-        .filter(rel => !rel.prerelease && !rel.draft)
-        .reduce((map, rel) => {
-          // format: v1.2.3-rc.1+build.123
-          const versionParts = rel.tag_name
-            .replace("v", "") // remove leading v
-            .split("+")[0] // remove build identifier; it might be provided without the pre-release identifier
-            .split("-")[0] // remove pre-release identifier
-            .split("."); // split into major, minor, patch
-
-          if (versionParts.length < 3) {
-            return map;
-          }
-          const majorMinorVersion = versionParts.slice(0, 2).join(".");
-          const patchVersion = parseInt(versionParts[2]);
-
-          const existingEntry = map.get(majorMinorVersion);
-          if (existingEntry && existingEntry.patchVersion > patchVersion) {
-            return map;
-          }
-
-          map.set(majorMinorVersion, {
-            url: rel.html_url,
-            tagName: rel.tag_name,
-            patchVersion: patchVersion,
-          });
-          return map;
-        }, new Map<string, Release>());
-    } catch (err) {
-      console.log("couldn't fetch the GitHub releases", err);
-    }
-  };
+  const [releases, isFetchingReleases] = useGitHubReleases(organizationName, projectName);
 
   const getChangelogUrl = (minorMajorVersion: string) => {
-    const release = releaseMap.get(minorMajorVersion);
+    const release = releases.get(minorMajorVersion);
 
     if (!release) {
       // fallback to a predictable, but not necessarily latest release
@@ -94,26 +46,13 @@ export default function Version(): JSX.Element {
     return release.url;
   };
 
-  useEffect(() => {
-    const loadReleases = async () => {
-      const releases = await getPublishedReleases();
-      setIsFetchingReleases(false);
-      if (!releases) {
-        return;
-      }
-      setReleaseMap(releases);
-    };
-
-    void loadReleases();
-  }, [setReleaseMap]);
-
   return (
     <Layout title="Versions" description="All Botkube versions">
       <main className="container margin-vert--lg">
         <Heading as="h1">Botkube versions</Heading>
         <p>This page lists all documented versions of Botkube.</p>
 
-        {!isFetchingReleases && releaseMap.size === 0 && (
+        {!isFetchingReleases && releases.size === 0 && (
           <Admonition type="caution">
             <p>
               Couldn't fetch the latest GitHub releases. While release changelog links will still work, they may not

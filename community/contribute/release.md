@@ -86,6 +86,6 @@ Currently, archiving older versions is manual. To archive an older version, foll
 - Remove the version from `versions.json`
 - Remove all files under `versioned_docs/version-{version}`
 - Remove sidebar file under `versioned_sidebars/version-{version}-sidebars.json`
-- Add the version to `archived_versions.json` with a working link to the archived version.
+- Add the version to `versions-archived.json` with a working link to the archived version.
 
   You can find the link from the Cloudflare Pages job run, e.g. https://github.com/kubeshop/botkube-docs/runs/15868100283.
