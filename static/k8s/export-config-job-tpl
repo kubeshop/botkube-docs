@@ -1,0 +1,83 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: botkube-migration
+    botkube.io/migration: "true"
+  name: botkube-migration
+  namespace: botkube
+spec:
+  backoffLimit: 6
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      labels:
+        job-name: botkube-migration
+    spec:
+      containers:
+      - image: ghcr.io/kubeshop/botkube-config-exporter:v9.99.9-dev
+        imagePullPolicy: IfNotPresent
+        name: botkube-migration
+        {{- range .spec.template.spec.containers }}
+        {{- if eq .name "botkube" }}
+        env:
+        {{- range .env }}
+          - name: {{ .name }}
+            value: "{{ .value }}"
+        {{- end }}
+        volumeMounts:
+        {{- range .volumeMounts }}
+          - mountPath:  {{ .mountPath }}
+            name: {{ .name }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
+      restartPolicy: Never
+      serviceAccountName: {{ .spec.template.spec.serviceAccountName }}
+      volumes:
+        {{ range .spec.template.spec.volumes }}
+        {{- if .projected }}
+        - name: {{ .name }}
+          projected:
+            defaultMode: {{ .projected.defaultMode }}
+            sources:
+              {{- range .projected.sources }}
+              {{ if .serviceAccountToken -}}
+              - serviceAccountToken:
+                  expirationSeconds: {{ .serviceAccountToken.expirationSeconds }}
+                  path: {{ .serviceAccountToken.path }}
+              {{- else if .configMap -}}
+              - configMap:
+                  name: {{ .configMap.name }}
+                  {{- if .configMap.items }}
+                  items:
+                    {{- range .configMap.items }}
+                    - key: {{ .key }}
+                      path: {{ .path }}
+                    {{- end }}
+                  {{- end }}
+              {{- else if .secret -}}
+              - secret:
+                  name: {{ .secret.name }}
+                  {{- if .secret.items }}
+                  items:
+                    {{- range .secret.items }}
+                    - key: {{ .key }}
+                      path: {{ .path }}
+                    {{- end }}
+                  {{- end }}
+              {{- end }}
+              {{- end }}
+
+        {{ else if .configMap -}}
+        - configMap:
+            defaultMode: {{ .configMap.defaultMode }}
+            name: {{ .configMap.name }}
+          name: {{ .name }}
+        {{ else -}}
+        - emptyDir: {}
+          name: {{ .name }}
+        {{- end }}
+        {{- end }}
+
