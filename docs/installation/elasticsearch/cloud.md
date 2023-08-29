@@ -26,19 +26,19 @@ sidebar_position: 1
 
 5. Add plugins you want to enable in your Botkube instance and click `Next` button.
 
-    ![Plugins](assets/els_add_plugins.png "Plugins")
+   ![Plugins](assets/els_add_plugins.png "Plugins")
 
 6. Include optional `default aliases` and `default actions` and click `Create` button to create Botkube Cloud instance.
 
-    ![Create](assets/els_create.png "Create")
+   ![Create](assets/els_create.png "Create")
 
-    :::note
-    If you don't include other platforms which use `Executor` plugins we recommend `default aliases` and `default actions` options unchecked
-    :::
+   :::note
+   If you don't include other platforms which use `Executor` plugins we recommend `default aliases` and `default actions` options unchecked
+   :::
 
 7. Follow the instructions in the summary page to deploy Botkube into your environment.
 
-    ![Summary](assets/els_summary.png "Summary")
+   ![Summary](assets/els_summary.png "Summary")
 
 ## Clean up
 

@@ -22,10 +22,10 @@ sidebar_position: 1
    ![Select Platform](assets/discord_platform_select.png "Select platform")
 
 4. Create Botkube app at your Discord Server
-    
-    Reach https://discordapp.com/developers/applications.
 
-    ![discord_applications_portal](assets/discord_applications_portal.png)
+   Reach https://discordapp.com/developers/applications.
+
+   ![discord_applications_portal](assets/discord_applications_portal.png)
 
 5. Create a "New Application" named Botkube and add a bot named **Botkube** into the Application.
 
@@ -59,19 +59,19 @@ sidebar_position: 1
 
 11. Go to the **OAuth2** page. Generate the URL with suitable permissions using the **OAuth2 URL Generator** available under the OAuth2 section to add bot to your Discord server.
 
-   ![discord_bot_scope](assets/discord_bot_scope.png)
+![discord_bot_scope](assets/discord_bot_scope.png)
 
-   the generated URL contains **YOUR_CLIENT_ID**, Scope and permission details.
+the generated URL contains **YOUR_CLIENT_ID**, Scope and permission details.
 
-   ```
-   https://discord.com/api/oauth2/authorize?client_id={YOUR_CLIENT_ID}&permissions={SET_OF_PERMISSIONS}&scope=bot
-   ```
+```
+https://discord.com/api/oauth2/authorize?client_id={YOUR_CLIENT_ID}&permissions={SET_OF_PERMISSIONS}&scope=bot
+```
 
 12. Copy and Paste the generated URL in a new tab, select the discord server to which you want to add the bot, click Continue and Authorize Bot addition.
 
-   ![discord_bot_auth](assets/discord_bot_auth.png)
+![discord_bot_auth](assets/discord_bot_auth.png)
 
-   ![discord_bot_auth_2](assets/discord_bot_auth_2.png)
+![discord_bot_auth_2](assets/discord_bot_auth_2.png)
 
 13. Switch to the Discord app. Navigate to **User settings** and select **Advanced** tab.
 

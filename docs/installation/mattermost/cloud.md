@@ -14,12 +14,12 @@ Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
 
 1. Go to Botkube Cloud [Web App](https://app.botkube.io/) and create a new instance.
 
-    You can do it by clicking "Create an Instance" button on Home Page or under this link [Create an Instance](https://app.botkube.io/instances/add)
+   You can do it by clicking "Create an Instance" button on Home Page or under this link [Create an Instance](https://app.botkube.io/instances/add)
 
 2. Fill in the `Instance Display Name` and click `Next` button.
 
    ![Instance Display Name](assets/mattermost_instance_display_name.png "Instance display name")
-    
+
 3. Click `Add platform` dropdown, and select `Mattermost` option.
    ![Mattermost Platform Select](assets/mm_platform_select.png "Select mattermost platform")
 
@@ -73,11 +73,11 @@ Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
 
 10. Include optional `default aliases` and `default actions` and click `Create` button to create Botkube Cloud instance.
 
-   ![Create](assets/mm_create.png "Create")
+![Create](assets/mm_create.png "Create")
 
 11. Follow the instructions in the summary page to deploy Botkube into your environment.
 
-   ![Summary](assets/mm_summary.png "Summary")   
+![Summary](assets/mm_summary.png "Summary")
 
 ## Clean up
 
@@ -97,4 +97,3 @@ Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
    :::
 
    ![Delete](assets/mm_instance_delete.png "Delete")
-   
