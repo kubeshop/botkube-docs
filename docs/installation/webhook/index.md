@@ -1,6 +1,7 @@
 ---
 id: webhook
-title: "Outgoing webhook"
+title: "Outgoing webhook for self-hosted Botkube"
+sidebar_label: "Outgoing webhook"
 sidebar_position: 7
 ---
 
