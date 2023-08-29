@@ -62,7 +62,7 @@ Visit [Slack official guide](https://slack.com/help/articles/360001603387-Manage
 
 ### Cloud Slack
 
-Cloud Slack integration communicates via gRPC with the Botkube control-plane. In order to make this integration work, you need to allow access to api.botkube.io.
+Cloud Slack integration communicates via gRPC with the Botkube control-plane. In order to make this integration work, you need to allow access to `api.botkube.io`.
 
 ## Plugin's permissions
 
