@@ -41,7 +41,7 @@ Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
    You can also use a custom username for your bot. However, it needs to be passed during Botkube installation in one of the further steps.
    :::
 
-   Past the bot name in the form
+   Paste the bot name in the form
 
    ![Bot Name in the form](assets/mm_form_bot_name.png "Bot Name in the form")
 
@@ -86,7 +86,7 @@ Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
 - Deactivate or remove Botkube user from Mattermost Team. Login as System Admin, in the Menu proceed to System console -> Users -> botkube -> Deactivate.
 - Archive Channel created for Botkube communication if required.
 
-## Remove Botkube from Kubernetes cluster
+### Remove Botkube from Kubernetes cluster
 
 1. Go to Botkube Cloud instances page and click `Manage` button of the instance you want to remove.
 

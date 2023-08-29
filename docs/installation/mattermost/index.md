@@ -1,6 +1,7 @@
 ---
 id: mattermost
-title: Mattermost
+title: Mattermost for self-hosted Botkube
+sidebar_label: Mattermost
 sidebar_position: 3
 ---
 

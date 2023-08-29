@@ -1,6 +1,7 @@
 ---
 id: discord
-title: Discord
+title: Discord for self-hosted Botkube
+sidebar_label: Discord
 sidebar_position: 4
 ---
 
