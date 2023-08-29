@@ -9,6 +9,7 @@ The easiest way to develop Botkube with Elasticsearch notifier enabled is to ins
 ## Steps
 
 1. Install Elasticsearch:
+
    1. Install ECK custom resource definitions:
       ```bash
       kubectl create -f https://download.elastic.co/downloads/eck/2.9.0/crds.yaml
@@ -51,6 +52,7 @@ To review if the events are properly saved in Elasticsearch, follow these steps:
    ```
 
 1. Retrieve password
+
    ```bash
    PASSWORD=$(kubectl get secret elasticsearch-es-elastic-user -o go-template='{{.data.elastic | base64decode}}')
    ```
