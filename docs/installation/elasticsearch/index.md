@@ -1,6 +1,7 @@
 ---
 id: elasticsearch
-title: "ElasticSearch"
+title: "ElasticSearch for self-hosted Botkube"
+sidebar_label: "ElasticSearch"
 sidebar_position: 6
 ---
 
