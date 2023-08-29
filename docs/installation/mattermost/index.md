@@ -9,55 +9,43 @@ sidebar_position: 3
 - Botkube CLI installed according to the [Getting Started guide](../../cli/getting-started.mdx#installation)
 - Access to Kubernetes cluster
 
-## Install Botkube to the Mattermost team
+## Install Botkube to the Mattermost
 
-Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
+Follow the steps below to install Botkube in your Mattermost instance.
 
-### 1. Enable Personal Access Token
+### Create the Botkube bot account
 
-Login with System Admin account, and in the Menu proceed to **System console > Integrations > Integration Management** and enable **Personal Access Token**.
+1. Follow the [Mattermost instructions](https://developers.mattermost.com/integrate/reference/bot-accounts/) for creating a bot account. When creating the bot account, use the following details:
 
-![mm_token_access](assets/mm_token_access.png)
+   - Username — `Botkube`
 
-### 2. Create Botkube user
+     :::note
+     You can also use a custom username for your bot. Just remember that you'll need to provide this username during a later step of the Botkube installation.
+     :::
 
-To create a Botkube user, if not already created, proceed to the menu and Get a team invite link. Logout from the admin account and paste the link in the address bar and create a user with the username **Botkube**.
+   - Description — `Botkube helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.`.
 
-:::note
-You can also use a custom username for your bot. However, it needs to be passed during Botkube installation in one of the further steps.
-:::
+   - Icon — You can download the Botkube icon from [this link](https://github.com/kubeshop/botkube/blob/main/branding/logos/botkube-black-192x192.png).
 
-Export the bot name as an environment variable:
+2. Export the bot name as an environment variable:
 
-```bash
-export MATTERMOST_BOT_NAME="{bot_name}"
-```
+   ```bash
+   export MATTERMOST_BOT_NAME="{bot_name}"
+   ```
 
-![mm_botkube_user](assets/mm_botkube_user.png)
+3. Also, export the bot's token as an environment variable:
 
-### 3. Manage Roles for Botkube user
+   ```bash
+   export MATTERMOST_TOKEN="{token}"
+   ```
 
-Login as System Admin, in the Menu, proceed to **System console > Users**. For Botkube user, Manage Roles and select System Admin role.
+### Add Botkube to a channel
 
-![mm_botkube_roles](assets/mm_botkube_roles.png)
+Make sure that the newly created bot account is added to your Mattermost team by following [these instructions](https://developers.mattermost.com/integrate/reference/bot-accounts/#bot-account-creation).
 
-### 4. Create a Token for Botkube user
+![Invite Bot Account](./assets/invite.png)
 
-Login as Botkube user, in the Menu, proceed to **Account Settings > Security > Personal Access Token > Create** and copy the token.
-
-![mm_botkube_token](assets/mm_botkube_token.png)
-
-Export it as an environment variable:
-
-```bash
-export MATTERMOST_TOKEN="{token}"
-```
-
-### 5. Add Botkube to a channel
-
-Add Botkube user created to the channel you want to receive notifications in.
-
-Export the channel name as an environment variable:
+Next, invite the Botkube bot into the specific channel where you want to receive notifications. Export the channel name as an environment variable:
 
 ```bash
 export MATTERMOST_CHANNEL="{channel_name}"
@@ -89,7 +77,7 @@ botkube install --version v1.3.0 \
 where:
 
 - **MATTERMOST_SERVER_URL** is the URL (including http/https schema) where Mattermost is running,
-- **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for Botkube user,
+- **MATTERMOST_TOKEN** is the Token received by creating Personal Access Token for Botkube bot,
 - **MATTERMOST_TEAM** is the Team name where Botkube is added,
 - **MATTERMOST_CHANNEL** is the Channel name where Botkube is added and used for communication,
 - **MATTERMOST_BOT_NAME** is the Mattermost bot username (usually it is `Botkube`),
@@ -104,7 +92,7 @@ Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
 ## Remove Botkube from Mattermost Team
 
-- Deactivate or remove Botkube user from Mattermost Team. Login as System Admin, in the Menu proceed to System console -> Users -> botkube -> Deactivate.
+- Deactivate or remove Botkube bot from Mattermost Team.
 - Archive Channel created for Botkube communication if required.
 
 ## Remove Botkube from Kubernetes cluster
@@ -114,3 +102,39 @@ Execute the following command to completely remove Botkube and related resources
 ```bash
 botkube uninstall
 ```
+
+## Troubleshooting
+
+### Botkube doesn't start
+
+**Symptoms**
+
+The Botkube Pod is restarting and the Botkube logs show the following error:
+
+```json
+{
+  "level": "fatal",
+  "msg": "while running application: while waiting for goroutines to finish gracefully: 1 error occurred:\n\t* while creating Mattermost bot: while getting team details: team \"Botkube\" not found",
+  "time": "2023-08-25T14:52:30+02:00"
+}
+```
+
+**Solution**
+
+You need to ensure that the configuration used by Botkube is valid.
+
+1. Get and decode the communication Secret details:
+   ```bash
+   kubectl get secret botkube-communication-secret -n botkube --template='{{index .data "comm_config.yaml" | base64decode }}'
+   ```
+2. Verify the following:
+
+   - Ensure that the value of `communications.default-group.mattermost.team` in the configuration matches the actual team name in your Mattermost UI.
+
+   - Confirm that the bot specified in `communications.default-group.mattermost.botName` has been invited to the relevant team and all specified channels.
+
+   - Check the validity of the token provided in `communications.default-group.mattermost.token`. If you're unsure, navigate to the Bot Accounts section in Mattermost and generate a new one.
+
+3. Additional Steps:
+
+   If you continue to experience issues with Botkube restarts, you can perform further troubleshooting by following the instructions provided by Mattermost on [testing bot connections](https://developers.mattermost.com/integrate/reference/bot-accounts/#how-can-i-quickly-test-if-my-bot-account-is-working).
