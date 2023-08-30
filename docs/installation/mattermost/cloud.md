@@ -47,7 +47,7 @@ Follow the steps below to install Botkube in your Mattermost instance.
 
    Make sure that the newly created bot account is added to your Mattermost team by following [these instructions](https://developers.mattermost.com/integrate/reference/bot-accounts/#bot-account-creation).
 
-   ![Invite Bot Account](./assets/invite.png)   
+   ![Invite Bot Account](./assets/invite.png)
 
    Add Botkube user created to the channel you want to receive notifications in.
 
@@ -63,7 +63,7 @@ Follow the steps below to install Botkube in your Mattermost instance.
 
 10. Follow the instructions in the summary page to deploy Botkube into your environment.
 
-   ![Summary](assets/mm_summary.png "Summary")
+![Summary](assets/mm_summary.png "Summary")
 
 ## Clean up
 
