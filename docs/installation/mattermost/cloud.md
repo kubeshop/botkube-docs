@@ -10,7 +10,7 @@ sidebar_position: 1
 
 ## Create a Botkube Cloud Instance with Mattermost
 
-Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
+Follow the steps below to install Botkube in your Mattermost instance.
 
 1. Go to Botkube Cloud [Web App](https://app.botkube.io/) and create a new instance.
 
@@ -23,61 +23,47 @@ Follow the steps below to install Botkube in your Mattermost Team (v5.14.0).
 3. Click `Add platform` dropdown, and select `Mattermost` option.
    ![Mattermost Platform Select](assets/mm_platform_select.png "Select mattermost platform")
 
-4. Enable Personal Access Token
+4. Follow the [Mattermost instructions](https://developers.mattermost.com/integrate/reference/bot-accounts/) for creating a bot account. When creating the bot account, use the following details:
 
-   In the mattermost login with System Admin account, and in the Menu proceed to **System console > Integrations > Integration Management** and enable **Personal Access Token**.
+   - Username — `Botkube`
 
-   ![mm_token_access](assets/mm_token_access.png)
+     :::note
+     You can also use a custom username for your bot. Just remember that you'll need to provide this username during a later step of the Botkube installation.
+     :::
 
-5. Create Botkube user
+   - Description — `Botkube helps you monitor your Kubernetes cluster, debug critical deployments and gives recommendations for standard practices by running checks on the Kubernetes resources.`.
 
-   To create a Botkube user, if not already created, proceed to the menu and Get a team invite link.
+   - Icon — You can download the Botkube icon from [this link](https://github.com/kubeshop/botkube/blob/main/branding/logos/botkube-black-192x192.png).
 
-   ![mm_botkube_user](assets/mm_botkube_user.png)
-
-   Logout from the admin account and paste the link in the address bar and create a user with the username **Botkube**.
-
-   :::note
-   You can also use a custom username for your bot. However, it needs to be passed during Botkube installation in one of the further steps.
-   :::
-
-   Paste the bot name in the form
+5. Paste the bot name in the form
 
    ![Bot Name in the form](assets/mm_form_bot_name.png "Bot Name in the form")
 
-6. Manage Roles for Botkube user
-
-   Login as System Admin, in the Menu, proceed to **System console > Users**. For Botkube user, Manage Roles and select System Admin role.
-
-   ![mm_botkube_roles](assets/mm_botkube_roles.png)
-
-7. Create a Token for Botkube user
-
-   Login as Botkube user, in the Menu, proceed to **Account Settings > Security > Personal Access Token > Create** and copy the token.
-
-   ![mm_botkube_token](assets/mm_botkube_token.png)
-
-   Past the token in the form
+6. Past the token in the form
 
    ![Personal Token in the form](assets/mm_personal_token_form.png "Personal Token in the form")
 
-8. Add Botkube to a channel
+7. Add Botkube to a channel
+
+   Make sure that the newly created bot account is added to your Mattermost team by following [these instructions](https://developers.mattermost.com/integrate/reference/bot-accounts/#bot-account-creation).
+
+   ![Invite Bot Account](./assets/invite.png)   
 
    Add Botkube user created to the channel you want to receive notifications in.
 
    ![Channels in the form](assets/mm_channels_form.png "Channels in the form")
 
-9. Add plugins you want to enable in your Botkube instance and click `Next` button.
+8. Add plugins you want to enable in your Botkube instance and click `Next` button.
 
    ![Plugins](assets/mm_add_plugins.png "Plugins")
 
-10. Include optional `default aliases` and `default actions` and click `Create` button to create Botkube Cloud instance.
+9. Include optional `default aliases` and `default actions` and click `Create` button to create Botkube Cloud instance.
 
-![Create](assets/mm_create.png "Create")
+   ![Create](assets/mm_create.png "Create")
 
-11. Follow the instructions in the summary page to deploy Botkube into your environment.
+10. Follow the instructions in the summary page to deploy Botkube into your environment.
 
-![Summary](assets/mm_summary.png "Summary")
+   ![Summary](assets/mm_summary.png "Summary")
 
 ## Clean up
 
