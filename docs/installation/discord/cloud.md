@@ -1,7 +1,8 @@
 ---
 id: discord-cloud
+slug: cloud
 title: Discord for Botkube Cloud
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 ## Prerequisites

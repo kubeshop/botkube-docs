@@ -1,8 +1,8 @@
 ---
 id: webhook-cloud
 title: "Outgoing webhook for Botkube Cloud"
-sidebar_label: "Outgoing webhook for Botkube Cloud"
-sidebar_position: 1
+slug: cloud
+sidebar_position: 2
 ---
 
 ## Prerequisites

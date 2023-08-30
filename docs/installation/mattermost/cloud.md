@@ -1,7 +1,8 @@
 ---
 id: mattermost-cloud
 title: Mattermost for Botkube Cloud
-sidebar_position: 1
+slug: cloud
+sidebar_position: 2
 ---
 
 ## Prerequisites
