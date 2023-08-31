@@ -25,6 +25,8 @@ sidebar_position: 2
 
 4. Fill in all required data in the form
 
+   ![Form](assets/els_form.png "Form")
+
 5. Add plugins you want to enable in your Botkube instance and click `Next` button.
 
    ![Plugins](assets/els_add_plugins.png "Plugins")
