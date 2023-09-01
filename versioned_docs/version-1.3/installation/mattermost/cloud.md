@@ -27,7 +27,7 @@ Follow the steps below to install Botkube in your Mattermost instance.
 4. Create Botkube user in Mattermost:
 
    To create a Botkube user, if not already created, proceed to the menu and Get a team invite link.
-   
+
    ![mm_botkube_user](assets/mm_botkube_user.png)
 
    Logout from the admin account and paste the link in the address bar and create a user with the username **Botkube**.
@@ -68,15 +68,15 @@ Follow the steps below to install Botkube in your Mattermost instance.
 
 10. Add plugins you want to enable in your Botkube instance and click `Next` button.
 
-   ![Plugins](assets/mm_add_plugins.png "Plugins")
+![Plugins](assets/mm_add_plugins.png "Plugins")
 
 11. Include optional `default aliases` and `default actions` and click `Create` button to create Botkube Cloud instance.
 
-   ![Create](assets/mm_create.png "Create")
+![Create](assets/mm_create.png "Create")
 
 12. Follow the instructions in the summary page to deploy Botkube into your environment.
 
-   ![Summary](assets/mm_summary.png "Summary")
+![Summary](assets/mm_summary.png "Summary")
 
 ## Clean up
 

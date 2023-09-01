@@ -64,7 +64,7 @@ Follow the steps below to install Botkube in your Mattermost instance.
 
 10. Follow the instructions in the summary page to deploy Botkube into your environment.
 
-   ![Summary](assets/mm_summary.png "Summary")
+![Summary](assets/mm_summary.png "Summary")
 
 ## Clean up
 
