@@ -41,6 +41,12 @@ The easiest way to develop Botkube with Elasticsearch notifier enabled is to ins
       EOF
       ```
 
+1. Retrieve password
+
+   ```bash
+   PASSWORD=$(kubectl get secret elasticsearch-es-elastic-user -o go-template='{{.data.elastic | base64decode}}')
+   ```
+
 1. Install Botkube with Elasticsearch, according to the [Elasticsearch installation](../../installation/elasticsearch) instruction, where:
 
    - `ELASTICSEARCH_USERNAME` is `elastic`,
@@ -49,22 +55,12 @@ The easiest way to develop Botkube with Elasticsearch notifier enabled is to ins
 
    You don't need to set index name, type, shards and replicas. Also, during Botkube installation, you need to use `--set communications.default-group.elasticsearch.skipTLSVerify=true` flag to skip TLS verification.
 
-   ```bash
-
-   ```
-
 To review if the events are properly saved in Elasticsearch, follow these steps:
 
 1. Do port forward:
 
    ```bash
    kubectl port-forward svc/elasticsearch-es-internal-http 9200
-   ```
-
-1. Retrieve password
-
-   ```bash
-   PASSWORD=$(kubectl get secret elasticsearch-es-elastic-user -o go-template='{{.data.elastic | base64decode}}')
    ```
 
 1. Fetch Elasticsearch indices:
