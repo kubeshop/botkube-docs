@@ -1,6 +1,6 @@
 ---
-title: Getting started with Botkube executors
-slug: custom-executors
+title: Creating the Botkube Flux Plugin for Day 2 operations
+slug: flux
 authors:
   - name: "Mateusz Szostok"
     title: "Botkube Maintainer"
@@ -8,348 +8,166 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/17568639?s=250
 ---
 
-Botkube gives you fast and simple access to your clusters right from your communication platform. It does that by sending Kubernetes notifications (via [_sources_](https://docs.botkube.io/architecture/#source)) and allowing you to run `kubectl` and `helm` commands (via [_executors_](https://docs.botkube.io/architecture/#executor)) straight from the platform (Slack, Discord, Microsoft Teams and Mattermost).
+## Introduction
 
-In the recent Botkube 0.17 release, we took it to the next level by giving you an easy way to bring your own tools to a chat window!
+[//]: # (- Brief overview of the Botkube Flux plugin.)
+[//]: # (- Importance of GitOps workflow automation.)
+[//]: # (- Purpose of the blog: Detailing the process of creating the Botkube Flux plugin.)
 
-In this blog post, you will learn how to develop your own executor plugin to fill the gap in your daily workflow.
+In Botkube, we move towards GitOps by developing such extensions like Flux plugin, in order to simplify the interaction between Kubernetes clusters and GitHub repositories. We try to find a solution for places where automation is needed but not yet available.
 
-## Goal
+With the Botkube brand-new Flux plugin, you can execute commands straight from Slack using interactive forms. What's more, you will be informed about GitHub Pull Request that is changing your kustomization files including dedicated button to show you a diff report between the Pull Request and the current cluster state.
 
-To make it simple but functional, I will show you how to develop an executor that creates an issue for failing Kubernetes resources such as Job, Deployment, StatefulSet, and Pod.
+In this blog post, we will reveal the cards and jump into the process thinking and implementation details of the Flux plugin. You will learn about Zapier-like side of the Botkube that allowed us to glue three important parts: Kubernetes cluster, GitHub platform, and Flux CLI. All of that, to make you love your Day 2 operations.
 
-![The final executor demo](./assets/gh-demo.gif)
+## The Evolution of Flux Executor Plugin
 
-### Why it's worth it
+[//]: # (- Introduction to the real use-case scenario.)
+[//]: # (- How the Botkube Flux plugin was utilized to address a practical problem.)
+[//]: # (- Impact of the plugin on the efficiency and productivity of the team.)
 
-With just a few lines of code, we will automate the process of creating a GitHub issue that out-of-the box contains Kubernetes-specific information useful for further debugging. All of that, directly from Slack, Discord, Mattermost, or MS Teams! No need for connecting to your cluster in your terminal, installing and running `kubectl` commands and copy-pasting fetched details into your browser.
+Let's put ourselves in the shoes of a team managing Kubernetes applications with multiple pull requests. Our goal is to integrate with Flux CD in order to simplify Day 2 operations for Flux users, so let's take a closer look at the user story:
 
-Instead, you will be able to type `@Botkube gh create issue pod/foo` from any device that has access to your chat, including mobile apps.
+1. Be able to run Flux CLI commands from any communication platform, in the same way as you can do in your terminal:
+	 ![](flux get source git)
 
-## Prerequisites
+2. Next, let's make it mobile friendly. The secret ingredient is interactivity, such as buttons, and select menus.
+	 ![](flux get sources git)
+	 Typing and copy-pasting a long names doesn't work well. But now, you have a handy Flux client right in your pocket that you can use with just a few clicks.
+	 And we are just half-way there 😈
 
-- Access to a Kubernetes cluster
-  :::info
-  To create a local cluster for testing purposes using [`k3d`](https://k3d.io/v5.0.1/#installation), run:
-  ```bash
-  k3d cluster create
-  ```
-  :::
-- [Botkube installed and configured](https://docs.botkube.io/installation/).
-- Basic understanding of the Go language
-- [Go](https://go.dev/doc/install) at least 1.18.
+3. Here comes the last but unique part which makes the difference. **Support for day 2 operations**. In our case, we stitched together three important parts: Kubernetes cluster, GitHub platform, and Flux CLI. As a result, we provided a streamline experience for generating a diff report in the context of GitHub Pull Requests and current cluster state.
 
-## What's under the hood
+	 ![](diff report)
 
-To understand better what we will develop, I want to give you a bigger picture of the Botkube plugin system. The below animation focuses only on the executor part, but it's almost the same for sources.
+	 🎁 As you may notice, the diff report notification contains some useful actions out-of-the-box:
+	- Posting the diff report as a GitHub comment.
+	- Approving the pull request.
+	- Viewing the pull request.
 
-![Plugin system architecture animation](./assets/arch-executor-plugin.gif)
+4. Now, when we're happy about the result, we were still missing one more part to **automate our day 2 operation**.
 
-The new part is a plugin repository that we [introduced in `0.17`](https://botkube.io/blog/botkube-v017-release-notes). Plugin repository is a place where you store your plugin binaries and index files. Any static file server can be used, and in this blog post we will use a GitHub release. It’s similar to what you know from the Helm ecosystem.
+	 Even though the diffing flow integrates with GitHub, it still requires two manual steps:
+	   - discovering that a new pull-request was created
+	   - constructing a Flux related command
+	   	:::note
+	   	We could use Botkube aliases in order to just run `@Botkube cluster-diff [PR-Number]`.
+	   	:::
 
-The plugin manager consumes user's configuration, and downloads and starts **only** enabled plugins from a given repository. Plugins are running directly on the Kubernetes cluster where the Botkube core was installed.
+   That's how the GitHub Events source was born. Now we can set up a full workflow to:
+	 1. Watch for GitHub Pull Requests that changes files in `kustomize` directory. Alternatively, we can use label selectors.
+	 2. Get notification on Slack about new Pull Request.
+	 3. Render and embed event-aware button to run a diff report.
 
-Such approach allows us to decouple the Botkube core and its extensions. Thanks to that, we can:
-
-- Avoid having the Botkube core crash if a given plugin malfunctions
-- Write extensions in any language as gRPC is used
-
-From the end-user's perspective, you can:
-
-- Specify and use multiple plugin repositories at the same time
-- Enable different plugin versions within the same Botkube version
-
-To learn more, see [Botkube architecture](https://docs.botkube.io/architecture/).
-
-## Step-By-Step Instructions
-
-To quickly onboard you to Botkube plugins, we maintain the [kubeshop/botkube-plugins-template](https://github.com/kubeshop/botkube-plugins-template) repository that has all batteries included. Our first step is to bootstrap your own GitHub repository.
-
-:::tip
-**TODO:** Embed a ~5min video where we show all the steps from this how-to blog post.
-:::
-
-To check out the entire code, visit the [Botkube GitHub repository](https://github.com/kubeshop/botkube/tree/main/cmd/executor/gh/main.go).
-
-### Repository setup
-
-1. Navigate to [`botkube-plugins-template`](https://github.com/kubeshop/botkube-plugins-template).
-
-2. Click **Use this template**, and then **Create a new repository**.
-
-   ![Create Repo](./assets/tpl-repo.png)
-
-   By doing so, you will create your own plugin repository with a single commit.
-
-3. Clone your repository locally:
-
-   ```bash
-   gh clone {owner}/{repo_name} # for example, gh clone mszostok/botkube-plugins
-   ```
-
-4. Create and push a new tag to perform the initial release:
-
-   ```bash
-   git tag v0.0.1
-   git push --tags
-   ```
-
-   After a few minutes you should see a new GitHub release.
-
-Voilà! You are already an owner of fully functional Botkube plugins. Now it's time to add your own brick by creating a GitHub executor.
-
-:::note
-In this blog post, we use only GitHub releases that work out-of-the-box. Releasing plugins on GitHub Pages requires additional setup. To support them too, see the [use template](https://docs.botkube.io/plugin/quick-start#use-template) document.
-:::
-
-### Develop GitHub executor
-
-:::note
-To make the code-snippets more readable, I skipped the error handling. However, it will be useful if you will add error handling for the final implementation. You can check the [full `gh` source-code](https://github.com/kubeshop/botkube/tree/main/cmd/executor/gh/main.go) for the reference.
-:::
-
-import Gist from 'react-gist';
-
-1. Create a `cmd/gh/main.go` file with the following template:
-
-   <Gist id="1dbff1ac28b30024134e74ec7cbac563" />
-
-   This template code imports required packages and registers `GHExecutor` as the gRPC plugin. Our `GHExecutor` service already implements the required [Protocol Buffers](https://github.com/kubeshop/botkube/blob/main/proto/executor.proto) contract. As you can see, we require **only 2 methods**.
-
-   - The **`Metadata`** method returns basic information about your plugin. This data is used when the plugin index is [generated in an automated way](https://docs.botkube.io/plugin/repo).
-
-   - The **`Execute`** method is the heart of your executor plugin. This method runs your business logic and returns the output as plaintext. Next, the Botkube core sends back the response to a given communication platform.
-
-2. To download the imported dependencies, in your terminal, run:
-
-   ```bash
-   go mod tidy
-   ```
-
-3. Great! At this stage you already have a functional Botkube executor plugin. However, for now, it only responds with a hard-coded "Aloha!" greeting. But it can do that already on all supported communication platforms.
-
-   ![](./assets/demo-gh-aloha.gif)
-
-   Don't worry, in the next steps, we will implement our business logic.
-
-4. Add support for user configuration:
-
-   <Gist id="39fc1614e2849319314786fc53efe52d" />
-
-   For each `Execute` method call, Botkube attaches the list of associated configurations. The input parameters are defined by the user, when enabling a given plugin:
-
-   ```yaml
-   executors:
-     "plugin-based":
-       repo-name/gh:
-         enabled: true # If not enabled, plugin is not downloaded and started.
-         config: # Plugin's specific configuration.
-           github:
-             repository: "mszostok/repository"
-             token: "github_pat_foo"
-             issueTemplate: |
-               ## Description
-
-               This issue refers to the problems connected with {{ .Type | code "bash" }} in namespace {{ .Namespace | code "bash" }}
-
-               {{ .Logs | code "bash"}}
-   ```
-
-   In our case, we need to have a GitHub token, GitHub repository where the issue should be created, and an issue template. The remaining parameters can be hard-coded on the plugin side, however, your plugin will be more flexible if you allow your users to change it without rebuilding your plugins.
-
-   It's up to the plugin author to merge the passed configurations. You can use our helper function from the plugin extension package (`pluginx`). To learn more, see [Passing configuration to your plugin](https://docs.botkube.io/plugin/custom-executor#passing-configuration-to-your-plugin).
-
-5. Let's implement command parsing to properly understand command syntax:
-
-   Our goal is to parse `gh create issue KIND/NAME [-n, --namespace]`.
-
-   There are a lot of great libraries supporting command parsing. The most popular is probably [`cobra`](https://github.com/spf13/cobra), but for our use case, we will just use the helper function from our plugin extension package.
-
-   <Gist id="6965d521ebb04a858b04df60d04c8af6" />
-
-   Under the hood, the `pluginx.ParseCommand` method uses [`go-arg`](https://github.com/alexflint/go-arg).
-
-6. We are almost there! Now let's fetch the issue details:
-
-   <Gist id="85896e45d9d074143d60343b1d2f941c" />
-
-   Here, we fetch logs and the cluster version, but you can extend it to fetch other details about your cluster. To make it as simple as possible, we use the `kubectl` CLI and avoid reimplementing a bit more complicated logic for fetching logs from all different Kubernetes kinds.
-
-7. Render issue description:
-
-   <Gist id="4811d91af7c576cf36dae2650413119d" />
-
-   In this step, we use the issue template that the user specified in plugin configuration. I decided to use the [Go template](https://pkg.go.dev/text/template), as it fits perfectly into our template rendering flow.
-
-8. Finally! Submitting an issue!
-
-   <Gist id="bedd74bad437c9d3160242d3abaabe74" />
-
-   GitHub provides a great [`gh`](https://cli.github.com) CLI, which we use to submit our issue. To learn more about the CLI syntax, see their [manual](https://cli.github.com/manual/gh_issue_create).
-
-   :::note
-   The `gh` CLI doesn't accept fine-grained access tokens. As a workaround, you can use the [Go SDK](https://gist.github.com/mszostok/defa5a5390e87b4f011b986742f714d8).
-   :::
-
-9. The last part is to download our dependencies.
-
-   <Gist id="46caa050ec651eb656f99e32c657821b" />
-
-   We already improved this step and in the 0.18 version Botkube will download defined [dependencies automatically](https://docs.botkube.io/next/plugin/dependencies). For now, you can use the `pluginx.DownloadDependencies` function to call our downloader explicitly. The syntax will remain the same.
-
-Congrats! The `gh` plugin is finally implemented. Now, let's play a DevOps role! 😈 In the next section, I will show you how to build and release your brand-new executor plugin.
-
-### Release the `gh` executor
-
-It's time to build your plugin. For that purpose, we will use [GoReleaser](https://goreleaser.com/). It simplifies building Go binaries for different architectures. The important thing is to produce the binaries for the architecture of the host platform where Botkube is running. Adjust the `goos`, `goarch`, and `goarm` properties based on this architecture.
-
-Add new build entry under `.goreleaser.yaml`:
-
+Now, you may think that what we achieve in those 4 steps it's great but will be hard to configure. Is it? We hope that included YAML configuration proves that it is not:
 ```yaml
-builds:
-  - id: gh
-    main: cmd/gh/main.go
-    binary: executor_gh_{{ .Os }}_{{ .Arch }}
+botkube/github-events: # GitHub Events
+  github:
+    auth:
+      accessToken: "ghp_"
 
-    no_unique_dist_dir: true
-    env:
-      - CGO_ENABLED=0
-    goos:
-      - linux
-      - darwin
-    goarch:
-      - amd64
-      - arm64
-    goarm:
-      - 7
+  repositories:
+    - name: mszostok/podinfo
+      on:
+        pullRequests:
+          - types: ["open"]
+            paths:
+              include: [ 'kustomize/.*' ]
+            notificationTemplate:
+              extraButtons:
+                - displayName: "Flux Diff"
+                  commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
 ```
 
-Now, we need to distribute our plugins. As we mentioned earlier, a plugin repository can be any static file server. The [kubeshop/botkube-plugins-template](https://github.com/kubeshop/botkube-plugins-template) repository comes with two [GitHub Actions](https://github.com/features/actions):
+## Interactivity and Decision-Making
 
-1. The [`.github/workflows/release.yml`](https://github.com/kubeshop/botkube-plugins-template/blob/main/.github/workflows/release.yml) action, which builds the plugin binaries and index file each time a new tag is pushed.
-2. The [`.github/workflows/pages-release.yml`](https://github.com/kubeshop/botkube-plugins-template/blob/main/.github/workflows/pages-release.yml) action, which updates GitHub Pages with plugin binaries and index file each time a new tag is pushed.
+- Showcase the convenience of sharing the diff report.
+	Interactivity and Decision-Making
 
-To cut a new release, you need to commit all your work and tag a new commit:
+- While posting diff reports can be fully automated, you may want to do it intentionally by clicking a button because the report may contain sensitive information that you don't want to fully disclose for external contributor.
 
-```bash
-git add -A
-git commit -m "Implement gh executor"
-git tag v1.0.0
-```
+However, nothing is blocking us from adding in the future support for AI assistance that will do the review and based on a generated diff report will proceed with automated approval. Are you ready for AIOps?
 
-Next, let's push our changes and the new tag:
+## Manual Approach vs. Botkube Flux Plugin
 
-```bash
-git push
-git push --tags
-```
+While you were reading the first part of the Flux plugin evolution, did you consider what kind of manual steps would be required without the plugin? Let's break it down!
 
-This triggers GitHub Action:
+Steps:
+1. Checking GitHub repository for a new pull requests.
+2. **(one time operation)** Downloading and installing Flux CLI on you localhost.
+3. Manually connecting to the related Kubernetes cluster.
+4. **(one time operation)** Cloning the repository.
+5. Checking out the Pull Request.
+6. Constructing a Flux command.
+7. Sharing the diff report on Slack/GitHub.
 
-![GitHub action that creates a new release](./assets/release-job.png)
+When we discard one time operations, it still leaves us with 5 steps that we need to do for each new Pull Request.
 
-**What this automation does under the hood**
+## Behind the Scenes: Developing the Botkube Flux Plugin
 
-This automation:
+The development of the Botkube Flux Executor plugin involved several key aspects:
 
-1. Installs the latest [GoReleaser](https://goreleaser.com/) tool.
-2. Builds all plugin binaries defined in the `.goreleaser.yaml` file.
-3. Generates an index file using the [Botkube helper tool](https://docs.botkube.io/plugin/repo#generate-index-file).
-4. Generates a release description.
-5. Uses the [`gh`](https://cli.github.com) CLI to create a new GitHub release.
-
-### Use the `gh` executor
-
-In the description of a new GitHub release, you will see the repository URL that you can use within Botkube.
-
-#### Steps
-
-1. Follow one of our [installation guides](https://docs.botkube.io/installation). Once you reach the Botkube deployment step, add flags specified in the steps below to `helm install`.
-2. Export required environment variables:
-
-   :::info
-   Follow the official GitHub guide on how to create a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic). To be able to create GitHub issues, add the `repo` permission.
-   :::
-
-   ```bash
-   export REPOSITORY={repo} # format OWNER/REPO_NAME, e.g. kubeshop/botkube
-   export GITHUB_TOKEN={token}
-   export PLUGINS_URL={plugin_index_url}
+1. **Interactivity**: The plugin leveraged the `exec` plugin developed in previous releases, making adding interactivity almost out-of-the-box.
+- In the previous releases we invested our time into developing the exec plugin that allows you to port any CLI into communication platform window. Here we reused it as Go SDK making adding interactivity into Flux plugin almost OOTB. Here the blueprint on how to convert CLI output into interactive message is defined in YAML.
+   ```yaml
+   - trigger:
+       command:
+         regex: "flux get sources (bucket|chart|helm|oci)"
+       type: "parser:table:space"
+       message:
+         selects:
+           - name: "Item"
+             keyTpl: "{{ .Name }}"
    ```
+More info: https://docs.botkube.io/usage/executor/exec#table-parser
+- **YAML Configuration**: The development process involved defining a blueprint in YAML for converting CLI output into interactive messages.
+	- Go embed is handy here as we can still have our manifest in YAML files so IDE helps us with syntax highlighting, however thanks to embedding it we can distribute it as a single plugin binary and we don’t need to do any external call on startup.
 
-3. Add the `gh` executor related configuration:
 
-   ```bash
-   --set 'plugins.repositories.botkube-plugins.url'=${PLUGINS_URL} \
-   --set 'executors.plugin-based.botkube-plugins/gh.config.github.repository'=${REPOSITORY} \
-   --set 'executors.plugin-based.botkube-plugins/gh.config.github.token'=${GITHUB_TOKEN} \
-   ```
+2. Auto-discovering the related GitHub repository. -
+	- **RBAC**:
+3. Cloning and checking out the specified pull request. - tell about `gh` CLI
+- **External Dependencies**: To support pull request checkout, the widely-used `gh` CLI was integrated as an external dependency, simplifying the process.
+	- doing a pull request checkout is not always a trivial process as we need to support also external contributions that create PRs using they forks. Here instead of reinventing the wheel we used the well known gh CLI. It was easy to add as external dependency just by defining:
+	```go
+	"gh": {
+			URLs: map[string]string{
+					"darwin/amd64":  "https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_macOS_amd64.zip//gh_2.32.1_macOS_amd64/bin",
+					"linux/amd64":   "https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz//gh_2.32.1_linux_amd64/bin",
+					// etc.
+			},
+	},
+	```
+	More info: https://docs.botkube.io/plugin/dependencies#define-dependencies-for-plugin-index-generation
+4. Comparing changes with the current cluster state.
 
-4. Depending on the selected platform, add the `plugin-based` executor binding. For Slack, it looks like this:
 
-   ```bash
-   --set communications.default-group.socketSlack.channels.default.bindings.executors=['plugin-based']
-   ```
+### Challenges faced during development and how they were overcome.
 
-If you follow all the steps above, you will have all the necessary flags allowing you to install Botkube with the `gh` executor!
+The trickiest part was to develop GitHub Events source. The best way is to use GitHub App with the webhook approach. However, we didn't want to break our
 
-Here's an example of a full command that you should have constructed for Slack installation:
+We started with GitHub Events endpoint. But it turned out that even though it serves events that we are interested in, it was not meant to be used for the real-time use-cases. We still integrate with the `events` API, but it's recommended for event subscription where time is not that important. For example, getting notification about new stars on your GitHub repositories:
+[](github star)
 
-<Gist id="d8828c7eb80e72bba5fbbf442991eb7e" />
+How to handle rate limits? We decided on two things:
+- conditional requests
+- adding support for GitHub App tokens.
+---
+- Teaser about the upcoming significant improvement.
+	Simplified Diffing Flow with Botkube Flux Executor
 
-### Testing
+In the future, we can consider adding a token rotator that automatically switches a set of specified tokens before approaching the rate limit.
 
-1. Navigate to your communication channel
-2. On a given channel, run:
+For the [Botkube web app](https://app.botkube.io/) we will consider native integration using GitHub App, to reduce friction with the initial setup for Flux and GitHub Events plugins.
 
-   ```bash
-   @Botkube list executors
-   ```
+## Conclusion
 
-   It should return information about enabled `gh` executor:
-   ![](./assets/list-exec.png)
+Here is a blog post, write a conclusion section that has:
+- Recap of the Botkube Flux plugin's capabilities and benefits.
+- Acknowledgment of the team's effort in creating the plugin.
+- Encouragement for readers to explore and integrate the plugin into their workflows.
 
-3. Create a failing Job:
+add this to the end of the section:
+"Let us know what you think about the Flux plugin. We're always open to your feedback and ideas about Botkube! Feel free to reach out to us on Slack or Twitter.
 
-   <Gist id="0fb29dfc368c7deea898923d336d84b4" />
-
-   After a few second, you should see a new alert on your channel:
-   ![](./assets/alert.png)
-
-4. To create a GitHub issue for a given alert, run:
-
-   ```bash
-   @Botkube gh create issue job/oops
-   ```
-
-## Summary
-
-Botkube executors are powerful because they can glue together three important parts: Kubernetes clusters, communicators, and tools of your choice. There would be nothing special about it if it wasn't, in fact, unburdening you of those implementation-specific details.
-
-As you noticed, you can focus purely on your business logic. Without the need to use different chat libraries, know how to establish secure connection, or make your extension available only on specific channels. What's more, not only do you not have to learn it, but you don't have to support it either, as we do it for you.
-
-Once Botkube is deployed, your extension will be available to you and your teammates in a given channel. There is no need to maintain your local setup. Thanks to that, you can also easily run executors on private clusters.
-
-Botkube extensions can be used with other Botkube functionality too. It means that you can use them to create automation. We will shed more light on that in the next blog post. Stay tuned!
-
-> Implement once, access everywhere (Slack, Discord, Mattermost, MS Teams).
-
-## How can I get involved?
-
-The implemented plugin is as simple as possible. However, it is a great base for further extension based on your needs; for example: introduce your own Kubernetes annotation to route the notification to a specific repository, add a threshold to create issues only for constantly failing Pods, etc. The possibilities are endless, and we cannot wait to see what kind of great workflows you will create!
-
-As always, we want to hear your feedback and ideas about Botkube. Help us plan the Botkube roadmap, get the features you’d like implemented.
-
-There are plenty of options to contact us:
-
-- [GitHub issues](https://github.com/kubeshop/botkube/issues)
-- [Slack](https://join.botkube.io/)
-- or email our Product Leader at [blair@kubeshop.io](mailto:blair@kubeshop.io).
-
-Thank you for taking the time to learn about Botkube 🙌
-
-### Resources
-
-- The GitHub repository with the `gh` executor [source-code](https://github.com/kubeshop/botkube/tree/main/cmd/executor/gh/main.go)
-- [Official Botkube documentation](https://docs.botkube.io)
-- [Creating automated actions](https://docs.botkube.io/configuration/action)
+Thank you for taking the time to learn about Botkube 🙌"
