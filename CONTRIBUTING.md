@@ -6,7 +6,7 @@ Botkube is [MIT Licensed](LICENSE) and accepts contributions via GitHub pull req
 
 ### Prerequisite
 
-- [NodeJS 16](https://nodejs.org/)
+- [Node.js 16](https://nodejs.org/)
 - (Optional) [NVM](https://github.com/nvm-sh/nvm) for managing multiple Node.js installations
 - [Docusaurus](https://docusaurus.io/)
 - [Magefile](https://magefile.org/)
