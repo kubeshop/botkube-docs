@@ -29,6 +29,30 @@ To change the repository URL, run:
 helm upgrade botkube botkube/botkube -n botkube --reuse-values --set plugins.repositories.botkube.url="https://github.com/kubeshop/botkube/releases/download/v1.4.0/plugins-index.yaml"
 ```
 
+## Helm chart loading error
+
+**Symptoms**
+
+- You encounter the following errors when running the `botkube install` command:
+
+  ```text
+  Error: while loading Helm chart: Chart.yaml file is missing
+  ```
+
+  or
+
+  ```text
+  Error: while loading Helm chart: file 'botkube' does not appear to be a gzipped archive; got 'application/octet-stream'
+  ```
+
+**Solution**
+
+If you're experiencing these errors, it means that there is a conflict with a file or directory named `botkube` in the location where you executed the `botkube install` command. To resolve this issue, follow these steps:
+
+1. **rename or remove 'botkube':** You cannot have a file or directory named `botkube` in the same location where you are trying to install BotKube. You should either rename or remove the conflicting `botkube` file or directory.
+
+2. **Change Directory:** Alternatively, you can navigate to a different directory in your command line interface before executing the `botkube install` command. Ensure that the directory where you run the command does not contain any conflicting `botkube` files or directories.
+
 ## Network connections
 
 Botkube can work in private clusters where inbound connections are limited. However, you need to allow outgoing connections to all configured plugin repositories and API endpoints, depending on the communication platform you intend to use.
