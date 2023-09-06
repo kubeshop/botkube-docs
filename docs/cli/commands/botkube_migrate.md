@@ -21,7 +21,7 @@ Limitations:
 
 - Plugins are sourced from Botkube repository
 
-Use label selector to choose which Botkube pod you want to migrate. By default it's set to app=botkube.
+Use label selector to choose which Botkube pod you want to migrate. By default, it's set to app=botkube.
 
 Examples:
 

@@ -25,7 +25,7 @@ Draft GitHub releases need to be manually checked and marked as pre-releases or 
 
    3.1. After final release candidate tests have been successful, continue to step 4.
 
-   3.2. If bug is detected in the release candidate, create a pull-request with a bug fix against the release branch. Once the pull-request is merged, the [**Prepare next release candidate**](https://github.com/kubeshop/botkube/actions/workflows/next-rc.yml) workflow will be automatically triggered and a new release candidate will be published, e.g. `v0.14.0-rc.2`.
+   3.2. If bug is detected in the release candidate, create a pull-request with a bug fix against the release branch. Once the pull-request is merged, and the [**Prepare next release candidate**](https://github.com/kubeshop/botkube/actions/workflows/next-rc.yml) workflow will be automatically triggered, and a new release candidate will be published, e.g. `v0.14.0-rc.2`.
 
 4. Navigate to [**Finalize release**](https://github.com/kubeshop/botkube/actions/workflows/finalize-release.yml) workflow and click on **Run workflow** drop-down and fill **Version** field to finalize specific release. (e.g. `v0.14.0`)
    ![Botkube Finalize Release](assets/release_finalize.png "Botkube Finalize Release")
