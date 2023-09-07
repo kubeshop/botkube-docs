@@ -26,7 +26,7 @@ This repository contains source code of the Botkube documentation website, acces
 
 You can contribute to documentation by following instructions described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Licence
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 

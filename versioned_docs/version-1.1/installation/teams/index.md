@@ -113,7 +113,7 @@ Go to "Publish / Publish to org" and click on **Publish your app** to install th
 
 ![Developer Portal - Publish bot](assets/teams_publish_app.png "Teams publish app")
 
-An admin has to approve this app in the [Teams Admin Centre](https://admin.teams.microsoft.com/policies/manage-apps).
+An admin has to approve this app in the [Teams Admin Center](https://admin.teams.microsoft.com/policies/manage-apps).
 
 :::note
 If you face "You don't have permissions to add Botkube to this team.", contact your admin to provide an access to install apps on teams.

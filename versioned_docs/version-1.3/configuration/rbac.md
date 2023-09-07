@@ -396,7 +396,7 @@ Error: create: failed to create: secrets is forbidden: User "botkube-internal-st
 
 that means the RBAC rules configured for a given plugin are insufficient in a given context.
 
-Firstly, ensure what user/group is used for impersonation. To do that, check your configuration agains the mapping description from the [Configuration](#configuration) section.
+Firstly, ensure what user/group is used for impersonation. To do that, check your configuration against the mapping description from the [Configuration](#configuration) section.
 
 ### Checking available actions for a given user/group
 
