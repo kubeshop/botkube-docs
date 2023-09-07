@@ -82,6 +82,18 @@ plugins:
     # Other 3rd party repositories.
     repo-name:
       url: https://example.com/plugins-index.yaml
+  # -- Configure Incoming webhook for source plugins.
+  incomingWebhook:
+    enabled: true
+    port: 2115
+    targetPort: 2115
+  # -- Botkube Restart Policy on plugin failure.
+  restartPolicy:
+    # -- Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
+    type: "DeactivatePlugin"
+    # -- Number of restarts before policy takes into effect.
+    threshold: 10
+  healthCheckInterval: 10s
 ```
 
 The default configuration for the Botkube Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.

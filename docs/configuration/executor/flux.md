@@ -15,6 +15,61 @@ plugins:
       url: https://github.com/kubeshop/botkube/releases/download/v1.4.0/plugins-index.yaml
 ```
 
+## Prerequisite elevated RBAC permissions
+
+One of the plugin capabilities is the `flux diff` command. To use it, you need to update the Flux plugin RBAC configuration. This is necessary because the command performs a server-side dry run that requires patch permissions, as specified in the [Kubernetes documentation](https://kubernetes.io/docs/reference/using-api/api-concepts/#dry-run-authorization).
+
+If you use Botkube self-hosted installation in version 1.4.1 or newer, you can create them during Botkube install/upgrade by specifying `--set="rbac.groups.flux.create=true"` override.
+
+However, you can also create them manually:
+
+```shell
+cat > /tmp/flux-rbac.yaml << ENDOFFILE
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: flux
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["get", "watch", "list", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: flux
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: flux
+subjects:
+- kind: Group
+  name: flux
+  apiGroup: rbac.authorization.k8s.io
+ENDOFFILE
+
+kubectl apply -f /tmp/flux-rbac.yaml
+```
+
+Next, use the `flux` group in the plugin RBAC configuration:
+
+```yaml
+executors:
+  flux:
+    botkube/flux:
+      enabled: true
+      config:
+        # ...
+
+      context:
+        rbac:
+          group:
+            type: Static
+            static:
+              values: ["flux"]
+```
+
 ## Enabling plugin
 
 To enable the GitHub plugin, add the following flag to the Botkube [`install` command](../../cli/commands/botkube_install.md):
