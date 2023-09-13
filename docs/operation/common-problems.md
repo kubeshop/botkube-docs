@@ -62,7 +62,7 @@ Botkube can work in private clusters where inbound connections are limited. Howe
 The official Botkube plugin index and binaries are hosted on [GitHub releases](https://github.com/kubeshop/botkube/releases). For instance, for version 1.4.0 the following URLs are used:
 
 - Plugin index URL: https://github.com/kubeshop/botkube/releases/download/v1.4.0/plugins-index.yaml
-- Helm plugin binary for `linux/amd64`: https://github.com/kubeshop/botkube/releases/download/v1.4.0/executor_helm_linux_amd64
+- Helm plugin binary for `linux/amd64`: https://github.com/kubeshop/botkube/releases/download/v1.4.0/executor_helm_linux_amd64.tar.gz
 
 As a result, you need to allow outbound connections for Botkube to successfully download GitHub assets.
 
