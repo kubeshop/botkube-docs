@@ -7,7 +7,8 @@ sidebar_position: 1
 Botkube provides a quick start repository to start developing Botkube [source](../architecture/index.md#source) and [executor](../architecture/index.md#executor) plugins in Go. It has all batteries included; example plugins:
 
 - The [`echo`](https://github.com/kubeshop/botkube-plugins-template/blob/main/cmd/echo/main.go) executor that sends back the command that was specified,
-- The [`ticker`](https://github.com/kubeshop/botkube-plugins-template/blob/main/cmd/ticker/main.go) source that emits an event each time the configured time duration elapses.
+- The [`ticker`](https://github.com/kubeshop/botkube-plugins-template/blob/main/cmd/ticker/main.go) source that emits an event each time the configured time duration elapses,
+- The [`forwarder`](https://github.com/kubeshop/botkube-plugins-template/blob/main/cmd/forwarder/main.go) source that echos the message sent as an incoming webhook request.
 
 and two example release jobs:
 

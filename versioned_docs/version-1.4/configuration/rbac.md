@@ -78,15 +78,16 @@ During Botkube installation, Botkube generates Kubernetes ClusterRole and Cluste
 ```yaml
 rbac:
   # ...
-  create: true
-  rules: # rules for the default static group
-    - apiGroups: ["*"]
-      resources: ["*"]
-      verbs: ["get", "watch", "list"]
-  staticGroupName: "botkube-plugins-default" # group name used in the `values.yaml` file for default plugins
+  groups:
+    "botkube-plugins-default":
+      create: true
+      rules:
+        - apiGroups: ["*"]
+          resources: ["*"]
+          verbs: ["get", "watch", "list"]
 ```
 
-See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.4.0/helm/botkube/values.yaml#L48-L53) for more details.
+See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.4.0/helm/botkube/values.yaml) for more details.
 
 #### Defaults for user mapping when group mapping is used
 
@@ -139,7 +140,7 @@ When configuring plugin on Botkube Cloud, the "Default" permissions mean that th
 This paragraph contains examples of RBAC configuration for different use cases.
 
 :::tip
-You can use `extraObjects` override during Botkube installation. See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.4.0/helm/botkube/values.yaml#L1059) for more details.
+You can use `rbac.groups` or `extraObjects` overrides during Botkube installation to create custom RBAC resources. See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.4.0/helm/botkube/values.yaml) for more details.
 :::
 
 ### Kubectl executor with read-only Pod access based on static group mapping

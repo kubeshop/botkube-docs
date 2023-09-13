@@ -155,6 +155,44 @@ For a final implementation, see the [Botkube template repository](./quick-start.
 
    The `Stream` method is called only once. Botkube attaches the list of associated configurations. You will learn more about that in the [**Passing configuration to your plugin**](#passing-configuration-to-your-plugin) section.
 
+7. Implement `HandleExternalRequest` method:
+
+   Plugins can handle external requests from Botkube incoming webhook. Any external system can call the webhook and trigger a given source plugin. By default, the path of the incoming webhook is `http://botkube.botkube.svc.cluster.local:2115/sources/v1/{sourceName}` and it supports POST requests in JSON payload format.
+
+   - If you don't want to handle external events from incoming webhook, simply nest the `source.HandleExternalRequestUnimplemented` under your struct:
+
+     ```go
+     // Ticker implements the Botkube executor plugin interface.
+     type Ticker struct {
+       // specify that the source doesn't handle external requests
+       source.HandleExternalRequestUnimplemented
+     }
+     ```
+
+   - To handle such requests, you need to implement the `HandleExternalRequest` method. In this case, the `message` property from payload is outputted to the bound communication platforms:
+
+   ```go
+   // HandleExternalRequest handles incoming payload and returns an event based on it.
+   func (Forwarder) HandleExternalRequest(_ context.Context, in source.ExternalRequestInput) (source.ExternalRequestOutput, error) {
+     var p payload
+     err := json.Unmarshal(in.Payload, &p)
+     if err != nil {
+       return source.ExternalRequestOutput{}, fmt.Errorf("while unmarshaling payload: %w", err)
+     }
+
+     if p.Message == "" {
+       return source.ExternalRequestOutput{}, fmt.Errorf("message cannot be empty")
+     }
+
+     msg := fmt.Sprintf("*Incoming webhook event:* %s", p.Message)
+     return source.ExternalRequestOutput{
+       Event: source.Event{
+         Message: api.NewPlaintextMessage(msg, true),
+       },
+     }, nil
+   }
+   ```
+
 ## Build plugin binaries
 
 Now it's time to build your plugin. For that purpose we will use GoReleaser. It simplifies building Go binaries for different architectures.

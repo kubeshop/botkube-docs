@@ -22,7 +22,7 @@ You can try out the Botkube Cloud Slack App for free by creating an account in t
 
 ### Botkube Socket Slack App
 
-The Socket-mode app works with the open-source Botkube engine and does not require an account or subscription. The Botkube Socket-mode Slack App has the following caveats:
+The Socket-mode app works with the open-source Botkube Agent and does not require an account or subscription. The Botkube Socket-mode Slack App has the following caveats:
 
 - Must be installed manually into your Slack workspace using the provided configuration
 - Slack channels must be managed manually, and you need to ensure the Botkube bot is invited to any channel you want to use with Botkube
