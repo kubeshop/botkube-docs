@@ -82,7 +82,7 @@ To enable the ArgoCD plugin and watch a single ArgoCD Application named `guestbo
 
 ```sh
 --set 'sources.argocd.botkube/argocd.enabled'=true \
---set='rbac.groups.argocd.create=true' \ # flag available in Botkube 1.4.1+
+--set='rbac.groups.argocd.create'=true \ # flag available in Botkube 1.4.1+
 --set 'sources.argocd.botkube/argocd.config.defaultSubscriptions.applications[0].name'=guestbook \
 --set 'sources.argocd.botkube/argocd.config.defaultSubscriptions.applications[0].namespace'=argocd
 ```
@@ -91,7 +91,7 @@ You can watch multiple ArgoCD Applications by specifying `config.defaultSubscrip
 
 ```sh
 --set 'sources.argocd.botkube/argocd.enabled'=true  \
---set='rbac.groups.argocd.create=true' \ # flag available in Botkube 1.4.1+
+--set='rbac.groups.argocd.create'=true \ # flag available in Botkube 1.4.1+
 --set 'sources.argocd.botkube/argocd.config.defaultSubscriptions.applications[0].name'=first-app \
 --set 'sources.argocd.botkube/argocd.config.defaultSubscriptions.applications[0].namespace'=first-app-ns \
 --set 'sources.argocd.botkube/argocd.config.defaultSubscriptions.applications[1].name'=second-app \
