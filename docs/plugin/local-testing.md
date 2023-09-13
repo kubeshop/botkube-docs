@@ -137,7 +137,7 @@ go get github.com/kubeshop/botkube/hack
 # rebuild plugins only for current GOOS and GOARCH
 goreleaser build --rm-dist --snapshot --single-target &&
 # regenerate index
-go run github.com/kubeshop/botkube/hack -binaries-path "./dist" -url-base-path "http://localhost:8080/dist" &&
+go run github.com/kubeshop/botkube/hack -binaries-path "./dist" -url-base-path "http://localhost:8080/dist" -use-archive=false &&
 # remove cached plugins
 rm -rf $BOTKUBE_PLUGINS_CACHE__DIR &&
 # start Botkube
