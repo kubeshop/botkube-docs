@@ -32,9 +32,18 @@ executors:
     # Doctor executor configuration.
     botkube/doctor:
       enabled: false
+      ## Custom doctor plugin configuration.
       config:
-        # Open AI Api Key that you can grab one here: https://platform.openai.com/account/api-keys
-        apiKey: "<Open AI Api Key>"
+        ## Open API key for accessing the ChatGPT engine. You can get it at https://platform.openai.com/account/api-keys.
+        apiKey: ""
+        ## OpenAI API Base URL. If empty, the default "https://api.openai.com/v1" value is used.
+        apiBaseUrl: ""
+        ## Default engine to use. If empty, "text-davinci-003" engine is used.
+        defaultEngine: ""
+        ## Optional organization ID for requests.
+        organizationID: ""
+        ## User agent to use for requests. If empty, the default value is used ("go-gpt3").
+        userAgent: ""
 ```
 
 The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.

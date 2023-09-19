@@ -137,3 +137,19 @@ sources:
 ### Advanced configuration
 
 You can customize all triggers, templates, webhook registration and more. For advanced properties, see the [`default-config.yaml`](https://github.com/kubeshop/botkube/blob/main/internal/source/argocd/default-config.yaml) file.
+
+## Cleanup
+
+When you disable the plugin, it won't revert all changes made during the plugin startup. To clean up all ArgoCD follow the manual steps:
+
+- Clean up ArgoCD Notifications ConfigMap. It is usually named `argocd-notifications-cm` in the `argocd` Namespace.
+
+  Remove all properties that contains `b-` or `botkube-` prefixes in the name.
+
+  - Webhook property name follows the syntax `service.webhook.{webhook-name}`. For example, the `service.webhook.b-784e` property was created by Botkube.
+  - Template property name follows the syntax `template.{template-name}`. For example, the `template.template.botkube-argocd-ch05k-app-health-degraded` property was created by Botkube.
+  - Trigger property name follows the syntax `trigger.{trigger-name}`. For example, the `trigger.b-372839f86ed61c4c88` property was created by Botkube.
+
+- Remove all `argocd.argoproj.io/notifications` annotations from ArgoCD Applications which contain `b-` prefix in the trigger and webhook names.
+
+  The annotation key pattern is `notifications.argoproj.io/subscribe.{trigger-name}.{webhook-name}`. For example, the annotation `notifications.argoproj.io/subscribe.b-5cc4c004df01230f72.b-efc0: ""` was created by Botkube and it should be deleted if the plugin is disabled.
