@@ -60,6 +60,11 @@ This section of the configuration allows you to configure the restart policy for
 - `type` - restart policy type. Allowed values: `RestartAgent`, `DeactivatePlugin`.
 - `threshold` - number of restarts before the policy takes into effect.
 
+Restart policy types:
+
+- `RestartAgent` - when the threshold is reached, the Botkube agent is restarted.
+- `DeactivatePlugin` - when the threshold is reached, the plugin is deactivated. To activate the plugin again, you need to restart the Botkube agent.
+
 The health check interval is used to check the health of the source plugins. The default health check interval is 10 seconds. The health check interval can be configured with the following property:
 
 - `healthCheckInterval` - health check interval.
