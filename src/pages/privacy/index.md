@@ -46,7 +46,7 @@ Botkube CLI tool collects:
 To disable sending the anonymous analytics, provide the `analytics.disable: true` override during Helm chart installation or upgrade. See the [Helm chart parameters](/configuration/helm-chart-parameters/#values) for more details about Helm chart configuration.
 
 To disable sending the anonymous analytics for Botkube CLI, execute the command `botkube telemetry disable`. This configuration will be stored locally in
-`~/.botkube/cloud.yaml` file, if this file is deleted, the telemetry will be enabled again.
+`~/.botkube/config.json` file, if this file is deleted, the telemetry will be enabled again.
 
 ## Website
 
