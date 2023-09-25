@@ -17,7 +17,7 @@ To improve the user experience, Botkube collects anonymized data. It does not co
 
 The analytics data we collect is limited to:
 
-- Botkube version,
+- Botkube Agent version,
 - Kubernetes version,
 - Number of cluster nodes (control plane and worker nodes count),
 - Names of enabled integrations (notifiers and bots),
@@ -33,9 +33,20 @@ The analytics data we collect is limited to:
 
 As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace.
 
+Botkube CLI tool collects:
+
+- Botkube CLI version,
+- OS type from which Botkube CLI is run,
+- Local presence of cloud login token in boolean form,
+- Anonymous machine ID from [machineid](https://github.com/denisbrodbeck/machineid) library,
+- Command type, such as `login`, `install`, etc.
+
 #### How to opt out
 
 To disable sending the anonymous analytics, provide the `analytics.disable: true` override during Helm chart installation or upgrade. See the [Helm chart parameters](/configuration/helm-chart-parameters/#values) for more details about Helm chart configuration.
+
+To disable sending the anonymous analytics for Botkube CLI, execute the command `botkube telemetry disable`. This configuration will be stored locally in
+`~/.botkube/cloud.yaml` file, if this file is deleted, the telemetry will be enabled again.
 
 ## Website
 
