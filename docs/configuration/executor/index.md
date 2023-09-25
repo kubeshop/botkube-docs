@@ -53,6 +53,32 @@ executors:
 
 For all executor configuration properties, see the [**syntax**](#syntax) section.
 
+#### Restart Policy and Health Check Interval
+
+This section of the configuration allows you to configure the restart policy for the Botkube executor plugins. The restart policy is used when the executor plugin fails to start. The default restart policy is `DeactivatePlugin`, which means that the plugin is deactivated after a given number of restarts. The restart policy can be configured with the following properties:
+
+- `type` - restart policy type. Allowed values: `RestartAgent`, `DeactivatePlugin`.
+- `threshold` - number of restarts before the policy takes into effect.
+
+Restart policy types:
+
+- `RestartAgent` - when the threshold is reached, the Botkube agent is restarted.
+- `DeactivatePlugin` - when the threshold is reached, the plugin is deactivated. To activate the plugin again, you need to restart the Botkube agent.
+
+The health check interval is used to check the health of the executor plugins. The default health check interval is 10 seconds. The health check interval can be configured with the following property:
+
+- `healthCheckInterval` - health check interval.
+
+```yaml
+# -- Botkube Restart Policy on plugin failure.
+restartPolicy:
+  # -- Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
+  type: "DeactivatePlugin"
+  # -- Number of restarts before policy takes into effect.
+  threshold: 10
+healthCheckInterval: 10s
+```
+
 ## Syntax
 
 ```yaml
