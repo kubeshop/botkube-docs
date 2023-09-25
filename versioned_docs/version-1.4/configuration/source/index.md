@@ -53,6 +53,28 @@ sources:
 
 For all source configuration properties, see the [**syntax**](#syntax) section.
 
+#### Restart Policy and Health Check Interval
+
+This section of the configuration allows you to configure the restart policy for the Botkube source plugins. The restart policy is used when the source plugin fails to start. The default restart policy is `DeactivatePlugin`, which means that the plugin is deactivated after a given number of restarts. The restart policy can be configured with the following properties:
+
+- `type` - restart policy type. Allowed values: `RestartAgent`, `DeactivatePlugin`.
+- `threshold` - number of restarts before the policy takes into effect.
+
+The health check interval is used to check the health of the source plugins. The default health check interval is 10 seconds. The health check interval can be configured with the following property:
+
+- `healthCheckInterval` - health check interval.
+
+```yaml
+  # -- Botkube Restart Policy on plugin failure.
+  restartPolicy:
+    # -- Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
+    type: "DeactivatePlugin"
+    # -- Number of restarts before policy takes into effect.
+    threshold: 10
+  healthCheckInterval: 10s
+
+```
+
 ## Syntax
 
 ```yaml
