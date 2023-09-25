@@ -39,7 +39,7 @@ Botkube CLI tool collects:
 - OS type from which Botkube CLI is run,
 - An information whether a successful `botkube login` was executed in a form of a boolean value (`true`/`false`)
 - Anonymous machine ID from [machineid](https://github.com/denisbrodbeck/machineid) library,
-- Command type, such as `login`, `install`, etc.
+- Executed command names, such as `login`, `install`, etc.
 
 #### How to opt out
 
