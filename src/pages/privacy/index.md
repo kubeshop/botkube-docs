@@ -37,7 +37,7 @@ Botkube CLI tool collects:
 
 - Botkube CLI version,
 - OS type from which Botkube CLI is run,
-- Local presence of cloud login token in boolean form,
+- An information whether a successful `botkube login` was executed in a form of a boolean value (`true`/`false`)
 - Anonymous machine ID from [machineid](https://github.com/denisbrodbeck/machineid) library,
 - Command type, such as `login`, `install`, etc.
 
