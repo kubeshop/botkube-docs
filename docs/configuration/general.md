@@ -29,6 +29,10 @@ settings:
 configWatcher:
   # If true, restarts the Botkube Pod on config changes.
   enabled: true
+  # In-cluster Config Watcher configuration. It is used when remote configuration is not provided.
+  inCluster:
+    # Resync period for the Config Watcher informers.
+    informerResyncPeriod: 10m
 ```
 
 The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
