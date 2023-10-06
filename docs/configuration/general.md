@@ -24,14 +24,15 @@ settings:
     # If true, disable ANSI colors in logging. Ignored when `json` formatter is used.
     disableColors: false
 
-# Parameters for the Config Watcher container.
-# It watches for data changes of any ConfigMap or Secret with the label `botkube.io/config-watch: "true"` from the namespace where Botkube is installed, and restarts Botkube.
+# Parameters for the Config Watcher component which reloads Botkube on ConfigMap changes.
+# It restarts Botkube when configuration data change is detected. It watches ConfigMaps and/or Secrets with the `botkube.io/config-watch: "true"` label from the namespace where Botkube is installed.
 configWatcher:
   # If true, restarts the Botkube Pod on config changes.
   enabled: true
-  # Timeout for the initial Config Watcher sync.
-  # If set to 0, waiting for Config Watcher sync will be skipped. In a result, configuration changes may not reload Botkube app during the first few seconds after Botkube startup.
-  initialSyncTimeout: 0
+  # In-cluster Config Watcher configuration. It is used when remote configuration is not provided.
+  inCluster:
+    # Resync period for the Config Watcher informers.
+    informerResyncPeriod: 10m
 ```
 
 The default configuration for Helm chart can be found in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
