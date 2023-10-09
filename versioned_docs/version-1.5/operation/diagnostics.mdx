@@ -1,0 +1,157 @@
+# Basic diagnostics
+
+Here you can find the list of basic diagnostic actions that may help you look for bug causes.
+
+In order to run the suggested commands, make sure that you have installed:
+
+- [`helm`](https://helm.sh/docs/intro/install/)
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/)
+
+## Agent
+
+This section describes [Botkube agent](../architecture/index.md) related diagnostic.
+
+### Agent version
+
+The easiest way to check the Agent version is to get the Docker image:
+
+```bash
+kubectl get deploy botkube -n botkube -o=jsonpath="{'Used images\n'}{range .spec.template.spec.containers[*]}{.name}{':\t'}{.image}{'\n'}{end}"
+```
+
+You should get an output similar to this:
+
+```bash
+Used images
+botkube:	ghcr.io/kubeshop/botkube:v1.4.0
+cfg-watcher:	ghcr.io/kubeshop/k8s-sidecar:in-cluster-config
+```
+
+The `botkube` is the agent image. The container image tag (`v1.4.0`) is the version in which it was deployed on the cluster.
+
+### Agent health
+
+To check if the Agent Pods are in the `Running` state, run:
+
+```bash
+kubectl get pod -n botkube -l app=botkube
+```
+
+All the containers from Pods should be in the `Running` status. Restarts' number higher than one may also indicate problems, e.g. not enough resource, lack of permissions, network timeouts, etc.
+
+### Agent logs
+
+If the Botkube Agent is [healthy](#agent-health), you should be able to track any bug by checking the logs. To check the logs, run:
+
+```bash
+kubectl logs -n botkube -l app=botkube -c botkube
+```
+
+To get all logs specify `--tail=-1`, otherwise only 10 last lines are displayed.
+
+To check the logs since a given time, use the `--since-time` or `--since` flag, for example:
+
+```bash
+--since-time=2020-03-30T10:02:08Z
+```
+
+```bash
+--since=3h
+```
+
+### Agent configuration
+
+Select a tab to use a tool of your choice for getting Botkube configuration:
+
+<Tabs groupId="config">
+<TabItem value="botkube" label="Botkube CLI" default>
+
+:::note
+The `botkube config get` command is available from the v1.4.0 version.
+:::
+
+Install [Botkube CLI](../cli/getting-started.mdx#installation) and run:
+
+```bash
+botkube config get > /tmp/bk-config.yaml
+```
+
+</TabItem>
+
+<TabItem value="kubectl" label="kubectl">
+
+1. Download <a target="_blank" href="/k8s/export-config-job-tpl">export-config-job-tpl</a> definition into `/tmp/export-config-job-tpl`.
+2. Make sure that the previous job is deleted:
+   ```bash
+   kubectl delete job botkube-migration -n botkube
+   ```
+3. Run a new export config Job based on the configuration from installed Botkube deployment:
+   ```bash
+   kubectl get deploy botkube -n botkube -o=go-template-file=/tmp/export-config-job-tpl | kubectl create -f -
+   ```
+4. Get configuration data:
+   ```bash
+   kubectl get cm botkube-config-exporter -ojsonpath='{ .data.config\.yaml }'
+   ```
+
+</TabItem>
+
+</Tabs>
+
+### Agent restart
+
+When Pods are unhealthy, or if the operation processing is stuck, you can restart the Pod using this command:
+
+```
+kubectl delete po -n botkube -l app=botkube
+```
+
+### Agent debug logging
+
+In order to change the logging level to `debug`, run:
+
+```bash
+helm upgrade botkube botkube/botkube -n botkube --set settings.log.level="debug" --reuse-values
+```
+
+If the Botkube agent Pod isn't restarted automatically, [restart it manually](#agent-restart).
+
+### Check configured plugin repositories
+
+Select a tab to use a tool of your choice for checking plugin repository configuration:
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs groupId="parsers">
+<TabItem value="yq" label="yq" default>
+
+Install [`yq`](https://github.com/mikefarah/yq) and run:
+
+```bash
+helm get values botkube --all -oyaml | yq '.plugins'
+```
+
+</TabItem>
+
+<TabItem value="jq" label="jq">
+
+Install [`jq`](https://stedolan.github.io/jq/download/) and run:
+
+```bash
+helm get values botkube --all -ojson | jq '{ plugins }'
+```
+
+</TabItem>
+
+<TabItem value="grep" label="grep">
+
+```bash
+helm get values botkube --all -oyaml | grep -A 10 'plugins:'
+```
+
+The output may contain more occurrence of a plugin section, so you need to fine the one that has the `repositories` defined.
+
+</TabItem>
+
+</Tabs>
