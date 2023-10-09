@@ -22,11 +22,11 @@ This document describes how to identify and resolve common Botkube problems that
 
 **Solution**
 
-In order to fix the problem, you need to make sure that the agent version is the same as the plugin repository version. For example, for agent image `ghcr.io/kubeshop/botkube:v1.4.0` you need to configure official plugin repository in version `v1.4.0`: `https://github.com/kubeshop/botkube/releases/download/v1.4.0/plugins-index.yaml`.
+In order to fix the problem, you need to make sure that the agent version is the same as the plugin repository version. For example, for agent image `ghcr.io/kubeshop/botkube:v1.5.0` you need to configure official plugin repository in version `v1.5.0`: `https://github.com/kubeshop/botkube/releases/download/v1.5.0/plugins-index.yaml`.
 To change the repository URL, run:
 
 ```bash
-helm upgrade botkube botkube/botkube -n botkube --reuse-values --set plugins.repositories.botkube.url="https://github.com/kubeshop/botkube/releases/download/v1.4.0/plugins-index.yaml"
+helm upgrade botkube botkube/botkube -n botkube --reuse-values --set plugins.repositories.botkube.url="https://github.com/kubeshop/botkube/releases/download/v1.5.0/plugins-index.yaml"
 ```
 
 ## Helm chart loading error
@@ -59,10 +59,10 @@ Botkube can work in private clusters where inbound connections are limited. Howe
 
 ### Botkube official plugins
 
-The official Botkube plugin index and binaries are hosted on [GitHub releases](https://github.com/kubeshop/botkube/releases). For instance, for version 1.4.0 the following URLs are used:
+The official Botkube plugin index and binaries are hosted on [GitHub releases](https://github.com/kubeshop/botkube/releases). For instance, for the version `v1.5.0` the following URLs are used:
 
-- Plugin index URL: https://github.com/kubeshop/botkube/releases/download/v1.4.0/plugins-index.yaml
-- Helm plugin binary for `linux/amd64`: https://github.com/kubeshop/botkube/releases/download/v1.4.0/executor_helm_linux_amd64.tar.gz
+- Plugin index URL: https://github.com/kubeshop/botkube/releases/download/v1.5.0/plugins-index.yaml
+- Helm plugin binary for `linux/amd64`: https://github.com/kubeshop/botkube/releases/download/v1.5.0/executor_helm_linux_amd64.tar.gz
 
 As a result, you need to allow outbound connections for Botkube to successfully download GitHub assets.
 
@@ -102,7 +102,7 @@ In order to solve the problem, please refer to the [troubleshooting](../installa
 
 - Mirror Botkube images to your private registry:
 
-  - [`ghcr.io/kubeshop/botkube:{botkube_version}`](https://github.com/kubeshop/botkube/pkgs/container/botkube), e.g., `ghcr.io/kubeshop/botkube:v1.4.0`
+  - [`ghcr.io/kubeshop/botkube:{botkube_version}`](https://github.com/kubeshop/botkube/pkgs/container/botkube), e.g., `ghcr.io/kubeshop/botkube:v1.5.0`
   - [`ghcr.io/kubeshop/k8s-sidecar:in-cluster-config`](https://github.com/orgs/kubeshop/packages/container/package/k8s-sidecar)
 
 - During startup, Botkube downloads repository indexes and all enabled plugins. All of them are stored under the `/tmp` folder. To ensure that the [plugin manager](../architecture/index.md#plugin-manager) does not make external calls, all required plugins must be present. You can achieve this by mounting a Persistent Volume Claim (PVC) at this path. By default, we use [`emptyDir`](https://github.com/kubeshop/botkube/blob/9d0627794078d519987309271b64c94047cd65d9/helm/botkube/templates/deployment.yaml#L176-L177). Later, you can mount your Persistent Volume (PV) with cached plugins in your air-gapped environment.
