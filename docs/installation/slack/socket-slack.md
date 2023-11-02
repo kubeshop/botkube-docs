@@ -1,6 +1,6 @@
 ---
-id: self-hosted
-title: Socket Slack for self-hosted Botkube
+id: socket-slack
+title: Socket Slack App
 sidebar_position: 2
 ---
 
@@ -8,7 +8,7 @@ The Socket-mode app works with the open source Botkube Agent and does not requir
 
 ## Prerequisites
 
-- Botkube CLI installed according to the [Getting Started guide](../../../cli/getting-started.mdx#installation)
+- Botkube CLI installed according to the [Getting Started guide](../../cli/getting-started.mdx#installation)
 - Access to Kubernetes cluster
 - Slack Workspace admin access
 
@@ -17,7 +17,7 @@ The Socket-mode app works with the open source Botkube Agent and does not requir
 Botkube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for Botkube deployment.
 
 :::warning
-**Multi-cluster caveat:** The architecture of socket-based Slack apps has a limitation on the routing of executor commands. If you would like to use [Botkube executors](../../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube Slack app for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
+**Multi-cluster caveat:** The architecture of socket-based Slack apps has a limitation on the routing of executor commands. If you would like to use [Botkube executors](../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube Slack app for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
 
 To learn more about the Slack Socket API limitation, see the [comment](https://github.com/slackapi/bolt-js/issues/1263#issuecomment-1006372826) in the official Slack bot framework repository.
 
@@ -31,11 +31,11 @@ Follow the steps below to create and install Botkube Slack app to your Slack wor
 1. Go to [Slack App console](https://api.slack.com/apps) to create an application.
 1. Click **Create New App** and select **From an app manifest** in the popup to create application from manifest.
 
-   ![Create App from Manifest](../assets/slack_add_app.png "Slack add app")
+   ![Create App from Manifest](assets/slack_add_app.png "Slack add app")
 
 1. Select a workspace where you want to create application and click **Next**.
 
-   ![Select Workspace](../assets/slack_select_workspace.png "Slack select workspace")
+   ![Select Workspace](assets/slack_select_workspace.png "Slack select workspace")
 
 1. Select **YAML** tab, copy & paste one of the following manifests, and click **Next**, and then **Create**.
 
@@ -148,7 +148,7 @@ settings:
 
 Once the application is created, you will be redirected to application details page. Press the **Install your app** button, select the workspace and click **Allow to finish installation**.
 
-![Install Slack App](../assets/slack_install_app.png "Slack install app")
+![Install Slack App](assets/slack_install_app.png "Slack install app")
 
 ### Obtain Bot Token
 
@@ -156,7 +156,7 @@ Follow the steps to obtain the Bot Token:
 
 1. Select **OAuth & Permissions** section on the left sidebar. On this page you can copy the bot token which starts with `xoxb...`.
 
-   ![Retrieve Slack Bot Token](../assets/slack_retrieve_bot_token.png "Slack Bot Token")
+   ![Retrieve Slack Bot Token](assets/slack_retrieve_bot_token.png "Slack Bot Token")
 
 1. Export Slack Bot Token as follows:
 
@@ -173,9 +173,9 @@ Follow the steps to generate an App-Level Token:
 1. Select **Basic Information** link from the left sidebar and scroll down to section **App-Level Token**. Click on the **Generate Token and Scopes** button.
 1. Enter a **Name**, select `connections:write` scope, and click **Generate**.
 
-   ![Generate App-Level Token](../assets/slack_generate_app_token.png "Slack App Token")
+   ![Generate App-Level Token](assets/slack_generate_app_token.png "Slack App Token")
 
-   ![Retrieve App-Level Token](../assets/slack_retrieve_app_token.png "Slack Retrieve App Token")
+   ![Retrieve App-Level Token](assets/slack_retrieve_app_token.png "Slack Retrieve App Token")
 
 1. Copy **App-Level Token** and export it as follows:
 
@@ -216,7 +216,7 @@ where:
 - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
 - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
 
-Configuration syntax is explained [here](../../../configuration).
+Configuration syntax is explained [here](../../configuration).
 All possible installation parameters are documented [here](../../../configuration/helm-chart-parameters).
 
 Send `@Botkube ping` in the channel to see if Botkube is running and responding.
