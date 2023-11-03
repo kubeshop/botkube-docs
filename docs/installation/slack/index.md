@@ -18,7 +18,7 @@ The Botkube Cloud Slack App offers several advanced features:
 
 The Botkube Cloud Slack App uses Botkube's cloud services to manage channels and route executor commands. Events and alerts are sent directly from your cluster to your Slack workspace for reliable, fast notifications.
 
-You can directly try Botkube Cloud Slack App for free by creating an account in the [Botkube Web App](https://app.botkube.io). Follow the [Cloud Slack app tutorial](cloud-slack.md) to learn more.
+You can directly try Botkube Cloud Slack App for free by creating an account in the [Botkube Web App](https://app.botkube.io). Follow the [Cloud Slack app tutorial](cloud-slack.mdx) to learn more.
 
 ### Botkube Socket Slack App
 
