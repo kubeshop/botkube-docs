@@ -219,7 +219,7 @@ events:
   - type: "WatchEvent"
 ```
 
-If you provide an empty list `events: []`, no events will be emitted.
+If you provide an empty list `events: []`, no events will be emitted. For more precise filtering of events, you can optionally use JSONPath along with the event type to filter based on specific criteria within the event payload.
 
 #### Templating
 
@@ -233,7 +233,7 @@ events:
   - type: "IssuesEvent"
     # The JSONPath expression to filter events
     jsonPath: ".action"
-    # The value to match in the JSONPath result
+    # The regex value to match in the JSONPath result
     value: "opened"
     notificationTemplate:
       previewTpl: |-
@@ -246,3 +246,5 @@ events:
           url: "{{ .Issue.HTMLURL }}"
           style: primary
 ```
+
+Here, the `jsonPath` field specifies the JSONPath expression to filter events, and the value field defines the regex value to match within the JSONPath result. This combination helps narrow down reported events based on specific conditions within the event payload.
