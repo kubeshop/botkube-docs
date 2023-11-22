@@ -1,6 +1,6 @@
 ---
 id: elasticsearch-develop
-title: "ElasticSearch notifier development"
+title: "Elasticsearch notifier development"
 sidebar_position: 3
 ---
 
