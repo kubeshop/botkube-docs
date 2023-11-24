@@ -8,13 +8,9 @@ The Botkube Cloud Slack App uses Botkube Cloud services to manage channels and r
 
 ## Prerequisites
 
-- A Botkube Cloud account with active subscription.
+- A Botkube Cloud account.
 
-  You can try out the Botkube Cloud Slack App for free by creating an account in the [Botkube Cloud app](https://app.botkube.io) and starting a free trial.
-
-:::note
-Once you downgrade your subscription to free, you will not be able to execute Botkube commands. However, you will still receive notifications from your clusters.
-:::
+  You can try out the Botkube Cloud Slack App for free by creating an account in the [Botkube Cloud app](https://app.botkube.io).
 
 ## Create a Botkube Cloud Instance with Cloud Slack
 
@@ -22,7 +18,7 @@ Once you downgrade your subscription to free, you will not be able to execute Bo
 
    ![New Instance](assets/cloud_slack_new_instance.png "Create new instance")
 
-2. Deploy Botkube into your environment.
+2. Install Botkube Agent on your Kubernetes cluster by following the instructions on the page.
 
    ![Install Agent](assets/cloud_slack_install.png "Install Agent")
 
@@ -41,8 +37,8 @@ Once you downgrade your subscription to free, you will not be able to execute Bo
 6. Provide the Slack app details as described follows and click `Next` button.
 
    - **Connected Slack Workspace:** Slack workspace that you granted permission in the previous step.
-   - **Display Name:** Display name of the Cloud Slack integration.
-   - **Channel:** Slack channel where you can execute Botkube commands and receive notification.
+   - **Display Name:** Display name of the Cloud Slack configuration.
+   - **Channels:** Slack channes where you can execute Botkube commands and receive notification.
 
    ![Cloud Slack Workspace](assets/cloud_slack_workspace_details.png "Cloud Slack workspace")
 
@@ -50,7 +46,7 @@ Once you downgrade your subscription to free, you will not be able to execute Bo
 
    ![Cloud Slack Plugins](assets/cloud_slack_add_plugins.png "Cloud Slack plugins")
 
-8. Include optional `default aliases` and `default actions` and click `Apply Changes` button to update Botkube Cloud instance.
+8. Include optional default command aliases and actions and click `Apply Changes` button to update Botkube Cloud instance.
 
    ![Cloud Slack Create](assets/cloud_slack_create.png "Cloud Slack create")
 
@@ -62,14 +58,14 @@ You can start using Botkube Cloud Slack App by typing `@Botkube cloud help` in t
 
 ### Listing Cloud Instances
 
-You can list all the Botkube Cloud instances by typing `@Botkube cloud list instances` in the Slack channel or click the button `List connected instances` in the help command response.
+You can list all the Botkube Cloud instances by typing `@Botkube cloud list instances` in the Slack channel, or click the button `List connected instances` in the help command response.
 Besides the instance `name`, `ID`, and `status` in the list response, you can also click the `Get details` button to go to instance details on Botkube Cloud Dashboard.
 
 ![Cloud Slack List Instances](assets/cloud_slack_command_list_instances.png "Cloud Slack list instances")
 
-### Setting Default Cloud Instances
+### Setting Default Instances
 
-Once a Botkube command is executed, it will be handled on target Kubernetes cluster specified with `--cluster-name` flag. However, this is an optional flag,
+Once a Botkube command is executed, it will be handled on target Kubernetes cluster specified with `--cluster-name` flag. This is an optional flag,
 where if you have not specified it, Botkube Cloud will select the first instance. However, you can also achieve setting default instance with command `@Botkube cloud set default-instance {instance-id}`.
 
 ![Cloud Slack Set Default Instances](assets/cloud_slack_command_set_default.png "Cloud Slack set default instance")
@@ -78,7 +74,7 @@ After this point, all of your commands will be executed on the default instance.
 
 ![Cloud Slack All Clusters](assets/cloud_slack_command_all_clusters.png "Cloud Slack all clusters")
 
-## Clean up
+## Cleanup
 
 1. Go to Botkube Cloud instances page and click `Manage` button of the instance you want to remove.
 

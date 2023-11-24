@@ -4,7 +4,7 @@ title: Socket Slack App
 sidebar_position: 2
 ---
 
-The Socket-mode app works with the open source Botkube Agent and does not require an account or subscription.
+The Socket-mode app works with the open-source Botkube Agent and does not require an account or subscription.
 
 ## Prerequisites
 

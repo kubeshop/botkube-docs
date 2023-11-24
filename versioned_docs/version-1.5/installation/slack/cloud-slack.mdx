@@ -8,13 +8,9 @@ The Botkube Cloud Slack App uses Botkube Cloud services to manage channels and r
 
 ## Prerequisites
 
-- A Botkube Cloud account with active subscription.
+- A Botkube Cloud account.
 
-  You can try out the Botkube Cloud Slack App for free by creating an account in the [Botkube Cloud app](https://app.botkube.io) and starting a free trial.
-
-:::note
-Once you downgrade your subscription to free, you will not be able to execute Botkube commands. However, you will still receive notifications from your clusters.
-:::
+  You can try out the Botkube Cloud Slack App for free by creating an account in the [Botkube Cloud app](https://app.botkube.io).
 
 ## Create a Botkube Cloud Instance with Cloud Slack
 

@@ -1,6 +1,6 @@
 ---
 id: elasticsearch
-title: "ElasticSearch"
+title: "Elasticsearch"
 sidebar_position: 6
 ---
 

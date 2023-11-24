@@ -1,6 +1,6 @@
 ---
 id: elasticsearch
-title: "ElasticSearch"
+title: "Elasticsearch"
 sidebar_position: 6
 ---
 
@@ -32,7 +32,7 @@ botkube install --version v1.2.0 \
 
 where:
 
-- **ELASTICSEARCH_ADDRESS** is an address on which ElasticSearch server is reachable e.g https://example.com:9243,
+- **ELASTICSEARCH_ADDRESS** is an address on which Elasticsearch server is reachable e.g https://example.com:9243,
 - **ELASTICSEARCH_USERNAME** is the username for authentication to Els server,
 - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server,
 - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which Botkube events will be stored _(default: botkube)_.
