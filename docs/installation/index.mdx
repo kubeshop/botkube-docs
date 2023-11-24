@@ -14,15 +14,30 @@ Botkube has two components that need to be installed.
 
 ## Feature map
 
-| Feature                                                        | Cloud Slack        | Slack              | Cloud MS Teams     | MS Teams           | Discord            | Mattermost         | Elasticsearch      | Webhook            |
-| -------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Executor plugins support (e.g. `kubectl`, `helm`, etc.)        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | N/A                | N/A                |
-| Multi-cluster support                                          | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Per-channel command execution configuration                    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | N/A                | N/A                |
-| Interactive messages                                           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                | N/A                | N/A                |
-| Actionable notifications                                       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                | N/A                | N/A                |
-| Emoji reactions                                                | :heavy_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | N/A                | N/A                |
+Learn about Botkube features and their availability in different integrations.
+
+### Bots
+
+Compare our bidirectional integrations:
+
+| Feature                                                          | Cloud Slack        | Slack              | Cloud MS Teams     | MS Teams           | Discord            | Mattermost         |
+| ---------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.)   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Executor plugins support (e.g. `kubectl`, `helm`, etc.)          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Multi-cluster support                                            | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| Enhanced per-channel plugin configuration including RBAC policy. | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| Interactive messages                                             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+| Actionable notifications                                         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+| Emoji reactions                                                  | :heavy_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                |
+
+### Sinks
+
+Compare our unidirectional integrations:
+
+| Feature                                                        | Elasticsearch      | Webhook            |
+| -------------------------------------------------------------- | ------------------ | ------------------ |
+| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: |
+| Multi-cluster support                                          | :heavy_check_mark: | :heavy_check_mark: |
 
 ## Integrations
 

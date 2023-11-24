@@ -144,7 +144,7 @@ export ALLOW_KUBECTL={allow_kubectl}
 export ALLOW_HELM={allow_helm}
 export HOST={host} # e.g. example.com
 
-botkube install --version v1.5.0 --namespace botkube \
+botkube install --version v1.6.0 --namespace botkube \
 --set communications.default-group.teams.enabled=true \
 --set communications.default-group.teams.appID=${APPLICATION_ID} \
 --set communications.default-group.teams.appPassword=${APPLICATION_PASSWORD} \

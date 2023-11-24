@@ -20,7 +20,7 @@ The Botkube Cloud MS Teams App uses Botkube's cloud services to manage channels 
 
    ![New Instance](assets/cloud_teams_new_instance.png "Create new instance")
 
-1. Install Botkube Cloud Agent on your Kubernetes cluster by following the instructions on the page.
+1. Install Botkube Agent on your Kubernetes cluster by following the instructions on the page.
 
    ![Install Agent](assets/cloud_teams_install.png "Install Agent")
 
@@ -163,3 +163,16 @@ After this point, all of your commands will be executed on the default instance.
    :::
 
    ![Cloud Teams Instance Delete](assets/cloud_teams_instance_delete.png "Cloud MS Teams instances delete")
+
+## Limitations
+
+Botkube Cloud MS Teams App currently doesn't support the following features yet:
+
+- Processing states from selected dropdowns, e.g., used for the `kubectl` command builder. In a result, the command builder is not available.
+- Adding 👀 and ✅ reactions to messages indicating process status.
+
+  This seems to be a limitation of the Microsoft Teams platform, however we'll investigate if there is a workaround.
+
+- Sending messages visible only to specific users.
+- Replacing messages with new content, e.g., used for pagination. Currently, a new card is sent as a new message.
+- User mentions in messages. Instead, Botkube app uses plaintext mentions with first and last name.
