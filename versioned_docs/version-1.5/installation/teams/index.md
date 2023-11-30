@@ -4,20 +4,6 @@ title: "Microsoft Teams"
 sidebar_position: 5
 ---
 
-:::info
-
-Botkube is currently working on a beta version of the **new Botkube for Microsoft Teams** bot. If you are a Microsoft Teams user we would love to have you as a part of the beta program. The new bot will feature:
-
-- Single-click installation of Botkube via Microsoft AppSource
-- Interactive command builder for simple interaction with Kubernetes for non-experts
-- No need for ingress to your Kubernetes cluster to use Botkube with Microsoft Teams
-
-Please join the beta program for the new Botkube for Microsoft Teams bot, help us shape the future direction of Botkube for Teams, and get early access to the new Teams bot.
-
-Sign up to find out more about the Botkube for Microsoft Teams beta by sending us a message on the [Contact Us](https://botkube.io/contact) page. You can also leave a comment on the Botkube for Microsoft Teams [GitHub Issue](https://github.com/kubeshop/botkube/issues/1212).
-
-:::
-
 ## Prerequisites
 
 - Botkube CLI installed according to the [Getting Started guide](../../cli/getting-started.mdx#installation)
