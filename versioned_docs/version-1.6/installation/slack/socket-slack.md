@@ -21,7 +21,7 @@ Botkube uses interactive messaging to provide better experience. Interactive mes
 
 To learn more about the Slack Socket API limitation, see the [comment](https://github.com/slackapi/bolt-js/issues/1263#issuecomment-1006372826) in the official Slack bot framework repository.
 
-The [Botkube Cloud Slack App](#botkube-cloud-slack-app) does not have this limitation.
+The [Botkube Cloud App for Slack](#botkube-cloud-slack-app) does not have this limitation.
 :::
 
 Follow the steps below to create and install Botkube Slack app to your Slack workspace.
