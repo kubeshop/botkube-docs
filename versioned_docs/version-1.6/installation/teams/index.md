@@ -192,3 +192,4 @@ Botkube Cloud Microsoft Teams App currently doesn't support the following featur
 - Sending messages visible only to specific users.
 - Replacing messages with new content, e.g., used for pagination. Currently, a new card is sent as a new message.
 - User mentions in messages. Instead, Botkube app uses plaintext mentions with first and last name.
+- The `ChannelName` RBAC group mapping is not supported in Botkube Agent 1.6. This will be supported in the Botkube Agent 1.7 release.

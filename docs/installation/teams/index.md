@@ -180,6 +180,13 @@ After this point, all of your commands will be executed on the default instance.
 
    ![Cloud Teams Instance Delete](assets/cloud_teams_instance_delete.png "Cloud Microsoft Teams instances delete")
 
+## Caveats
+
+### RBAC `ChannelName` mapping
+
+Same as other communication platforms, Botkube Cloud Microsoft Teams app supports RBAC along with [all mappings](../../configuration/rbac.md#mapping-types).
+However, because of the Microsoft Teams API limitation, for the default team channel the `ChannelName` is always `General`, regardless of the actual localized channel name.
+
 ## Limitations
 
 Botkube Cloud Microsoft Teams App currently doesn't support the following features yet:
