@@ -228,7 +228,7 @@ const config = {
       announcementBar: {
         id: "try_botkube",
         content:
-          '<strong>New to Botkube?</strong> Get started fast with the <a target="_blank" rel="noopener noreferrer" href="https://app.botkube.io">Botkube Cloud Web App</a>.',
+          '<strong>New to Botkube?</strong> Get started fast (and free!) with the <a target="_blank" rel="noopener noreferrer" href="https://app.botkube.io">Botkube Cloud Web App</a>.',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: true,
