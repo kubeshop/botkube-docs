@@ -2,9 +2,9 @@
 
 ## Introduction
 
-If you are already familiar with Botkube, then you know that it's an open-source collaborative tool to help you monitor and troubleshoot Kubernetes clusters. Botkube integrates the most popular communication platforms, and Microsoft Teams is one of them.
+If you are already familiar with Botkube, then you know that it's a collaborative tool to help you monitor and troubleshoot Kubernetes clusters. Botkube integrates the most popular communication platforms, and Microsoft Teams is one of them.
 
-The very first version of the integration came in [February 2020](https://github.com/kubeshop/botkube/pull/242). However, to be completely honest, even in 2023 it still wasn't on par with the other ones. It came with a lot of limitations, and some of them were considered as blockers for many users.
+The initial version of our integration debuted in [February 2020](https://github.com/kubeshop/botkube/pull/242), marking a significant milestone in our journey. Since then, we've been continuously evolving and improving. In this release cycle, we've identified and acknowledged its limitations in the user-experience and ease of set up. 
 
 Fortunately, these times are over now! We've been working hard on a brand-new Microsoft Teams integration, which we introduced as a part of [Botkube 1.6 release](https://botkube.io/blog/botkube-1-6-release).
 
@@ -12,13 +12,13 @@ Now, let's talk about how we got here.
 
 ## Inspiration from the Field
 
-During our conversations with users at events like KubeCon, we found out that many IT companies rely on Microsoft Teams for their communication. It's not surprising, considering that Microsoft Teams is one of the most popular communication platforms in the world. It is used by over 1 million organizations and 320 million users ([source](https://www.demandsage.com/microsoft-teams-statistics/)).
+During our conversations with users at events like KubeCon and Civo Navigate, we found out that many IT companies rely on Microsoft Teams for their communication. It's not surprising, considering that Microsoft Teams is one of the most popular communication platforms in the world. It is used by over 1 million organizations and 320 million users ([source](https://www.demandsage.com/microsoft-teams-statistics/)).
 
 Through discussions with various users and organizations, a common problem surfaced--many faced challenges due to the requirement for a public endpoint on their Kubernetes clusters and difficult configuration steps. Also, the integration lacked some of the core features that were available in other platforms like Slack. This was usually a blocker for them.
 
-Right after the Botkube Cloud launch, we were focusing on the seamless multi-cluster Slack integration, as it was without doubt the most popular communication platform among our users. However, we knew that we had to do something about the Microsoft Teams integration as well. Because of the way the Microsoft Teams API works, the only way we could fix this problem properly was a dedicated infrastructure for handling the communication between Botkube and Microsoft Teams.
+Right after the Botkube Cloud launch, we focused on building the seamless multi-cluster Slack integration, as it was without doubt the most popular communication platform among our users. However, we knew that we had to do something about the Microsoft Teams integration as well. Because of the way the Microsoft Teams API works, the only way we could fix this problem properly was a dedicated infrastructure for handling the communication between Botkube and Microsoft Teams.
 
-That was the time we were approached by a large enterprise company that was using Microsoft Teams as their main communication tool. They were interested in a proper multi-cluster solution for their customer's Kubernetes clusters. After a series of interviews and discussions, we aggregated the feedback and started working on the new Microsoft Teams integration, showing the first results to the company along the way.
+That was the time we were approached by a large enterprise company that was using Microsoft Teams as their main communication tool. They were interested in a proper multi-cluster solution for their customer's Kubernetes clusters. After a series of interviews and discussions, we  used their feedback to start developing a new Microsoft Teams integration.
 
 <center>
 
