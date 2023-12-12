@@ -47,8 +47,6 @@ After our set of investigations, we had a clear picture what we're going to buil
 
 <center>
 
-<!-- TODO: Add architecture diagram -->
-
 ![Botkube Cloud for Microsoft Teams - architecture](./architecture.png)
 
 </center>
@@ -59,9 +57,9 @@ Until our Microsoft Teams app is approved by Microsoft and listed in the Microso
 
 After installing the app, to use Microsoft API for fetching team and channel information, we need to grant the app permissions to access the Microsoft Teams API. This is done by the organization administrator only once for the whole organization.
 
-Same as for Slack integration, we used Google Pub/Sub as a message broker, to ensure scalability, and reliability. Every Botkube Agent connects via gRPC to Botkube Cloud to receive events from Microsoft Teams.
+Same as for Slack integration, in Botkube Cloud we use a message broker internally, to ensure scalability, and reliability. Every Botkube Agent connects via gRPC to Botkube Cloud to receive events from Microsoft Teams.
 
-Because of the way the Microsoft Teams API works, and to ensure proper tenant separation, both source notifications and executor commands are routed via Botkube Cloud. This is different from the Slack integration, where we could use the Slack API directly from the Botkube instance for handling incoming notifications. However, Botkube Cloud is used as a proxy without storing any event data, and all the communication between client and the server is encrypted.
+Because of the way the Microsoft Teams API works, and to ensure proper tenant separation, both source notifications and executor commands are routed via Botkube Cloud. This is different from the Slack integration, where we could use the Slack API directly from the Botkube instance for handling incoming notifications. However, Botkube Cloud is used simply as a proxy, without storing any event data.
 
 ### Interactivity support
 
@@ -77,7 +75,9 @@ After a while we were able to achieve similar feeling to the users familiar with
 
 ### Development and testing
 
-After a busy month full of development and testing, we were able to deliver the first version of the new Microsoft Teams integration. While it's not yet perfect, it's a huge step forward. We are working on adding more features and improving the existing ones, continuously refining the integration based on user feedback, including the one from the company that came to us with the initial request.
+Thanks to the Microsoft Teams proof of concept application, we were able to quickly start the development process. The fact that we built the multi-cluster Slack integration before also helped tremendously. We were able to reuse some of the concepts like gRPC communication between Botkube Agent and Botkube Cloud, and the message broker infrastructure.
+
+After busy weeks full of development and testing, we were able to deliver the first version of the new Microsoft Teams integration. While it's not yet perfect, it's a huge step forward. We are working on adding more features and improving the existing ones, continuously refining the integration based on user feedback, including the one from the company that came to us with the initial request.
 
 ## New Microsoft Teams integration: Key Features
 
