@@ -12,7 +12,7 @@ The GitHub Events plugin is hosted in the official Botkube plugin repository. To
 plugins:
   repositories:
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.5.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.7.0/plugins-index.yaml
 ```
 
 ## Enabling plugin

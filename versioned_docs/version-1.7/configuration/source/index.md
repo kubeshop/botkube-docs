@@ -88,7 +88,7 @@ healthCheckInterval: 10s
 # Format: sources.{alias}
 sources:
   "prom":
-    botkube/prometheus@v1.5.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+    botkube/prometheus@v1.7.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.
         url: "http://localhost:9090"
@@ -112,7 +112,7 @@ plugins:
   repositories:
     # This repository serves officially supported Botkube plugins.
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.5.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.7.0/plugins-index.yaml
     # Other 3rd party repositories.
     repo-name:
       url: https://example.com/plugins-index.yaml

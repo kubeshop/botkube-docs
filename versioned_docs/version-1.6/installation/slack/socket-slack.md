@@ -197,7 +197,7 @@ export ALLOW_KUBECTL={allow_kubectl}
 export ALLOW_HELM={allow_helm}
 export SLACK_CHANNEL_NAME={channel_name}
 
-botkube install --version v1.5.0 \
+botkube install --version v1.6.0 \
 --set communications.default-group.socketSlack.enabled=true \
 --set communications.default-group.socketSlack.channels.default.name=${SLACK_CHANNEL_NAME} \
 --set communications.default-group.socketSlack.appToken=${SLACK_API_APP_TOKEN} \

@@ -13,7 +13,7 @@ The plugin is hosted in the official Botkube plugin repository. To enable the Gi
 plugins:
   repositories:
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.5.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.6.0/plugins-index.yaml
 ```
 
 ## Prerequisite elevated RBAC permissions
