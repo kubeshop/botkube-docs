@@ -102,7 +102,7 @@ export CLUSTER_NAME={cluster_name}
 export ALLOW_KUBECTL={allow_kubectl}
 export ALLOW_HELM={allow_helm}
 
-botkube install --version v1.5.0 \
+botkube install --version v1.6.0 \
 --set communications.default-group.discord.enabled=true \
 --set communications.default-group.discord.channels.default.id=${DISCORD_CHANNEL_ID} \
 --set communications.default-group.discord.botID=${DISCORD_BOT_ID} \
