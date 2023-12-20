@@ -49,7 +49,7 @@ helm upgrade botkube botkube/botkube -n botkube --reuse-values --set plugins.rep
 
 If you're experiencing these errors, it means that there is a conflict with a file or directory named `botkube` in the location where you executed the `botkube install` command. To resolve this issue, follow these steps:
 
-1. **rename or remove 'botkube':** You cannot have a file or directory named `botkube` in the same location where you are trying to install BotKube. You should either rename or remove the conflicting `botkube` file or directory.
+1. **rename or remove 'botkube':** You cannot have a file or directory named `botkube` in the same location where you are trying to install Botkube. You should either rename or remove the conflicting `botkube` file or directory.
 
 2. **Change Directory:** Alternatively, you can navigate to a different directory in your command line interface before executing the `botkube install` command. Ensure that the directory where you run the command does not contain any conflicting `botkube` files or directories.
 

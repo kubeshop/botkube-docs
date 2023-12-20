@@ -24,7 +24,7 @@ We have also incorporated interactivity (tables, etc.) to simplify running Flux 
 With the Botkube Flux executor, you can execute a single command to perform a diff between a specific pull request and the cluster state. For instance:
 
 ```
-@BotKube flux diff kustomization podinfo --path ./kustomize --github-ref [PR Number| URL | Branch]
+@Botkube flux diff kustomization podinfo --path ./kustomize --github-ref [PR Number| URL | Branch]
 ```
 
 ![flux-diff](./assets/flux-diff.gif)
