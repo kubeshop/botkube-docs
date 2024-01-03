@@ -97,7 +97,7 @@ For faster development, you can also build and run Botkube outside K8s cluster.
    # Fetch the dependencies
    go mod download
    # Build the binary
-   go build ./cmd/botkube/
+   go build -o botkube-agent ./cmd/botkube-agent/
    ```
 
 2. Create a local configuration file to override default values. For example, set communication credentials, specify cluster name, and disable analytics:
@@ -150,10 +150,10 @@ For faster development, you can also build and run Botkube outside K8s cluster.
    ...
    ```
 
-6. Run Botkube binary:
+6. Run Botkube agent binary:
 
    ```sh
-   ./botkube
+   ./botkube-agent
    ```
 
 #### Develop Botkube plugins
@@ -188,7 +188,7 @@ For faster development, you can also build and run Botkube outside K8s cluster.
    # remove cached plugins
    rm -rf $BOTKUBE_PLUGINS_CACHE__DIR &&
    # start botkube to download fresh plugins
-   ./botkube
+   ./botkube-agent
    ```
 
    > **Note**
