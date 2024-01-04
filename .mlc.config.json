@@ -4,6 +4,9 @@
       "pattern": "^(?!http[s]?:\\/\\/|www\\.).+"
     },
     {
+      "pattern": "^https://help.openai.com/en/articles/.+"
+    },
+    {
       "pattern": "^https://example.com"
     },
     {
