@@ -37,7 +37,7 @@ func CheckDeadLinks() {
 
 	ensureMarkdownLinkCheck()
 
-	shx.MustCmdf("markdown-link-check -q -c .mlc.config.json %s", strings.Join(files, " ")).MustRunV()
+	shx.MustCmdf("markdown-link-check -c .mlc.config.json %s", strings.Join(files, " ")).MustRunV()
 }
 
 func ensureMarkdownLinkCheck() {
