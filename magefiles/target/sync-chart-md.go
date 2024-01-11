@@ -6,10 +6,11 @@ import (
 	"strings"
 
 	"github.com/MakeNowJust/heredoc/v2"
-
 	"github.com/samber/lo"
+	"go.szostok.io/magex/printer"
 
-	"botkube.io/tools/printer"
+	"botkube.io/tools/httpx"
+	"botkube.io/tools/target/release"
 )
 
 var helmParamsFileTpl = heredoc.Doc(`
@@ -30,10 +31,10 @@ const (
 func SyncChartParams() {
 	printer.Title("Synchronizing Helm chart doc...")
 
-	target, targetIdentifier := GetBotkubeRepoTargetCommit()
+	target, targetIdentifier := release.GetBotkubeRepoTargetCommit()
 
 	url := fmt.Sprintf(urlReadmeBySHAFmt, target)
-	rawREADME := lo.Must1(get(url))
+	rawREADME := httpx.MustGetBody(url)
 
 	url = fmt.Sprintf(urlValuesBySHAFmt, target)
 	readme := strings.ReplaceAll(rawREADME, "./values.yaml", url)

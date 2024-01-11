@@ -9,9 +9,10 @@ import (
 	"github.com/MakeNowJust/heredoc/v2"
 	"github.com/hashicorp/go-getter"
 	"github.com/samber/lo"
+	"go.szostok.io/magex/printer"
+	"go.szostok.io/magex/shx"
 
-	"botkube.io/tools/printer"
-	"botkube.io/tools/shellx"
+	"botkube.io/tools/target/release"
 )
 
 const (
@@ -30,14 +31,14 @@ var (
 func SyncCLIDocs() {
 	printer.Title("Synchronizing Botkube CLI docs...")
 
-	target, targetIdentifier := GetBotkubeRepoTargetCommit()
+	target, targetIdentifier := release.GetBotkubeRepoTargetCommit()
 
 	cliDocsSrcURL := fmt.Sprintf(cliDocsSrcURLFmt, target)
 	lo.Must0(Download(context.Background(), cliDocsSrcURL, cliDocsDstPath))
 
 	lo.Must0(os.WriteFile(filepath.Join(cliDocsDstPath, "_category_.json"), []byte(commandsCategory), 0o644))
 
-	lo.Must0(shellx.Cmdf("npm run prettier:cli-docs-fix").Run())
+	shx.MustCmdf("npm run prettier:cli-docs-fix").MustRunV()
 
 	printer.Infof("%q updated according to %s %q from Botkube repo", cliDocsDstPath, targetIdentifier, target)
 }
