@@ -3,9 +3,13 @@
 package main
 
 import (
+	"os"
+
 	"github.com/magefile/mage/mg"
+	"github.com/samber/lo"
 
 	"botkube.io/tools/target"
+	"botkube.io/tools/target/release"
 )
 
 var (
@@ -13,7 +17,7 @@ var (
 
 	Aliases = map[string]interface{}{
 		"gen":             Sync.Chart,
-		"validateRelease": Sync.ValidateRelease,
+		"validateRelease": Release.EnsureBotkubeReleased,
 	}
 )
 
@@ -29,9 +33,20 @@ func (Sync) CLI() {
 	target.SyncCLIDocs()
 }
 
-// ValidateRelease checks if given release exists in Botkube repository.
-func (Sync) ValidateRelease() {
-	target.ValidateRelease()
+type Release mg.Namespace
+
+// EnsureBotkubeReleased checks if given release exists in Botkube repository.
+func (Release) EnsureBotkubeReleased() {
+	release.EnsureBotkubeReleased()
+}
+
+// UpdateDocsVersion updates docs version.
+// Requires LATEST_RELEASE_VERSION env var to be set.
+func (Release) UpdateDocsVersion() {
+	latest := os.Getenv("LATEST_RELEASE_VERSION")
+	lo.Must0(latest != "", "LATEST_RELEASE_VERSION env var is not set")
+
+	release.UpdateDocsVersion(latest)
 }
 
 // CheckLinks detects dead links in documentation.

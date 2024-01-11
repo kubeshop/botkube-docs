@@ -7,12 +7,11 @@ import (
 
 	"github.com/carolynvs/magex/pkg"
 	"github.com/samber/lo"
-
-	"botkube.io/tools/printer"
-	"botkube.io/tools/shellx"
+	"go.szostok.io/magex/printer"
+	"go.szostok.io/magex/shx"
 )
 
-const markdownLinkCheckVersion = "3.10.3"
+const markdownLinkCheckVersion = "3.11.2"
 
 var ignoredFiles = []string{
 	"docs/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
@@ -38,16 +37,16 @@ func CheckDeadLinks() {
 
 	ensureMarkdownLinkCheck()
 
-	lo.Must0(shellx.Cmdf("markdown-link-check -q -c .mlc.config.json %s", strings.Join(files, " ")).RunV())
+	shx.MustCmdf("markdown-link-check -c .mlc.config.json %s", strings.Join(files, " ")).MustRunV()
 }
 
 func ensureMarkdownLinkCheck() {
-	ok := lo.Must(pkg.IsCommandAvailable("markdown-link-check", "latest"))
+	ok := lo.Must(pkg.IsCommandAvailable("markdown-link-check", "--version", markdownLinkCheckVersion))
 	if ok {
 		printer.Infof("Using installed markdown-link-check")
 		return
 	}
-	shellx.Cmdf(`npm install --location=global markdown-link-check@%s`, markdownLinkCheckVersion).RunV()
+	shx.MustCmdf(`npm install --location=global markdown-link-check@%s`, markdownLinkCheckVersion).MustRunV()
 }
 
 func shouldSkipPath(d fs.DirEntry, path string) bool {
