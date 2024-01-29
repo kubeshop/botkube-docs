@@ -19,6 +19,7 @@
 
 # IDE configuraiton files
 /.idea/
+/.vscode/
 
 # Misc
 .env.local
