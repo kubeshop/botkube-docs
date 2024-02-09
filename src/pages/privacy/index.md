@@ -29,6 +29,7 @@ The analytics data we collect is limited to:
 
   For `kubectl` commands, only the command verb is collected. Resource name and namespace are excluded from the analytics collection.
 
+- Enabled plugin names and anonymized RBAC configuration.
 - App errors (crashes, configuration and notification errors).
 
 As an anonymous cluster identifier, we use the `uid` of `kube-system` Namespace.
