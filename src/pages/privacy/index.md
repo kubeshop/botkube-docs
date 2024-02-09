@@ -9,7 +9,7 @@ title: "Privacy & legal"
 
 ### Privacy Policy
 
-**Last updated** **November 17, 2022**
+**Last updated** **February 09, 2024**
 
 To improve the user experience, Botkube collects anonymized data. It does not collect any identifying information, and all analytics are used only as aggregated collection of data to improve Botkube and adjust its roadmap. The analytics collection is enabled by default with an option to opt-out.
 
