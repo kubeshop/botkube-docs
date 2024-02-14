@@ -1,6 +1,6 @@
 ---
 id: tutorials
-title: Tutorial
+title: Tutorials
 sidebar_position: 2
 ---
 
