@@ -1,7 +1,7 @@
 ---
 id: tutorials
 title: Tutorials
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # 🧑‍💻Tutorials
