@@ -97,8 +97,8 @@ Such constrains applies in the context of the Cloud organization:
 2. The organization owner cannot be removed.
 3. The organization owner is also a billing person.
 4. All organization members have the same full permission. They can add and remove members and update organization information.
-5. A user can be a member of multiple organizations
-6. Instances are always scoped to a given organization
+5. A user can be a member of multiple organizations.
+6. Instances are always scoped to a given organization.
 
 ## Useful links
 
