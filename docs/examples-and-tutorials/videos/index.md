@@ -1,7 +1,7 @@
 ---
 id: videos
 title: Videos
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # 🎥️ Videos
@@ -26,10 +26,14 @@ sidebar_position: 4
 - [Kubefirst- Monitor & Act on Your Kubernetes Cluster](https://www.youtube.com/live/RLmU472lync?feature=shared)
 - [CNCF Islamabad- Unlocking K8s Troubleshooting Best Practices](https://www.youtube.com/live/Ry_UijS1ZNk?feature=shared)
 - [Cloud Lunch and Learn - K8s Troubleshooting Best Practices in Azure](https://www.youtube.com/live/x0TBA6TpfqU?feature=shared)
+- [Kunal Kushwaha- Collaborative Troubleshooting and Monitoring in K8s With Botkube](https://youtu.be/coDSM9LiOB4?feature=shared)
 
 ## Botkube User Contributions
 
 - [Kubernetes Cluster ChatOps- Engineering with Morris](https://youtu.be/wI6nJL4dtHY?feature=shared)
+- [Botkube( Real-Time Kubernetes Monitoring and Alerting)- Kubernetes Bangalore](https://youtu.be/Xylb7w0yZhQ?feature=shared)
+- [Como utilizar Slack e BotKube pra se comunicar com o seu cluster Kubernetes-Fabricio Veronez](https://www.youtube.com/live/FEUOnE4z2Ac?feature=shared)
+- [Monitoring & Debugging Kubernetes Applications with BotKube-Collabnix](https://youtu.be/mZHxJjYNmKA?feature=shared)
 
 ## Conference Talks
 
