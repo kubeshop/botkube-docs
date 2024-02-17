@@ -8,8 +8,8 @@ sidebar_position: 2
 
 ## Best Practices
 
-- [Multi-cluster Kubernetes Observability](https://botkube.io/blog/empowering-your-kubernetes-multi-cluster-observability-with-intelligent-monitoring) - Explore how Botkube streamlines Kubernetes multi-cluster management for optimized performance and reliability.
-- [Day 2 Operations with Flux](https://botkube.io/blog/creating-the-botkube-flux-plugin-for-day-2-operations) - Discover best practices for handling Day 2 operations in Kubernetes using Botkube's Flux plugin.
+- [Multi-cluster Kubernetes Observability](https://botkube.io/blog/empowering-your-kubernetes-multi-cluster-observability-with-intelligent-monitoring): Explore how Botkube streamlines Kubernetes multi-cluster management for optimized performance and reliability.
+- [Day 2 Operations with Flux](https://botkube.io/blog/creating-the-botkube-flux-plugin-for-day-2-operations) :Discover best practices for handling Day 2 operations in Kubernetes using Botkube's Flux plugin.
 
 ## Features
 
