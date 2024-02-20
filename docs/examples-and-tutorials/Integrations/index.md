@@ -18,7 +18,7 @@ sidebar_position: 4
 - [Kubernetes Events](https://botkube.io/learn/how-botkube-makes-monitoring-kubernetes-easy): Effortlessly monitor Kubernetes events using Botkube's built-in source plugin.
 - [ArgoCD](https://botkube.io/integration/argo-cd-botkube-kubernetes-integration): Streamline your GitOps workflows and receive notifications by using Botkube's ArgoCD plugin.
 - [Prometheus](https://botkube.io/integration/prometheus): Optimize your Kubernetes Monitoring process by connecting your Prometheus metrics with Botkube.
-- [Keptn](https://botkube.io/integration/keptn): Automate testing, deployment, and operations in your Kubernetes environments by using Botkube's Keptn plugin. 
+- [Keptn](https://botkube.io/integration/keptn): Automate testing, deployment, and operations in your Kubernetes environments by using Botkube's Keptn plugin.
 
 ## Executor Plugins
 
@@ -27,5 +27,3 @@ sidebar_position: 4
 - [Helm](https://botkube.io/integration/helm): Manage Helm deployments and releases seamlessly with Botkube's Helm plugin.
 - [Flux](https://botkube.io/integration/botkube-flux-kubernetes-integration): Use Botkube for GitOps operations with the Flux plugin.
 - [Exec](https://botkube.io/integration/custom-executor-plugin): Connecting your own plugin for a tailored Kubernetes workflow with Botkube's exec plugin.
-
-

@@ -9,8 +9,8 @@ sidebar_position: 3
 ## GitOps Integrations
 
 - [Flux Plugin for Day 2 Operations](https://botkube.io/blog/creating-the-botkube-flux-plugin-for-day-2-operations): Discover how Botkube's Flux plugin simplifies Day 2 operations and provides tailored solutions for various K8s management needs.
-- [ArgoCD Plugin for Optimizing Collaboration & Notifications](https://botkube.io/blog/optimizing-collaboration-and-notifications-with-the-botkube-argocd-plugin): Learn about how Botkube's engineering team using the ArgoCD plugin to optimize their deployment experience. 
-- [Enhancing GitOps Workflows with Botkube](https://botkube.io/blog/enhancing-gitops-workflows-with-botkube): Explore Botkube's capabilities in optimizing GitOps workflows. 
+- [ArgoCD Plugin for Optimizing Collaboration & Notifications](https://botkube.io/blog/optimizing-collaboration-and-notifications-with-the-botkube-argocd-plugin): Learn about how Botkube's engineering team using the ArgoCD plugin to optimize their deployment experience.
+- [Enhancing GitOps Workflows with Botkube](https://botkube.io/blog/enhancing-gitops-workflows-with-botkube): Explore Botkube's capabilities in optimizing GitOps workflows.
 
 ## Automating the K8s Troubleshooting workflow
 

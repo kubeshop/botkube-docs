@@ -34,4 +34,3 @@ sidebar_position: 2
 - [ArgoCD Integration](https://botkube.io/tutorials/argocd-integration): Integrate Botkube with ArgoCD for streamlined continuous delivery workflows and notifications.
 - [Prometheus Integration](https://botkube.io/tutorials/prometheus-integration): Monitor Kubernetes clusters effectively by integrating Prometheus metrics with Botkube.
 - [Keptn Integration](https://botkube.io/tutorials/keptn-integration): Automate testing, deployment, and operations in Kubernetes environments by integrating Botkube with Keptn.
-
