@@ -122,12 +122,6 @@ const config = {
           },
           {
             type: "doc",
-            docId: "examples-and-tutorials/overview/overview",
-            position: "left",
-            label: "Examples & Tutorials",
-          },
-          {
-            type: "doc",
             docId: "contribute/contribute",
             docsPluginId: "community",
             position: "left",
