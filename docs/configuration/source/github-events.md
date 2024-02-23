@@ -4,127 +4,126 @@ title: GitHub Events
 sidebar_position: 4
 ---
 
-The Botkube GitHub Events source sends events for configured GitHub repositories. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, refer to the [Communication](../communication/index.md) and [Action](../action.md) documents.
+:::info
 
-The GitHub Events plugin is hosted in the official Botkube plugin repository. To enable the GitHub plugin, ensure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
+**This plugin is available as a part of the Botkube Cloud offering.**
 
-```yaml
-plugins:
-  repositories:
-    botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.8.0/plugins-index.yaml
-```
+Botkube is introducing new plugins with advanced functionality that will be part of the Botkube Team and Enterprise packages. These advanced plugins require cloud services provided by Botkube and are not part of the Botkube open source software.
+
+As part of this change, some of the existing Botkube plugins are being moved to a new repository. This repository requires authentication with a Botkube account. To continue using these Botkube plugins, create an account at https://app.botkube.io/ and configure a Botkube instance, or [migrate an existing installation with the Botkube CLI](../../cli/migrate.md).
+
+:::
+
+The GitHub Events source sends events for configured GitHub repositories. These events can be sent to communication channels or actions. To learn how to bind sources to communication channels or actions, refer to the [Communication](../communication/index.md) and [Action](../action.md) documents.
+
+The GitHub Events plugin is hosted by the Botkube Cloud plugin repository and requires active Botkube Cloud account.
 
 ## Enabling plugin
 
-To enable the GitHub plugin, add the following flag to the Botkube [`install` command](../../cli/commands/botkube_install.md):
+You can enable the plugin as a part of Botkube instance configuration.
 
-```sh
---set 'sources.github.botkube/github-events.enabled'=true
-```
+1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../../installation/index.mdx) docs.
+2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
+3. Navigate to the platform tab which you want to configure.
+4. Click **Add plugin** button.
+5. Select the GitHub Events plugin.
+6. Click **Save** button.
 
-## Syntax
+## Configuration Syntax
+
+This plugin supports the following configuration:
 
 ```yaml
-# Map of sources. The `sources` property name is an alias for a given configuration.
-# Key name is used as a binding reference.
+# Logger configuration settings.
+log:
+  level: info
+  format: json
+
+# GitHub client configuration settings.
+github:
+  # Auth allows you to set either PAT or APP credentials.
+  # If none provided then watch functionality could not work properly, e.g. you can reach the API calls quota or if you are setting GitHub Enterprise base URL then an unauthorized error can occur.
+  auth:
+    # The GitHub access token.
+    # Instruction for creating a token can be found here: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token.
+    accessToken: your-github-token
+    # AppConfig represents the GitHub App configuration.
+    # This replaces the AccessToken.
+    app:
+      # GitHub App ID for authentication.
+      id: ""
+
+      # GitHub App Installation ID.
+      installationId: ""
+
+      # GitHub App private key in PEM format.
+      privateKey: ""
+  # The GitHub base URL for API requests. Defaults to the public GitHub API, but can be set to a domain endpoint to use with GitHub Enterprise.
+  # Default: https://api.github.com/
+  baseUrl: ""
+
+  # The GitHub upload URL for uploading files. It is taken into account only when the BaseURL is also set. If only the BaseURL is provided then this parameter defaults to the BaseURL value.
+  # Default: https://uploads.github.com/
+  uploadUrl: ""
+
+# refreshDuration defines how often we should call GitHub REST API to check repository events.
+# It's the same for all configured repositories. For example, if you configure 5s refresh time, and you have 3 repositories registered,
+# we will execute maximum 2160 calls which easily fits into PAT rate limits.
+# You can create multiple plugins configuration with dedicated tokens to have the rate limits increased.
 #
-# Format: sources.{alias}
-sources:
-  "github":
-    botkube/github-events: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
-      enabled: true # If not enabled, plugin is not downloaded and started.
-      config: # Plugin's specific configuration.
-        # Logger configuration settings.
-        log:
-          level: info
-          format: json
+# NOTE:
+# - we use conditional requests (https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#conditional-requests), so if there are no events the call doesn't count against your rate limits.\
+# - if you configure file pattern matcher for merged pull request events we execute one more additional call to check which files were changed in the context of a given pull request
+#
+# Rate limiting: https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#rate-limiting
+refreshDuration: 10s
 
-        # GitHub client configuration settings.
-        github:
-          # Auth allows you to set either PAT or APP credentials.
-          # If none provided then watch functionality could not work properly, e.g. you can reach the API calls quota or if you are setting GitHub Enterprise base URL then an unauthorized error can occur.
-          auth:
-            # The GitHub access token.
-            # Instruction for creating a token can be found here: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token.
-            accessToken: your-github-token
-            # AppConfig represents the GitHub App configuration.
-            # This replaces the AccessToken.
-            app:
-              # GitHub App ID for authentication.
-              id: ""
+repositories:
+  - name: owner/repo1
+    on:
+      pullRequests:
+        - types: [open, merged] # Allowed pull request types (open, closed, merged).
+          paths:
+            # Included file patterns for pull request changes.
+            include: ["kustomize/.*"]
+            # Excluded file patterns for pull request changes.
+            # exclude: [ '.*\.js' ]
+          labels:
+            # Included labels for pull requests.
+            include: ["bug"]
+            # Excluded labels for pull requests.
+            # exclude: [ 'enhancement' ]
+          notificationTemplate:
+            extraButtons:
+              - displayName: "Flux Diff"
+                commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
 
-              # GitHub App Installation ID.
-              installationId: ""
+- name: owner/repo2
+  on:
+    # EventsAPI watches for /events API containing events triggered by activity on GitHub.
+    # This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
+    # source: https://docs.github.com/en/rest/activity/events?apiVersion=2022-11-28#list-repository-events
+    events:
+      # WatchEvent for now emitted only when someone stars a repository.
+      # https://docs.github.com/en/webhooks-and-events/events/github-event-types#watchevent
+      - type: "WatchEvent"
 
-              # GitHub App private key in PEM format.
-              privateKey: ""
-          # The GitHub base URL for API requests. Defaults to the public GitHub API, but can be set to a domain endpoint to use with GitHub Enterprise.
-          # Default: https://api.github.com/
-          baseUrl: ""
+      # IssuesEvent with json path filter
+      - type: "IssuesEvent"
+        # The JSONPath expression to filter events
+        jsonPath: ".action"
+        # The value to match in the JSONPath result
+        value: "opened"
+        notificationTemplate:
+          previewTpl: |-
+            Issue Opened
 
-          # The GitHub upload URL for uploading files. It is taken into account only when the BaseURL is also set. If only the BaseURL is provided then this parameter defaults to the BaseURL value.
-          # Default: https://uploads.github.com/
-          uploadUrl: ""
-
-        # refreshDuration defines how often we should call GitHub REST API to check repository events.
-        # It's the same for all configured repositories. For example, if you configure 5s refresh time, and you have 3 repositories registered,
-        # we will execute maximum 2160 calls which easily fits into PAT rate limits.
-        # You can create multiple plugins configuration with dedicated tokens to have the rate limits increased.
-        #
-        # NOTE:
-        # - we use conditional requests (https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#conditional-requests), so if there are no events the call doesn't count against your rate limits.\
-        # - if you configure file pattern matcher for merged pull request events we execute one more additional call to check which files were changed in the context of a given pull request
-        #
-        # Rate limiting: https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#rate-limiting
-        refreshDuration: 10s
-
-        repositories:
-          - name: owner/repo1
-            on:
-              pullRequests:
-                - types: [open, merged] # Allowed pull request types (open, closed, merged).
-                  paths:
-                    # Included file patterns for pull request changes.
-                    include: ["kustomize/.*"]
-                    # Excluded file patterns for pull request changes.
-                    # exclude: [ '.*\.js' ]
-                  labels:
-                    # Included labels for pull requests.
-                    include: ["bug"]
-                    # Excluded labels for pull requests.
-                    # exclude: [ 'enhancement' ]
-                  notificationTemplate:
-                    extraButtons:
-                      - displayName: "Flux Diff"
-                        commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
-
-          - name: owner/repo2
-            on:
-              # EventsAPI watches for /events API containing events triggered by activity on GitHub.
-              # This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
-              # source: https://docs.github.com/en/rest/activity/events?apiVersion=2022-11-28#list-repository-events
-              events:
-                # WatchEvent for now emitted only when someone stars a repository.
-                # https://docs.github.com/en/webhooks-and-events/events/github-event-types#watchevent
-                - type: "WatchEvent"
-
-                # IssuesEvent with json path filter
-                - type: "IssuesEvent"
-                  # The JSONPath expression to filter events
-                  jsonPath: ".action"
-                  # The value to match in the JSONPath result
-                  value: "opened"
-                  notificationTemplate:
-                    previewTpl: |-
-                      Issue Opened
-
-                      #{{ .Issue.Number }} {{ .Issue.Title }}
-                      State: {{ .Issue.State }}
-                    extraButtons:
-                      - displayName: Open
-                        url: "{{ .Issue.HTMLURL }}"
-                        style: primary
+            #{{ .Issue.Number }} {{ .Issue.Title }}
+            State: {{ .Issue.State }}
+          extraButtons:
+            - displayName: Open
+              url: "{{ .Issue.HTMLURL }}"
+              style: primary
 ```
 
 ## Authorization

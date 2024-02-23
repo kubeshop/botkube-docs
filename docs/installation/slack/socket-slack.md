@@ -194,7 +194,6 @@ To deploy Botkube agent in your cluster, run:
 ```bash
 export CLUSTER_NAME={cluster_name}
 export ALLOW_KUBECTL={allow_kubectl}
-export ALLOW_HELM={allow_helm}
 export SLACK_CHANNEL_NAME={channel_name}
 
 botkube install --version v1.8.0 \
@@ -203,8 +202,7 @@ botkube install --version v1.8.0 \
 --set communications.default-group.socketSlack.appToken=${SLACK_API_APP_TOKEN} \
 --set communications.default-group.socketSlack.botToken=${SLACK_API_BOT_TOKEN} \
 --set settings.clusterName=${CLUSTER_NAME} \
---set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
---set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM}
+--set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL}
 ```
 
 where:
@@ -213,8 +211,7 @@ where:
 - **SLACK_API_BOT_TOKEN** is the Token you received after installing Botkube app to your Slack workspace
 - **SLACK_API_APP_TOKEN** is the Token you received after installing Botkube app to your Slack workspace and generate in App-Level Token section
 - **CLUSTER_NAME** is the cluster name set in the incoming messages
-- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
-- **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
+- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster.
 
 Configuration syntax is explained [here](../../configuration).
 All possible installation parameters are documented [here](../../../configuration/helm-chart-parameters).

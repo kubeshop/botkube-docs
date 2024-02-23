@@ -9,6 +9,8 @@ The communication settings contain:
 - Configuration for communication platforms scoped in separate communication groups,
 - Platform-specific options, such as multichannel configuration for platforms that support channels.
 
+The settings are applicable only for self-hosted Botkube installation. Cloud Slack and Microsoft Teams platforms are exclusive to Botkube Cloud.
+
 ## Communication groups
 
 Communication group is a way to aggregate separate configurations for a set of communication platforms. You can specify multiple communication groups, and, in a result, support multiple Slack or Mattermost workspaces, Discord servers, or Elasticsearch server instances.
@@ -26,9 +28,10 @@ Consider the following configuration:
 ```yaml
 communications:
   "first-group": # Your own alias of a given communication group
-    slack:
+    socketSlack:
       enabled: true
-      token: "{SLACK_TOKEN_1}" # Token for Botkube Slack app installed in Workspace 1
+      botToken: "{SLACK_BOT_TOKEN_1}" # Bot token for Botkube Slack app installed in Workspace 1
+      appToken: "{SLACK_APP_TOKEN_1}" # App token for Botkube Slack app installed in Workspace 1
       channels:
         "general": # Your own alias for the channel configuration
           name: general
@@ -44,9 +47,10 @@ communications:
             sources: # Notification sources configuration for a given channel
               - k8s-events
   "second-group": # Your own alias of a given communication group
-    slack:
+    socketSlack:
       enabled: true
-      token: "{SLACK_TOKEN_2}" # Token for Botkube Slack app installed in Workspace 2
+      botToken: "{SLACK_BOT_TOKEN_2}" # Bot token for Botkube Slack app installed in Workspace 2
+      appToken: "{SLACK_APP_TOKEN_2}" # App token for Botkube Slack app installed in Workspace 2
       channels:
         "primary-channel": # Your own alias for the channel configuration
           name: general
@@ -80,13 +84,6 @@ With executor bindings you can configure which executors are allowed in a given 
 
 With source bindings, you can specify which events are sent to a given channel (or, in case of Elasticsearch, index). To read more about source configuration, see the [Source](../source) document.
 
-## Known limitations
-
-Currently, [Microsoft Teams](../../installation/teams/) integration works differently than other bot integrations, such as Slack or Discord. While Microsoft Teams support multiple channels for forwarding notifications, you need to turn them on with `@Botkube enable notifications` on each channel. Microsoft Teams uses source and executor bindings defined under `communications.teams.bindings` property for all channels in the following way:
-
-- Executor bindings apply to all MS Teams channels where Botkube has access to.
-- Source bindings apply to all channels which have notification turned on with `@Botkube enable notifications` command.
-
 ## Syntax
 
 Each communication platform has specific options, however they share a similar syntax for consistency.
@@ -95,41 +92,43 @@ For example, bot integrations such as Slack, Mattermost or Discord have multicha
 ```yaml
 # Map of communication groups. Communication group contains settings for multiple communication platforms.
 # The property name under `communications` object is an alias for a given configuration group. You can define multiple communication groups with different names.
+# @default -- See the `values.yaml` file for full object.
 #
-# Format: communications.{alias}
+## Format: communications.{alias}
 communications:
   "default-group":
-    # Settings for Slack.
-    slack:
+    ## Settings for Slack with Socket Mode.
+    socketSlack:
       # If true, enables Slack bot.
       enabled: false
       # Map of configured channels. The property name under `channels` object is an alias for a given configuration.
       #
-      # Format: channels.{alias}
+      ## Format: channels.{alias}
       channels:
         "default":
           # Slack channel name without '#' prefix where you have added Botkube and want to receive notifications in.
           name: "SLACK_CHANNEL"
-          notification:
-            # If true, the notifications are not sent to the channel. They can be enabled with `@Botkube` command anytime.
-            disabled: false
           bindings:
             # Executors configuration for a given channel.
             executors:
               - k8s-default-tools
             # Notification sources configuration for a given channel.
             sources:
-              - k8s-events
-      # Slack token.
-      token: "SLACK_API_TOKEN"
-
-    # Settings for Mattermost.
+              - k8s-err-events
+              - k8s-recommendation-events
+      # Slack bot token for your own Slack app.
+      # [Ref doc](https://api.slack.com/authentication/token-types).
+      botToken: ""
+      # Slack app-level token for your own Slack app.
+      # [Ref doc](https://api.slack.com/authentication/token-types).
+      appToken: ""
+    ## Settings for Mattermost.
     mattermost:
       # If true, enables Mattermost bot.
       enabled: false
       # User in Mattermost which belongs the specified Personal Access token.
       botName: "Botkube"
-      # The URL (including http/https schema) where Mattermost is running. e.g. https://example.com:9243
+      # The URL (including http/https schema) where Mattermost is running. e.g https://example.com:9243
       url: "MATTERMOST_SERVER_URL"
       # Personal Access token generated by Botkube user.
       token: "MATTERMOST_TOKEN"
@@ -137,7 +136,7 @@ communications:
       team: "MATTERMOST_TEAM"
       # Map of configured channels. The property name under `channels` object is an alias for a given configuration.
       #
-      # Format: channels.{alias}
+      ## Format: channels.{alias}
       channels:
         "default":
           # The Mattermost channel name for receiving Botkube alerts.
@@ -152,31 +151,10 @@ communications:
               - k8s-default-tools
             # Notification sources configuration for a given channel.
             sources:
-              - k8s-events
+              - k8s-err-events
+              - k8s-recommendation-events
 
-    # Settings for MS Teams.
-    teams:
-      # If true, enables MS Teams bot.
-      enabled: false
-      # The Bot name set while registering Bot to MS Teams.
-      botName: "Botkube"
-      # The Botkube application ID generated while registering Bot to MS Teams.
-      appID: "APPLICATION_ID"
-      # The Botkube application password generated while registering Bot to MS Teams.
-      appPassword: "APPLICATION_PASSWORD"
-      bindings:
-        # Executor bindings apply to all MS Teams channels where Botkube has access to.
-        executors:
-          - k8s-default-tools
-        # Source bindings apply to all channels which have notification turned on with `@Botkube enable notifications` command.
-        sources:
-          - k8s-events
-      # The path in endpoint URL provided while registering Botkube to MS Teams.
-      messagePath: "/bots/teams"
-      # The Service port for bot endpoint on Botkube container.
-      port: 3978
-
-    # Settings for Discord.
+    ## Settings for Discord.
     discord:
       # If true, enables Discord bot.
       enabled: false
@@ -186,7 +164,7 @@ communications:
       botID: "DISCORD_BOT_ID"
       # Map of configured channels. The property name under `channels` object is an alias for a given configuration.
       #
-      # Format: channels.{alias}
+      ## Format: channels.{alias}
       channels:
         "default":
           # Discord channel ID for receiving Botkube alerts.
@@ -201,9 +179,10 @@ communications:
               - k8s-default-tools
             # Notification sources configuration for a given channel.
             sources:
-              - k8s-events
+              - k8s-err-events
+              - k8s-recommendation-events
 
-    # Settings for Elasticsearch.
+    ## Settings for Elasticsearch.
     elasticsearch:
       # If true, enables Elasticsearch.
       enabled: false
@@ -215,7 +194,7 @@ communications:
         awsRegion: "us-east-1"
         # AWS IAM Role arn to assume for credentials, use this only if you don't want to use the EC2 instance role or not running on AWS instance.
         roleArn: ""
-      # The server URL, e.g. https://example.com:9243
+      # The server URL, e.g https://example.com:9243
       server: "ELASTICSEARCH_ADDRESS"
       # Basic Auth username.
       username: "ELASTICSEARCH_USERNAME"
@@ -224,9 +203,17 @@ communications:
       # If true, skips the verification of TLS certificate of the Elastic nodes.
       # It's useful for clusters with self-signed certificates.
       skipTLSVerify: false
+      # Specify the log level for Elasticsearch client. Leave empty to disable logging.
+      ## Possible values: "info", "error", "trace".
+      ## - "info": Logs information level messages.
+      ## - "error": Logs information and error level messages.
+      ## - "trace": Logs information, error, and trace level messages.
+      ## To disable logging, simply leave the logLevel empty or remove the line.
+      logLevel: ""
+
       # Map of configured indices. The `indices` property name is an alias for a given configuration.
       #
-      # Format: indices.{alias}
+      ## Format: indices.{alias}
       indices:
         "default":
           # Configures Elasticsearch index settings.
@@ -237,18 +224,20 @@ communications:
           bindings:
             # Notification sources configuration for a given index.
             sources:
-              - k8s-events
+              - k8s-err-events
+              - k8s-recommendation-events
 
-    # Settings for Webhook.
+    ## Settings for Webhook.
     webhook:
       # If true, enables Webhook.
       enabled: false
       # The Webhook URL, e.g.: https://example.com:80
       url: "WEBHOOK_URL"
       bindings:
-        # -- Notification sources configuration for the webhook.
+        # Notification sources configuration for the webhook.
         sources:
-          - k8s-events
+          - k8s-err-events
+          - k8s-recommendation-events
 ```
 
 The default configuration for Helm chart can be found in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml).

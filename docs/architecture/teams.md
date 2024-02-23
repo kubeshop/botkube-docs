@@ -12,7 +12,7 @@ This document describes the communication between the Botkube Cloud control-plan
 ### Agent outbound connections
 
 - HTTPS: `https://api.segment.io/*`
-- HTTPS: `https://api.botkube.io/graphql`
+- HTTPS: `https://api.botkube.io/*`
 - HTTPS: `https://github.com/kubeshop/botkube/releases/download/*`
 - HTTP/2: `teams.botkube.io:50054`
 - Docker images: https://ghcr.io more about required ports you can on [About GitHub's IP addresses](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses):
@@ -31,27 +31,50 @@ The Botkube Agent doesn't export any endpoints.
 
 The Botkube Agent Docker image is hosted on the GitHub Container registry, which uses the package namespace https://ghcr.io. The image format link:
 
-- [`ghcr.io/kubeshop/botkube:{botkube_version}`](https://github.com/kubeshop/botkube/pkgs/container/botkube), e.g., `ghcr.io/kubeshop/botkube:v1.8.0`
+- [`ghcr.io/kubeshop/botkube:{botkube_version}`](https://github.com/kubeshop/botkube/pkgs/container/botkube), e.g., `ghcr.io/kubeshop/botkube:v1.9.0`
 
 ### Plugin manager
 
-During startup, the Botkube Agent downloads plugins index and all enabled plugins. Both the index and plugin archives are stored under a given Botkube GitHub release as [its assets](https://github.com/kubeshop/botkube/releases/tag/v1.8.0):
+The index and archives for open source plugins are stored under a given Botkube GitHub release as [its assets](https://github.com/kubeshop/botkube/releases/tag/v1.9.0):
 
-- Plugin index: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/plugins-index.yaml`, e.g., https://github.com/kubeshop/botkube/releases/download/v1.8.0/plugins-index.yaml
-- Plugin archive: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/{plugin_name_and_arch}.tar.gz` e.g., https://github.com/kubeshop/botkube/releases/download/v1.8.0/executor_kubectl_linux_amd64.tar.gz
-  - Plugin links can also be found in the `plugins-index.yaml` file
+- Plugin index: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/plugins-index.yaml`, e.g., https://github.com/kubeshop/botkube/releases/download/v1.9.0/plugins-index.yaml
+- Plugin archive: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/{plugin_name_and_arch}.tar.gz` e.g., https://github.com/kubeshop/botkube/releases/download/v1.9.0/executor_kubectl_linux_amd64.tar.gz
+  - Plugin links can also be found in the `plugins-index.yaml` file.
 
-All of them are stored under the `/tmp` folder mounted as the [`emptyDir`](https://github.com/kubeshop/botkube/blob/release-1.8/helm/botkube/templates/deployment.yaml#L146-L147). There is no Persistent Volume (PV), meaning that when the Agent Pod is, for example, rescheduled to another node, it downloads all dependencies again. To ensure that the [plugin manager](index.md#plugin-manager) does not make external calls, all required plugins must be present. You can achieve this by mounting a Persistent Volume Claim (PVC) at this path. Later, you can mount your Persistent Volume (PV) with cached plugins.
+For the Botkube Cloud exclusive plugins, we serve plugin index via the Botkube Cloud API (`api.botkube.io`). As we use Google Cloud Storage as the storage provider, all the plugins are fetched from the `https://storage.googleapis.com` origin.
 
-### Plugins
+During startup, the Botkube Agent downloads plugins index and all enabled plugins. They are stored under the `/tmp` folder mounted as the [`emptyDir`](https://github.com/kubeshop/botkube/blob/release-1.9/helm/botkube/templates/deployment.yaml#L146-L147). There is no Persistent Volume (PV), meaning that when the Agent Pod is, for example, rescheduled to another node, it downloads all dependencies again. To ensure that the [plugin manager](index.md#plugin-manager) does not make external calls, all required plugins must be present. You can achieve this by mounting a Persistent Volume Claim (PVC) at this path. Later, you can mount your Persistent Volume (PV) with cached plugins.
 
-Each plugin may define required external dependencies that are downloaded by the [Plugin manager](#plugin-manager) at Agent startup. The whitelisting differs per plugin, as for now, those dependencies are taken from the official sources and are not mirrored to the Botkube Cloud registry. Here are the links that describe external dependencies for each officially supported plugin:
+### Plugin dependencies
 
-- [`kubectl`](../configuration/executor/kubectl.md) executor: https://github.com/kubeshop/botkube/blob/release-1.8/internal/executor/kubectl/executor.go#L33-L42
-- [`exec`](../configuration/executor/exec.md) executor: https://github.com/kubeshop/botkube/blob/release-1.8/internal/executor/x/config.go#L29-L39
-- [`flux`](../configuration/executor/flux.md) executor: https://github.com/kubeshop/botkube/blob/release-1.8/internal/executor/flux/executor.go#L62-L81
-- [`helm`](../configuration/executor/helm.md) executor: https://github.com/kubeshop/botkube/blob/release-1.8/internal/executor/helm/executor.go#L24-L37
-- [`github-events`](../configuration/source/github-events.md) source: https://github.com/kubeshop/botkube/blob/release-1.8/cmd/executor/gh/main.go#L138-L157
+Each plugin may define required external dependencies that are downloaded by the [Plugin manager](#plugin-manager) at Agent startup. For now, those dependencies are taken from the official sources and are not mirrored to the Botkube Cloud registry. Here are the links that describe external dependencies for each officially supported plugin:
+
+- [`kubectl`](../configuration/executor/kubectl.md) executor: https://github.com/kubeshop/botkube/blob/release-1.9/internal/executor/kubectl/executor.go#L33-L42
+
+`helm` plugin:
+
+- `helm` dependency:
+  - https://get.helm.sh/helm-v3.6.3-darwin-amd64.tar.gz//darwin-amd64
+  - https://get.helm.sh/helm-v3.6.3-darwin-arm64.tar.gz//darwin-arm64
+  - https://get.helm.sh/helm-v3.6.3-linux-amd64.tar.gz//linux-amd64
+  - https://get.helm.sh/helm-v3.6.3-linux-arm64.tar.gz//linux-arm64
+- `exec` plugin:
+  - `eget` dependency:
+    - https://github.com/zyedidia/eget/releases/download/v1.3.3/eget-1.3.3-darwin_amd64.tar.gz//eget-1.3.3-darwin_amd64
+    - https://github.com/zyedidia/eget/releases/download/v1.3.3/eget-1.3.3-darwin_arm64.tar.gz//eget-1.3.3-darwin_arm64
+    - https://github.com/zyedidia/eget/releases/download/v1.3.3/eget-1.3.3-linux_amd64.tar.gz//eget-1.3.3-linux_amd64
+    - https://github.com/zyedidia/eget/releases/download/v1.3.3/eget-1.3.3-linux_arm64.tar.gz//eget-1.3.3-linux_arm64
+- `flux` plugin:
+  - `flux` dependency:
+    - https://github.com/fluxcd/flux2/releases/download/v2.0.1/flux_2.0.1_darwin_amd64.tar.gz
+    - https://github.com/fluxcd/flux2/releases/download/v2.0.1/flux_2.0.1_darwin_arm64.tar.gz
+    - https://github.com/fluxcd/flux2/releases/download/v2.0.1/flux_2.0.1_linux_amd64.tar.gz
+    - https://github.com/fluxcd/flux2/releases/download/v2.0.1/flux_2.0.1_linux_arm64.tar.gz
+  - `gh` dependency:
+    - https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_macOS_amd64.zip//gh_2.32.1_macOS_amd64/bin
+    - https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_macOS_arm64.zip//gh_2.32.1_macOS_arm64/bin
+    - https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_amd64.tar.gz//gh_2.32.1_linux_amd64/bin
+    - https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_linux_arm64.tar.gz//gh_2.32.1_linux_arm64/bin
 
 If a plugin is not listed here, then it doesn't have any external dependencies.
 

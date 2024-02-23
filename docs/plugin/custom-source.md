@@ -248,7 +248,7 @@ Sometimes your source plugin requires a configuration specified by the end-user.
 ```yaml
 communications:
   "default-group":
-    slack:
+    socketSlack:
       channels:
         "default":
           name: "all-teams"
