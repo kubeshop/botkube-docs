@@ -14,7 +14,7 @@ Aliases are defined globally for the whole Botkube installation. Once they are c
 
 You can configure aliases in the Botkube Cloud dashboard.
 
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../../installation/index.mdx) docs.
+1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
 2. From the [Botkube Cloud homepage](https://app.botkube.io), click the **Aliases** link in the top right corner.
 3. Click **Create new** button.
 4. Provide display name, alias and command.
