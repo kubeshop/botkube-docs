@@ -4,7 +4,17 @@ title: "Exec"
 sidebar_position: 3
 ---
 
-The `exec` executor plugin allows you to install and run CLI applications directly from chat (e.g., Slack, Discord, or Mattermost) without any hassle.
+:::info
+
+**This plugin is available as a part of the Botkube Cloud offering.**
+
+Botkube is introducing new plugins with advanced functionality that will be part of the Botkube Team and Enterprise packages. These advanced plugins require cloud services provided by Botkube and are not part of the Botkube open source software.
+
+As part of this change, some of the existing Botkube plugins are being moved to a new repository. This repository requires authentication with a Botkube account. To continue using these Botkube plugins, create an account at https://app.botkube.io/ and configure a Botkube instance, or [migrate an existing installation with the Botkube CLI](../../cli/migrate.md).
+
+:::
+
+The `exec` executor plugin allows you to install and run CLI applications directly from chat (e.g., Slack, Microsoft Teams, Discord, or Mattermost) without any hassle.
 
 It supports interactivity in the form of buttons and dropdowns. You can easily use all your favorite tools without typing, even from your mobile phone!
 
@@ -12,13 +22,6 @@ It supports interactivity in the form of buttons and dropdowns. You can easily u
 
 :::note
 To shorten the command, the `x` alias is used in all examples. Make sure you have it configured for your Botkube installation according to [Alias configuration](../../configuration/alias) document.
-
-```yaml
-aliases:
-  x:
-    command: exec
-    displayName: "Exec alias"
-```
 
 In this context, the `x` stands for `extension` or `execution`.
 :::
@@ -55,16 +58,7 @@ To execute a CLI command, run:
 - `@Botkube x run flux get sources git`
 
 :::tip
-For convenience, you can configure a Botkube alias to simplify running `flux` commands:
-
-```yaml
-aliases:
-  flux:
-    command: x run flux
-    displayName: "Flux CLI alias"
-```
-
-Later, you can simply type `@Botkube flux get sources git`.
+For convenience, you can configure a Botkube alias to simplify running `flux` commands, according to the [Alias configuration](../../configuration/alias) document. Later, you can simply type `@Botkube flux get sources git`.
 :::
 
 # Templates

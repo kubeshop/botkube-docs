@@ -9,11 +9,11 @@ The executor configuration allows you to define multiple executor configurations
 ```yaml
 executors:
   "kubectl-global": # This is an executor configuration name, which is referred in communication bindings.
-    kubectl:
+    botkube/kubectl:
       # ... trimmed ...
 
-  "helm-read-only": # This is an executor configuration name, which is referred in communication bindings.
-    helm:
+  "echo": # This is an executor configuration name, which is referred in communication bindings.
+    botkube/echo:
       # ... trimmed ...
 ```
 
@@ -22,13 +22,13 @@ This can be later used by the communication platforms:
 ```yaml
 communications:
   "default-group":
-    slack:
+    socketSlack:
       channels:
         "default":
           bindings:
             executors: # The order is important for merging strategy.
               - kubectl-global # The executor configuration name
-              - helm-read-only # The executor configuration name
+              - echo # The executor configuration name
           # ... trimmed ...
 ```
 
@@ -70,11 +70,11 @@ The health check interval is used to check the health of the executor plugins. T
 - `healthCheckInterval` - health check interval.
 
 ```yaml
-# -- Botkube Restart Policy on plugin failure.
+# Botkube Restart Policy on plugin failure.
 restartPolicy:
-  # -- Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
+  # Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
   type: "DeactivatePlugin"
-  # -- Number of restarts before policy takes into effect.
+  # Number of restarts before policy takes into effect.
   threshold: 10
 healthCheckInterval: 10s
 ```
@@ -87,11 +87,11 @@ healthCheckInterval: 10s
 #
 # Format: executors.{alias}
 executors:
-  "k8s-tools":
-    botkube/helm@v1.8.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+  "tools":
+    botkube/echo@v1.8.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.
-        helmDriver: "secret"
+        changeResponseToUpperCase: true
 
     botkube/kubectl: # If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
@@ -108,16 +108,16 @@ plugins:
     # Other 3rd party repositories.
     repo-name:
       url: https://example.com/plugins-index.yaml
-  # -- Configure Incoming webhook for source plugins.
+  # Configure Incoming webhook for source plugins.
   incomingWebhook:
     enabled: true
     port: 2115
     targetPort: 2115
-  # -- Botkube Restart Policy on plugin failure.
+  # Botkube Restart Policy on plugin failure.
   restartPolicy:
-    # -- Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
+    # Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
     type: "DeactivatePlugin"
-    # -- Number of restarts before policy takes into effect.
+    # Number of restarts before policy takes into effect.
     threshold: 10
   healthCheckInterval: 10s
 ```

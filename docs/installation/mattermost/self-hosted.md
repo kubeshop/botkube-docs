@@ -61,7 +61,6 @@ export MATTERMOST_SERVER_URL={mattermost_server_url}
 export MATTERMOST_TEAM={mattermost_team_name}
 export CLUSTER_NAME={cluster_name}
 export ALLOW_KUBECTL={allow_kubectl}
-export ALLOW_HELM={allow_helm}
 
 botkube install --version v1.8.0 \
 --set communications.default-group.mattermost.enabled=true \
@@ -71,8 +70,7 @@ botkube install --version v1.8.0 \
 --set communications.default-group.mattermost.channels.default.name=${MATTERMOST_CHANNEL} \
 --set communications.default-group.mattermost.botName=${MATTERMOST_BOT_NAME} \
 --set settings.clusterName=${CLUSTER_NAME} \
---set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
---set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM}
+--set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL}
 ```
 
 where:
@@ -83,8 +81,7 @@ where:
 - **MATTERMOST_CHANNEL** is the Channel name where Botkube is added and used for communication,
 - **MATTERMOST_BOT_NAME** is the Mattermost bot username (usually it is `Botkube`),
 - **CLUSTER_NAME** is the cluster name set in the incoming messages,
-- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
-- **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
+- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster.
 
 Configuration syntax is explained [here](../../configuration).
 All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).

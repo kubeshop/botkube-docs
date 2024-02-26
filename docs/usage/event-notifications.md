@@ -17,7 +17,7 @@ If you have [`kubectl` executor enabled](docs/configuration/executor/kubectl.md)
 The command dropdown is disabled for resource deletion events. It uses executor bindings to determine which commands are available for a given resource.
 
 :::info
-Actionable notifications are only available for the [Slack integration](../installation/slack/index.md) that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
+Actionable notifications are only available for the [Slack](../installation/slack/index.md) and [Microsoft Teams](../installation/teams/index.md) platforms that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
 :::
 
 ## Managing notifications
@@ -33,9 +33,14 @@ To see how to update the configuration, see the [Updating the configuration](../
 
 ### Change notification sources
 
-To change the notification sources, you can either run the `helm upgrade` command as described in [**View Botkube configuration**](#view-botkube-configuration) or run `@Botkube edit SourceBindings`.
+To change the notification sources, you can:
 
-When you save the new notification sources, changes are applied once the Botkube is restarted. It is an automated process which usually takes a few seconds.
+- run `@Botkube edit SourceBindings` command from the configured channel where Botkube is added.
+
+  When you save the new notification sources, changes are applied once the Botkube is restarted. It is an automated process which usually takes a few seconds.
+
+- For Botkube Cloud: edit Botkube Instance configuration in the Botkube Cloud dashboard.
+- For self-hosted installations: run `helm upgrade` with updated installation command.
 
 ### Disable notifications
 
@@ -48,10 +53,6 @@ The notification settings are persisted across Botkube app restarts.
 If you want to receive Botkube notifications again, run `@Botkube enable notifications` from the configured channel where Botkube is added.
 
 The notification settings are persisted across Botkube app restarts.
-
-:::note
-For MS Teams integration notifications are disabled by default. You need to turn them on manually using this command.
-:::
 
 ### Check notifications status
 

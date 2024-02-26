@@ -4,6 +4,16 @@ title: "Flux"
 sidebar_position: 5
 ---
 
+:::info
+
+**This plugin is available as a part of the Botkube Cloud offering.**
+
+Botkube is introducing new plugins with advanced functionality that will be part of the Botkube Team and Enterprise packages. These advanced plugins require cloud services provided by Botkube and are not part of the Botkube open source software.
+
+As part of this change, some of the existing Botkube plugins are being moved to a new repository. This repository requires authentication with a Botkube account. To continue using these Botkube plugins, create an account at https://app.botkube.io/ and configure a Botkube instance, or [migrate an existing installation with the Botkube CLI](../../cli/migrate.md).
+
+:::
+
 Botkube offers seamless execution of Flux CLI commands within your Kubernetes cluster. By default, Flux command execution is disabled. To enable it, refer to the [
 **Enabling plugin**](../../configuration/executor/flux.md#enabling-plugin) section.
 
@@ -48,43 +58,22 @@ The diff results are posted on the Slack channel, making it easy for team member
 To enhance your workflow's efficiency, you can use the [GitHub Events](../../configuration/source/github-events.md) source for automatic notification of pull request events, complete with an integrated `flux diff` button.
 
 ```yaml
-sources:
-  github-events:
-    displayName: "GitHub Events"
-    botkube/github-events:
-      enabled: true
-      config:
-        github:
-          auth:
-            accessToken: "ghp_" # GitHub PAT
+github:
+  auth:
+    accessToken: "ghp_" # GitHub PAT
 
-        repositories:
-          - name: { owner }/{name}
-            on:
-              pullRequests:
-                  - types: [ "open" ]
-                    paths:
-                      # Patterns for included file changes in pull requests.
-                      include: [ 'kustomize/.*' ]
-                    notificationTemplate:
-                      extraButtons:
-                        - displayName: "Flux Diff"
-                          commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
+repositories:
+  - name: { owner }/{name}
+    on:
+      pullRequests:
+          - types: [ "open" ]
+            paths:
+              # Patterns for included file changes in pull requests.
+              include: [ 'kustomize/.*' ]
+            notificationTemplate:
+              extraButtons:
+                - displayName: "Flux Diff"
+                  commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
 ```
 
-Don't forget to incorporate the `github-events` source into your communication platform bindings. For instance:
-
-```yaml
-communications:
-  default-group:
-    socketSlack:
-      enabled: true
-      channels:
-        default:
-          name: random
-          bindings:
-            sources:
-              - github-events
-            executors:
-              - flux
-```
+Don't forget to bind the plugin to one of the channels.

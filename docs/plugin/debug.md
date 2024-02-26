@@ -32,6 +32,6 @@ To change the log level for a given plugin directly in the Botkube deployment, s
 
 ```yaml
 extraEnv:
-  - name: LOG_LEVEL_EXECUTOR_BOTKUBE_HELM
+  - name: LOG_LEVEL_EXECUTOR_BOTKUBE_KUBECTL
     value: "debug"
 ```

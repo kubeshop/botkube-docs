@@ -12,8 +12,8 @@ sources:
     botkube/kubernetes:
       # ... trimmed ...
 
-  "prometheus-firing-alerts": # This is a source configuration name, which is referred in communication bindings.
-    botkube/prometheus:
+  "k8s-all-events": # This is a source configuration name, which is referred in communication bindings.
+    botkube/kubernetes:
       # ... trimmed ...
 ```
 
@@ -22,13 +22,13 @@ This can be later used by the communication platforms:
 ```yaml
 communications:
   "default-group":
-    slack:
+    socketSlack:
       channels:
         "default":
           bindings:
             sources: # The order is important for merging strategy.
               - k8s-recommendation-events # The source configuration name
-              - prometheus-firing-events # The source configuration name
+              - k8s-all-events # The source configuration name
           # ... trimmed ...
 ```
 
@@ -70,11 +70,11 @@ The health check interval is used to check the health of the source plugins. The
 - `healthCheckInterval` - health check interval.
 
 ```yaml
-# -- Botkube Restart Policy on plugin failure.
+# Botkube Restart Policy on plugin failure.
 restartPolicy:
-  # -- Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
+  # Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
   type: "DeactivatePlugin"
-  # -- Number of restarts before policy takes into effect.
+  # Number of restarts before policy takes into effect.
   threshold: 10
 healthCheckInterval: 10s
 ```
@@ -87,12 +87,6 @@ healthCheckInterval: 10s
 #
 # Format: sources.{alias}
 sources:
-  "prom":
-    botkube/prometheus@v1.8.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
-      enabled: true # If not enabled, plugin is not downloaded and started.
-      config: # Plugin's specific configuration.
-        url: "http://localhost:9090"
-
   "k8s-recommendation-events":
     # Built-in kubernetes source configuration.
     botkube/kubernetes:
@@ -116,16 +110,16 @@ plugins:
     # Other 3rd party repositories.
     repo-name:
       url: https://example.com/plugins-index.yaml
-  # -- Configure Incoming webhook for source plugins.
+  # Configure Incoming webhook for source plugins.
   incomingWebhook:
     enabled: true
     port: 2115
     targetPort: 2115
-  # -- Botkube Restart Policy on plugin failure.
+  # Botkube Restart Policy on plugin failure.
   restartPolicy:
-    # -- Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
+    # Restart policy type. Allowed values: "RestartAgent", "DeactivatePlugin".
     type: "DeactivatePlugin"
-    # -- Number of restarts before policy takes into effect.
+    # Number of restarts before policy takes into effect.
     threshold: 10
   healthCheckInterval: 10s
 ```

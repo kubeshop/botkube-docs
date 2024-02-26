@@ -4,34 +4,46 @@ title: Keptn
 sidebar_position: 4
 ---
 
+:::info
+
+**This plugin is available as a part of the Botkube Cloud offering.**
+
+Botkube is introducing new plugins with advanced functionality that will be part of the Botkube Team and Enterprise packages. These advanced plugins require cloud services provided by Botkube and are not part of the Botkube open source software.
+
+As part of this change, some of the existing Botkube plugins are being moved to a new repository. This repository requires authentication with a Botkube account. To continue using these Botkube plugins, create an account at https://app.botkube.io/ and configure a Botkube instance, or [migrate an existing installation with the Botkube CLI](../../cli/migrate.md).
+
+:::
+
 The Botkube Keptn source plugin allows you to consume events from Keptn deployment and notify in configured platforms.
 
-The Keptn plugin is hosted by the official Botkube plugin repository. To enable the Keptn plugin, make sure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
-
-```yaml
-plugins:
-  repositories:
-    botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.8.0/plugins-index.yaml
-```
+The Keptn plugin is hosted by the Botkube Cloud plugin repository and requires active Botkube Cloud account.
 
 ## Enabling plugin
 
-To enable Keptn plugin, add `--set 'sources.keptn.botkube/keptn.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md).
+You can enable the plugin as a part of Botkube instance configuration.
 
-## Syntax
+1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../../installation/index.mdx) docs.
+2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
+3. Navigate to the platform tab which you want to configure.
+4. Click **Add plugin** button.
+5. Select the Keptn plugin.
+6. Click **Save** button.
+
+## Configuration Syntax
+
+This plugin supports the following configuration:
 
 ```yaml
-# Map of sources. The `sources` property name is an alias for a given configuration.
-# Key name is used as a binding reference.
-#
-# Format: sources.{alias}
-sources:
-  "keptn":
-    botkube/keptn: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
-      enabled: true # If not enabled, plugin is not downloaded and started.
-      config: # Plugin's specific configuration.
-        project: "" # Keptn project name
-        url: "http://api-gateway-nginx.keptn" # Keptn API Gateway to fetch events.
-        token: "" # Keptn API Token to authenticate API Gateway to fetch events.
+# Keptn API Gateway URL.
+url: "http://api-gateway-nginx.keptn.svc.cluster.local/api"
+# Keptn API Token to access events through API Gateway.
+token: ""
+# Optional Keptn project.
+project: ""
+# Optional Keptn Service name under the project.
+service: ""
+# Logging configuration
+log:
+  # Log level
+  level: info
 ```

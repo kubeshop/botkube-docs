@@ -100,7 +100,6 @@ To deploy Botkube agent in your cluster, run:
 ```bash
 export CLUSTER_NAME={cluster_name}
 export ALLOW_KUBECTL={allow_kubectl}
-export ALLOW_HELM={allow_helm}
 
 botkube install --version v1.8.0 \
 --set communications.default-group.discord.enabled=true \
@@ -108,8 +107,7 @@ botkube install --version v1.8.0 \
 --set communications.default-group.discord.botID=${DISCORD_BOT_ID} \
 --set communications.default-group.discord.token=${DISCORD_TOKEN} \
 --set settings.clusterName=${CLUSTER_NAME} \
---set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL} \
---set 'executors.k8s-default-tools.botkube/helm.enabled'=${ALLOW_HELM}
+--set 'executors.k8s-default-tools.botkube/kubectl.enabled'=${ALLOW_KUBECTL}
 ```
 
 where:
@@ -118,8 +116,7 @@ where:
 - **DISCORD_BOT_ID** is the Botkube Application Client ID,
 - **DISCORD_TOKEN** is the Token you received after adding Botkube bot to your Discord Application,
 - **CLUSTER_NAME** is the cluster name set in the incoming messages,
-- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster,
-- **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
+- **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster.
 
 Configuration syntax is explained [here](../../configuration).
 All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).

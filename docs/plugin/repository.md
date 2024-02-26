@@ -36,8 +36,8 @@ It is not required to host a plugin or dependency binary on the same server as t
 
 You can create the index file by yourself our use our tool to generate it automatically based on the directory with plugins binaries. The binaries must be named according to the following pattern:
 
-- For executors, `executor_{plugin_name}_{os}_{arch}`; for example, `executor_helm_darwin_amd64`.
-- For sources, `source_{plugin_name}_{os}_{arch}`; for example, `source_prometheus_darwin_amd64`.
+- For executors, `executor_{plugin_name}_{os}_{arch}`; for example, `executor_kubectl_darwin_amd64`.
+- For sources, `source_{plugin_name}_{os}_{arch}`; for example, `source_kubernetes_darwin_amd64`.
 
 **Steps**
 

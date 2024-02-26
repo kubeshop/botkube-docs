@@ -31,11 +31,9 @@ Plugin executor bridge is resolving the received Botkube command, calling the re
 
 ### Executor
 
-Executor is a binary that implements the [executor](https://github.com/kubeshop/botkube/blob/main/proto/executor.proto) Protocol Buffers contract. Executor runs a given command and returns the response in a synchronous way. For example, running `kubectl` or `helm` commands.
+Executor is a binary that implements the [executor](https://github.com/kubeshop/botkube/blob/main/proto/executor.proto) Protocol Buffers contract. Executor runs a given command, such as `kubectl` one, and returns the response in a synchronous way.
 
-Streaming command response is not supported. As a result, commands like `helm install --wait` doesn't work well, as the response won't be sent until the command finishes.
-
-The `kubectl` is a built-in Botkube executor. It will be extracted in the future Botkube releases.
+Streaming command response is not supported. As a result, commands which take a lot of time doesn't work well, as the response won't be sent until the command is finished.
 
 ### Plugin source bridge
 

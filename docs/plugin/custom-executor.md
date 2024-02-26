@@ -4,7 +4,7 @@ title: "Custom executor"
 sidebar_position: 2
 ---
 
-You can extend Botkube functionality by writing custom executor plugin. An executor allows you to run a given command directly in the chat window of each communication platform. For example, running `kubectl` or `helm` commands.
+You can extend Botkube functionality by writing custom executor plugin. An executor allows you to run a given command, such as `kubectl`, directly in the chat window of each communication platform For example.
 
 Plugin executor is a binary that implements the [executor](https://github.com/kubeshop/botkube/blob/main/proto/executor.proto) Protocol Buffers contract.
 
@@ -204,7 +204,7 @@ Sometimes your executor plugin requires a configuration specified by the end-use
 ```yaml
 communications:
   "default-group":
-    slack:
+    socketSlack:
       channels:
         "default":
           name: "all-teams"

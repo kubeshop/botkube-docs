@@ -32,7 +32,7 @@ command :=  api.MessageBotNamePlaceholder + " <plugin_name>" + " <args>"
 
 The `api.MessageBotNamePlaceholder` constant, is our cross-platform placeholder that is replaced by Botkube core with a proper bot name. It's mandatory, otherwise Botkube core will ignore a given command, e.g. a button click.
 
-The `<plugin_name>` and `<args>` should be replaced based on your needs. You replace `<plugin_name>` with your own plugin name, or other plugin name, like `kubectl`, `helm`, etc. However, if you use other plugin name, a given command won't work if plugin is not enabled.
+The `<plugin_name>` and `<args>` should be replaced based on your needs. You replace `<plugin_name>` with your own plugin name, or other plugin name, like `kubectl`. However, if you use other plugin name, a given command won't work if plugin is not enabled.
 
 ### Buttons
 

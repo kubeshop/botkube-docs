@@ -4,24 +4,25 @@ title: Flux
 sidebar_position: 6
 ---
 
+:::info
+
+**This plugin is available as a part of the Botkube Cloud offering.**
+
+Botkube is introducing new plugins with advanced functionality that will be part of the Botkube Team and Enterprise packages. These advanced plugins require cloud services provided by Botkube and are not part of the Botkube open source software.
+
+As part of this change, some of the existing Botkube plugins are being moved to a new repository. This repository requires authentication with a Botkube account. To continue using these Botkube plugins, create an account at https://app.botkube.io/ and configure a Botkube instance, or [migrate an existing installation with the Botkube CLI](../../cli/migrate.md).
+
+:::
+
 The Botkube Flux executor plugin allows you to run the [`flux`](https://fluxcd.io/) CLI commands directly within the chat window of your chosen communication platform.
 
-The Flux plugin is hosted in the official Botkube plugin repository. To enable the Flux plugin, ensure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
-
-```yaml
-plugins:
-  repositories:
-    botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.8.0/plugins-index.yaml
-```
+The Flux plugin is hosted by the Botkube Cloud plugin repository and requires active Botkube Cloud account.
 
 ## Prerequisite elevated RBAC permissions
 
 One of the plugin capabilities is the `flux diff` command. To use it, you need to update the Flux plugin RBAC configuration. This is necessary because the command performs a server-side dry run that requires patch permissions, as specified in the [Kubernetes documentation](https://kubernetes.io/docs/reference/using-api/api-concepts/#dry-run-authorization).
 
-If you use Botkube self-hosted installation in version 1.4.1 or newer, you can create them during Botkube install/upgrade by specifying `--set="rbac.groups.flux.create=true"` override.
-
-However, you can also create them manually:
+First, create RBAC resources on your cluster:
 
 ```shell
 cat > /tmp/flux-rbac.yaml << ENDOFFILE
@@ -54,58 +55,43 @@ kubectl apply -f /tmp/flux-rbac.yaml
 
 Next, use the `flux` group in the plugin RBAC configuration:
 
-```yaml
-executors:
-  flux:
-    botkube/flux:
-      enabled: true
-      config:
-        # ...
-
-      context:
-        rbac:
-          group:
-            type: Static
-            static:
-              values: ["flux"]
-```
+![Flux RBAC](./assets/flux-rbac.png)
 
 ## Enabling plugin
 
-To enable the GitHub plugin, add the following flag to the Botkube [`install` command](../../cli/commands/botkube_install.md):
+You can enable the plugin as a part of Botkube instance configuration.
 
-```sh
---set 'executors.flux.botkube/flux.enabled'=true
+1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../../installation/index.mdx) docs.
+2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
+3. Navigate to the platform tab which you want to configure.
+4. Click **Add plugin** button.
+5. Select the Flux plugin.
+6. Click **Configure** button and then **Configuration as Code** tab.
+7. Configure optional GitHub access token.
+
+The Flux plugin comes with integrated GitHub support. To enable it, you'll need a valid [GitHub token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token). Set the token with the following configuration:
+
+```yaml
+github:
+  auth:
+    accessToken: "" # your GitHub access token
 ```
 
-The Flux plugin comes with integrated GitHub support. To enable it, you'll need a valid [GitHub token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token). Set the token using the following command:
-
-```sh
---set 'executors.flux.botkube/flux.config.github.auth.accessToken=<GitHub token>'
-```
+6. Click **Save** button.
 
 By default, the Flux plugin has read-only access. To perform actions like creating or deleting Flux-related sources, you'll need to customize the [RBAC](../rbac.md#configuration).
 
-## Plugin Configuration Syntax
+## Configuration Syntax
+
+The plugin supports the following configuration:
 
 ```yaml
-# Map of executors. The `executors` property name is an alias for a given configuration.
-# Key name is used as a binding reference.
-#
-# Format: executors.{alias}
-executors:
-  flux:
-    botkube/flux:
-      enabled: false
-      config:
-        github:
-          auth:
-            # GitHub access token.
-            # Instructions for token creation: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token.
-            # Lack of token may limit functionality, e.g., adding comments to pull requests or approving them.
-            accessToken: ""
-        log:
-          level: "info"
+github:
+  auth:
+    # GitHub access token.
+    # Instructions for token creation: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token.
+    # Lack of token may limit functionality, e.g., adding comments to pull requests or approving them.
+    accessToken: ""
+log:
+  level: "info"
 ```
-
-For the default Helm chart configuration, refer to the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.

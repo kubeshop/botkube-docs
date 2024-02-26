@@ -10,7 +10,21 @@ Aliases work for all commands, including executor plugins and Botkube built-in o
 
 Aliases are defined globally for the whole Botkube installation. Once they are configured, read the [Aliases](../usage/executor/index.md#aliases) section in Usage document.
 
-## Syntax
+## Botkube Cloud
+
+You can configure aliases in the Botkube Cloud dashboard.
+
+1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
+2. From the [Botkube Cloud homepage](https://app.botkube.io), click the **Aliases** link in the top right corner.
+3. Click **Create new** button.
+4. Provide display name, alias and command.
+
+For example, for `exec` plugin, you can provide display name as `Exec alias`, alias as `x`, and command as `exec`.
+
+1. Select instances for which you want to enable the alias.
+1. Click **Apply** button.
+
+## Self-hosted Botkube syntax
 
 ```yaml
 # Custom aliases for given commands.

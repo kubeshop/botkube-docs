@@ -4,83 +4,48 @@ title: Prometheus
 sidebar_position: 3
 ---
 
+:::info
+
+**This plugin is available as a part of the Botkube Cloud offering.**
+
+Botkube is introducing new plugins with advanced functionality that will be part of the Botkube Team and Enterprise packages. These advanced plugins require cloud services provided by Botkube and are not part of the Botkube open source software.
+
+As part of this change, some of the existing Botkube plugins are being moved to a new repository. This repository requires authentication with a Botkube account. To continue using these Botkube plugins, create an account at https://app.botkube.io/ and configure a Botkube instance, or [migrate an existing installation with the Botkube CLI](../../cli/migrate.md).
+
+:::
+
 The Botkube Prometheus source plugin allows you to fetch alerts from AlertManager of Prometheus deployment and notify in configured platforms.
 
-The Prometheus plugin is hosted by the official Botkube plugin repository. To enable the Prometheus plugin, make sure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
-
-```yaml
-plugins:
-  repositories:
-    botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.8.0/plugins-index.yaml
-```
+The Prometheus plugin is hosted by the Botkube Cloud plugin repository and requires active Botkube Cloud account.
 
 ## Enabling plugin
 
-To enable Prometheus plugin, add `--set 'sources.prometheus.botkube/prometheus.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md).
+You can enable the plugin as a part of Botkube instance configuration.
 
-## Syntax
+1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../../installation/index.mdx) docs.
+2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
+3. Navigate to the platform tab which you want to configure.
+4. Click **Add plugin** button.
+5. Select the Prometheus plugin.
+6. Click **Save** button.
+
+## Configuration Syntax
+
+This plugin supports the following configuration:
 
 ```yaml
-# Map of sources. The `sources` property name is an alias for a given configuration.
-# Key name is used as a binding reference.
-#
-# Format: sources.{alias}
-sources:
-  "prom":
-    botkube/prometheus: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
-      enabled: true # If not enabled, plugin is not downloaded and started.
-      config: # Plugin's specific configuration.
-        url: "http://localhost:9090" # Prometheus host to fetch alerts via Prometheus HTTP API
-        alertStates: ["firing", "pending", "inactive"] # Provided alert states will overwrite default values. For example, Prometheus plugin will notify for only `firing` alerts if `alertStates` is `["firing"]`.
-        ignoreOldAlerts: true # If set to true, only the alerts that active since Botkube deployment start time. Otherwise, plugin will fetch all the alerts available in AlertManager on Botkube start.
+# Prometheus endpoint without api version and resource.
+url: "http://localhost:9090"
+# If set as true, Prometheus source plugin will not send alerts that is created before plugin start time.
+ignoreOldAlerts: true
+# Only the alerts that have state provided in this config will be sent as notification. https://pkg.go.dev/github.com/prometheus/prometheus/rules#AlertState
+alertStates: ["firing", "pending", "inactive"]
+# Logging configuration
+log:
+  # Log level
+  level: info
 ```
 
 ## Merging strategy
 
-For all collected `prometheus` sources bindings, configuration properties are overridden based on the order of the binding list. The priority is given to the last binding specified on the list. Empty properties are omitted.
-
-### Example
-
-Consider such configuration:
-
-```yaml
-communications:
-  "default-group":
-    slack:
-      channels:
-        "default":
-          name: "random"
-          bindings:
-            sources:
-              - prometheus-one
-              - prometheus-two
-              - prometheus-three
-
-sources:
-  "prometheus-one":
-    botkube/prometheus:
-      enabled: true
-      config:
-        url: "http://localhost:9090"
-        ignoreOldAlerts: false
-        alertStates: ["firing"]
-  "prometheus-two":
-    botkube/prometheus:
-      enabled: true
-      config:
-        ignoreOldAlerts: true
-  "prometheus-three":
-    botkube/prometheus:
-      enabled: false
-      config:
-        url: "http://localhost:9091"
-        ignoreOldAlerts: true
-        alertStates: ["inactive"]
-```
-
-We can see that:
-
-- The `ignoreOldAlerts` is set to `true` as it's overridden by the `prometheus-two` binding - the **last one** which is both enabled and sets the `ignoreOldAlerts` property.
-- The `url` and `alertStates` are set to values specified by the `prometheus-one` configuration as the `prometheus-two` don't specify them.
-- The `prometheus-three` binding is disabled (`botkube/prometheus.enabled` is set to `false`), so it's not taken into account.
+For all collected `prometheus` sources bindings, configuration properties are overridden based on the order of the binding list for a given channel. The priority is given to the last binding specified on the list. Empty properties are omitted.

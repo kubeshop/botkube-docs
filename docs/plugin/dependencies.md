@@ -15,25 +15,25 @@ For downloading plugins and theirs dependencies, Botkube uses `go-getter` librar
 :::
 
 ```go
-// Metadata returns details about Helm plugin.
+const (
+	kubectlVersion   = "v1.28.1"
+)
+
+// Metadata returns details about kubectl plugin.
 func (e *Executor) Metadata(context.Context) (api.MetadataOutput, error) {
 	return api.MetadataOutput{
 		// ...
 		Dependencies: map[string]api.Dependency{
-			"helm": {
-				// Links source: https://github.com/helm/helm/releases/tag/v3.6.3
-				// Using go-getter syntax to unwrap the underlying directory structure.
-				// Read more on https://github.com/hashicorp/go-getter#subdirectories
+			"kubectl": {
 				URLs: map[string]string{
-				  "darwin/amd64":  "https://get.helm.sh/helm-v3.6.3-darwin-amd64.tar.gz//darwin-amd64",
-				  "darwin/arm64":  "https://get.helm.sh/helm-v3.6.3-darwin-arm64.tar.gz//darwin-arm64",
-				  "linux/amd64":   "https://get.helm.sh/helm-v3.6.3-linux-amd64.tar.gz//linux-amd64",
-				  "linux/arm":     "https://get.helm.sh/helm-v3.6.3-linux-arm.tar.gz//linux-arm",
-				  "linux/arm64":   "https://get.helm.sh/helm-v3.6.3-linux-arm64.tar.gz//linux-arm64",
-				  "linux/386":     "https://get.helm.sh/helm-v3.6.3-linux-386.tar.gz//linux-386",
-				  "linux/ppc64le": "https://get.helm.sh/helm-v3.6.3-linux-ppc64le.tar.gz//linux-ppc64le",
-				  "linux/s390x":   "https://get.helm.sh/helm-v3.6.3-linux-s390x.tar.gz//linux-s390x",
-				  "windows/amd64": "https://get.helm.sh/helm-v3.6.3-windows-amd64.zip//windows-amd64",
+					"windows/amd64": fmt.Sprintf("https://dl.k8s.io/release/%s/bin/windows/amd64/kubectl.exe", kubectlVersion),
+					"darwin/amd64":  fmt.Sprintf("https://dl.k8s.io/release/%s/bin/darwin/amd64/kubectl", kubectlVersion),
+					"darwin/arm64":  fmt.Sprintf("https://dl.k8s.io/release/%s/bin/darwin/arm64/kubectl", kubectlVersion),
+					"linux/amd64":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/amd64/kubectl", kubectlVersion),
+					"linux/s390x":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/s390x/kubectl", kubectlVersion),
+					"linux/ppc64le": fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/ppc64le/kubectl", kubectlVersion),
+					"linux/arm64":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/arm64/kubectl", kubectlVersion),
+					"linux/386":     fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/386/kubectl", kubectlVersion),
 				}
 			},
 		},
@@ -44,37 +44,39 @@ func (e *Executor) Metadata(context.Context) (api.MetadataOutput, error) {
 Such a definition will result in the following `dependencies` section in the plugin index:
 
 ```yaml
-- name: helm
-  # ...
-  urls:
-    - url: "..." # URL to darwin/amd64 plugin binary
-      platform:
-        os: darwin
-        architecture: amd64
-      dependencies:
-        helm:
-          url: https://get.helm.sh/helm-v3.6.3-darwin-amd64.tar.gz//darwin-amd64
-    - url: "..." # URL to darwin/amd64 plugin binary
-      platform:
-        os: darwin
-        architecture: arm64
-      dependencies:
-        helm:
-          url: https://get.helm.sh/helm-v3.6.3-darwin-arm64.tar.gz//darwin-arm64
-    - url: "..." # URL to linux/amd64 plugin binary
-      platform:
-        os: linux
-        architecture: amd64
-      dependencies:
-        helm:
-          url: https://get.helm.sh/helm-v3.6.3-linux-amd64.tar.gz//linux-amd64
-    - url: "..." # URL to linux/arm64 plugin binary
-      platform:
-        os: linux
-        architecture: arm64
-      dependencies:
-        helm:
-          url: https://get.helm.sh/helm-v3.6.3-linux-arm64.tar.gz//linux-arm64
+entries:
+  - name: kubectl
+    # ...
+    urls:
+      - url: "..." # URL for darwin/amd64 binary
+        # ...
+        platform:
+          os: darwin
+          architecture: amd64
+        dependencies:
+          kubectl:
+            url: https://dl.k8s.io/release/v1.28.1/bin/darwin/amd64/kubectl
+      - url: "..." # URL for darwin/arm64 binary
+        # ...
+        dependencies:
+          kubectl:
+            url: https://dl.k8s.io/release/v1.28.1/bin/darwin/arm64/kubectl
+      - url: "..." # URL for linux/amd64 binary
+        # ...
+        platform:
+          os: linux
+          architecture: amd64
+        dependencies:
+          kubectl:
+            url: https://dl.k8s.io/release/v1.28.1/bin/linux/amd64/kubectl
+      - url: "..." # URL for linux/arm64 binary
+        # ...
+        platform:
+          os: linux
+          architecture: arm64
+        dependencies:
+          kubectl:
+            url: https://dl.k8s.io/release/v1.28.1/bin/linux/arm64/kubectl
 ```
 
 Read how to use the plugin index in the [Repository](./repository.md) document.
@@ -83,22 +85,19 @@ Read how to use the plugin index in the [Repository](./repository.md) document.
 
 During Botkube startup, Botkube plugin manager fetches the plugin binaries along with all dependencies. Each dependency binary is named exactly as specified in the [plugin index](#define-dependencies-for-plugin-index-generation). The dependency is fetched to a directory specified in the `PLUGIN_DEPENDENCY_DIR` environment variable passed to the plugin.
 
-For example, in case of Helm executor, to run the Helm binary fetched by Botkube plugin manager, the plugin uses the following code:
+To make it easier, there's a helper function `plugin.ExecuteCommand` in the `github.com/kubeshop/botkube/pkg/plugin` package, which does all of the above. For example, the kubectl plugin uses the following code:
 
 ```go
-	commandName := "helm" // name of the binary specified in Dependencies
-	// Check if PLUGIN_DEPENDENCY_DIR environment variable is set; if not, Go will try to lookup for `helm` binary
-	depDir, found := os.LookupEnv("PLUGIN_DEPENDENCY_DIR")
-	if found {
-		// Use exactly the binary from the $PLUGIN_DEPENDENCY_DIR directory
-		commandName = fmt.Sprintf("%s/%s", depDir, commandName)
-	}
+// set additional env variables
+envs := map[string]string{
+	"KUBECONFIG": kubeConfigPath,
+}
 
-	// Execute the command and return output
-	cmd := exec.CommandContext(ctx, commandName, args...)
-	out, err := cmd.CombinedOutput()
+// runCmd is e.g. "kubectl get pods --all-namespaces"
+// plugin.ExecuteCommand will replace kubectl with full path to the kubectl binary dependency
+out, err := plugin.ExecuteCommand(ctx, runCmd, plugin.ExecuteCommandEnvs(envs))
 ```
 
 ## Example
 
-To get familiar with the full example, see the [Helm plugin](https://github.com/kubeshop/botkube/tree/main/cmd/executor/helm) in the Botkube repository. The Helm plugin depends on the official [Helm CLI](https://helm.sh) binary, which is defined as a part of the `Metadata` method.
+To get familiar with the full example, see the [kubectl plugin](https://github.com/kubeshop/botkube/tree/main/cmd/executor/kubectl) in the Botkube repository. The Kubectl plugin depends on the official [kubectl CLI](https://kubernetes.io/docs/tasks/tools/#kubectl) binary, which is defined as a part of the `Metadata` method.
