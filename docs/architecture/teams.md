@@ -31,14 +31,14 @@ The Botkube Agent doesn't export any endpoints.
 
 The Botkube Agent Docker image is hosted on the GitHub Container registry, which uses the package namespace https://ghcr.io. The image format link:
 
-- [`ghcr.io/kubeshop/botkube:{botkube_version}`](https://github.com/kubeshop/botkube/pkgs/container/botkube), e.g., `ghcr.io/kubeshop/botkube:v1.9.0`
+- [`ghcr.io/kubeshop/botkube:{botkube_version}`](https://github.com/kubeshop/botkube/pkgs/container/botkube), e.g., `ghcr.io/kubeshop/botkube:v1.8.0`
 
 ### Plugin manager
 
-The index and archives for open source plugins are stored under a given Botkube GitHub release as [its assets](https://github.com/kubeshop/botkube/releases/tag/v1.9.0):
+The index and archives for open source plugins are stored under a given Botkube GitHub release as [its assets](https://github.com/kubeshop/botkube/releases/tag/v1.8.0):
 
-- Plugin index: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/plugins-index.yaml`, e.g., https://github.com/kubeshop/botkube/releases/download/v1.9.0/plugins-index.yaml
-- Plugin archive: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/{plugin_name_and_arch}.tar.gz` e.g., https://github.com/kubeshop/botkube/releases/download/v1.9.0/executor_kubectl_linux_amd64.tar.gz
+- Plugin index: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/plugins-index.yaml`, e.g., https://github.com/kubeshop/botkube/releases/download/v1.8.0/plugins-index.yaml
+- Plugin archive: `https://github.com/kubeshop/botkube/releases/download/{botkube_version}/{plugin_name_and_arch}.tar.gz` e.g., https://github.com/kubeshop/botkube/releases/download/v1.8.0/executor_kubectl_linux_amd64.tar.gz
   - Plugin links can also be found in the `plugins-index.yaml` file.
 
 For the Botkube Cloud exclusive plugins, we serve plugin index via the Botkube Cloud API (`api.botkube.io`). As we use Google Cloud Storage as the storage provider, all the plugins are fetched from the `https://storage.googleapis.com` origin.

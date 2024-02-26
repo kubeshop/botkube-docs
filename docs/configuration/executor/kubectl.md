@@ -18,7 +18,7 @@ The Kubectl plugin is hosted by the official Botkube plugin repository. First, m
 plugins:
   repositories:
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.9.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.8.0/plugins-index.yaml
 ```
 
 To enable Kubectl executor, add ``--set 'executors.k8s-default-tools.botkube/kubectl.enabled=true'` to a given Botkube [`install` command](../../cli/commands/botkube_install.md).
