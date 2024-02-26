@@ -26,15 +26,15 @@ func (e *Executor) Metadata(context.Context) (api.MetadataOutput, error) {
 		Dependencies: map[string]api.Dependency{
 			"kubectl": {
 				URLs: map[string]string{
-		"windows/amd64": fmt.Sprintf("https://dl.k8s.io/release/%s/bin/windows/amd64/kubectl.exe", kubectlVersion),
-		"darwin/amd64":  fmt.Sprintf("https://dl.k8s.io/release/%s/bin/darwin/amd64/kubectl", kubectlVersion),
-		"darwin/arm64":  fmt.Sprintf("https://dl.k8s.io/release/%s/bin/darwin/arm64/kubectl", kubectlVersion),
-		"linux/amd64":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/amd64/kubectl", kubectlVersion),
-		"linux/s390x":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/s390x/kubectl", kubectlVersion),
-		"linux/ppc64le": fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/ppc64le/kubectl", kubectlVersion),
-		"linux/arm64":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/arm64/kubectl", kubectlVersion),
-		"linux/386":     fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/386/kubectl", kubectlVersion),
-	}
+					"windows/amd64": fmt.Sprintf("https://dl.k8s.io/release/%s/bin/windows/amd64/kubectl.exe", kubectlVersion),
+					"darwin/amd64":  fmt.Sprintf("https://dl.k8s.io/release/%s/bin/darwin/amd64/kubectl", kubectlVersion),
+					"darwin/arm64":  fmt.Sprintf("https://dl.k8s.io/release/%s/bin/darwin/arm64/kubectl", kubectlVersion),
+					"linux/amd64":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/amd64/kubectl", kubectlVersion),
+					"linux/s390x":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/s390x/kubectl", kubectlVersion),
+					"linux/ppc64le": fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/ppc64le/kubectl", kubectlVersion),
+					"linux/arm64":   fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/arm64/kubectl", kubectlVersion),
+					"linux/386":     fmt.Sprintf("https://dl.k8s.io/release/%s/bin/linux/386/kubectl", kubectlVersion),
+				}
 			},
 		},
 	}, nil
@@ -88,14 +88,14 @@ During Botkube startup, Botkube plugin manager fetches the plugin binaries along
 To make it easier, there's a helper function `plugin.ExecuteCommand` in the `github.com/kubeshop/botkube/pkg/plugin` package, which does all of the above. For example, the kubectl plugin uses the following code:
 
 ```go
-	// set additional env variables
-	envs := map[string]string{
-		"KUBECONFIG": kubeConfigPath,
-	}
+// set additional env variables
+envs := map[string]string{
+	"KUBECONFIG": kubeConfigPath,
+}
 
-	// runCmd is e.g. "kubectl get pods --all-namespaces"
-	// plugin.ExecuteCommand will replace kubectl with full path to the kubectl binary dependency
-	out, err := plugin.ExecuteCommand(ctx, runCmd, plugin.ExecuteCommandEnvs(envs))
+// runCmd is e.g. "kubectl get pods --all-namespaces"
+// plugin.ExecuteCommand will replace kubectl with full path to the kubectl binary dependency
+out, err := plugin.ExecuteCommand(ctx, runCmd, plugin.ExecuteCommandEnvs(envs))
 ```
 
 ## Example

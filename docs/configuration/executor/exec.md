@@ -16,7 +16,7 @@ As part of this change, some of the existing Botkube plugins are being moved to 
 
 The `exec` executor plugin allows you to install and run CLI applications directly from chat (e.g., Slack, Discord, or Mattermost) without any hassle.
 
-The Helm plugin is hosted by the Botkube Cloud plugin repository and requires active Botkube Cloud account.
+The `exec` plugin is hosted by the Botkube Cloud plugin repository and requires active Botkube Cloud account.
 
 By default, the read-only `KUBECONFIG` is assigned. For enabling commands that require create, update or delete rules, you need to create specific (Cluster)Role and (Cluster)RoleBinding and reference it from plugin's `context` configuration. To learn more refer to the [RBAC section](../rbac.md).
 
@@ -28,7 +28,7 @@ You can enable the plugin as a part of Botkube instance configuration.
 2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
 3. Navigate to the platform tab which you want to configure.
 4. Click **Add plugin** button.
-5. Select the Kubernetes plugin.
+5. Select the `exec` plugin.
 6. Click **Save** button.
 
 ## Configuration Syntax

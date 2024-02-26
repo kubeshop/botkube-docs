@@ -80,20 +80,20 @@ You can enable the plugin as a part of Botkube instance configuration.
 
 ```yaml
 defaultSubscriptions:
-applications:
-  - name: guestbook
-    namespace: argocd
+  applications:
+    - name: guestbook
+      namespace: argocd
 ```
 
 You can watch multiple ArgoCD Applications at the same time, for example:
 
 ```yaml
 defaultSubscriptions:
-applications:
-  - name: guestbook
-    namespace: argocd
-  - name: second-app
-    namespace: second-app-namespace
+  applications:
+    - name: guestbook
+      namespace: argocd
+    - name: second-app
+      namespace: second-app-namespace
 ```
 
 1. Click **Save**.

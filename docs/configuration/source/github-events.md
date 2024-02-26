@@ -98,32 +98,32 @@ repositories:
               - displayName: "Flux Diff"
                 commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
 
-- name: owner/repo2
-  on:
-    # EventsAPI watches for /events API containing events triggered by activity on GitHub.
-    # This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
-    # source: https://docs.github.com/en/rest/activity/events?apiVersion=2022-11-28#list-repository-events
-    events:
-      # WatchEvent for now emitted only when someone stars a repository.
-      # https://docs.github.com/en/webhooks-and-events/events/github-event-types#watchevent
-      - type: "WatchEvent"
+  - name: owner/repo2
+    on:
+      # EventsAPI watches for /events API containing events triggered by activity on GitHub.
+      # This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
+      # source: https://docs.github.com/en/rest/activity/events?apiVersion=2022-11-28#list-repository-events
+      events:
+        # WatchEvent for now emitted only when someone stars a repository.
+        # https://docs.github.com/en/webhooks-and-events/events/github-event-types#watchevent
+        - type: "WatchEvent"
 
-      # IssuesEvent with json path filter
-      - type: "IssuesEvent"
-        # The JSONPath expression to filter events
-        jsonPath: ".action"
-        # The value to match in the JSONPath result
-        value: "opened"
-        notificationTemplate:
-          previewTpl: |-
-            Issue Opened
+        # IssuesEvent with json path filter
+        - type: "IssuesEvent"
+          # The JSONPath expression to filter events
+          jsonPath: ".action"
+          # The value to match in the JSONPath result
+          value: "opened"
+          notificationTemplate:
+            previewTpl: |-
+              Issue Opened
 
-            #{{ .Issue.Number }} {{ .Issue.Title }}
-            State: {{ .Issue.State }}
-          extraButtons:
-            - displayName: Open
-              url: "{{ .Issue.HTMLURL }}"
-              style: primary
+              #{{ .Issue.Number }} {{ .Issue.Title }}
+              State: {{ .Issue.State }}
+            extraButtons:
+              - displayName: Open
+                url: "{{ .Issue.HTMLURL }}"
+                style: primary
 ```
 
 ## Authorization

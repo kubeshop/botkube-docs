@@ -58,43 +58,22 @@ The diff results are posted on the Slack channel, making it easy for team member
 To enhance your workflow's efficiency, you can use the [GitHub Events](../../configuration/source/github-events.md) source for automatic notification of pull request events, complete with an integrated `flux diff` button.
 
 ```yaml
-sources:
-  github-events:
-    displayName: "GitHub Events"
-    botkube/github-events:
-      enabled: true
-      config:
-        github:
-          auth:
-            accessToken: "ghp_" # GitHub PAT
+github:
+  auth:
+    accessToken: "ghp_" # GitHub PAT
 
-        repositories:
-          - name: { owner }/{name}
-            on:
-              pullRequests:
-                  - types: [ "open" ]
-                    paths:
-                      # Patterns for included file changes in pull requests.
-                      include: [ 'kustomize/.*' ]
-                    notificationTemplate:
-                      extraButtons:
-                        - displayName: "Flux Diff"
-                          commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
+repositories:
+  - name: { owner }/{name}
+    on:
+      pullRequests:
+          - types: [ "open" ]
+            paths:
+              # Patterns for included file changes in pull requests.
+              include: [ 'kustomize/.*' ]
+            notificationTemplate:
+              extraButtons:
+                - displayName: "Flux Diff"
+                  commandTpl: "flux diff ks podinfo --path ./kustomize --github-ref {{ .HTMLURL }} "
 ```
 
-Don't forget to incorporate the `github-events` source into your communication platform bindings. For instance:
-
-```yaml
-communications:
-  default-group:
-    socketSlack:
-      enabled: true
-      channels:
-        default:
-          name: random
-          bindings:
-            sources:
-              - github-events
-            executors:
-              - flux
-```
+Don't forget to bind the plugin to one of the channels.
