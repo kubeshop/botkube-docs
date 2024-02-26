@@ -19,12 +19,14 @@ You can configure aliases in the Botkube Cloud dashboard.
 3. Click **Create new** button.
 4. Provide display name, alias and command.
 
-For example, for `exec` plugin, you can provide display name as `Exec alias`, alias as `x`, and command as `exec`.
+   For example, for `exec` plugin, you can provide display name as `Exec alias`, alias as `x`, and command as `exec`.
 
-1. Select instances for which you want to enable the alias.
-1. Click **Apply** button.
+5. Select instances for which you want to enable the alias.
+6. Click **Apply** button.
 
 ## Self-hosted Botkube syntax
+
+To configure the aliases for the self-hosted Botkube installation, use the following syntax:
 
 ```yaml
 # Custom aliases for given commands.
