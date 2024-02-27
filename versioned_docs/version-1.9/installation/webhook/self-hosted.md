@@ -15,7 +15,7 @@ To deploy Botkube agent in your cluster, run:
 export CLUSTER_NAME={cluster_name}
 export WEBHOOK_URL={url}
 
-botkube install --version v1.9.0 \
+botkube install --version v1.9.1 \
 --set communications.default-group.webhook.enabled=true \
 --set communications.default-group.webhook.url=${WEBHOOK_URL} \
 --set settings.clusterName=${CLUSTER_NAME}

@@ -88,7 +88,7 @@ healthCheckInterval: 10s
 # Format: executors.{alias}
 executors:
   "tools":
-    botkube/echo@v1.9.0: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
+    botkube/echo@v1.9.1: # Plugin name syntax: <repo>/<plugin>[@<version>]. If version is not provided, the latest version from repository is used.
       enabled: true # If not enabled, plugin is not downloaded and started.
       config: # Plugin's specific configuration.
         changeResponseToUpperCase: true
@@ -104,7 +104,7 @@ plugins:
   repositories:
     # This repository serves officially supported Botkube plugins.
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.9.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.9.1/plugins-index.yaml
     # Other 3rd party repositories.
     repo-name:
       url: https://example.com/plugins-index.yaml
