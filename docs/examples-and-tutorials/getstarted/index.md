@@ -8,7 +8,7 @@ sidebar_position: 1
 
 Welcome to Botkube! This guide will walk you through the process of setting up Botkube to send notifications and execute commands in your Kubernetes clusters directly from Slack and Microsoft Teams.
 
-[Watch our video tutorial for a step-by-step walkthrough](https://www.youtube.com/watch?v=AGKJsNro4jE&t=59s)
+[![Watch our video tutorial for a step-by-step walkthrough](http://img.youtube.com/vi/AGKJsNro4jE/0.jpg)](https://www.youtube.com/watch?v=AGKJsNro4jE&t=59s "Watch our video tutorial for a step-by-step walkthrough")
 
 ## Overview
 
@@ -22,11 +22,11 @@ Visit [botkube.io](http://botkube.io) and create an account. This account will e
 
 1. **Create a New Instance:** Log in to the Botkube Cloud Dashboard and select "create a new instance".
 
-   ![Create New Instance](https://prod-files-secure.s3.us-west-2.amazonaws.com/6d17395d-184a-4108-baf0-ac74e6b1f3f6/753d31d8-d351-4b31-bfb7-0cdcb661d36e/Untitled.png)
+   ![Create New Instance](assets/create-new-instance.png)
 
 2. **Install Botkube Agent:** Follow the instructions provided on the dashboard to install the Botkube Agent on your Kubernetes cluster. You can choose either Helm or a CLI command for installation.
 
-   ![Install Botkube Agent](https://prod-files-secure.s3.us-west-2.amazonaws.com/6d17395d-184a-4108-baf0-ac74e6b1f3f6/f40a1829-089a-412c-8442-a76784e33a04/Untitled.png)
+   ![Install Botkube Agent](assets/install-agent.png)
 
 ## Step 3: Connect to Your Preferred Communication Platform
 
