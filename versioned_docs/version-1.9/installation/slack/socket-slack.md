@@ -196,7 +196,7 @@ export CLUSTER_NAME={cluster_name}
 export ALLOW_KUBECTL={allow_kubectl}
 export SLACK_CHANNEL_NAME={channel_name}
 
-botkube install --version v1.9.0 \
+botkube install --version v1.9.1 \
 --set communications.default-group.socketSlack.enabled=true \
 --set communications.default-group.socketSlack.channels.default.name=${SLACK_CHANNEL_NAME} \
 --set communications.default-group.socketSlack.appToken=${SLACK_API_APP_TOKEN} \

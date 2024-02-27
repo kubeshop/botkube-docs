@@ -101,7 +101,7 @@ To deploy Botkube agent in your cluster, run:
 export CLUSTER_NAME={cluster_name}
 export ALLOW_KUBECTL={allow_kubectl}
 
-botkube install --version v1.9.0 \
+botkube install --version v1.9.1 \
 --set communications.default-group.discord.enabled=true \
 --set communications.default-group.discord.channels.default.id=${DISCORD_CHANNEL_ID} \
 --set communications.default-group.discord.botID=${DISCORD_BOT_ID} \
