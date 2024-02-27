@@ -188,7 +188,7 @@ const config = {
               },
               {
                 label: "Privacy & Legal",
-                to: "/privacy",
+                to: "https://botkube.io/privacy-policy",
               },
             ],
           },

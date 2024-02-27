@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
 import CookieBanner, { Cookies } from "react-cookie-banner";
 import styles from "./index.module.scss";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
@@ -26,7 +25,9 @@ export const CookiesMessageBanner: FC = () => {
       buttonMessage={"Close"}
       link={
         <>
-          <Link to="/privacy#cookie-policy">Cookie Policy.</Link>
+          <a target="_blank" href="https://botkube.io/privacy-policy">
+            Privacy Policy.
+          </a>
         </>
       }
       cookie="user-has-accepted-cookies"
