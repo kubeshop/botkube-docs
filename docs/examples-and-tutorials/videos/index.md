@@ -39,4 +39,3 @@ sidebar_position: 5
 
 - [GitOps Con EU - Empowering Developer Productivity with ArgoCD](https://www.youtube.com/watch?v=k4L5_zKorZ8&list=PL2Vye-us8_x_5eqYQTBq7ZywupscaW5yA)
 - [Civo Navigate - Love is Blind, but Your K8s Troubleshooting Doesn’t Have to Be](https://youtu.be/nFpTXrkz3cQ)
-
