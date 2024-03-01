@@ -30,7 +30,7 @@ sidebar_position: 2
 
 ### Source Plugins
 
-- [Kubernetes Events Monitoring](https://botkube.io/blog/five-essential-kubernetes-tasks: Monitor Kubernetes events effortlessly with Botkube's built-in source plugin.
+- [Kubernetes Events Monitoring](https://botkube.io/blog/five-essential-kubernetes-tasks): Monitor Kubernetes events effortlessly with Botkube's built-in source plugin.
 - [ArgoCD Integration](https://botkube.io/blog/getting-started-with-botkube-and-argocd): Integrate Botkube with ArgoCD for streamlined continuous delivery workflows and notifications.
 - [Prometheus Integration](https://botkube.io/integration/prometheus): Monitor Kubernetes clusters effectively by integrating Prometheus metrics with Botkube.
 - [Keptn Integration](https://botkube.io/blog/implementing-your-own-botkube-plugin-a-real-life-use-case): Automate testing, deployment, and operations in Kubernetes environments by integrating Botkube with Keptn.
