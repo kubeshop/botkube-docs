@@ -190,6 +190,10 @@ const config = {
                 label: "Privacy & Legal",
                 to: "https://botkube.io/privacy-policy",
               },
+              {
+                label: "Telemetry",
+                to: "/telemetry",
+              },
             ],
           },
           {
