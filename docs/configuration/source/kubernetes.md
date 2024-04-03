@@ -779,3 +779,14 @@ sources:
 ```
 
 The default configuration for Helm chart can be found in [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml).
+
+## Implementation details
+
+Kubernetes source plugin uses [Kubernetes Informers](https://pkg.go.dev/k8s.io/client-go/informers) to get Kubernetes events in real-time. As the informer's synchronized data is cached in-memory and, in some cases, might take a significant amount of memory, Kubernetes plugin comes with memory usage optimization.
+
+During startup, the plugin loads all Kubernetes source configurations and groups them by different Kubeconfigs. For each group, the plugin creates shared informers (`SharedInformerFactory`) and starts them in parallel in goroutines.
+
+As there are less background processes than actual Kubernetes source configurations, the plugin takes the very first source configuration (sorted alphabetically) as the "system" one.
+Then, the `log` and `informerResyncPeriod` configuration properties are used for all background processes except actual event handling.
+
+For more details, see the [Kubernetes plugin source code](https://github.com/kubeshop/botkube/blob/main/cmd/source/kubernetes/main.go).
