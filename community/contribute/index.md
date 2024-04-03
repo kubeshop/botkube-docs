@@ -205,7 +205,7 @@ For faster development, you can also build and run Botkube outside K8s cluster.
 
   To learn how to do it, follow the **Contribute** section in the [Git workflow guide](https://github.com/kubeshop/botkube/blob/main/git-workflow.md).
 
-- To avoid build failures in CI, install [`golangci-lint`](https://golangci-lint.run/usage/install/) and run:
+- To avoid build failures in CI, install [`golangci-lint`](https://golangci-lint.run/welcome/install/) and run:
 
   ```sh
   # From project root directory
