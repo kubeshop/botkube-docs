@@ -12,7 +12,7 @@ Welcome to Botkube! This guide will walk you through the process of setting up B
 
 ## Overview
 
-Botkube is a Kubernetes Monitoring and Tool designed to optimize your K8s workflow by providing real-time alerts from and commands within your Kubernetes environment. With Botkube, you can receive alerts, execute commands, and stay informed about your cluster's health and status, all from your preferred communication platform.
+Botkube is an AI-powered troubleshooting tooldesigned to optimize your K8s workflow by providing real-time alerts from and commands within your Kubernetes environment. With Botkube, you can receive alerts, execute commands, and stay informed about your cluster's health and status, all from your preferred communication platform.
 
 ## Step 1: Sign up for Botkube
 
