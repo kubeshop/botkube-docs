@@ -62,7 +62,7 @@ export MATTERMOST_TEAM={mattermost_team_name}
 export CLUSTER_NAME={cluster_name}
 export ALLOW_KUBECTL={allow_kubectl}
 
-botkube install --version v1.9.1 \
+botkube install --version v1.10.0 \
 --set communications.default-group.mattermost.enabled=true \
 --set communications.default-group.mattermost.url=${MATTERMOST_SERVER_URL} \
 --set communications.default-group.mattermost.token=${MATTERMOST_TOKEN} \
