@@ -96,6 +96,10 @@ If you experience problems while configuring RBAC (Role-Based Access Control) fo
 
 In order to solve the problem, please refer to the [troubleshooting](../installation/teams/index.md#troubleshooting) guide for assistance.
 
+## I can't see my Slack private channels in Cloud Dashboard
+
+In adherence to Slack privacy policy, private channels are not displayed until a public alias is set for the respective channel. Kindly refer to the provided instructions for guidance on completing this process: [Setting Public Alias for Private Channels](../installation/slack/cloud-slack#setting-public-alias-for-private-channels)
+
 ## Air-Gap installation
 
 **Please note that we do not support air-gap installations.** However, here are some suggestions that you may find helpful:
