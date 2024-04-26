@@ -84,15 +84,15 @@ After this point, all of your commands will be executed on the default instance.
 
 ### Setting Public Alias for Private Channels
 
-In order to safeguard your confidentiality while enabling seamless integration with Botkube plugins, it's essential to establish a public alias for your private Slack channels. This alias will be accessible solely to Botkube Cloud administrators.
+In order to maintain your confidentiality while using Botkube's plugins, you need to create a public alias for your private Slack channels. This alias will only be visible to Botkube Cloud administrators.
 
 #### During the Botkube Invitation to Private Channels
 
-Upon extending an invitation to Botkube for a private channel, a prompt will appear, guiding you through the process of creating a public alias.
+When you invite Botkube to a private channel, a prompt will appear to guide you through the process of creating a public alias.
 
 #### For Existing Private Channels
 
-Should you need to update an existing alias within a private channel, or if Botkube is already integrated into the channel, you can execute the following command:
+To update an existing alias for a private channel, or if Botkube is already integrated, simply use this command:
 
 ```
 @Botkube cloud set channel-alias <your-public-alias-name>
