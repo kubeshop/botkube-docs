@@ -98,7 +98,7 @@ In order to solve the problem, please refer to the [troubleshooting](../installa
 
 ## I can't see my Slack private channels in Cloud Dashboard
 
-In adherence to Slack privacy policy, private channels are not displayed until a public alias is set for the respective channel. Kindly refer to the provided instructions for guidance on completing this process: [Setting Public Alias for Private Channels](../installation/slack/cloud-slack#setting-public-alias-for-private-channels)
+To comply with Slack's privacy policy, private channels won't be visible until you create a public alias for the respective channel. Refer to the provided instructions for guidance on completing this process: [Setting Public Alias for Private Channels](../installation/slack/cloud-slack#setting-public-alias-for-private-channels)
 
 ## Air-Gap installation
 
