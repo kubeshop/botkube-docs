@@ -89,3 +89,10 @@ Currently, archiving older versions is manual. To archive an older version, foll
 - Add the version to `versions-archived.json` with a working link to the archived version.
 
   You can find the link from the Cloudflare Pages job run, e.g. https://github.com/kubeshop/botkube-docs/runs/15868100283.
+
+## Release Botkube Cloud
+
+After the releases on `botkube` and `botkube-docs`, proceed with the releases related to Botkube Cloud.
+
+1. Release Botkube Cloud plugins, matching the Botkube Agent release version.
+2. Use the latest Botkube Agent version in Botkube Cloud and release it.
