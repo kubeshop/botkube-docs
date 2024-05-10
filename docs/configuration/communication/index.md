@@ -30,8 +30,8 @@ communications:
   "first-group": # Your own alias of a given communication group
     socketSlack:
       enabled: true
-      botToken: "{SLACK_BOT_TOKEN_1}" # Bot token for Botkube Slack app installed in Workspace 1
-      appToken: "{SLACK_APP_TOKEN_1}" # App token for Botkube Slack app installed in Workspace 1
+      botToken: "{SLACK_BOT_TOKEN_1}" # Bot token for Botkube App for Slack installed in Workspace 1
+      appToken: "{SLACK_APP_TOKEN_1}" # App token for Botkube App for Slack installed in Workspace 1
       channels:
         "general": # Your own alias for the channel configuration
           name: general
@@ -49,8 +49,8 @@ communications:
   "second-group": # Your own alias of a given communication group
     socketSlack:
       enabled: true
-      botToken: "{SLACK_BOT_TOKEN_2}" # Bot token for Botkube Slack app installed in Workspace 2
-      appToken: "{SLACK_APP_TOKEN_2}" # App token for Botkube Slack app installed in Workspace 2
+      botToken: "{SLACK_BOT_TOKEN_2}" # Bot token for Botkube App for Slack installed in Workspace 2
+      appToken: "{SLACK_APP_TOKEN_2}" # App token for Botkube App for Slack installed in Workspace 2
       channels:
         "primary-channel": # Your own alias for the channel configuration
           name: general
@@ -99,7 +99,7 @@ communications:
   "default-group":
     ## Settings for Slack with Socket Mode.
     socketSlack:
-      # If true, enables Slack bot.
+      # If true, enables bot for Slack.
       enabled: false
       # Map of configured channels. The property name under `channels` object is an alias for a given configuration.
       #
@@ -116,10 +116,10 @@ communications:
             sources:
               - k8s-err-events
               - k8s-recommendation-events
-      # Slack bot token for your own Slack app.
+      # Bot for Slack token for your own app for Slack.
       # [Ref doc](https://api.slack.com/authentication/token-types).
       botToken: ""
-      # Slack app-level token for your own Slack app.
+      # Slack app-level token for your own app for Slack.
       # [Ref doc](https://api.slack.com/authentication/token-types).
       appToken: ""
     ## Settings for Mattermost.
