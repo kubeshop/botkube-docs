@@ -4,12 +4,6 @@ title: "Microsoft Teams"
 sidebar_position: 5
 ---
 
-:::info
-
-The previous Microsoft Teams integration has been deprecated. If you need to use the legacy Microsoft Teams integration, see the [Botkube 1.5 Documentation](/1.5/installation/teams/). It is recommended to migrate to the new Microsoft Teams app per the below instructions.
-
-:::
-
 ## Botkube Cloud Microsoft Teams App
 
 The Botkube Cloud Microsoft Teams app offers several advanced features:

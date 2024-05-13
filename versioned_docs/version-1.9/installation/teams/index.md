@@ -6,7 +6,7 @@ sidebar_position: 5
 
 :::info
 
-The previous Microsoft Teams integration has been deprecated. If you need to use the legacy Microsoft Teams integration, see the [Botkube 1.5 Documentation](/1.5/installation/teams/). It is recommended to migrate to the new Microsoft Teams app per the below instructions.
+The previous Microsoft Teams integration has been deprecated. If you need to use the legacy Microsoft Teams integration, see the [Botkube 1.5 Documentation](https://969c27c7.botkube-docs-58l.pages.dev/1.5/installation/teams/). It is recommended to migrate to the new Microsoft Teams app per the below instructions.
 
 :::
 
