@@ -1,6 +1,6 @@
 ---
 id: socket-slack
-title: Socket Slack App
+title: App for Socket Slack
 sidebar_position: 2
 ---
 
@@ -12,21 +12,21 @@ The Socket-mode app works with the open-source Botkube Agent and does not requir
 - Access to Kubernetes cluster
 - Slack Workspace admin access
 
-## Install Socket Slack App in Your Slack workspace
+## Install app for Socket Slack in Your Slack workspace
 
-Botkube uses interactive messaging to provide better experience. Interactive messaging needs a Slack App with Socket Mode enabled and currently this is not suitable for Slack App Directory listing. For this reason, you need to create a Slack App in your own Slack workspace and use it for Botkube deployment.
+Botkube uses interactive messaging to provide better experience. Interactive messaging needs an app for Slack with Socket Mode enabled and currently this is not suitable for Slack App Directory listing. For this reason, you need to create an app for Slack in your own Slack workspace and use it for Botkube deployment.
 
 :::warning
-**Multi-cluster caveat:** The architecture of socket-based Slack apps has a limitation on the routing of executor commands. If you would like to use [Botkube executors](../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube Slack app for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
+**Multi-cluster caveat:** The architecture of socket-based apps for Slack has a limitation on the routing of executor commands. If you would like to use [Botkube executors](../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube App for Slack for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
 
-To learn more about the Slack Socket API limitation, see the [comment](https://github.com/slackapi/bolt-js/issues/1263#issuecomment-1006372826) in the official Slack bot framework repository.
+To learn more about the Slack Socket API limitation, see the [comment](https://github.com/slackapi/bolt-js/issues/1263#issuecomment-1006372826) in the official bot for Slack framework repository.
 
 The [Botkube Cloud App for Slack](#botkube-cloud-slack-app) does not have this limitation.
 :::
 
-Follow the steps below to create and install Botkube Slack app to your Slack workspace.
+Follow the steps below to create and install Botkube App for Slack to your Slack workspace.
 
-### Create Slack app
+### Create app for Slack
 
 1. Go to [Slack App console](https://api.slack.com/apps) to create an application.
 1. Click **Create New App** and select **From an app manifest** in the popup to create application from manifest.
@@ -148,7 +148,7 @@ settings:
 
 Once the application is created, you will be redirected to application details page. Press the **Install your app** button, select the workspace and click **Allow to finish installation**.
 
-![Install Slack App](assets/slack_install_app.png "Slack install app")
+![Install App for Slack](assets/slack_install_app.png "Slack install app")
 
 ### Obtain Bot Token
 
@@ -156,9 +156,9 @@ Follow the steps to obtain the Bot Token:
 
 1. Select **OAuth & Permissions** section on the left sidebar. On this page you can copy the bot token which starts with `xoxb...`.
 
-   ![Retrieve Slack Bot Token](assets/slack_retrieve_bot_token.png "Slack Bot Token")
+   ![Retrieve Bot for Slack Token](assets/slack_retrieve_bot_token.png "Bot for Slack Token")
 
-1. Export Slack Bot Token as follows:
+1. Export Bot for Slack Token as follows:
 
    ```shell
    export SLACK_API_BOT_TOKEN="{botToken}"
@@ -166,14 +166,14 @@ Follow the steps to obtain the Bot Token:
 
 ### Generate and obtain App-Level Token
 
-Slack App with Socket Mode requires an App-Level Token for the websocket connection.
+App for Slack with Socket Mode requires an App-Level Token for the websocket connection.
 
 Follow the steps to generate an App-Level Token:
 
 1. Select **Basic Information** link from the left sidebar and scroll down to section **App-Level Token**. Click on the **Generate Token and Scopes** button.
 1. Enter a **Name**, select `connections:write` scope, and click **Generate**.
 
-   ![Generate App-Level Token](assets/slack_generate_app_token.png "Slack App Token")
+   ![Generate App-Level Token](assets/slack_generate_app_token.png "App for Slack Token")
 
    ![Retrieve App-Level Token](assets/slack_retrieve_app_token.png "Slack Retrieve App Token")
 
