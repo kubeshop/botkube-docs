@@ -86,14 +86,22 @@ An [alert](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgx-send-an-alert-e
 
 - [Kubernetes'](../../configuration/source/kubernetes.md#event-types) `error` and `delete` events.
 - All configured [Prometheus](../../configuration/source/prometheus.md) alerts.
-- [ArgoCD](../../configuration/source/argocd.md) alerts (details to be specified).
+- The [ArgoCD](../../configuration/source/argocd.md) application events including synchronization failures and health status degradation.
+
+To see the alerts in the PagerDuty web app, click **Incidents** tab and select **Alerts**:
+
+![pager_duty_app_alert.png](assets/pager_duty_app_alert.png)
 
 ### Changes
 
 A [change](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgy-send-a-change-event) indicates a non-problematic update within a system. Botkube forwards the following types of change events to PagerDuty:
 
 - [Kubernetes'](../../configuration/source/kubernetes.md) `create` and `update` events.
-- [ArgoCD](../../configuration/source/argocd.md) changes (details to be specified).
+- The [ArgoCD](../../configuration/source/argocd.md) application events including creation, updates, deployment, and deletion. Additionally, the synchronization statuses include running, unknown, and succeeded events.
+
+To see the changes in the PagerDuty web app, click **Incidents** tab and select **Recent Changes**:
+
+![pager_duty_app_changes.png](assets/pager_duty_app_changes.png)
 
 ## Instance Cleanup
 
