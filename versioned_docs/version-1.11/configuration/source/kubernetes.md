@@ -436,8 +436,8 @@ extraButtons:
     trigger:
       type: ["error"]
     button:
-      displayName: "Get Help"
-      commandTpl: "doctor --resource={{ .Kind | lower }}/{{ .Name }} --namespace={{ .Namespace }} --error={{ .Reason }} --bk-cmd-header='AI assistance'"
+      displayName: "Describe"
+      commandTpl: "kubectl describe {{ Kind | lower }}{{ if .Namespace }} -n {{ .Namespace }}{{ end }} {{ .Name }}"
 # Logger configuration
 log:
   level: info
