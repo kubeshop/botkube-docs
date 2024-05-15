@@ -50,7 +50,7 @@ To create a service in the Pager Duty web app:
 2. Select Escalation Policy that suits you best. Click **Next** to continue.
 3. Select the **Events API V2** integration.
 
-   ![pager_duty_integration.png](assets/pager_duty_integration.png)
+   ![pager_duty_integration.png](./assets/pager_duty_app_integration.png)
 
 4. Click **Create Service**.
 5. Now you will be in the service’s Integrations tab, where you’ll find the **integration key**.
@@ -79,6 +79,8 @@ Go back to the Botkube Cloud instance creation.
 ## Using Botkube Cloud with PagerDuty Integration
 
 From now on, all events emitted by enabled sources are routed directly to created PagerDuty service using the [Events API v2](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgw-events-api-v2-overview). Botkube follows the best practices by recognizing different event types and sending them to PagerDuty accordingly.
+
+![pager_duty_app_alert_and_changes.png](assets/pager_duty_app_alert_and_changes.png)
 
 ### Alerts
 
