@@ -41,6 +41,10 @@ Compare our unidirectional integrations:
 
 ## Integrations
 
+:::tip
+You can enable multiple platform integrations using a single Botkube agent. <br/>
+:::
+
 <IntegrationList
   integrations={[
     { name: "Slack", image: "/images/integrations/slack.svg", link: "installation/slack" },
@@ -52,9 +56,3 @@ Compare our unidirectional integrations:
     { name: "Webhook", image: "/images/integrations/webhooks.svg", link: "installation/webhook" },
   ]}
 />
-
-:::tip
-You can use a single Botkube agent to serve all the interfaces - Slack, Mattermost, Microsoft Teams, Elasticsearch and Webhook. <br/>
-You just need to enable required mediums through the settings and add a necessary configuration.<br/>
-_see the [configuration](../configuration) section for more information_
-:::
