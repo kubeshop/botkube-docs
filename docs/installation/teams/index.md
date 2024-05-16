@@ -28,11 +28,11 @@ You can directly try Botkube Cloud Microsoft Teams app for free by creating an a
 
 1. Go to Botkube Cloud [Web App](https://app.botkube.io/) and click on `New Instance` button.
 
-   ![New Instance](assets/cloud_teams_new_instance.png "Create new instance")
+   ![New Instance](../assets/cloud_new_instance.png "Create new instance")
 
 1. Install Botkube Agent on your Kubernetes cluster by following the instructions on the page.
 
-   ![Install Agent](assets/cloud_teams_install.png "Install Agent")
+   ![Install Agent](../assets/cloud_install.png "Install Agent")
 
 1. Click `Add platform` dropdown, and select `Teams` option.
 
@@ -172,7 +172,7 @@ After this point, all of your commands will be executed on the default instance.
    Remember to execute the displayed command to completely remove Botkube and related resources from your cluster.
    :::
 
-   ![Cloud Teams Instance Delete](assets/cloud_teams_instance_delete.png "Cloud Microsoft Teams instances delete")
+   ![Cloud Teams Instance Delete](../assets/cloud_instance_delete.png "Cloud Microsoft Teams instances delete")
 
 ## Caveats
 
