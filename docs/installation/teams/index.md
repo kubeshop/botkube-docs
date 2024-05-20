@@ -4,23 +4,23 @@ title: "Microsoft Teams"
 sidebar_position: 5
 ---
 
-## Botkube Cloud Microsoft Teams App
+## Botkube app for Microsoft Teams
 
-The Botkube Cloud Microsoft Teams app offers several advanced features:
+The Botkube app for Microsoft Teams offers several advanced features:
 
 - Simplified installation into your Microsoft Teams workspace
 - Multi-cluster executor support with a single Microsoft Teams app
 - Manage Teams channels directly from the Botkube web app and ensure the Botkube bot is invited to the correct channels
 
-The Botkube Cloud Microsoft Teams app uses Botkube's cloud services to manage channels and route source events and executor commands. Currently, it requires a manual side-loading of the app, but we are working on getting it listed in Microsoft AppSource.
+The Botkube app for Microsoft Teams uses Botkube's cloud services to manage channels and route source events and executor commands. Currently, it requires a manual side-loading of the app, but we are working on getting it listed in Microsoft AppSource.
 
-You can directly try Botkube Cloud Microsoft Teams app for free by creating an account in the [Botkube Web App](https://app.botkube.io). Follow the steps below to install the app.
+You can directly try Botkube app for Microsoft Teams for free by creating an account in the [Botkube Web App](https://app.botkube.io). Follow the steps below to install the app.
 
 ## Prerequisites
 
 - A Botkube Cloud account.
 
-  You can try out the Botkube Cloud Microsoft Teams app for free by creating an account in the [Botkube Cloud app](https://app.botkube.io).
+  You can try out the Botkube app for Microsoft Teams for free by creating an account in the [Botkube Cloud app](https://app.botkube.io).
 
 ## Create a Botkube Cloud Instance with Microsoft Teams
 
@@ -40,29 +40,17 @@ You can directly try Botkube Cloud Microsoft Teams app for free by creating an a
 
 Proceed with the next section.
 
-### Install Botkube app to your Microsoft Teams organization and add it to your team
+### Install Botkube app to your team
 
-1. Download the Botkube Cloud Microsoft Teams app by clicking the `Download Botkube App for Teams` button.
+1. Install Botkube app for Microsoft Teams from the official app catalog by clicking the `Install Botkube App for Teams` button.
 
-   ![Download Teams App](assets/cloud_teams_download_app.png "Download Teams App")
+   ![Install Botkube App for Microsoft Teams](assets/cloud_teams_download_app.png "Install Botkube App for Microsoft Teams")
 
-1. Sideload the Botkube app to your Microsoft Teams organization via Teams Admin Center, following the [official documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-custom-app-policies-and-settings#upload-a-custom-app-using-teams-admin-center).
+   Alternatively, you can search for the "Botkube" app in the Microsoft Teams app catalog and click the **Add** button.
 
-   :::info
-   This step requires administrator permissions on your Microsoft Teams organization. Sideloading app is needed only once for the whole organization.
-   :::
-
-   - Ensure the Botkube app is allowed for the organization in the [Teams Admin Center](https://admin.teams.microsoft.com/policies/manage-apps)
-
-   ![Teams Admin Center](assets/cloud_teams_admin_center.png "Teams Admin Center")
+   ![Add Botkube App](assets/cloud_teams_add_app.png "Add Botkube App")
 
 1. Add the Botkube app to your team.
-
-   1. In your Microsoft Teams application, navigate to the **Apps** tab.
-   1. Select the **Built for your organization** tab.
-   1. On the Botkube app card, click on the **Add** button.
-
-      ![Add Botkube App](assets/cloud_teams_add_app.png "Add Botkube App")
 
    1. Click the **Add to a team** button.
 
@@ -137,7 +125,7 @@ Go back to the Botkube Cloud instance creation.
 
    ![Microsoft Teams Create](assets/cloud_teams_create.png "Microsoft Teams create")
 
-## Using Botkube Cloud Microsoft Teams App
+## Using Botkube app for Microsoft Teams
 
 You can start using Botkube Cloud Microsoft Teams by typing `@Botkube cloud help` in one of the channels in the team you configured in one of the previous steps.
 
@@ -178,12 +166,12 @@ After this point, all of your commands will be executed on the default instance.
 
 ### RBAC `ChannelName` mapping
 
-Same as other communication platforms, Botkube Cloud Microsoft Teams app supports RBAC along with [all mappings](../../configuration/rbac.md#mapping-types).
+Same as other communication platforms, Botkube app for Microsoft Teams supports RBAC along with [all mappings](../../configuration/rbac.md#mapping-types).
 However, because of the Microsoft Teams API limitation, for the default team channel the `ChannelName` is always `General`, regardless of the actual localized channel name.
 
 ## Limitations
 
-Botkube Cloud Microsoft Teams App currently doesn't support the following features yet:
+Botkube app for Microsoft Teams currently doesn't support the following features yet:
 
 - Processing states from selected dropdowns, e.g., used for the `kubectl` command builder. In a result, the command builder is not available.
 - Adding 👀 and ✅ reactions to messages indicating process status.
