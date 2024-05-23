@@ -23,7 +23,7 @@ sidebar_position: 4
 ## Executor Plugins
 
 - [Kubectl](../../plugins/kubectl.md): Easily execute Kubernetes commands in your channels with Botkube's Kubectl integration.
+- [AI](../../plugins/ai-assistant.mdx): Harness the power of AI with Botkube's AI plugin for intelligent interactions and enhanced automation in your Kubernetes environment.
 - [Helm](https://botkube.io/integration/helm): Manage Helm deployments and releases seamlessly with Botkube's Helm plugin.
 - [Flux](https://botkube.io/integration/botkube-flux-kubernetes-integration): Use Botkube for GitOps operations with the Flux plugin.
 - [Exec](https://botkube.io/integration/custom-executor-plugin): Connecting your own plugin for a tailored Kubernetes workflow with Botkube's exec plugin.
-- [AI](https://botkube.io/blog/level-up-your-sre-workflow-automating-manual-tasks-with-botkube-ai-assistant): Harness the power of AI with Botkube's AI plugin for intelligent interactions and enhanced automation in your Kubernetes environment.
