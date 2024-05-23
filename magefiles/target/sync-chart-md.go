@@ -19,13 +19,21 @@ var helmParamsFileTpl = heredoc.Doc(`
      title: Helm chart parameters
      sidebar_position: 8
      ---
+
+	 :::info
+	 
+	 This document is applicable only for self-hosted installations.
+	 For Botkube Cloud installations, the Botkube Agent configuration is managed via the [Botkube Cloud dashboard](https://app.botkube.io).
+	 
+	 :::
+
      %s
      `)
 
 const (
 	urlReadmeBySHAFmt     = "https://raw.githubusercontent.com/kubeshop/botkube/%s/helm/botkube/README.md"
 	urlValuesBySHAFmt     = "https://github.com/kubeshop/botkube/blob/%s/helm/botkube/values.yaml"
-	helmParamsDstFilePath = "docs/configuration/helm-chart-parameters.md"
+	helmParamsDstFilePath = "docs/self-hosted-configuration/helm-chart-parameters.md"
 )
 
 func SyncChartParams() {

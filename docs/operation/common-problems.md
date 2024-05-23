@@ -90,7 +90,7 @@ Cloud Slack integration communicates via gRPC with the Botkube control-plane. In
 
 ## Plugin's permissions
 
-If you experience problems while configuring RBAC (Role-Based Access Control) for plugins, you can refer to the [troubleshooting](../configuration/rbac.md#troubleshooting) guide for assistance.
+If you experience problems while configuring RBAC (Role-Based Access Control) for plugins, you can refer to the [troubleshooting](../features/rbac.md#troubleshooting) guide for assistance.
 
 ## Botkube doesn't respond on MS Teams
 

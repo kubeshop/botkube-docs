@@ -87,9 +87,9 @@ From now on, all events emitted by enabled sources are routed directly to create
 
 An [alert](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgx-send-an-alert-event) indicates a problem within a monitored cluster. Botkube forwards the following types of alerts to PagerDuty:
 
-- **[Kubernetes](../../configuration/source/kubernetes.md#event-types) plugin:** `error` and `delete` events.
-- **[ArgoCD](../../configuration/source/argocd.md) plugin:** application events including synchronization failures and health status degradation.
-- **[Prometheus](../../configuration/source/prometheus.md) plugin:** All configured alerts.
+- **[Kubernetes](../../plugins/kubernetes.md#event-types) plugin:** `error` and `delete` events.
+- **[ArgoCD](../../plugins/argocd.md) plugin:** application events including synchronization failures and health status degradation.
+- **[Prometheus](../../plugins/prometheus.md) plugin:** All configured alerts.
 
 To see the alerts in the PagerDuty web app, click **Incidents** tab and select **Alerts**:
 
@@ -99,8 +99,8 @@ To see the alerts in the PagerDuty web app, click **Incidents** tab and select *
 
 A [change](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgy-send-a-change-event) indicates a non-problematic update within a cluster. Botkube forwards the following types of change events to PagerDuty:
 
-- **[Kubernetes](../../configuration/source/kubernetes.md) plugin:** `create` and `update` events.
-- **[ArgoCD](../../configuration/source/argocd.md) plugin:** application events including creation, updates, deployment, and deletion. Additionally, the synchronization statuses include running, unknown, and succeeded events.
+- **[Kubernetes](../../plugins/kubernetes.md) plugin:** `create` and `update` events.
+- **[ArgoCD](../../plugins/argocd.md) plugin:** application events including creation, updates, deployment, and deletion. Additionally, the synchronization statuses include running, unknown, and succeeded events.
 
 To see the changes in the PagerDuty web app, click **Incidents** tab and select **Recent Changes**:
 

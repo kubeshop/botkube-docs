@@ -166,7 +166,7 @@ After this point, all of your commands will be executed on the default instance.
 
 ### RBAC `ChannelName` mapping
 
-Same as other communication platforms, Botkube app for Microsoft Teams supports RBAC along with [all mappings](../../configuration/rbac.md#mapping-types).
+Same as other communication platforms, Botkube app for Microsoft Teams supports RBAC along with [all mappings](../../features/rbac.md#mapping-types).
 However, because of the Microsoft Teams API limitation, for the default team channel the `ChannelName` is always `General`, regardless of the actual localized channel name.
 
 ## Limitations

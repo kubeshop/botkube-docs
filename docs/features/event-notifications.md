@@ -6,13 +6,11 @@ sidebar_position: 1
 
 # Event notifications
 
-Botkube sends notifications according to the [sources](../configuration/source/index.md) configuration.
-
 ## Actionable notifications
 
-If you have [`kubectl` executor enabled](../configuration/executor/kubectl.md) for a given channel, you can run commands related to a resource from the notification itself. Use the dropdown on the left to select and run a given command:
+If you have [`kubectl` plugin enabled](../plugins/kubectl.md) for a given channel, you can run commands related to a resource from the notification itself. Use the dropdown on the left to select and run a given command:
 
-![Actionable notifications](./assets/actionable-notifications.png)
+![Actionable notifications](assets/actionable-notifications.png)
 
 The command dropdown is disabled for resource deletion events. It uses executor bindings to determine which commands are available for a given resource.
 
@@ -20,16 +18,10 @@ The command dropdown is disabled for resource deletion events. It uses executor 
 Actionable notifications are only available for the [Slack](../installation/slack/index.md) and [Microsoft Teams](../installation/teams/index.md) platforms that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
 :::
 
-## Managing notifications
+## Manage notifications with Botkube commands
 
 Depending upon your configuration, you will receive notifications about Kubernetes resources lifecycle events and their health.
 Botkube bot allows you to enable/disable notifications on each configured channel separately. Run `@Botkube help`, the bot will reply with the help message about the supported message formats.
-
-### View Botkube configuration
-
-Run `@Botkube show config` message from the configured channel where Botkube is added. The bot will reply to you with the configuration with which the controller is running.
-
-To see how to update the configuration, see the [Updating the configuration](../configuration/index.mdx#updating-the-configuration) section in the Configuration document.
 
 ### Change notification sources
 
