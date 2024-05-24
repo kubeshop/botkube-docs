@@ -108,9 +108,7 @@ function customRedirections() {
     { from: "/plugin/using-kubeconfig", to: "/plugins/development/using-kubeconfig" },
     { from: "/operation/diagnostics", to: "/troubleshooting/diagnostics" },
     { from: "/operation/common-problems", to: "/troubleshooting/common-problems" },
-
-    // TODO: Requires Docusaurus 3.0 upgrade
-    // { from: "/privacy", to: "https://botkube.io/privacy-policy" },
+    { from: "/privacy", to: "https://botkube.io/privacy-policy" },
   ];
 }
 

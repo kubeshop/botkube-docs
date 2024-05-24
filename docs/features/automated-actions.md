@@ -15,7 +15,7 @@ There are two predefined actions available:
 - `describe-created-resource` - describes a newly created resource,
 - `show-logs-on-error` - prints logs on Pod/StatefulSet/DaemonSet/Deployment error.
 
-Both of them are disabled by default. See details in the [Syntax](#syntax) section.
+Both of them are disabled by default.
 
 ## Action output
 

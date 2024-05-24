@@ -1,12 +1,13 @@
-// @ts-check
+import type { Config } from "@docusaurus/types";
 // Note: type annotations allow type checking and IDEs autocompletion
 const path = require("path");
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const { themes } = require("prism-react-renderer");
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 const { createRedirects, redirects } = require("./redirects");
 
 /** @type {import('@docusaurus/types').Config} */
-const config = {
+const config: Config = {
   title: "Botkube",
   tagline: "Messaging bot for monitoring and debugging Kubernetes clusters",
   url: "https://docs.botkube.io/",
@@ -26,7 +27,7 @@ const config = {
     [
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/kubeshop/botkube-docs/edit/main/",
@@ -46,7 +47,7 @@ const config = {
         googleTagManager: {
           containerId: process.env.GOOGLE_TAG_MANAGER_CONTAINER_ID || "GTM-container-dev",
         },
-      }),
+      },
     ],
   ],
 
@@ -90,7 +91,7 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       image: "images/botkube-title-social.png",
       metadata: [
         {
@@ -237,7 +238,7 @@ const config = {
         textColor: "#091E42",
         isCloseable: true,
       },
-    }),
+    },
 };
 
 module.exports = config;

@@ -36,7 +36,7 @@ You can enable the plugin as a part of Botkube instance configuration.
 
 Define constraints for Kubernetes events to narrow down the events you want to receive.
 
-You can define both global constraints, that are applied to all resources within a given source, and also resource-specific constraints, which override global constraints. See the [Syntax](#syntax) paragraph for more details.
+You can define both global constraints, that are applied to all resources within a given source, and also resource-specific constraints, which override global constraints. See the [Syntax](#configuration-syntax) paragraph for more details.
 
 There are multiple types of constraints. Each constraint type is described in the following sections.
 
@@ -97,7 +97,7 @@ annotations: # Match only the resources that have all the specified annotations.
 Filter events based on the resource name. If not defined, all resource names are matched.
 Exclude takes precedence over include. If a given resource name is excluded, it will be ignored, even if it included.
 
-You can use both exact values and regex expressions to specify resource names. This constraint can be set per resource only. See the [Syntax](#syntax) paragraph for more details.
+You can use both exact values and regex expressions to specify resource names. This constraint can be set per resource only. See the [Syntax](#configuration-syntax) paragraph for more details.
 
 **Examples**
 

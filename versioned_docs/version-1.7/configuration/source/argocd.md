@@ -75,7 +75,7 @@ Next, use the `argocd` group in the plugin RBAC configuration:
 :::note
 In order to enable the plugin, ArgoCD has to be already installed on the cluster and all watched Applications need to be created.
 
-Also, remember to create RBAC resources for the plugin. See the [Elevated RBAC permissions required](#elevated-rbac-permissions-required)) section.
+Also, remember to create RBAC resources for the plugin. See the [Elevated RBAC permissions required](#prerequisite-elevated-rbac-permissions) section.
 :::
 
 To enable the ArgoCD plugin and watch a single ArgoCD Application named `guestbook` in `argocd` Namespace, add the following flag to the Botkube [`install` command](../../cli/commands/botkube_install.md):

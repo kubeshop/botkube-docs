@@ -92,10 +92,6 @@ Cloud Slack integration communicates via gRPC with the Botkube control-plane. In
 
 If you experience problems while configuring RBAC (Role-Based Access Control) for plugins, you can refer to the [troubleshooting](../configuration/rbac.md#troubleshooting) guide for assistance.
 
-## Botkube doesn't respond on MS Teams
-
-In order to solve the problem, please refer to the [troubleshooting](../installation/teams/index.md#troubleshooting) guide for assistance.
-
 ## I can't see my Slack private channels in Cloud Dashboard
 
 To comply with Slack's privacy policy, private channels won't be visible until you create a public alias for the respective channel. Refer to the provided instructions for guidance on completing this process: [Setting Public Alias for Private Channels](../installation/slack/cloud-slack#setting-public-alias-for-private-channels)
