@@ -65,7 +65,7 @@ Next, use the `argocd` static group name in the plugin RBAC configuration:
 :::note
 In order to enable the plugin, ArgoCD has to be already installed on the cluster and all watched Applications need to be created.
 
-Also, remember to create RBAC resources for the plugin. See the [Elevated RBAC permissions required](#elevated-rbac-permissions-required)) section.
+Also, remember to create RBAC resources for the plugin. See the [Elevated RBAC permissions required](#prerequisite-elevated-rbac-permissions) section.
 :::
 
 You can enable the plugin as a part of Botkube instance configuration.

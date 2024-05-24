@@ -36,7 +36,7 @@ Botkube CLI tool collects:
 
 ### How to opt out
 
-To disable sending the anonymous analytics, provide the `analytics.disable: true` override during Helm chart installation or upgrade. See the [Helm chart parameters](/configuration/helm-chart-parameters/#values) for more details about Helm chart configuration.
+To disable sending the anonymous analytics, provide the `analytics.disable: true` override during Helm chart installation or upgrade. See the [Helm chart parameters](/self-hosted-configuration/helm-chart-parameters) for more details about Helm chart configuration.
 
 To disable sending the anonymous analytics for Botkube CLI, execute the command
 

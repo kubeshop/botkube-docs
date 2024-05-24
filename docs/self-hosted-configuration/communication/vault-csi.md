@@ -23,7 +23,7 @@ This tutorial shows how to install Botkube which takes the configuration from Va
   limactl start template://k3s
   ```
 
-- [Slack integration installed](../../installation/slack/#install-botkube-slack-app-to-your-slack-workspace).
+- [Socket Slack integration installed](../../installation/slack/socket-slack.md).
 - [`helm`](https://helm.sh/docs/intro/install/) v3 installed.
 - [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) installed.
 
@@ -96,7 +96,7 @@ This instruction guides you through the installation of Botkube and Vault on a K
    --set syncSecret.enabled=true
    ```
 
-5. Create BotKue installation parameters:
+5. Create Botkube installation parameters:
 
    ```yaml
    cat > /tmp/values.yaml << ENDOFFILE

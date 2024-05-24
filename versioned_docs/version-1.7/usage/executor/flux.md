@@ -4,8 +4,7 @@ title: "Flux"
 sidebar_position: 5
 ---
 
-Botkube offers seamless execution of Flux CLI commands within your Kubernetes cluster. By default, Flux command execution is disabled. To enable it, refer to the [
-**Enabling plugin**](../../configuration/executor/flux.md#enabling-plugin) section.
+Botkube offers seamless execution of Flux CLI commands within your Kubernetes cluster. By default, Flux command execution is disabled. To enable it, refer to the [Enabling plugin](../../configuration/executor/flux.md#enabling-plugin) section.
 
 To execute the `flux` CLI commands, send a message in the channel where Botkube is present. For example:
 

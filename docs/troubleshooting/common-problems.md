@@ -94,7 +94,7 @@ If you experience problems while configuring RBAC (Role-Based Access Control) fo
 
 ## Botkube doesn't respond on MS Teams
 
-In order to solve the problem, please refer to the [troubleshooting](../installation/teams/index.md#troubleshooting) guide for assistance.
+Microsoft Teams integration communicates via gRPC with the Botkube control-plane. In order to make this integration work, you need to allow access to `api.botkube.io`.
 
 ## I can't see my Slack private channels in Cloud Dashboard
 

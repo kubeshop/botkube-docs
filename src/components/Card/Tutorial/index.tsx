@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import Heading from "@theme/Heading";
 import clsx from "clsx";
 import styles from "./index.module.scss";
 
@@ -13,7 +14,7 @@ type Props = {
 export const CardTutorial: FC<Props> = ({ link, buttonLabel, body, title }) => {
   return (
     <div className={clsx(styles.card)}>
-      <h2>{title}</h2>
+      <Heading as="h2">{title}</Heading>
       <p>{body}</p>
       <Link to={link}>
         <button className={clsx(styles.button)}>{buttonLabel}</button>

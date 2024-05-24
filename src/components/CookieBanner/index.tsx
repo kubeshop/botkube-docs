@@ -3,6 +3,7 @@ import CookieBanner, { Cookies } from "react-cookie-banner";
 import styles from "./index.module.scss";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import Link from "@docusaurus/Link";
 
 export const CookiesMessageBanner: FC = () => {
   const isBrowser = useIsBrowser();
@@ -25,9 +26,9 @@ export const CookiesMessageBanner: FC = () => {
       buttonMessage={"Close"}
       link={
         <>
-          <a target="_blank" href="https://botkube.io/privacy-policy">
+          <Link target="_blank" href="https://botkube.io/privacy-policy">
             Privacy Policy.
-          </a>
+          </Link>
         </>
       }
       cookie="user-has-accepted-cookies"

@@ -8,17 +8,17 @@ sidebar_position: 8
 
 Controller for the Botkube Slack app which helps you monitor your Kubernetes cluster, debug deployments and run specific checks on resources in the cluster.
 
-**Homepage:** <https://botkube.io>
+**Homepage:** [botkube.io](https://botkube.io)
 
 ## Maintainers
 
 | Name             | Email                 |
 | ---------------- | --------------------- |
-| Botkube Dev Team | <dev-team@botkube.io> |
+| Botkube Dev Team | `dev-team@botkube.io` |
 
 ## Source Code
 
-- <https://github.com/kubeshop/botkube>
+- [github.com/kubeshop/botkube](https://github.com/kubeshop/botkube)
 
 ## Parameters
 
