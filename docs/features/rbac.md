@@ -1,7 +1,7 @@
 ---
 id: rbac
 title: RBAC
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 Botkube allows plugins to access Kubernetes API by defining [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac) rules.
