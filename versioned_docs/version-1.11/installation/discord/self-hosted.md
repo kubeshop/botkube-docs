@@ -118,8 +118,8 @@ where:
 - **CLUSTER_NAME** is the cluster name set in the incoming messages,
 - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster.
 
-Configuration syntax is explained [here](../../configuration).
-All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
+Configuration syntax is explained [here](../../self-hosted-configuration).
+All possible installation parameters are documented [here](../../self-hosted-configuration/helm-chart-parameters).
 
 Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 

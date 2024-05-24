@@ -38,8 +38,8 @@ where:
 - **ELASTICSEARCH_PASSWORD** is a password for the username to authenticate with Els server,
 - **ELASTICSEARCH_INDEX_NAME** _(optional)_ is an index name on which Botkube events will be stored _(default: botkube)_.
 
-Configuration syntax is explained [here](../../configuration).
-All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
+Configuration syntax is explained [here](../../self-hosted-configuration).
+All possible installation parameters are documented [here](../../self-hosted-configuration/helm-chart-parameters).
 
 ## Remove Botkube from Kubernetes cluster
 

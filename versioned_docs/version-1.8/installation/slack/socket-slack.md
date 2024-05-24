@@ -217,7 +217,7 @@ where:
 - **ALLOW_HELM** set true to allow `helm` command execution by Botkube on the cluster,
 
 Configuration syntax is explained [here](../../configuration).
-All possible installation parameters are documented [here](../../../configuration/helm-chart-parameters).
+All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
 
 Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 

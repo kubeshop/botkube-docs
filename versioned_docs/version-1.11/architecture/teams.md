@@ -1,9 +1,7 @@
 ---
 id: cloud-teams
-title: "Cloud Teams connections overview"
+title: "Botkube app for Microsoft Teams"
 ---
-
-# Cloud Teams connections overview
 
 This document describes the communication between the Botkube Cloud control-plane and the Botkube Agent configured with the Cloud Teams platform enabled.
 
@@ -49,7 +47,7 @@ During startup, the Botkube Agent downloads plugins index and all enabled plugin
 
 Each plugin may define required external dependencies that are downloaded by the [Plugin manager](#plugin-manager) at Agent startup. For now, those dependencies are taken from the official sources and are not mirrored to the Botkube Cloud registry. Here are the links that describe external dependencies for each officially supported plugin:
 
-- [`kubectl`](../configuration/executor/kubectl.md) executor: https://github.com/kubeshop/botkube/blob/release-1.9/internal/executor/kubectl/executor.go#L33-L42
+- [`kubectl`](../plugins/kubectl.md) executor: https://github.com/kubeshop/botkube/blob/release-1.9/internal/executor/kubectl/executor.go#L33-L42
 
 `helm` plugin:
 
@@ -125,8 +123,8 @@ Such constrains applies in the context of the Cloud organization:
 
 ## Useful links
 
-- [Botkube Agent architecture](https://docs.botkube.io/architecture/)
-- [Cloud Teams installation tutorial](https://docs.botkube.io/installation/teams/)
+- [Botkube Agent architecture](./index.md)
+- [Cloud Teams installation tutorial](../installation/teams/index.md)
 
 ## Terminology
 

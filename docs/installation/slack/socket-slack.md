@@ -17,7 +17,7 @@ The Socket-mode app works with the open-source Botkube Agent and does not requir
 Botkube uses interactive messaging to provide better experience. Interactive messaging needs an app for Slack with Socket Mode enabled and currently this is not suitable for Slack App Directory listing. For this reason, you need to create an app for Slack in your own Slack workspace and use it for Botkube deployment.
 
 :::warning
-**Multi-cluster caveat:** The architecture of socket-based apps for Slack has a limitation on the routing of executor commands. If you would like to use [Botkube executors](../../configuration/executor/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube App for Slack for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
+**Multi-cluster caveat:** The architecture of socket-based apps for Slack has a limitation on the routing of executor commands. If you would like to use [Botkube executors](../../plugins/index.md) (e.g. kubectl commands) and have multiple Kubernetes clusters, you need to create and install a Botkube App for Slack for each cluster. This is required so that the Slack to Botkube connections go to the right place. We recommend you set the name of each app to reflect the cluster it will connect to in the next steps.
 
 To learn more about the Slack Socket API limitation, see the [comment](https://github.com/slackapi/bolt-js/issues/1263#issuecomment-1006372826) in the official bot for Slack framework repository.
 
@@ -213,8 +213,8 @@ where:
 - **CLUSTER_NAME** is the cluster name set in the incoming messages
 - **ALLOW_KUBECTL** set true to allow `kubectl` command execution by Botkube on the cluster.
 
-Configuration syntax is explained [here](../../configuration).
-All possible installation parameters are documented [here](../../../configuration/helm-chart-parameters).
+Configuration syntax is explained [here](../../self-hosted-configuration).
+All possible installation parameters are documented [here](../../self-hosted-configuration/helm-chart-parameters).
 
 Send `@Botkube ping` in the channel to see if Botkube is running and responding.
 
