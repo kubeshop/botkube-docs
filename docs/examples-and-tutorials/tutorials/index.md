@@ -23,6 +23,7 @@ sidebar_position: 2
 ### Executor Plugins
 
 - [Kubectl Plugin Usage](https://botkube.io/learn/kubectl-cheat-sheet): Utilize Botkube's integration with Kubectl for executing Kubernetes commands conveniently.
+- [AI Assistant Plugin Usage](https://botkube.io/blog/real-time-platform-engineer-advice-ai-assistant): Use Botkube AI Assistant plugin to provide real-time platform engineer advice and troubleshooting in Kubernetes.
 - [Helm Plugin Setup](https://botkube.io/learn/helm-charts): Seamlessly manage Helm deployments and releases with Botkube's Helm integration.
 - [Flux Plugin Configuration](https://botkube.io/blog/streamlining-gitops-with-the-botkube-flux-plugin): Set up and configure Botkube's Flux plugin for automated deployment and synchronization of Kubernetes resources.
 - [Custom Executor Plugin Development](https://botkube.io/integration/custom-executor-plugin): Develop and integrate custom executor plugins with Botkube for tailored Kubernetes operations.

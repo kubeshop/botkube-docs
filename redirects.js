@@ -66,8 +66,7 @@ function customRedirections() {
     { from: "/configuration/communication/", to: "/self-hosted-configuration/communication" },
     { from: "/configuration/communication/vault-csi", to: "/self-hosted-configuration/communication/vault-csi" },
     { from: "/configuration/executor/", to: "/plugins" },
-    // TODO: add redirection on the second PR
-    // { from: "/configuration/executor/doctor", to: "/plugins/ai" },
+    { from: "/configuration/executor/doctor", to: "/plugins/ai-assistant" },
     { from: "/configuration/executor/exec", to: "/plugins/exec" },
     { from: "/configuration/executor/flux", to: "/plugins/flux" },
     { from: "/configuration/executor/helm", to: "/plugins/helm" },
@@ -85,8 +84,7 @@ function customRedirections() {
     { from: "/usage/automated-actions", to: "/features/actions" },
     { from: "/usage/event-notifications", to: "/features/event-notifications" },
     { from: "/usage/executor/", to: "/plugins" },
-    // TODO: add redirection on the second PR
-    // { from: "/usage/executor/doctor", to: "/plugins/doctor" },
+    { from: "/usage/executor/doctor", to: "/plugins/ai-assistant" },
     { from: "/usage/executor/exec", to: "/plugins/exec" },
     { from: "/usage/executor/flux", to: "/plugins/flux" },
     { from: "/usage/executor/helm", to: "/plugins/helm" },
