@@ -53,22 +53,66 @@ function createRedirects(existingPath) {
  */
 function customRedirections() {
   return [
-    {
-      to: "/",
-      from: "/docs",
-    },
-    {
-      to: "/",
-      from: "/installation",
-    },
-    {
-      to: "/community/contribute/",
-      from: "/community",
-    },
-    {
-      to: "/configuration/source/kubernetes",
-      from: "/filters",
-    },
+    // old links
+    { from: "/docs", to: "/" },
+    { from: "/installation", to: "/" },
+    { from: "/community", to: "/community/contribute/" },
+    { from: "/filters", to: "/plugins/kubernetes" },
+
+    // v1.10->v1.11 links
+    { from: "/configuration/", to: "/self-hosted-configuration" },
+    { from: "/configuration/action", to: "/features/actions" },
+    { from: "/configuration/alias", to: "/features/executing-commands" },
+    { from: "/configuration/communication/", to: "/self-hosted-configuration/communication" },
+    { from: "/configuration/communication/vault-csi", to: "/self-hosted-configuration/communication/vault-csi" },
+    { from: "/configuration/executor/", to: "/plugins" },
+    // TODO: add redirection on the second PR
+    // { from: "/configuration/executor/doctor", to: "/plugins/ai" },
+    { from: "/configuration/executor/exec", to: "/plugins/exec" },
+    { from: "/configuration/executor/flux", to: "/plugins/flux" },
+    { from: "/configuration/executor/helm", to: "/plugins/helm" },
+    { from: "/configuration/executor/kubectl", to: "/plugins/kubectl" },
+    { from: "/configuration/general", to: "/self-hosted-configuration/general" },
+    { from: "/configuration/helm-chart-parameters", to: "/self-hosted-configuration/helm-chart-parameters" },
+    { from: "/configuration/rbac", to: "/features/rbac" },
+    { from: "/configuration/source/", to: "/plugins" },
+    { from: "/configuration/source/argocd", to: "/plugins/argocd" },
+    { from: "/configuration/source/github-events", to: "/plugins/github-events" },
+    { from: "/configuration/source/keptn", to: "/plugins/keptn" },
+    { from: "/configuration/source/kubernetes", to: "/plugins/kubernetes" },
+    { from: "/configuration/source/prometheus", to: "/plugins/prometheus" },
+    { from: "/usage/", to: "/features/executing-commands" },
+    { from: "/usage/automated-actions", to: "/features/actions" },
+    { from: "/usage/event-notifications", to: "/features/event-notifications" },
+    { from: "/usage/executor/", to: "/plugins" },
+    // TODO: add redirection on the second PR
+    // { from: "/usage/executor/doctor", to: "/plugins/doctor" },
+    { from: "/usage/executor/exec", to: "/plugins/exec" },
+    { from: "/usage/executor/flux", to: "/plugins/flux" },
+    { from: "/usage/executor/helm", to: "/plugins/helm" },
+    { from: "/usage/executor/kubectl", to: "/plugins/kubectl" },
+    { from: "/usage/interactive-output-filtering", to: "/features/executing-commands" },
+    { from: "/usage/source/", to: "/plugins" },
+    { from: "/usage/source/argocd", to: "/plugins/argocd" },
+    { from: "/usage/source/keptn", to: "/plugins/keptn" },
+    { from: "/usage/source/kubernetes", to: "/plugins/kubernetes" },
+    { from: "/usage/source/prometheus", to: "/plugins/prometheus" },
+    { from: "/plugin/", to: "/plugins/development/" },
+    { from: "/plugin/custom-executor", to: "/plugins/development/custom-executor" },
+    { from: "/plugin/custom-source", to: "/plugins/development/custom-source" },
+    { from: "/plugin/debugging", to: "/plugins/development/debugging" },
+    { from: "/plugin/dependencies", to: "/plugins/development/dependencies" },
+    { from: "/plugin/interactive-messages", to: "/plugins/development/interactive-messages" },
+    { from: "/plugin/local-testing", to: "/plugins/development/local-testing" },
+    { from: "/plugin/quick-start", to: "/plugins/development/quick-start" },
+    { from: "/plugin/repo", to: "/plugins/development/repo" },
+    { from: "/plugin/troubleshooting.md", to: "/plugins/development/troubleshooting" },
+    { from: "/plugin/using-kubeconfig", to: "/plugins/development/using-kubeconfig" },
+    { from: "/operation/diagnostics", to: "/troubleshooting/diagnostics" },
+    { from: "/operation/common-problems", to: "/troubleshooting/common-problems" },
+
+    // TODO: Requires Docusaurus 3.0 upgrade
+    // { from: "/privacy", to: "https://botkube.io/privacy-policy" },
   ];
 }
 

@@ -7,10 +7,11 @@ slug: /
 
 import { IntegrationList } from "@site/src/components/IntegrationList";
 
-Botkube has two components that need to be installed.
+## What is Botkube?
 
-1. Botkube App Integration in your Slack/Mattermost/Microsoft Teams/Discord
-2. Botkube agent in your Kubernetes cluster
+Botkube is a troubleshooting and monitoring solution that empowers DevOps teams to work more efficiently, enables developers to troubleshoot their applications without special Kubernetes access or knowledge, and improves reliability by delivering timely, context-enhanced notifications about events in your Kubernetes environments.
+
+It integrates with multiple platforms, such as Slack, Microsoft Teams, Discord and Mattermost. Botkube monitors events from various sources, allows you to securely run commands, and run automated actions triggered by any of the plugins Botkube supports or your own custom plugins.
 
 ## Feature map
 
@@ -34,12 +35,16 @@ Compare our bidirectional integrations:
 
 Compare our unidirectional integrations:
 
-| Feature                                                        | Elasticsearch      | Webhook            |
-| -------------------------------------------------------------- | ------------------ | ------------------ |
-| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: |
-| Multi-cluster support                                          | :heavy_check_mark: | :heavy_check_mark: |
+| Feature                                                        | Elasticsearch      | Webhook            | PagerDuty          |
+| -------------------------------------------------------------- | ------------------ | ------------------ | ------------------ |
+| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Multi-cluster support                                          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
 ## Integrations
+
+:::tip
+You can enable multiple platform integrations using a single Botkube agent. <br/>
+:::
 
 <IntegrationList
   integrations={[
@@ -48,12 +53,7 @@ Compare our unidirectional integrations:
     { name: "Discord", image: "/images/integrations/discord.svg", link: "installation/discord" },
     { name: "Teams", image: "/images/integrations/msteams.svg", link: "installation/teams" },
     { name: "Elasticsearch", image: "/images/integrations/elasticsearch.svg", link: "installation/elasticsearch" },
+    { name: "PagerDuty", image: "/images/integrations/pager-duty.svg", link: "installation/pagerduty" },
     { name: "Webhook", image: "/images/integrations/webhooks.svg", link: "installation/webhook" },
   ]}
 />
-
-:::tip
-You can use a single Botkube agent to serve all the interfaces - Slack, Mattermost, Microsoft Teams, Elasticsearch and Webhook. <br/>
-You just need to enable required mediums through the settings and add a necessary configuration.<br/>
-_see the [configuration](../configuration) section for more information_
-:::

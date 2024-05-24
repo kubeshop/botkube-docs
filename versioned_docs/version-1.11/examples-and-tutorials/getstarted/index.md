@@ -30,7 +30,7 @@ Visit [botkube.io](http://botkube.io) and create an account. This account will e
 
 ## Step 3: Connect to Your Preferred Communication Platform
 
-Follow the instructions provided on the Botkube Cloud Dashboard to connect Botkube to your preferred communication platform, such as [Slack ](https://docs.botkube.io/installation/slack/cloud-slack)or [Microsoft Teams](https://docs.botkube.io/installation/teams/).
+Follow the instructions provided on the Botkube Cloud Dashboard to connect Botkube to your preferred communication platform, such as [Slack](../../installation/slack/cloud-slack.mdx)or [Microsoft Teams](../../installation/teams/index.md).
 
 ## Step 4: Setting Up a Botkube Cloud Instance
 

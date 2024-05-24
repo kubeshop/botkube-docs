@@ -26,8 +26,8 @@ where:
 - **WEBHOOK_URL** is an outgoing webhook URL to which Botkube will POST the events,
 - **CLUSTER_NAME** is the cluster name set in the incoming messages.
 
-Configuration syntax is explained [here](../../configuration).
-All possible installation parameters are documented [here](../../configuration/helm-chart-parameters).
+Configuration syntax is explained [here](../../self-hosted-configuration).
+All possible installation parameters are documented [here](../../self-hosted-configuration/helm-chart-parameters).
 
 ## Remove Botkube from Kubernetes cluster
 
