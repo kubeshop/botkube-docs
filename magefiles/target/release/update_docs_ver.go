@@ -25,7 +25,7 @@ func UpdateDocsVersion(latestRelVer string) {
 	previousRelVer += ".0" // add patch version
 
 	// Replace the version in the files
-	dirs := []string{"./docs/installation/", "./docs/configuration/", "./docs/operation/", "./docs/cli/"}
+	dirs := []string{"./docs/installation/", "./docs/features/", "./docs/plugins", "./docs/troubleshooting/", "./docs/cli/", "./docs/self-hosted-configuration"}
 	for _, dir := range dirs {
 		shx.MustCmdf(`find %s -type f \( -name "*.md" -o -name "*.mdx" \) -exec sed -i.bak "s/%s/%s/g" {} \;`, dir, previousRelVer, latestRelVer).MustRunV()
 	}
