@@ -48,7 +48,12 @@ To execute the `kubectl` commands, send message in following format in the chann
 
 By default, `k` and `kc` are configured as aliases for the `kubectl` command, for both Botkube Cloud and self-hosted Botkube installations. You can use them on par with the `kubectl` command. To read more about aliases configuration, see the [Alias](../features/commands.md#command-aliases) section.
 
-### Interactive kubectl commands builder
+### Interactive kubectl command builder
+
+:::info
+Interactive kubectl command builder is only available for the [Slack](../installation/slack/index.md).
+For other platforms, as an alternative, you can try the [AI Assistant](./ai-assistant.mdx) plugin which can execute `kubectl` commands based on prompts in natural language.
+:::
 
 Use the interactive `kubectl` command builder to construct a `kubectl` command just by selecting items from dropdowns. This is especially useful on mobile when typing the command is harder.
 
