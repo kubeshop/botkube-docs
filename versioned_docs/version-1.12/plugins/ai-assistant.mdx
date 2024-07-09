@@ -74,7 +74,18 @@ Here are a few examples to get you started:
 ### AI cluster scan
 
 The assistant can help you troubleshoot the Kubernetes cluster by performing a cluster-wide scan for any potential issues,
-such as failing pods, high resource usage, or any other anomalies. To start the scan, use the `@Botkube ai scan` command.
+such as failing pods, high resource usage, security, RBAC, networking problems and misconfigurations, or any other anomalies.
+
+To start the scan, use the `@Botkube ai scan` command. Based on the scan results you can ask follow-up questions, like `@Botkube ai how I can fix the missing network policy issue?`).
+
+The AI scan is powered by the [Kubescape](https://kubescape.io/) and kubectl tools.
+
+It has the following capabilities:
+
+- aggregated cluster scan (prompt: `@Botkube ai scan`)
+- container image scan (example prompt: `@Botkube ai scan the nginx:latest image`)
+- workload scan (example prompt: `@Botkube ai scan the foo deployment`)
+- [Kubescape control](https://hub.armosec.io/docs/controls) scan (example prompt: `@Botkube ai scan my cluster for the C-0009 control`; read more about the [C-0009 control](https://hub.armosec.io/docs/c-0009))
 
 ### User-supplied documentation
 
