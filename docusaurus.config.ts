@@ -233,10 +233,10 @@ const config: Config = {
       announcementBar: {
         id: "try_botkube",
         content:
-          '<strong>New to Botkube?</strong> Get started fast (and free!) with the <a target="_blank" rel="noopener noreferrer" href="https://app.botkube.io">Botkube Cloud Web App</a>.',
+          ' 🚀 <strong>Announcing Fuse - AI-powered assistant for streamlined platform engineering.</strong> <a target="_blank" rel="noopener noreferrer" href="https://botkube.io/fuse">Get started for free</a>',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
-        isCloseable: true,
+        isCloseable: false,
       },
     },
 };
