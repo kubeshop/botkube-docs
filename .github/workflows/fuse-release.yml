@@ -1,0 +1,100 @@
+name: Fuse Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: Version of the next release (e.g. 0.6)
+        required: true
+
+env:
+  git-user: github-actions[bot]
+  git-email: 41898282+github-actions[bot]@users.noreply.github.com
+
+jobs:
+  release:
+    name: Create release/${{ inputs.version }}
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: volta-cli/action@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: magefiles/go.mod
+
+      - name: Validate release version
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: "release:ensureBotkubeReleased"
+        env:
+          BOTKUBE_RELEASE_VERSION: "${{ inputs.version }}.0"
+
+      - name: Set git 'user.name' and 'user.email'
+        run: |
+          git config user.name "${{ env.git-user }}"
+          git config user.email ${{ env.git-email }}
+
+      - name: Create a release branch
+        run: |
+          git checkout -b release/${{ inputs.version }}
+          git push --set-upstream origin release/${{ inputs.version }}
+          npm install
+
+      - name: Update versions in installation docs
+        env:
+          LATEST_RELEASE_VERSION: "${{ inputs.version }}.0"
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: "release:updateDocsVersion"
+
+      - name: Synchronize helm parameters
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: "sync:chart"
+        env:
+          BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
+
+      - name: Synchronize CLI docs
+        uses: magefile/mage-action@v2
+        with:
+          version: latest
+          args: "sync:cli"
+        env:
+          BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
+
+      - name: Run docusaurus versioning
+        run: |
+          npm run docusaurus docs:version:chatPlatform ${{ inputs.version }}
+
+      - name: Prettier check
+        run: |
+          npm run prettier:fix
+
+      - name: Push changes to remote
+        run: |
+          git add .
+          git commit -m "Prepare docs for Botkube ${{ inputs.version }} release"
+          git push
+          git push origin release/${{ inputs.version }}
+
+      - name: Create a pull request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          gh pr create \
+            --title "Prepare docs for ${{ inputs.version }} release"  \
+             --head "release/${{ inputs.version }}" \
+             --base main \
+             --label release-automation \
+             --body "This Pull Request is created by release automation to prepare release for ${{ inputs.version }} documentation"

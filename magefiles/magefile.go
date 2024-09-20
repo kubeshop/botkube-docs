@@ -40,13 +40,22 @@ func (Release) EnsureBotkubeReleased() {
 	release.EnsureBotkubeReleased()
 }
 
-// UpdateDocsVersion updates docs version.
+// UpdateBotkubeChatOpsDocsVersion updates Botkube ChatOps docs version.
 // Requires LATEST_RELEASE_VERSION env var to be set.
-func (Release) UpdateDocsVersion() {
+func (Release) UpdateBotkubeChatOpsDocsVersion() {
 	latest := os.Getenv("LATEST_RELEASE_VERSION")
 	lo.Must0(latest != "", "LATEST_RELEASE_VERSION env var is not set")
 
-	release.UpdateDocsVersion(latest)
+	release.UpdateBotkubeChatOpsDocsVersion(latest)
+}
+
+// UpdateFuseDocsVersion updates Fuse docs version.
+// Requires LATEST_RELEASE_VERSION env var to be set.
+func (Release) UpdateFuseDocsVersion() {
+	latest := os.Getenv("LATEST_RELEASE_VERSION")
+	lo.Must0(latest != "", "LATEST_RELEASE_VERSION env var is not set")
+
+	release.UpdateFuseDocsVersion(latest)
 }
 
 // CheckLinks detects dead links in documentation.
