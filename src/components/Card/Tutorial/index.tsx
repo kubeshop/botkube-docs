@@ -14,10 +14,10 @@ type Props = {
 export const CardTutorial: FC<Props> = ({ link, buttonLabel, body, title }) => {
   return (
     <div className={clsx(styles.card)}>
-      <Heading as="h2">{title}</Heading>
+      <Heading as="h3">{title}</Heading>
       <p>{body}</p>
-      <Link to={link}>
-        <button className={clsx(styles.button)}>{buttonLabel}</button>
+      <Link to={link} className={clsx("button", "button--secondary", styles.button)}>
+        {buttonLabel}
       </Link>
     </div>
   );

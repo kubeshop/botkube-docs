@@ -21,8 +21,8 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   --ifm-button-color: #1c1e21;
-  --button-backgroud: #1c90f3;
-  --button-label: #fff;
+  --button-background: #ccc;
+  --button-label: #000;
 
   --cookie-background: #1c90f3;
   --cookie-font-color: #fff;
@@ -52,27 +52,6 @@
   .light-bg {
     background-color: #fff;
     padding: 2px;
-  }
-}
-
-.button.button--primary {
-  border: 1px solid #fff;
-  background-color: #fff;
-  color: #000;
-
-  &:hover {
-    background: #eee;
-  }
-}
-
-.button.button--secondary {
-  border: 1px solid #fff;
-  background: transparent;
-  color: #fff;
-
-  &:hover {
-    color: #000;
-    background: #fff;
   }
 }
 

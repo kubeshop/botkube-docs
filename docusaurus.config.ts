@@ -9,7 +9,8 @@ const { createRedirects, redirects } = require("./redirects");
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
   title: "Botkube",
-  tagline: "Messaging bot for monitoring and debugging Kubernetes clusters",
+  tagline:
+    "AI-powered expertise to troubleshoot, optimize pipelines, and manage infrastructure seamlessly across multiple tools—all from one place.",
   url: "https://docs.botkube.io/",
   baseUrl: "/",
   onBrokenLinks: "throw",

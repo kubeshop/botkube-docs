@@ -1,18 +1,24 @@
 .card {
-  padding: 10px;
+  padding: 15px;
+  
   border: 1px solid var(--ifm-color-secondary);
   border-radius: 8px;
 }
 
 .button {
-  appearance: none;
-  outline: 0;
-  border: 0;
-  border-radius: 8px;
-  background: var(--button-backgroud);
-  color: var(--button-label);
-  text-align: center;
-  width: 100%;
-  padding: 5px;
-  display: block;
+  // appearance: none;
+  // outline: 0;
+  // border: 0;
+  // border-radius: var(--ifm-button-border-radius);
+  // padding: calc(var(--ifm-button-padding-vertical)* var(--ifm-button-size-multiplier)) calc(var(--ifm-button-padding-horizontal)* var(--ifm-button-size-multiplier));
+  // color: var(--button-label);
+  // text-align: center;
+  // width: 100%;
+  // display: block;
+  // font-weight: bold;
+  // cursor: pointer;
+
+  // &:hover, &:focus {
+  //   text-decoration: none;
+  // }
 }
