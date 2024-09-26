@@ -19,7 +19,7 @@
     "eslint:fix": "eslint . --fix --ext .json,.js,.jsx,.ts,.tsx",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "prettier:cli-docs-fix": "prettier --write ./docs/cli/commands",
+    "prettier:cli-docs-fix": "prettier --write ./chat-platform-docs/cli/commands",
     "qa": "npm run tsc && npm run lint && npm run build"
   },
   "dependencies": {

@@ -39,7 +39,7 @@ export default function Version(): JSX.Element {
     throw new Error("Cannot find `current` version.");
   }
   const pastVersions = versions.filter(version => version !== latestVersion && version.name !== "current");
-  const archivedVersions = Object.entries(archivedVersionsMap);
+  const archivedVersions = Object.entries(archivedVersionsMap) as [string, string][];
   const [releases, isFetchingReleases] = useGitHubReleases(organizationName, projectName);
 
   const getChangelogUrl = (minorMajorVersion: string) => {

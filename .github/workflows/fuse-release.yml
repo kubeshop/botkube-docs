@@ -1,4 +1,4 @@
-name: Fuse Release
+name: Fuse CLI Release
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ env:
 
 jobs:
   release:
-    name: Create release/${{ inputs.version }}
+    name: Create Fuse release ${{ inputs.version }}
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -30,14 +30,6 @@ jobs:
         with:
           go-version-file: magefiles/go.mod
 
-      - name: Validate release version
-        uses: magefile/mage-action@v2
-        with:
-          version: latest
-          args: "release:ensureBotkubeReleased"
-        env:
-          BOTKUBE_RELEASE_VERSION: "${{ inputs.version }}.0"
-
       - name: Set git 'user.name' and 'user.email'
         run: |
           git config user.name "${{ env.git-user }}"
@@ -45,8 +37,8 @@ jobs:
 
       - name: Create a release branch
         run: |
-          git checkout -b release/${{ inputs.version }}
-          git push --set-upstream origin release/${{ inputs.version }}
+          git checkout -b fuse-release/${{ inputs.version }}
+          git push --set-upstream origin fuse-release/${{ inputs.version }}
           npm install
 
       - name: Update versions in installation docs
@@ -57,25 +49,9 @@ jobs:
           version: latest
           args: "release:updateDocsVersion"
 
-      - name: Synchronize helm parameters
-        uses: magefile/mage-action@v2
-        with:
-          version: latest
-          args: "sync:chart"
-        env:
-          BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
-
-      - name: Synchronize CLI docs
-        uses: magefile/mage-action@v2
-        with:
-          version: latest
-          args: "sync:cli"
-        env:
-          BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
-
-      - name: Run docusaurus versioning
+      - name: Run Docusaurus versioning
         run: |
-          npm run docusaurus docs:version:chatPlatform ${{ inputs.version }}
+          npm run docusaurus docs:version ${{ inputs.version }}
 
       - name: Prettier check
         run: |
@@ -84,17 +60,17 @@ jobs:
       - name: Push changes to remote
         run: |
           git add .
-          git commit -m "Prepare docs for Botkube ${{ inputs.version }} release"
+          git commit -m "Prepare docs for Fuse CLI ${{ inputs.version }} release"
           git push
-          git push origin release/${{ inputs.version }}
+          git push origin fuse-release/${{ inputs.version }}
 
       - name: Create a pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh pr create \
-            --title "Prepare docs for ${{ inputs.version }} release"  \
-             --head "release/${{ inputs.version }}" \
+            --title "Prepare docs for Fuse CLI ${{ inputs.version }} release"  \
+             --head "fuse-release/${{ inputs.version }}" \
              --base main \
              --label release-automation \
-             --body "This Pull Request is created by release automation to prepare release for ${{ inputs.version }} documentation"
+             --body "This Pull Request is created by release automation to prepare release for Fuse CLI ${{ inputs.version }} documentation"

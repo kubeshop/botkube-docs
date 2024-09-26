@@ -14,11 +14,11 @@ import (
 const markdownLinkCheckVersion = "3.11.2"
 
 var ignoredFiles = []string{
-	"docs/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
+	"chat-platform-docs/configuration/helm-chart-parameters.md", // too much GitHub links and we get 429 anyway
 }
 
 var dirsWithMarkdowns = []string{
-	"./docs", "./community",
+	"./docs", "./chat-platform-docs",
 }
 
 func CheckDeadLinks() {

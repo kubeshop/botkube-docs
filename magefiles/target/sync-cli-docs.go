@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	cliDocsDstPath = "docs/cli/commands"
+	cliDocsDstPath = "chat-platform-docs/cli/commands"
 
 	cliDocsSrcURLFmt = "github.com/kubeshop/botkube//cmd/cli/docs?ref=%s"
 )

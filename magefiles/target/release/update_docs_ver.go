@@ -11,11 +11,11 @@ import (
 
 const (
 	botkubeChatOpsVersionFile = "./chatPlatform_versions.json"
-	fuseVersionFile           = "./versions.json"
+	fuseCLIVersionFile        = "./versions.json"
 )
 
-func UpdateBotkubeChatOpsDocsVersion(latestRelVer string) {
-	printer.Title("Updating Botkube ChatOps docs version...")
+func UpdateBotkubeChatPlatformDocsVersion(latestRelVer string) {
+	printer.Title("Updating Botkube Chat Platform docs version...")
 
 	// Extract the previous version
 	verFile := lo.Must(os.ReadFile(botkubeChatOpsVersionFile))
@@ -28,34 +28,34 @@ func UpdateBotkubeChatOpsDocsVersion(latestRelVer string) {
 	previousRelVer += ".0" // add patch version
 
 	// Replace the version in the files
-	dirs := []string{"./chat-platforms-docs/installation/", "./chat-platforms-docs/features/", "./chat-platforms-docs/plugins", "./chat-platforms-docs/troubleshooting/", "./chat-platforms-docs/cli/", "./chat-platforms-docs/self-hosted-configuration"}
+	dirs := []string{"./chat-platform-docs/installation/", "./chat-platform-docs/features/", "./chat-platform-docs/plugins", "./chat-platform-docs/troubleshooting/", "./chat-platform-docs/cli/", "./chat-platform-docs/self-hosted-configuration"}
 	for _, dir := range dirs {
 		shx.MustCmdf(`find %s -type f \( -name "*.md" -o -name "*.mdx" \) -exec sed -i.bak "s/%s/%s/g" {} \;`, dir, previousRelVer, latestRelVer).MustRunV()
 	}
 
-	printer.Infof("Botkube ChatOps docs updated from version %q to %q", previousRelVer, latestRelVer)
+	printer.Infof("Botkube Chat Platform docs updated from version %q to %q", previousRelVer, latestRelVer)
 }
 
-func UpdateFuseDocsVersion(latestRelVer string) {
-	printer.Title("Updating Botkube Fuse docs version...")
+func UpdateFuseCLIDocsVersion(latestRelVer string) {
+	printer.Title("Updating Fuse CLI docs version...")
 
 	// Extract the previous version
-	verFile := lo.Must(os.ReadFile(fuseVersionFile))
+	verFile := lo.Must(os.ReadFile(fuseCLIVersionFile))
 
 	var versions []string
 	lo.Must0(json.Unmarshal(verFile, &versions))
 
 	previousRelVer := getFirst(versions)
-	lo.Must0(previousRelVer != "", "failed to load previous release version from %q", fuseVersionFile)
+	lo.Must0(previousRelVer != "", "failed to load previous release version from %q", fuseCLIVersionFile)
 	previousRelVer += ".0" // add patch version
 
 	// Replace the version in the files
-	dirs := []string{"./docs/installation/", "./docs/features/", "./docs/plugins", "./docs/troubleshooting/", "./docs/cli/", "./docs/self-hosted-configuration"}
+	dirs := []string{"./"}
 	for _, dir := range dirs {
 		shx.MustCmdf(`find %s -type f \( -name "*.md" -o -name "*.mdx" \) -exec sed -i.bak "s/%s/%s/g" {} \;`, dir, previousRelVer, latestRelVer).MustRunV()
 	}
 
-	printer.Infof("Docs updated from version %q to %q", previousRelVer, latestRelVer)
+	printer.Infof("Fuse CLI docs updated from version %q to %q", previousRelVer, latestRelVer)
 }
 
 func getFirst(in []string) string {

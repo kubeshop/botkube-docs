@@ -1,4 +1,4 @@
-name: Botkube ChatOps Release
+name: Botkube Chat Platform Release
 
 on:
   workflow_dispatch:
@@ -47,7 +47,7 @@ jobs:
         uses: magefile/mage-action@v2
         with:
           version: latest
-          args: "release:updateDocsVersion"
+          args: "release:updateBotkubeChatPlatformDocsVersion"
 
       - name: Synchronize helm parameters
         uses: magefile/mage-action@v2
@@ -65,7 +65,7 @@ jobs:
         env:
           BOTKUBE_RELEASE_BRANCH: release-${{ inputs.version }}
 
-      - name: Run docusaurus versioning
+      - name: Run Docusaurus versioning
         run: |
           npm run docusaurus docs:version:chatPlatform ${{ inputs.version }}
 
@@ -85,8 +85,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh pr create \
-            --title "Prepare docs for ${{ inputs.version }} release"  \
+            --title "Prepare docs for Botkube ${{ inputs.version }} release"  \
              --head "release/${{ inputs.version }}" \
              --base main \
              --label release-automation \
-             --body "This Pull Request is created by release automation to prepare release for ${{ inputs.version }} documentation"
+             --body "This Pull Request is created by release automation to prepare release for Botkube ${{ inputs.version }} documentation"
