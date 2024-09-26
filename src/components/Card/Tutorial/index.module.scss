@@ -1,24 +1,19 @@
 .card {
-  padding: 15px;
-  
+  padding: 15px 15px calc(15px + 35px);
+  height: 100%;
   border: 1px solid var(--ifm-color-secondary);
   border-radius: 8px;
+  position: relative;
 }
 
 .button {
-  // appearance: none;
-  // outline: 0;
-  // border: 0;
-  // border-radius: var(--ifm-button-border-radius);
-  // padding: calc(var(--ifm-button-padding-vertical)* var(--ifm-button-size-multiplier)) calc(var(--ifm-button-padding-horizontal)* var(--ifm-button-size-multiplier));
-  // color: var(--button-label);
-  // text-align: center;
-  // width: 100%;
-  // display: block;
-  // font-weight: bold;
-  // cursor: pointer;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+}
 
-  // &:hover, &:focus {
-  //   text-decoration: none;
-  // }
+.image {
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }

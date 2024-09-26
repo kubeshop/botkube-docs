@@ -13,12 +13,10 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          Get started with {siteConfig.title}
+          {siteConfig.title} documentation
         </Heading>
-        <p className="hero__subtitle">
-          AI-powered expertise to troubleshoot, optimize pipelines,
-          <br />
-          and manage infrastructure seamlessly across multiple tools—all from one place.
+        <p className="hero__subtitle" style={{ marginBottom: 0 }}>
+          Learn more about Botkube, AI-powered solution for DevOps, SRE and Platform Engineers.
         </p>
       </div>
     </header>
@@ -31,39 +29,54 @@ export default function Home(): JSX.Element {
     <Layout title={`Get started with ${siteConfig.title}`} description="${siteConfig.}}">
       <HomepageHeader />
       <main className="container" style={{ marginTop: "40px" }}>
-        <p>Learn more about one of the solutions:</p>
         <div className="row" style={{ marginBottom: "40px" }}>
-          <div className="col col--12">
+          <div className="col col--6">
             <CardTutorial
               title="🖥️ Fuse CLI"
               body={
                 <ul>
-                  <li>Easy Terminal Integration: Get insights and automation directly in your terminal</li>
                   <li>
-                    Natural Language Commands: Use simple, conversational commands to interact with your infrastructure
+                    <b>Easy Terminal Integration:</b> Get insights and automation directly in your terminal
                   </li>
-                  <li>No Admin Permissions Needed: Install and start without any platform admin access</li>
-                  <li>Quick Setup: Get up and running in minutes with minimal configuration</li>
+                  <li>
+                    <b>Natural Language Commands:</b> Use simple, conversational commands to interact with your
+                    infrastructure
+                  </li>
+                  <li>
+                    <b>No Admin Permissions Needed:</b> Install and start without any platform admin access
+                  </li>
+                  <li>
+                    <b>Quick Setup:</b> Get up and running in minutes with minimal configuration
+                  </li>
                 </ul>
               }
-              buttonLabel="Get started"
+              image={"/images/slack-ai.png"}
+              buttonLabel="Read the docs"
               link="/overview"
             />
           </div>
-          <div className="col col--12">
+          <div className="col col--6">
             <CardTutorial
               title="💬 Chat Platform"
               body={
                 <ul>
                   <li>
-                    Real-Time Collaboration: Share alerts and troubleshoot with your team in Slack or Microsoft Teams
+                    <b>Real-Time Collaboration:</b> Share alerts and troubleshoot with your team in Slack or Microsoft
+                    Teams
                   </li>
-                  <li>Familiar Interface: Clear, rich messages for quick understanding</li>
-                  <li>K8s Agent Setup: Requires Install an agent in your cluster for full features</li>
-                  <li>Admin Access Needed: Requires admin permissions to set up in Slack or Teams</li>
+                  <li>
+                    <b>Familiar Interface:</b> Clear, rich messages for quick understanding
+                  </li>
+                  <li>
+                    <b>K8s Agent Setup:</b> Requires Install an agent in your cluster for full features
+                  </li>
+                  <li>
+                    <b>Admin Access Needed:</b> Requires admin permissions to set up in Slack or Teams
+                  </li>
                 </ul>
               }
-              buttonLabel="Get started"
+              image={"/images/fuse-cli.png"}
+              buttonLabel="Read the docs"
               link="/chat-platform/overview"
             />
           </div>
