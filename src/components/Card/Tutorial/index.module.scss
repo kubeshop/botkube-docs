@@ -1,5 +1,5 @@
 .card {
-  padding: 15px 15px calc(15px + 35px);
+  padding: 2rem 2rem calc(2rem + 35px);
   height: 100%;
   border: 1px solid var(--ifm-color-secondary);
   border-radius: 8px;
@@ -8,12 +8,11 @@
 
 .button {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
+  bottom: 2rem;
+  left: 2rem;
 }
 
 .image {
   border: 1px solid #ebedf0;
-  border-radius: 6px;
+  border-radius: 4px;
 }

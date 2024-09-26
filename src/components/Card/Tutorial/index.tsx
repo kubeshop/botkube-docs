@@ -6,19 +6,19 @@ import styles from "./index.module.scss";
 
 type Props = {
   title: string;
-  image?: string;
   body: ReactNode;
   buttonLabel: string;
+  buttonLarge?: boolean;
+  titleHeadingType?: string;
   link: string;
 };
 
-export const CardTutorial: FC<Props> = ({ link, buttonLabel, body, title, image }) => {
+export const CardTutorial: FC<Props> = ({ link, buttonLabel, body, title, titleHeadingType, buttonLarge }) => {
   return (
     <div className={clsx(styles.card)}>
-      <Heading as="h3">{title}</Heading>
-      {image && <img src={image} className={styles.image} alt={title} />}
+      <Heading as={titleHeadingType || "h3"}>{title}</Heading>
       <p>{body}</p>
-      <Link to={link} className={clsx("button", "button--secondary", styles.button)}>
+      <Link to={link} className={clsx("button", "button--secondary", buttonLarge && "button--lg", styles.button)}>
         {buttonLabel}
       </Link>
     </div>

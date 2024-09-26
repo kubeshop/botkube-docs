@@ -21,3 +21,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.list {
+  padding-left: 2rem;
+}
+
+.image {
+  border-radius: 6px;
+  border: 1px solid var(--ifm-color-secondary);
+}
