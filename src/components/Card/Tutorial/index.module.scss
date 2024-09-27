@@ -1,5 +1,5 @@
 .card {
-  padding: 2rem 2rem calc(2rem + 35px);
+  padding: 2rem 2rem calc(2rem + 1rem + 46px);
   height: 100%;
   border: 1px solid var(--ifm-color-secondary);
   border-radius: 8px;
@@ -10,6 +10,16 @@
   position: absolute;
   bottom: 2rem;
   left: 2rem;
+
+  &,
+  &:hover {
+    color: #fff;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--ifm-color-primary-lightest);
+  }
 }
 
 .image {

@@ -9,7 +9,7 @@ import styles from "./index.module.css";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+    <header className={clsx("hero", styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title} documentation
@@ -31,29 +31,30 @@ export default function Home(): JSX.Element {
         <div className="row" style={{ marginBottom: "40px" }}>
           <div className="col col--12" style={{ marginBottom: "2rem" }}>
             <CardTutorial
-              title="🖥️ Fuse CLI"
-              titleHeadingType="h2"
               body={
                 <div className="row">
                   <div className="col col--6">
+                    <Heading as="h2">🖥️ Fuse CLI</Heading>
                     <ul className={styles.list}>
                       <li>
-                        <b>Easy Terminal Integration:</b> Get insights and automation directly in your terminal
+                        <b>Quick Setup:</b> Get up and running in seconds with minimal configuration
+                      </li>
+                      <li>
+                        <b>Reduce Context Switching:</b> Get in-depth expertise and tailored assistance directly in your
+                        terminal
                       </li>
                       <li>
                         <b>Natural Language Commands:</b> Use simple, conversational commands to interact with your
                         infrastructure
                       </li>
                       <li>
-                        <b>No Admin Permissions Needed:</b> Install and start without any platform admin access
-                      </li>
-                      <li>
-                        <b>Quick Setup:</b> Get up and running in minutes with minimal configuration
+                        <b>Seamless tool integration:</b> Integrates with your locally installed tools, with full
+                        control over the process.
                       </li>
                     </ul>
                   </div>
-                  <div className="col col--6">
-                    <img src="/images/fuse-cli.png" alt="Fuse CLI" className={styles.image} />
+                  <div className="col col--5 col--offset-1">
+                    <img src="/images/fuse.png" alt="Fuse CLI" className={styles.image} />
                   </div>
                 </div>
               }
@@ -64,29 +65,29 @@ export default function Home(): JSX.Element {
           </div>
           <div className="col col--12" style={{ marginBottom: "2rem" }}>
             <CardTutorial
-              title="💬 Chat Platform"
-              titleHeadingType="h2"
               body={
                 <div className="row">
                   <div className="col col--6">
+                    <Heading as="h2">💬 Chat Platform</Heading>
                     <ul className={styles.list}>
                       <li>
-                        <b>Real-Time Collaboration:</b> Share alerts and troubleshoot with your team in Slack or
+                        <b>Real-Time Collaboration:</b> Receive alerts and troubleshoot with your team in Slack or
                         Microsoft Teams
                       </li>
                       <li>
                         <b>Familiar Interface:</b> Clear, rich messages for quick understanding
                       </li>
                       <li>
-                        <b>K8s Agent Setup:</b> Requires Install an agent in your cluster for full features
+                        <b>K8s Agent Setup:</b> Requires Install an agent in your Kubernetes cluster for full features
                       </li>
                       <li>
-                        <b>Admin Access Needed:</b> Requires admin permissions to set up in Slack or Teams
+                        <b>Admin Access Needed:</b> Requires admin permissions to set up in Slack, Teams or other chat
+                        platform
                       </li>
                     </ul>
                   </div>
-                  <div className="col col--6">
-                    <img src="/images/slack-ai.png" alt="Chat Platform" className={styles.image} />
+                  <div className="col col--5 col--offset-1">
+                    <img src="/images/chat-platform.png" alt="Chat Platform" className={styles.image} />
                   </div>
                 </div>
               }

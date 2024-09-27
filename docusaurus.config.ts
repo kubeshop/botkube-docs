@@ -165,11 +165,6 @@ const config: Config = {
             ],
           },
           {
-            href: "https://github.com/kubeshop/botkube",
-            label: "GitHub",
-            position: "right",
-          },
-          {
             href: "https://join.botkube.io",
             label: "Slack",
             position: "right",
@@ -179,23 +174,6 @@ const config: Config = {
       footer: {
         style: "dark",
         links: [
-          {
-            title: "Community",
-            items: [
-              {
-                label: "GitHub",
-                to: "https://github.com/kubeshop/botkube",
-              },
-              {
-                label: "Community Slack",
-                to: "https://join.botkube.io",
-              },
-              {
-                label: "Support",
-                to: "/support",
-              },
-            ],
-          },
           {
             title: "Legal",
             items: [
@@ -214,15 +192,15 @@ const config: Config = {
             ],
           },
           {
-            title: "Learn",
+            title: "Documentation",
             items: [
               {
-                label: "Terminal Installation",
-                to: "/",
+                label: "Fuse CLI Overview",
+                to: "/overview",
               },
               {
-                label: "Chat Platforms Installation",
-                to: "/",
+                label: "Chat Platform Overview",
+                to: "/chat-platform/overview",
               },
             ],
           },
@@ -236,6 +214,27 @@ const config: Config = {
               {
                 label: "LinkedIn",
                 to: "https://www.linkedin.com/showcase/botkube/posts",
+              },
+            ],
+          },
+          {
+            title: "Community",
+            items: [
+              {
+                label: "Botkube GitHub",
+                to: "https://github.com/kubeshop/botkube",
+              },
+              {
+                label: "Fuse CLI GitHub",
+                to: "https://github.com/kubeshop/botkube",
+              },
+              {
+                label: "Community Slack",
+                to: "https://join.botkube.io",
+              },
+              {
+                label: "Support",
+                to: "/support",
               },
             ],
           },

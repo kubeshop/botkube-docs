@@ -5,7 +5,7 @@ import clsx from "clsx";
 import styles from "./index.module.scss";
 
 type Props = {
-  title: string;
+  title?: string;
   body: ReactNode;
   buttonLabel: string;
   buttonLarge?: boolean;
@@ -16,9 +16,9 @@ type Props = {
 export const CardTutorial: FC<Props> = ({ link, buttonLabel, body, title, titleHeadingType, buttonLarge }) => {
   return (
     <div className={clsx(styles.card)}>
-      <Heading as={titleHeadingType || "h3"}>{title}</Heading>
-      <p>{body}</p>
-      <Link to={link} className={clsx("button", "button--secondary", buttonLarge && "button--lg", styles.button)}>
+      {title && <Heading as={titleHeadingType || "h3"}>{title}</Heading>}
+      <div>{body}</div>
+      <Link to={link} className={clsx("button", "button--primary", buttonLarge && "button--lg", styles.button)}>
         {buttonLabel}
       </Link>
     </div>
