@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import Heading from "@theme/Heading";
+import Heading, { HeadingType } from "@theme/Heading";
 import clsx from "clsx";
 import styles from "./index.module.scss";
 
@@ -9,7 +9,7 @@ type Props = {
   body: ReactNode;
   buttonLabel: string;
   buttonLarge?: boolean;
-  titleHeadingType?: string;
+  titleHeadingType?: HeadingType;
   link: string;
 };
 
