@@ -5,6 +5,8 @@ import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import { CardTutorial } from "@site/src/components/Card/Tutorial";
 import styles from "./index.module.css";
+import ChatIcon from "@site/static/images/chat-icon.svg";
+import TerminalIcon from "@site/static/images/terminal-icon.svg";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -34,7 +36,12 @@ export default function Home(): JSX.Element {
               body={
                 <div className="row">
                   <div className="col col--6">
-                    <Heading as="h2">🖥️ Fuse CLI</Heading>
+                    <Heading as="h2">
+                      <span className={styles.icon}>
+                        <TerminalIcon />
+                      </span>{" "}
+                      Fuse CLI
+                    </Heading>
                     <ul className={styles.list}>
                       <li>
                         <b>Quick Setup:</b> Get up and running in seconds with minimal configuration
@@ -68,7 +75,12 @@ export default function Home(): JSX.Element {
               body={
                 <div className="row">
                   <div className="col col--6">
-                    <Heading as="h2">💬 Chat Platform</Heading>
+                    <Heading as="h2">
+                      <span className={styles.icon}>
+                        <ChatIcon />
+                      </span>{" "}
+                      Chat Platform
+                    </Heading>
                     <ul className={styles.list}>
                       <li>
                         <b>Real-Time Collaboration:</b> Receive alerts and troubleshoot with your team in Slack or

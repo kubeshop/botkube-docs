@@ -24,10 +24,17 @@
 }
 
 .list {
-  padding-left: 2rem;
+  padding-left: 1rem;
 }
 
 .image {
   border-radius: 6px;
   border: 1px solid var(--ifm-color-secondary);
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  position: relative;
+  top: 4px;
 }
