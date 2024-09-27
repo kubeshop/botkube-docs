@@ -1,0 +1,66 @@
+---
+id: overview
+title: Overview
+sidebar_position: 1
+---
+
+# Overview
+
+Botkube is the AI-Powered Kubernetes troubleshooting platform for everybody running Kubernetes clusters.
+
+Botkube empowers DevOps teams to work more efficiently, enables developers to troubleshoot their applications without special Kubernetes access or knowledge, and improves reliability by delivering timely, context-enhanced notifications about events in your Kubernetes environments.
+
+It integrates with multiple platforms, such as Slack, Microsoft Teams, Discord and Mattermost. Botkube receives events from various sources, allows you to securely run commands, and run automated actions triggered by any of the plugins Botkube supports or your own custom plugins.
+
+## Features
+
+- Real-Time Collaboration: Share alerts and troubleshoot with
+  your team in Slack or Microsoft Teams
+- Familiar Interface: Clear, rich messages for quick understanding
+  K8s Agent Setup: Requires Install an agent in your cluster for
+  full features.
+- Admin Access Needed: Requires admin permissions to set up in
+  Slack or Teams.
+
+## Supported integrations
+
+:::tip
+You can enable multiple platform integrations using a single Botkube agent. <br/>
+:::
+
+import { IntegrationList } from "@site/src/components/IntegrationList";
+
+<IntegrationList
+  integrations={[
+    { name: "Slack", image: "/images/integrations/slack.svg", link: "installation/slack" },
+    { name: "Mattermost", image: "/images/integrations/mattermost.svg", link: "installation/mattermost" },
+    { name: "Discord", image: "/images/integrations/discord.svg", link: "installation/discord" },
+    { name: "Teams", image: "/images/integrations/msteams.svg", link: "installation/teams" },
+    { name: "Elasticsearch", image: "/images/integrations/elasticsearch.svg", link: "installation/elasticsearch" },
+    { name: "PagerDuty", image: "/images/integrations/pager-duty.svg", link: "installation/pagerduty" },
+    { name: "Webhook", image: "/images/integrations/webhooks.svg", link: "installation/webhook" },
+  ]}
+/>
+
+### Bot features
+
+Compare our bidirectional integrations:
+
+| Feature                                                          | Cloud Slack        | Slack              | Microsoft Teams    | Discord            | Mattermost         |
+| ---------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| Source plugins support (e.g. `kubernetes`)                       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Executor plugins support (e.g. `kubectl`)                        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Multi-cluster support                                            | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Enhanced per-channel plugin configuration including RBAC policy. | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Interactive messages                                             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+| Actionable notifications                                         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+| Emoji reactions                                                  | :heavy_check_mark: | :x:                | :x:                | :x:                | :x:                |
+
+### Sink features
+
+Compare our unidirectional integrations:
+
+| Feature                                                        | Elasticsearch      | Webhook            | PagerDuty          |
+| -------------------------------------------------------------- | ------------------ | ------------------ | ------------------ |
+| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Multi-cluster support                                          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
