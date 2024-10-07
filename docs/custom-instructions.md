@@ -8,7 +8,7 @@ sidebar_position: 6
 
 Fuse categorizes user prompts and applies custom AI assistant instructions for accurate responses.
 
-There are built-in instructions for some scenarios, you can learn more about them on the [Tutorials](./scenarios.md) page. However, you can also create your own, to tailor Fuse to your specific workflows and daily tasks.
+There are built-in instructions for some scenarios. You can learn more about them on the [Tutorials](./tutorials.md) page. However, you can also create your own, to tailor Fuse to your specific workflows and daily tasks.
 
 The custom instructions are applied dynamically. The AI model decides by itself whether to apply a given instruction, based on its relevance to the user prompt.
 

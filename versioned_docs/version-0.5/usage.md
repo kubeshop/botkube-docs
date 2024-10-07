@@ -37,4 +37,4 @@ fuse 'list files in the current directory and provide me better organization str
 
 ### Looking for inspiration?
 
-Read the [Scenarios](./scenarios.md) document with guided paths to get started!
+Read the [Tutorials](./tutorials.md) document with guided paths to get started!

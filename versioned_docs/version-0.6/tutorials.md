@@ -1,16 +1,16 @@
 ---
-id: scenarios
-title: Scenarios
+id: tutorials
+title: Tutorials
 sidebar_position: 4
 ---
 
-# Scenarios
+# Tutorials
 
-To browse available example use-cases, Run `fuse scenarios` in your terminal.
+To browse available example use-cases, Run `fuse tutorials` in your terminal.
 
-Scenarios command contains guided paths to get started with Fuse. Simply select one of the scenarios, like "Getting summary of CI/CD pipeline runs", and pick one of the prompts.
+Tutorials command contains guided paths to get started with Fuse. Simply select one of the scenarios, like "Getting summary of CI/CD pipeline runs", and pick one of the prompts.
 
-As a part of the Scenarios, you can configure optional access to the [Demo environment](./demo-environment.md).
+As a part of the tutorials, you can configure optional access to the [Demo environment](./demo-environment.md).
 
 ## Featured scenarios
 

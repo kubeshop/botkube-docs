@@ -42,4 +42,4 @@ Available capabilities are:
 
 ## 📖 Learn more
 
-Read more about Fuse features on [the official website](https://botkube.io/fuse/).
+Learn more about Fuse on [the official landing page](https://botkube.io/fuse/).
