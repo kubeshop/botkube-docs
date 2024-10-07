@@ -8,9 +8,9 @@ sidebar_position: 7
 
 Make Fuse even smarter by uploading your documentation. For example: architectural documents, onboarding material, runbooks, post-mortems, etc.
 
-The user-supplied documentation is scoped to a given Botkube Cloud organization.
-
-Both free and paid plans support this feature, with separate limits.
+:::info
+This feature requires [an active account on Botkube Cloud](./botkube-cloud-auth.md). The user-supplied documentation is scoped to a given Botkube Cloud organization.
+:::
 
 ## Manage uploaded files
 

@@ -12,7 +12,9 @@ There are built-in instructions for some scenarios. You can learn more about the
 
 The custom instructions are applied dynamically. The AI model decides by itself whether to apply a given instruction, based on its relevance to the user prompt.
 
-The custom instructions require an active account on Botkube Cloud. All custom instructions are shared across all Fuse installations within your Botkube Cloud organization.
+:::info
+This feature requires [an active account on Botkube Cloud](./botkube-cloud-auth.md). All custom instructions are shared across all Fuse installations within your Botkube Cloud organization.
+:::
 
 ## Browse and manage instructions
 

@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Tutorials
 
-To browse available example use-cases, Run `fuse tutorials` in your terminal.
+To browse available example use-cases, run `fuse tutorials` in your terminal.
 
 Tutorials command contains guided paths to get started with Fuse. Simply select one of the scenarios, like "Getting summary of CI/CD pipeline runs", and pick one of the prompts.
 
