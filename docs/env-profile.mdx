@@ -69,11 +69,17 @@ import scale from "./assets/profile-usecase-scale.gif";
 
 <Tabs groupId="usecases">
 	<TabItem value="helm" label="Fix bugs by modifying related Helm chart manifests" default>
-		<img src={helm} alt="helm" />
+
+    	With the attached environment profile, Fuse detects that you're using ArgoCD and knows precisely where to find and fix any invalid Helm chart manifests already deployed on your cluster.
+
+    	<img src={helm} alt="helm" />
 
     </TabItem>
 
     <TabItem value="scale" label="Scale clusters by modifying related Terraform files">
+
+    		With the attached environment profile, Fuse doesn't propose scaling your cluster using the `gcloud` CLI but follows your organization's practices by modifying the relevant Terraform resources instead.
+
     	<img src={scale} alt="scale" />
 
     </TabItem>
