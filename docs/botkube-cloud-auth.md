@@ -1,7 +1,7 @@
 ---
 id: botkube-cloud-auth
 title: Authentication with Botkube Cloud
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # Authentication with Botkube Cloud
