@@ -1,0 +1,87 @@
+---
+id: env-profile
+title: Environment profile
+sidebar_position: 8
+---
+
+# Environment profile
+
+To enhance AI response quality and reliability, we have implemented several strategies. This page outlines one of them—the environment-specific details attached to Fuse chat sessions.
+
+Once created, the environment profile is linked to every new chat session.
+
+:::info
+This feature requires [an active account on Botkube Cloud](./botkube-cloud-auth.md). The environment profile is shared across all Fuse installations within your Botkube Cloud organization.
+:::
+
+## Setup
+
+The environment profile contains details about the resources related to your organization, such as which IaC or GitOps tools are in use, where the associated resources are stored, and how to access them.
+
+Below are the different flows based on your environment profile setup stage.
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import postSetup from "./assets/profile-post-setup.gif";
+import initSetup from "./assets/profile-init-setup.gif";
+
+<Tabs groupId="setup">
+	<TabItem value="first-time" label="First-Time Profile Setup" default>
+		When setting up the environment profile for the first time, you'll need to provide more details about your organization's tools and resource locations.
+		The local paths to these resources are specific to your installation, while general information is shared across all Fuse installations within your Botkube Cloud organization, ensuring that <strong>all team members can benefit from it out of the box</strong>.
+
+    	<img src={initSetup} alt="post-setup" />
+
+    </TabItem>
+
+    <TabItem value="post-setup" label="Post Setup for Organization-Wide Profile">
+    	The post-setup process is very simple. Fuse automatically detects if your organization already has a profile defined. The assistant proactively prompt you to provide the path to your Git repository, with no additional configuration required.
+    	The entire process takes just a few seconds to complete.
+
+    	<img src={postSetup} alt="post-setup" />
+
+    </TabItem>
+
+</Tabs>
+
+### View
+
+To view the environment profile, run:
+
+```shell
+fuse config profile view
+```
+
+### Edit
+
+To edit the environment profile, run:
+
+```shell
+fuse config profile edit
+```
+
+## Use cases
+
+The environment profile provides essential context for the AI when assisting with tasks. Below are examples of how the environment profile is leveraged to support common tasks:
+
+import helm from "./assets/profile-usecase-helm.gif";
+import scale from "./assets/profile-usecase-scale.gif";
+
+<Tabs groupId="usecases">
+	<TabItem value="helm" label="Fix bugs by modifying related Helm chart manifests" default>
+
+    	With the attached environment profile, Fuse detects that you're using ArgoCD and knows precisely where to find and fix any invalid Helm chart manifests already deployed on your cluster.
+
+    	<img src={helm} alt="helm" />
+
+    </TabItem>
+
+    <TabItem value="scale" label="Scale clusters by modifying related Terraform files">
+
+    		With the attached environment profile, Fuse doesn't propose scaling your cluster using the `gcloud` CLI but follows your organization's practices by modifying the relevant Terraform resources instead.
+
+    	<img src={scale} alt="scale" />
+
+    </TabItem>
+
+</Tabs>
