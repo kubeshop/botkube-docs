@@ -230,14 +230,6 @@ const config: Config = {
         apiKey: "d7514a8ad9b1aebb64c54172856ecb44",
         indexName: "botkube",
       },
-      announcementBar: {
-        id: "try_botkube",
-        content:
-          ' 🚀 <strong>Announcing Fuse - AI-powered assistant for streamlined platform engineering.</strong> <a target="_blank" rel="noopener noreferrer" href="https://botkube.io/fuse">Get started for free</a>',
-        backgroundColor: "#fafbfc",
-        textColor: "#091E42",
-        isCloseable: false,
-      },
     },
 };
 
