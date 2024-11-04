@@ -75,7 +75,7 @@ function FeatureList({ items }: FeatureListProps) {
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title={`Get started with ${siteConfig.title}`} description={siteConfig.tagline}>
+    <Layout title={`Get started with ${siteConfig.title}`} description="${siteConfig.}}">
       <HomepageHeader />
       <main className="container" style={{ marginTop: "40px" }}>
         <div className="row" style={{ marginBottom: "40px" }}>
