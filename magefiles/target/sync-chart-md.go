@@ -33,7 +33,7 @@ var helmParamsFileTpl = heredoc.Doc(`
 const (
 	urlReadmeBySHAFmt     = "https://raw.githubusercontent.com/kubeshop/botkube/%s/helm/botkube/README.md"
 	urlValuesBySHAFmt     = "https://github.com/kubeshop/botkube/blob/%s/helm/botkube/values.yaml"
-	helmParamsDstFilePath = "chat-platform-docs/self-hosted-configuration/helm-chart-parameters.md"
+	helmParamsDstFilePath = "docs/self-hosted-configuration/helm-chart-parameters.md"
 )
 
 func SyncChartParams() {
