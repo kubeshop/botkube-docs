@@ -4,13 +4,6 @@ title: General
 sidebar_position: 6
 ---
 
-:::info
-
-This document is applicable only for self-hosted installations.
-For Botkube Cloud installations, the Botkube Agent configuration is managed via the [Botkube Cloud dashboard](https://app.botkube.io).
-
-:::
-
 The general settings holds a general configuration for the Botkube Agent. For example, log level, disabling config watcher and similar.
 
 ## Syntax

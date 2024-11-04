@@ -4,13 +4,6 @@ title: Source
 sidebar_position: 1
 ---
 
-:::info
-
-This document is applicable only for self-hosted installations.
-For Botkube Cloud installations, the Botkube Agent configuration is managed via the [Botkube Cloud dashboard](https://app.botkube.io).
-
-:::
-
 The source configuration allows you to define multiple source configurations that can be later referred in [communication](communication) bindings. For example, take a look at such source definition:
 
 ```yaml

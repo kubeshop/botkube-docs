@@ -20,14 +20,6 @@ This kubeconfig is available to plugins in the `Execute` and `Stream` methods, a
 
 ## Configuration
 
-### Botkube Cloud
-
-In Botkube Cloud, the RBAC is configured within the "Permissions" tab for each plugin.
-
-![Cloud RBAC defaults](assets/cloud-rbac-default.png)
-
-### Self-hosted Botkube installation
-
 For each executor and source plugin, you can define a `context.rbac` configuration. This config is used to generate a dedicated kubeconfig.
 
 ```yaml
@@ -136,12 +128,6 @@ executors:
             static:
               value: botkube-plugins-default
 ```
-
-#### Defaults for Botkube Cloud
-
-When configuring plugin on Botkube Cloud, the "Default" permissions mean that the `botkube-plugins-default` group will be used, which have read-only access to Kubernetes API and is configured during Botkube installation. See the [Default configuration](#default-configuration) section.
-
-![Cloud RBAC defaults](assets/cloud-rbac-default.png)
 
 ## Examples
 

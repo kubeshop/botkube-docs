@@ -4,13 +4,6 @@ title: "Tokens from Vault via CSI driver"
 sidebar_position: 1
 ---
 
-:::info
-
-This document is applicable only for self-hosted installations.
-For Botkube Cloud installations, the Botkube Agent configuration, along with all secrets, are managed via the [Botkube Cloud dashboard](https://app.botkube.io).
-
-:::
-
 This tutorial shows how to install Botkube which takes the configuration from Vault instance.
 
 ## Prerequisites
@@ -23,7 +16,7 @@ This tutorial shows how to install Botkube which takes the configuration from Va
   limactl start template://k3s
   ```
 
-- [Socket Slack integration installed](../../installation/slack/socket-slack.md).
+- [Socket Slack integration installed](../../installation/slack/index.md).
 - [`helm`](https://helm.sh/docs/intro/install/) v3 installed.
 - [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) installed.
 

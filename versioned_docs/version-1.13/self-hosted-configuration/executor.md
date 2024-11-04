@@ -4,13 +4,6 @@ title: Executor
 sidebar_position: 3
 ---
 
-:::info
-
-This document is applicable only for self-hosted installations.
-For Botkube Cloud installations, the Botkube Agent configuration is managed via the [Botkube Cloud dashboard](https://app.botkube.io).
-
-:::
-
 The executor configuration allows you to define multiple executor configurations that can be later referred in [communication](communication) bindings. For example, take a look at such executor definition:
 
 ```yaml

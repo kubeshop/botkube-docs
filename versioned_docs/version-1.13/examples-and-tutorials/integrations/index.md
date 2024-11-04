@@ -8,7 +8,6 @@ sidebar_position: 4
 
 ## Communication Platforms
 
-- [Microsoft Teams](https://botkube.io/integration/teams): Seamlessly manage Kubernetes and collaborate within your team using Botkube's integration with Microsoft Teams
 - [Slack](https://botkube.io/integration/slack): Enhance your Kubernetes management by receiving notifications and interacting with clusters directly from Slack channels through Botkube.
 - [Discord](https://botkube.io/integration/discord): Stay on top of Kubernetes events and streamline your operations by integrating Botkube with Discord.
 - [Mattermost](https://botkube.io/integration/mattermost): Keep your team informed about Kubernetes events and receive alerts directly within your Mattermost instance with Botkube integration.

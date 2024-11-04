@@ -16,21 +16,7 @@ Aliases work for all commands, including [executor plugins](../plugins/index.md)
 
 Aliases are defined globally for the whole Botkube installation.
 
-### Botkube Cloud configuration
-
-You can configure aliases in the Botkube Cloud dashboard.
-
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click the **Aliases** link in the top right corner.
-3. Click **Create new** button.
-4. Provide display name, alias and command.
-
-   For example, for `exec` plugin, you can provide display name as `Exec alias`, alias as `x`, and command as `exec`.
-
-5. Select instances for which you want to enable the alias.
-6. Click **Apply** button.
-
-### Self-hosted Botkube configuration
+### Configuration
 
 To configure the aliases for the self-hosted Botkube installation, use the following syntax:
 
@@ -91,14 +77,6 @@ To check which executors are enabled, run `@Botkube list executors`.
 
 To check which sources are enabled, run `@Botkube list sources`.
 
-### Botkube Cloud commands
-
-The Botkube Cloud related commands are available for Cloud Slack and Microsoft Teams integrations.
-To see the list of Botkube Cloud commands, read the following sections:
-
-- [Using Botkube Cloud app for Slack](../installation/slack/cloud-slack.mdx#using-botkube-cloud-app-for-slack),
-- [Using Botkube Cloud app for Microsoft Teams](../installation/teams/index.md#using-botkube-app-for-microsoft-teams).
-
 ### Notification-related commands
 
 To learn about the commands related to Notifications, see the [Manage notifications with Botkube commands](./event-notifications.md#manage-notifications-with-botkube-commands) section.
@@ -118,7 +96,7 @@ There are global flags available for all commands, regardless of which executor 
 ### Specify cluster name
 
 :::warning
-Multi-cluster approach is supported only for Cloud Slack, Microsoft Teams, Mattermost and Discord integrations. Socket Slack require separate Slack app for each Botkube installation.
+Multi-cluster approach is supported only for Mattermost and Discord integrations. Socket Slack require separate Slack app for each Botkube installation.
 :::
 
 If you have installed Botkube backend on multiple clusters, you can pass `--cluster-name` flag to execute kubectl command on specific cluster.
@@ -132,7 +110,7 @@ The flag is ignored in the [notification-related commands](#notification-related
 
 ### Run commands on all clusters
 
-When using Cloud Slack or Microsoft Teams integration, you can use `--all-clusters` flag to execute a command on all the target clusters.
+When using Discord or Mattermost integrations, you can use `--all-clusters` flag to execute a command on all the target clusters.
 
 ### Filtering text output
 
@@ -143,7 +121,7 @@ The `--filter` flag uses simple string matching. And, only works for Botkube exe
 #### Interactive output filtering
 
 :::info
-Interactive output filtering is only available for the [Slack](../installation/slack/index.md) and [Microsoft Teams](../installation/teams/index.md) integrations that supports interactive messages.
+Interactive output filtering is only available for the [Slack](../installation/slack/index.md) integration that supports interactive messages.
 :::
 
 :::caution

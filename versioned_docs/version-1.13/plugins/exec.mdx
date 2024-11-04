@@ -4,11 +4,7 @@ title: "Exec"
 sidebar_position: 3
 ---
 
-:::info
-**This plugin is hosted by the [Botkube Cloud](https://app.botkube.io) plugin repository and requires active Botkube Cloud account.**
-:::
-
-The `exec` executor plugin allows you to install and run CLI applications directly from chat (e.g., Slack, Microsoft Teams, Discord, or Mattermost) without any hassle.
+The `exec` executor plugin allows you to install and run CLI applications directly from chat (e.g., Slack, Discord, or Mattermost) without any hassle.
 
 It supports interactivity in the form of buttons and dropdowns. You can easily use all your favorite tools without typing, even from your mobile phone!
 
@@ -26,14 +22,24 @@ By default, the read-only `KUBECONFIG` is assigned. For enabling commands that r
 
 ## Enable the plugin
 
-You can enable the plugin as a part of Botkube instance configuration.
+Enable the plugin by adding a new [executor](../self-hosted-configuration/executor.md) plugin to the Botkube configuration:
 
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the `exec` plugin.
-6. Click **Save** button.
+```yaml
+executors:
+  # ...
+  flux:
+    botkubeExtraPlugins/exec:
+      displayName: "Exec"
+      enabled: true
+      config: # See the Configuration section for config properties.
+plugins:
+  # ...
+  repositories:
+    botkubeExtraPlugins:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
+```
+
+Then, use the plugin in your [communication platform](../self-hosted-configuration/communication/index.md).
 
 ## Usage
 

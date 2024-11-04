@@ -76,7 +76,7 @@ Run `@Botkube enable action {action-name}` to enable an action named `{action-na
 
 When you enable an action, changes are applied once the Botkube is restarted. It is an automated process which usually takes a few seconds.
 
-## Self-hosted Configuration Syntax
+## Configuration Syntax
 
 The following snippet contains an example configuration for self-hosted Botkube installation:
 

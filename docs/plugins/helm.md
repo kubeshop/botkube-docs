@@ -4,10 +4,6 @@ title: Helm
 sidebar_position: 4
 ---
 
-:::info
-**This plugin is hosted by the [Botkube Cloud](https://app.botkube.io) plugin repository and requires active Botkube Cloud account.**
-:::
-
 The Helm executor plugin allows you to run the `helm` command directly in the chat platform.
 
 ## Get started
@@ -16,14 +12,32 @@ By default, just the read-only `helm` commands are supported. For enabling comma
 
 ### Enable the plugin
 
-You can enable the plugin as a part of Botkube instance configuration.
+Enable the plugin by adding a new [executor](../self-hosted-configuration/executor.md) plugin to the Botkube configuration:
 
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the Helm plugin.
-6. Click **Save** button.
+```yaml
+executors:
+  # ...
+  helm:
+    botkubeExtraPlugins/helm:
+      displayName: "Helm"
+      enabled: true
+      context:
+        rbac:
+          group:
+            type: Static
+            prefix: ""
+            static:
+              values: ["botkube-plugins-default"]
+      config: # See the Configuration section for config properties.
+
+plugins:
+  # ...
+  repositories:
+    botkubeExtraPlugins:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
+```
+
+Then, use the plugin in your [communication platform](../self-hosted-configuration/communication/index.md).
 
 ## Usage
 

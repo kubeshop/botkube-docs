@@ -15,7 +15,7 @@ If you have [`kubectl` plugin enabled](../plugins/kubectl.md) for a given channe
 The command dropdown is disabled for resource deletion events. It uses executor bindings to determine which commands are available for a given resource.
 
 :::info
-Actionable notifications are only available for the [Slack](../installation/slack/index.md) and [Microsoft Teams](../installation/teams/index.md) platforms that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
+Actionable notifications are only available for the [Slack](../installation/slack/index.md) platform that supports interactive messages. Currently, only a selected list of commands are supported, such as `describe`, `get`, or `logs`.
 :::
 
 ## Manage notifications with Botkube commands
@@ -29,10 +29,7 @@ To change the notification sources, you can:
 
 - run `@Botkube edit SourceBindings` command from the configured channel where Botkube is added.
 
-  When you save the new notification sources, changes are applied once the Botkube is restarted. It is an automated process which usually takes a few seconds.
-
-- For Botkube Cloud: edit Botkube Instance configuration in the Botkube Cloud dashboard.
-- For self-hosted installations: run `helm upgrade` with updated installation command.
+  When you save the new notification sources, changes are applied once the Botkube is restarted. It is an automated process which usually takes a few seconds. Run `helm upgrade` with updated installation command.
 
 ### Disable notifications
 

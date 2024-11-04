@@ -10,20 +10,6 @@ The Kubernetes source plugin produces events for configured Kubernetes resources
 
 ### Enable the plugin
 
-#### Botkube Cloud
-
-You can enable the plugin as a part of Botkube instance configuration.
-
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the Kubernetes plugin.
-6. Configure the plugin according to the [Configuration](#configuration) section.
-   7Click **Save** button.
-
-#### Self-hosted Botkube installation
-
 The Kubernetes plugin is hosted by the official Botkube plugin repository. First, make sure that the `botkube` repository is defined under `plugins` in the [values.yaml](https://github.com/kubeshop/botkube/blob/main/helm/botkube/values.yaml) file.
 
 ```yaml

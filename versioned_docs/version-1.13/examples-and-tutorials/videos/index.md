@@ -9,11 +9,9 @@ sidebar_position: 5
 ## Office Hours
 
 - [Developer Self-Service](https://www.youtube.com/watch?v=74qMbqWBxms&list=PL2Vye-us8_x8-IErakx_KggCC7EPWJuby&index=2)
-- [Troubleshooting Kubernetes in Microsoft Teams](https://youtu.be/HaHaa9ju8Wg)
 - [GitOps Practices with Flux](https://www.youtube.com/watch?v=WxkDWLqVghw&list=PL2Vye-us8_x8-IErakx_KggCC7EPWJuby)
 - [Developer Productivity with Oketeo](https://www.youtube.com/watch?v=506Tc1Grj_o)
 - [Botkube goes GitOps](https://www.youtube.com/watch?v=WxkDWLqVghw)
-- [Kubernetes Multi-Cluster Management](https://www.youtube.com/watch?v=ZeaUfboNKfc)
 - [5 Essential Kubernetes Tasks to Automate](https://www.youtube.com/watch?v=CzlSHMM_Ypc)
 - [ArgoCD Workflows](https://youtu.be/1i59PN-65SY)
 - [Zapier for Kubernetes](https://www.youtube.com/watch?v=VJzSRTQpHhs)
