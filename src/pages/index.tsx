@@ -8,38 +8,6 @@ import styles from "./index.module.css";
 import ChatIcon from "@site/static/images/chat-icon.svg";
 import TerminalIcon from "@site/static/images/terminal-icon.svg";
 
-const fuseFeatures = [
-  { headline: "Quick Setup", description: "Get up and running in seconds with minimal configuration" },
-  {
-    headline: "Reduce Context Switching",
-    description: "Gain in-depth expertise and tailored assistance directly in your terminal",
-  },
-  {
-    headline: "Natural Language Commands",
-    description: "Use simple, conversational commands to interact with your infrastructure",
-  },
-  {
-    headline: "Seamless Tool Integration",
-    description: "Integrate with your locally installed tools, with full control over the process",
-  },
-];
-
-const chatPlatformFeatures = [
-  {
-    headline: "Real-Time Collaboration",
-    description: "Receive alerts and troubleshoot with your team in Slack or Microsoft Teams",
-  },
-  { headline: "Familiar Interface", description: "Get clear, rich messages for quick understanding" },
-  {
-    headline: "K8s Agent Setup",
-    description: "Requires an agent installed in your Kubernetes cluster for full features",
-  },
-  {
-    headline: "Admin Access Needed",
-    description: "Requires admin permissions to set up in Slack, Teams or other chat platform",
-  },
-];
-
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -53,22 +21,6 @@ function HomepageHeader() {
         </p>
       </div>
     </header>
-  );
-}
-
-interface FeatureListProps {
-  items: { headline: string; description: string }[];
-}
-
-function FeatureList({ items }: FeatureListProps) {
-  return (
-    <ul className={styles.list}>
-      {items.map(feature => (
-        <li key={feature.headline}>
-          <strong>{feature.headline}:</strong> {feature.description}
-        </li>
-      ))}
-    </ul>
   );
 }
 
@@ -90,7 +42,23 @@ export default function Home(): JSX.Element {
                       </span>{" "}
                       Fuse CLI
                     </Heading>
-                    <FeatureList items={fuseFeatures} />
+                    <ul className={styles.list}>
+                      <li>
+                        <b>Quick Setup:</b> Get up and running in seconds with minimal configuration
+                      </li>
+                      <li>
+                        <b>Reduce Context Switching:</b> Get in-depth expertise and tailored assistance directly in your
+                        terminal
+                      </li>
+                      <li>
+                        <b>Natural Language Commands:</b> Use simple, conversational commands to interact with your
+                        infrastructure
+                      </li>
+                      <li>
+                        <b>Seamless tool integration:</b> Integrates with your locally installed tools, with full
+                        control over the process.
+                      </li>
+                    </ul>
                   </div>
                   <div className="col col--5 col--offset-1">
                     <img src="/images/fuse.png" alt="Fuse CLI" className={styles.image} />
@@ -113,7 +81,22 @@ export default function Home(): JSX.Element {
                       </span>{" "}
                       Chat Platform
                     </Heading>
-                    <FeatureList items={chatPlatformFeatures} />
+                    <ul className={styles.list}>
+                      <li>
+                        <b>Real-Time Collaboration:</b> Receive alerts and troubleshoot with your team in Slack or
+                        Microsoft Teams
+                      </li>
+                      <li>
+                        <b>Familiar Interface:</b> Clear, rich messages for quick understanding
+                      </li>
+                      <li>
+                        <b>K8s Agent Setup:</b> Requires Install an agent in your Kubernetes cluster for full features
+                      </li>
+                      <li>
+                        <b>Admin Access Needed:</b> Requires admin permissions to set up in Slack, Teams or other chat
+                        platform
+                      </li>
+                    </ul>
                   </div>
                   <div className="col col--5 col--offset-1">
                     <img src="/images/chat-platform.png" alt="Chat Platform" className={styles.image} />
