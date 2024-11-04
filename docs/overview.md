@@ -14,7 +14,7 @@ It helps you work smarter by:
 - Seamless tool integration,
 - Tailored assistance.
 
-Fuse delivers tailored guidance for your unique infrastructure, pipelines, and services via the interactive command line interface.
+Botkube Fuse delivers tailored guidance for your unique infrastructure, pipelines, and services via the interactive command line interface.
 
 ![Using fuse in CLI](./assets/prompt.gif)
 
@@ -30,7 +30,7 @@ Fuse categorizes your queries and applies custom AI assistant instructions for a
 
 During AI processing phase, Fuse integrates with your locally installed tools, with full control over the process.
 
-Available capabilities are:
+Available capabilities:
 
 - Google Cloud CLI (`gcloud`),
 - Kubernetes CLI (`kubectl`),
@@ -40,6 +40,17 @@ Available capabilities are:
 - Filesystem operations,
 - and more!
 
+## Featured scenarios
+
+We believe that even the most powerful AI assistants out there still require some guidance. Someone needs to do the “prompt engineering” work. That’s why we introduced AI assistant guidance for different user scenarios. Currently, we focused on:
+
+- GitHub Actions secret management,
+- GitHub Actions pipeline run analysis,
+- GKE troubleshooting with IAM permission errors,
+- Local environment operations and debugging.
+
+See the [Looking for inspiration](./usage.md#looking-for-inspiration) section to learn how to check out the scenarios.
+
 ## 📖 Learn more
 
-Learn more about Fuse on [the official landing page](https://botkube.io/fuse/).
+Read more about Botkube Fuse features on [the official website](https://botkube.io/fuse/).

@@ -37,4 +37,6 @@ fuse 'list files in the current directory and provide me better organization str
 
 ### Looking for inspiration?
 
-Read the [Tutorials](./tutorials.md) document with guided paths to get started!
+💡 If you are curious what Fuse can do for you, simply run `fuse scenarios` in your terminal!
+
+![scenarios.gif](./assets/scenarios.gif)
