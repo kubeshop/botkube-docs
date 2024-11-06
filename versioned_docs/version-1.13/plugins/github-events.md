@@ -4,24 +4,32 @@ title: GitHub Events
 sidebar_position: 6
 ---
 
-:::info
-**This plugin is hosted by the [Botkube Cloud](https://app.botkube.io) plugin repository and requires active Botkube Cloud account.**
-:::
-
 The GitHub Events source sends events for configured GitHub repositories. These events can be sent to communication channels or actions.
 
 ## Get started
 
 ### Enable the plugin
 
-You can enable the plugin as a part of Botkube instance configuration.
+Enable the plugin by adding a new [source](../self-hosted-configuration/source.md) plugin to the Botkube configuration:
 
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the GitHub Events plugin.
-6. Click **Save** button.
+```yaml
+sources:
+  # ...
+  gh-events:
+    botkubeExtraPlugins/github-events:
+      displayName: "GitHub Events"
+      enabled: true
+      config:
+        # See the Configuration section for config properties.
+
+plugins:
+  # ...
+  repositories:
+    botkubeExtraPlugins:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
+```
+
+Then, use the plugin in your [communication platform](../self-hosted-configuration/communication/index.md).
 
 ## Configuration
 

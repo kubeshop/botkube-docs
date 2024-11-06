@@ -4,14 +4,8 @@ title: ArgoCD
 sidebar_position: 8
 ---
 
-:::info
-**This plugin is hosted by the [Botkube Cloud](https://app.botkube.io) plugin repository and requires active Botkube Cloud account.**
-:::
-
 ArgoCD source plugin sends events from ArgoCD to configured communication platforms. During startup, the plugin configures ArgoCD webhooks, triggers, templates and subscriptions based on the [ArgoCD Notification Catalog](https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/catalog/).
 It uses native [ArgoCD notifications](https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/triggers/) configuration to send the events to Botkube communication platforms.
-
-The ArgoCD source plugin is hosted by the Botkube Cloud plugin repository and requires active Botkube Cloud account.
 
 ## Get started
 
@@ -52,47 +46,38 @@ ENDOFFILE
 kubectl apply -f /tmp/argocd-rbac.yaml
 ```
 
-Next, use the `argocd` static group name in the plugin RBAC configuration:
-
-![ArgoCD RBAC](assets/argocd-rbac.png)
-
 ### 2. Enable the plugin
 
-:::note
-In order to enable the plugin, ArgoCD has to be already installed on the cluster and all watched Applications need to be created.
-
-Also, remember to create RBAC resources for the plugin. See the [Prepare elevated RBAC permissions](#1-prepare-elevated-rbac-permissions) section.
-:::
-
-You can enable the plugin as a part of Botkube instance configuration.
-
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the ArgoCD plugin.
-6. Provide at least one ArgoCD application name and namespace in the configuration.
-7. Click **Save** button.
+Enable the plugin by adding a new [source](../self-hosted-configuration/source.md) plugin to the Botkube configuration:
 
 ```yaml
-defaultSubscriptions:
-  applications:
-    - name: guestbook
-      namespace: argocd
+sources:
+  "argocd":
+    botkubeExtraPlugins/argocd:
+      enabled: true
+      context:
+        rbac:
+          group:
+            type: Static
+            static:
+              values: ["argocd"]
+      # -- Config contains configuration for ArgoCD source plugin.
+      # This section lists only basic options, and uses default triggers and templates
+      # which are based on ArgoCD Notification Catalog ones (https://github.com/argoproj/argo-cd/blob/master/notifications_catalog/install.yaml).
+      # Advanced customization (including triggers and templates) is described in the documentation.
+      config:
+        defaultSubscriptions:
+          applications:
+            - name: guestbook
+              namespace: argocd
+        # See the Configuration section for full config properties.
+
+plugins:
+  # ...
+  repositories:
+    botkubeExtraPlugins:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
-
-You can watch multiple ArgoCD Applications at the same time, for example:
-
-```yaml
-defaultSubscriptions:
-  applications:
-    - name: guestbook
-      namespace: argocd
-    - name: second-app
-      namespace: second-app-namespace
-```
-
-1. Click **Save**.
 
 ## Usage
 
@@ -160,7 +145,7 @@ log:
   level: "info"
 
 # Interactivity configures command dropdown and additional buttons
-# for platforms which support interactivity (`isInteractive: true`) such as Socket Slack or Cloud Slack.
+# for platforms which support interactivity (`isInteractive: true`) such as Socket Slack.
 interactivity:
   enableViewInUIButton: true
   enableOpenRepositoryButton: true

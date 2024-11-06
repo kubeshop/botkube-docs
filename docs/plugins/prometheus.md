@@ -4,25 +4,34 @@ title: Prometheus
 sidebar_position: 5
 ---
 
-:::info
-**This plugin is hosted by the [Botkube Cloud](https://app.botkube.io) plugin repository and requires active Botkube Cloud account.**
-:::
-
 The Botkube Prometheus source plugin allows you to fetch alerts from AlertManager of Prometheus deployment and notify in configured platforms.
 
 ## Get started
 
 ### Enable the plugin
 
-You can enable the plugin as a part of Botkube instance configuration.
+Enable the plugin by adding a new [source](../self-hosted-configuration/source.md) plugin to the Botkube configuration:
 
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the Prometheus plugin.
-6. Provide the Prometheus endpoint according to the [Configuration](#configuration) section.
-7. Click **Save** button.
+```yaml
+sources:
+  # ...
+  prometheus:
+    botkubeExtraPlugins/prometheus:
+      displayName: "Prometheus"
+      enabled: true
+      config:
+        url:
+          "http://localhost:9090" # Prometheus endpoint without api version and resource.
+          # See the Configuration section for full config properties.
+
+plugins:
+  # ...
+  repositories:
+    botkubeExtraPlugins:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
+```
+
+Then, use the plugin in your [communication platform](../self-hosted-configuration/communication/index.md).
 
 ## Usage
 

@@ -18,7 +18,3 @@ sidebar_position: 3
 - [Streamlining Helm Deployments](https://botkube.io/case-studies/civo): Learn how one of Botkube's users utilizes the Botkube Helm plugin to streamline their Helm deployments and updates.
 - [GitHub Issue Reporter for Failing K8s Apps](https://botkube.io/blog/build-a-github-issues-reporter-for-failing-kubernetes-apps-with-botkube-plugins): Automate the reporting of issues with your Kubernetes applications on GitHub directly from your Slack channel.
 - [5 Essential DevOps tasks to Automate](https://botkube.io/blog/botkube-5-essential-devopstasks-to-automate): Discover how to automate essential DevOps tasks like resource scaling and log management with Botkube.
-
-## Smart Monitoring
-
-- [ChatGPT Plugin](https://botkube.io/blog/building-a-chatgpt-plugin-from-ideation-to-implementation): Explore Botkube's AIOps capabilities and dive into the realm of intelligent Kubernetes monitoring with the OpenAI plugin.

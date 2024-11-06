@@ -4,19 +4,10 @@ title: "Communication"
 sidebar_position: 1
 ---
 
-:::info
-
-This document is applicable only for self-hosted installations.
-For Botkube Cloud installations, the Botkube Agent configuration is managed via the [Botkube Cloud dashboard](https://app.botkube.io).
-
-:::
-
 The communication settings contain:
 
 - Configuration for communication platforms scoped in separate communication groups,
 - Platform-specific options, such as multichannel configuration for platforms that support channels.
-
-The settings are applicable only for self-hosted Botkube installation. Cloud Slack and Microsoft Teams platforms are exclusive to Botkube Cloud.
 
 ## Communication groups
 

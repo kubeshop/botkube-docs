@@ -4,10 +4,6 @@ title: "AI Assistant"
 sidebar_position: 3
 ---
 
-:::info
-**This plugin is hosted by the [Botkube Cloud](https://app.botkube.io) plugin repository and requires active Botkube Cloud account.**
-:::
-
 The AI Assistant plugin makes it easier than ever for teams to identify, diagnose, and troubleshoot issues in any Kubernetes cluster. It is powered by the OpenAI's `GPT-4o` large language model with additional Kubernetes-related capabilities.
 
 ## Features
@@ -32,14 +28,64 @@ The plugin provides the following features:
 
 ## Enable the plugin
 
-You can enable the plugin as a part of Botkube instance configuration.
+Enable the plugin by adding [source](../self-hosted-configuration/source.md) and [executor](../self-hosted-configuration/executor.md) plugins to the Botkube configuration:
 
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the AI plugin.
-6. Click **Save** button.
+```yaml
+sources:
+  # ...
+  ai-brain:
+    botkubeExtraPlugins/ai-brain:
+      displayName: "AI Brain"
+      enabled: true
+      context:
+        rbac:
+          group:
+            type: Static
+            static:
+              values: ["botkube-plugins-default"]
+      config:
+        openAIAssistantID: "..." # OpenAI Assistant ID
+        openAIAPIToken: "..." # OpenAI API Token
+        # See the Configuration section for full config properties.
+
+executors:
+  # ...
+  ai:
+    botkubeExtraPlugins/ai:
+      displayName: "AI"
+      enabled: true
+      context:
+        rbac:
+          group:
+            type: Static
+            static:
+              values: ["botkube-plugins-default"]
+      config:
+        aiBrainSourceName: ai-brain # name of the source with ai-brain plugin
+
+plugins:
+  # ...
+  repositories:
+    botkubeExtraPlugins:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
+```
+
+Then, use the `ai` executor plugin in your [communication platform](../self-hosted-configuration/communication/index.md).
+
+## Add the AI button to Kubernetes events
+
+Optionally, you can add the AI button to your Kubernetes events by adding the following snippet to the [Kubernetes plugin](./kubernetes.md):
+
+```yaml
+extraButtons:
+  - button:
+      commandTpl: ai why the {{ .Kind | lower }} '{{ .Name }}'  in the {{ .Namespace }} namespace is failing with {{ .Reason }}. If possible, check the application logs.
+      displayName: Ask AI
+    enabled: true
+    trigger:
+      type:
+        - error
+```
 
 ## Usage
 
@@ -87,27 +133,18 @@ It has the following capabilities:
 - workload scan (example prompt: `@Botkube ai scan the foo deployment`)
 - [Kubescape control](https://hub.armosec.io/docs/controls) scan (example prompt: `@Botkube ai scan my cluster for the C-0009 control`; read more about the [C-0009 control](https://hub.armosec.io/docs/c-0009))
 
-### User-supplied documentation
-
-:::info
-This feature is only available for Botkube Cloud paid plans.
-:::
-
-Botkube Assistant can use supplied documentation to give better answers, specific to your architecture and processes. For example: architectural documents, onboarding material, runbooks, post-mortems, etc.
-
-The user-supplied documentation is scoped to a given Botkube Cloud organization.
-
-#### Manage uploaded files
-
-To manage uploaded files, navigate to the ["AI Assistant"](https://app.botkube.io/ai-assistant) tab in Botkube Cloud. From the tab, you can upload files with the **Upload File(s)** button. Supported file formats include: `.doc`, `.docx`, `.md`, `.pdf`, `.txt`. See the [full list](https://platform.openai.com/docs/assistants/tools/file-search/supported-files).
-
-To delete file(s), select the file(s) you want to delete and click **Delete selected file(s)**.
-
-Once the files are uploaded, you can ask Botkube AI Assistant questions related to the uploaded content. To learn more, see the [AI questions and instructions](#ai-questions-and-instructions) section.
-
 ## Configuration
 
-Currently, the AI plugin doesn't have any configuration options.
+The `ai-brain` plugin supports the following configuration:
+
+```yaml
+openAIAssistantID: "..." # OpenAI Assistant ID
+openAIAPIToken: "..." # OpenAI API Token
+openAIBaseURL: https://api.openai.com/v1 # Optional custom URL
+vectorStoreIDForThreads: "..." # Optional Vector Store ID for each thread. This allows file search capabilities for the AI plugin.
+```
+
+The `ai` executor doesn't expose any configuration options.
 
 ## Limitations
 

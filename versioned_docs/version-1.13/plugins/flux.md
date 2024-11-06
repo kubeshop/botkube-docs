@@ -4,10 +4,6 @@ title: "Flux"
 sidebar_position: 7
 ---
 
-:::info
-**This plugin is hosted by the [Botkube Cloud](https://app.botkube.io) plugin repository and requires active Botkube Cloud account.**
-:::
-
 The Botkube Flux executor plugin allows you to run the [`flux`](https://fluxcd.io/) CLI commands directly within the chat window of your chosen communication platform.
 
 ## Get started
@@ -16,7 +12,7 @@ The Botkube Flux executor plugin allows you to run the [`flux`](https://fluxcd.i
 
 One of the plugin capabilities is the `flux diff` command. To use it, you need to update the Flux plugin RBAC configuration. This is necessary because the command performs a server-side dry run that requires patch permissions, as specified in the [Kubernetes documentation](https://kubernetes.io/docs/reference/using-api/api-concepts/#dry-run-authorization).
 
-First, create RBAC resources on your cluster:
+Create RBAC resources on your cluster:
 
 ```shell
 cat > /tmp/flux-rbac.yaml << ENDOFFILE
@@ -47,31 +43,37 @@ ENDOFFILE
 kubectl apply -f /tmp/flux-rbac.yaml
 ```
 
-Next, use the `flux` group in the plugin RBAC configuration:
-
-![Flux RBAC](./assets/flux-rbac.png)
-
 ### 2. Enable the plugin
 
-You can enable the plugin as a part of Botkube instance configuration.
+Enable the plugin by adding a new [executor](../self-hosted-configuration/executor.md) plugin to the Botkube configuration:
 
-1. If you don't have an existing Botkube instance, create a new one, according to the [Installation](../installation/index.mdx) docs.
-2. From the [Botkube Cloud homepage](https://app.botkube.io), click on a card of a given Botkube instance.
-3. Navigate to the platform tab which you want to configure.
-4. Click **Add plugin** button.
-5. Select the Flux plugin.
-6. Click **Configure** button and then **Configuration as Code** tab.
-7. Configure optional GitHub access token.
+```yaml
+executors:
+  # ...
+  flux:
+    botkubeExtraPlugins/flux:
+      displayName: "Flux"
+      enabled: true
+      context:
+        rbac:
+          group:
+            type: Static
+            static:
+              values: ["flux"]
+      config:
+        # See the Configuration section for config properties.
+        github: # Optional GitHub support
+          auth:
+            accessToken: "" # your GitHub access token. Read more: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token
 
-   The Flux plugin comes with integrated GitHub support. To enable it, you'll need a valid [GitHub token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/#creating-a-token). Set the token with the following configuration:
+plugins:
+  # ...
+  repositories:
+    botkubeExtraPlugins:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
+```
 
-   ```yaml
-   github:
-     auth:
-       accessToken: "" # your GitHub access token
-   ```
-
-8. Click **Save** button.
+Then, use the plugin in your [communication platform](../self-hosted-configuration/communication/index.md).
 
 By default, the Flux plugin has read-only access. To perform actions like creating or deleting Flux-related sources, you'll need to customize the [RBAC](../features/rbac.md).
 

@@ -11,7 +11,7 @@ import { IntegrationList } from "@site/src/components/IntegrationList";
 
 Botkube is a troubleshooting and monitoring solution that empowers DevOps teams to work more efficiently, enables developers to troubleshoot their applications without special Kubernetes access or knowledge, and improves reliability by delivering timely, context-enhanced notifications about events in your Kubernetes environments.
 
-It integrates with multiple platforms, such as Slack, Microsoft Teams, Discord and Mattermost. Botkube monitors events from various sources, allows you to securely run commands, and run automated actions triggered by any of the plugins Botkube supports or your own custom plugins.
+It integrates with multiple platforms, such as Slack, Discord and Mattermost. Botkube monitors events from various sources, allows you to securely run commands, and run automated actions triggered by any of the plugins Botkube supports or your own custom plugins.
 
 ## Feature map
 
@@ -21,24 +21,23 @@ Learn about Botkube features and their availability in different integrations.
 
 Compare our bidirectional integrations:
 
-| Feature                                                          | Cloud Slack        | Slack              | Microsoft Teams    | Discord            | Mattermost         |
-| ---------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| Source plugins support (e.g. `kubernetes`)                       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Executor plugins support (e.g. `kubectl`)                        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Multi-cluster support                                            | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Enhanced per-channel plugin configuration including RBAC policy. | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Interactive messages                                             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
-| Actionable notifications                                         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
-| Emoji reactions                                                  | :heavy_check_mark: | :x:                | :x:                | :x:                | :x:                |
+| Feature                                                          | Slack              | Discord            | Mattermost         |
+| ---------------------------------------------------------------- | ------------------ | ------------------ | ------------------ |
+| Source plugins support (e.g. `kubernetes`)                       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Executor plugins support (e.g. `kubectl`)                        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Multi-cluster support                                            | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| Enhanced per-channel plugin configuration including RBAC policy. | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Interactive messages                                             | :heavy_check_mark: | :x:                | :x:                |
+| Actionable notifications                                         | :heavy_check_mark: | :x:                | :x:                |
 
 ### Sinks
 
 Compare our unidirectional integrations:
 
-| Feature                                                        | Elasticsearch      | Webhook            | PagerDuty          |
-| -------------------------------------------------------------- | ------------------ | ------------------ | ------------------ |
-| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Multi-cluster support                                          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Feature                                                        | Elasticsearch      | Webhook            |
+| -------------------------------------------------------------- | ------------------ | ------------------ |
+| Source plugins support (e.g. `kubernetes`, `prometheus`, etc.) | :heavy_check_mark: | :heavy_check_mark: |
+| Multi-cluster support                                          | :heavy_check_mark: | :heavy_check_mark: |
 
 ## Integrations
 
@@ -53,7 +52,6 @@ You can enable multiple platform integrations using a single Botkube agent. <br/
     { name: "Discord", image: "/images/integrations/discord.svg", link: "installation/discord" },
     { name: "Teams", image: "/images/integrations/msteams.svg", link: "installation/teams" },
     { name: "Elasticsearch", image: "/images/integrations/elasticsearch.svg", link: "installation/elasticsearch" },
-    { name: "PagerDuty", image: "/images/integrations/pager-duty.svg", link: "installation/pagerduty" },
     { name: "Webhook", image: "/images/integrations/webhooks.svg", link: "installation/webhook" },
   ]}
 />

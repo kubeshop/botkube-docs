@@ -4,13 +4,6 @@ title: Self-hosted Configuration
 sidebar_position: 6
 ---
 
-:::info
-
-This document is applicable only for self-hosted installations.
-For Botkube Cloud installations, the Botkube Agent configuration is managed via the [Botkube Cloud dashboard](https://app.botkube.io).
-
-:::
-
 ## Overview
 
 Botkube self-hosted installation allows you to specify [source](./source), [executor](./executor), [communication](./communication), and [general](./general) Botkube settings as a part of YAML configuration. Check the related documents for more detailed explanation.
@@ -44,8 +37,7 @@ Advanced Helm install options are documented [here](helm-chart-parameters).
 To update Botkube configuration, you can either:
 
 - upgrade Botkube installation with Helm,
-- use dedicated `@Botkube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Notification-related commands](../features/commands.md#notification-related-commands) for more details,
-- or, [migrate to Botkube Cloud](../cli/migrate.md) and manage configuration through the Botkube Cloud Dashboard.
+- use dedicated `@Botkube` commands, to e.g. toggle notifications or edit Source Bindings. See the [Notification-related commands](../features/commands.md#notification-related-commands) for more details.
 
 If you wish to change the configuration with Helm, create a `/tmp/values.yaml` file that contains the new values and run:
 
@@ -144,7 +136,6 @@ The following properties need such `null` value during upgrade, if you want to k
 
 - `communications.default-group.{communication-platform}.channels.default.notifications`, where `{communication-platform}` is any communication platform supported except Microsoft Teams,
 - `communications.default-group.{communication-platform}.channels.default.bindings.sources`, where `{communication-platform}` is any communication platform supported except Microsoft Teams,
-- `communications.default-group.teams.bindings.sources`.
 
 To learn more, read the [Deleting a default key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) paragraph in Helm documentation.
 
