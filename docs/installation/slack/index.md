@@ -65,7 +65,7 @@ oauth_config:
       - reactions:write
       - chat:write
       - files:write
-      - users:read # Remote configuration only: Used to get Real Name for audit reporting
+      - files:read
 settings:
   event_subscriptions:
     bot_events:
@@ -97,7 +97,7 @@ oauth_config:
       - reactions:write
       - chat:write
       - files:write
-      - users:read # Remote configuration only: Used to get Real Name for audit reporting
+      - files:read
 settings:
   event_subscriptions:
     bot_events:
@@ -130,7 +130,7 @@ oauth_config:
       - reactions:write
       - chat:write
       - files:write
-      - users:read # Remote configuration only: Used to get Real Name for audit reporting
+      - files:read
 settings:
   event_subscriptions:
     bot_events:
