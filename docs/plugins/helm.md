@@ -18,7 +18,7 @@ Enable the plugin by adding a new [executor](../self-hosted-configuration/execut
 executors:
   # ...
   helm:
-    botkubeExtraPlugins/helm:
+    botkubeExtra/helm:
       displayName: "Helm"
       enabled: true
       context:
@@ -33,7 +33,7 @@ executors:
 plugins:
   # ...
   repositories:
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 

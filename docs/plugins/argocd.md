@@ -53,7 +53,7 @@ Enable the plugin by adding a new [source](../self-hosted-configuration/source.m
 ```yaml
 sources:
   "argocd":
-    botkubeExtraPlugins/argocd:
+    botkubeExtra/argocd:
       enabled: true
       context:
         rbac:
@@ -75,7 +75,7 @@ sources:
 plugins:
   # ...
   repositories:
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 

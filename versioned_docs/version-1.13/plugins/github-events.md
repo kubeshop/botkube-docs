@@ -16,7 +16,7 @@ Enable the plugin by adding a new [source](../self-hosted-configuration/source.m
 sources:
   # ...
   gh-events:
-    botkubeExtraPlugins/github-events:
+    botkubeExtra/github-events:
       displayName: "GitHub Events"
       enabled: true
       config:
@@ -25,7 +25,7 @@ sources:
 plugins:
   # ...
   repositories:
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 

@@ -18,7 +18,7 @@ plugins:
   repositories:
     botkube:
       url: https://github.com/kubeshop/botkube/releases/download/v1.14.0/plugins-index.yaml
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 

@@ -51,7 +51,7 @@ Enable the plugin by adding a new [executor](../self-hosted-configuration/execut
 executors:
   # ...
   flux:
-    botkubeExtraPlugins/flux:
+    botkubeExtra/flux:
       displayName: "Flux"
       enabled: true
       context:
@@ -69,7 +69,7 @@ executors:
 plugins:
   # ...
   repositories:
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 
