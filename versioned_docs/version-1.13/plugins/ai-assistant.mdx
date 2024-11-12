@@ -26,6 +26,10 @@ The plugin provides the following features:
 
 ## Get started
 
+## Set up OpenAI Assistant
+
+Firstly, configure a new OpenAI Assistant. To do it, clone the [`botkube-plugins`](https://github.com/kubeshop/botkube-plugins) repository and follow the []`assistant-setup` instructions](https://github.com/kubeshop/botkube-plugins/tree/main/hack/assistant-setup).
+
 ## Enable the plugin
 
 Enable the plugin by adding [source](../self-hosted-configuration/source.md) and [executor](../self-hosted-configuration/executor.md) plugins to the Botkube configuration:
@@ -34,7 +38,7 @@ Enable the plugin by adding [source](../self-hosted-configuration/source.md) and
 sources:
   # ...
   ai-brain:
-    botkubeExtraPlugins/ai-brain:
+    botkubeExtra/ai-brain:
       displayName: "AI Brain"
       enabled: true
       context:
@@ -51,7 +55,7 @@ sources:
 executors:
   # ...
   ai:
-    botkubeExtraPlugins/ai:
+    botkubeExtra/ai:
       displayName: "AI"
       enabled: true
       context:
@@ -66,15 +70,32 @@ executors:
 plugins:
   # ...
   repositories:
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 
-Then, use the `ai` executor plugin in your [communication platform](../self-hosted-configuration/communication/index.md).
+Then, use the `ai` executor and `ai-brain` plugin in your [communication platform](../self-hosted-configuration/communication/index.md) configuration. For example:
+
+```yaml
+communications:
+  default-group:
+    socketSlack:
+      # ...
+      channels:
+        default:
+          # ...
+          bindings:
+            sources:
+              # ...
+              - ai-brain
+            executors:
+              # ...
+              - ai
+```
 
 ## Add the AI button to Kubernetes events
 
-Optionally, you can add the AI button to your Kubernetes events by adding the following snippet to the [Kubernetes plugin](./kubernetes.md):
+Optionally, you can add the AI button to your Kubernetes events. For example, to display the button for error events, add the following snippet to the [Kubernetes plugin](./kubernetes.md) configuration:
 
 ```yaml
 extraButtons:
@@ -140,6 +161,7 @@ The `ai-brain` plugin supports the following configuration:
 ```yaml
 openAIAssistantID: "..." # OpenAI Assistant ID
 openAIAPIToken: "..." # OpenAI API Token
+openAIBaseURL: https://api.openai.com/v1 # Optional custom URL
 vectorStoreIDForThreads: "..." # Optional Vector Store ID for each thread. This allows file search capabilities for the AI plugin.
 ```
 

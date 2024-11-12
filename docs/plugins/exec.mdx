@@ -28,14 +28,14 @@ Enable the plugin by adding a new [executor](../self-hosted-configuration/execut
 executors:
   # ...
   flux:
-    botkubeExtraPlugins/exec:
+    botkubeExtra/exec:
       displayName: "Exec"
       enabled: true
       config: # See the Configuration section for config properties.
 plugins:
   # ...
   repositories:
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 

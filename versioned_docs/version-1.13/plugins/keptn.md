@@ -16,7 +16,7 @@ Enable the plugin by adding a new [source](../self-hosted-configuration/source.m
 sources:
   # ...
   keptn:
-    botkubeExtraPlugins/keptn:
+    botkubeExtra/keptn:
       enabled: true
       config:
         url: "http://api-gateway-nginx.keptn.svc.cluster.local/api" # Keptn API Gateway URL.
@@ -26,7 +26,7 @@ sources:
 plugins:
   # ...
   repositories:
-    botkubeExtraPlugins:
+    botkubeExtra:
       url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
 ```
 
