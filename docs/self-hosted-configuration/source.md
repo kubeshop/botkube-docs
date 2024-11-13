@@ -106,7 +106,7 @@ plugins:
   repositories:
     # This repository serves officially supported Botkube plugins.
     botkube:
-      url: https://github.com/kubeshop/botkube/releases/download/v1.13.0/plugins-index.yaml
+      url: https://github.com/kubeshop/botkube/releases/download/v1.14.0/plugins-index.yaml
     # Other 3rd party repositories.
     repo-name:
       url: https://example.com/plugins-index.yaml

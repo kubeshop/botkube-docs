@@ -1,0 +1,172 @@
+---
+id: ai-assistant
+title: "AI Assistant"
+sidebar_position: 3
+---
+
+The AI Assistant plugin makes it easier than ever for teams to identify, diagnose, and troubleshoot issues in any Kubernetes cluster. It is powered by the OpenAI's `GPT-4o` large language model with additional Kubernetes-related capabilities.
+
+## Features
+
+The plugin provides the following features:
+
+- "AI Help" button for Kubernetes event analysis.
+- Kubernetes cluster troubleshooting based on:
+  - `kubectl` commands,
+  - container logs,
+  - Kubernetes events,
+  - resource usage (CPU/memory).
+- Kubernetes cluster scan.
+- Answering arbitrary questions or instructions.
+- Answering questions based on user-supplied documentation.
+- Answering Botkube questions or instructions based on:
+  - Agent status and configuration,
+  - the latest Botkube documentation and other Botkube content.
+- Keeping conversation context in the message threads.
+
+## Get started
+
+## Set up OpenAI Assistant
+
+Firstly, configure a new OpenAI Assistant. To do it, clone the [`botkube-plugins`](https://github.com/kubeshop/botkube-plugins) repository and follow the []`assistant-setup` instructions](https://github.com/kubeshop/botkube-plugins/tree/main/hack/assistant-setup).
+
+## Enable the plugin
+
+Enable the plugin by adding [source](../self-hosted-configuration/source.md) and [executor](../self-hosted-configuration/executor.md) plugins to the Botkube configuration:
+
+```yaml
+sources:
+  # ...
+  ai-brain:
+    botkubeExtra/ai-brain:
+      displayName: "AI Brain"
+      enabled: true
+      context:
+        rbac:
+          group:
+            type: Static
+            static:
+              values: ["botkube-plugins-default"]
+      config:
+        openAIAssistantID: "..." # OpenAI Assistant ID
+        openAIAPIToken: "..." # OpenAI API Token
+        # See the Configuration section for full config properties.
+
+executors:
+  # ...
+  ai:
+    botkubeExtra/ai:
+      displayName: "AI"
+      enabled: true
+      context:
+        rbac:
+          group:
+            type: Static
+            static:
+              values: ["botkube-plugins-default"]
+      config:
+        aiBrainSourceName: ai-brain # name of the source with ai-brain plugin
+
+plugins:
+  # ...
+  repositories:
+    botkubeExtra:
+      url: https://github.com/kubeshop/botkube-plugins/releases/download/v1.14.0/plugins-index.yaml
+```
+
+Then, use the `ai` executor and `ai-brain` plugin in your [communication platform](../self-hosted-configuration/communication/index.md) configuration. For example:
+
+```yaml
+communications:
+  default-group:
+    socketSlack:
+      # ...
+      channels:
+        default:
+          # ...
+          bindings:
+            sources:
+              # ...
+              - ai-brain
+            executors:
+              # ...
+              - ai
+```
+
+## Add the AI button to Kubernetes events
+
+Optionally, you can add the AI button to your Kubernetes events. For example, to display the button for error events, add the following snippet to the [Kubernetes plugin](./kubernetes.md) configuration:
+
+```yaml
+extraButtons:
+  - button:
+      commandTpl: ai why the {{ .Kind | lower }} '{{ .Name }}'  in the {{ .Namespace }} namespace is failing with {{ .Reason }}. If possible, check the application logs.
+      displayName: Ask AI
+    enabled: true
+    trigger:
+      type:
+        - error
+```
+
+## Usage
+
+### Highlights
+
+To see the AI assistant in action, watch the video:
+
+import ReactPlayer from "react-player";
+
+<ReactPlayer controls url="https://www.youtube.com/watch?v=VzXUL7rch-4" />
+
+### AI Help for Kubernetes events
+
+Click on the **AI Help** button to get an analysis of the event.
+
+![AI Help](./assets/ai-help-usage.png "AI Help")
+
+### AI questions and instructions
+
+To ask the Botkube AI Assistant any question, use the `@Botkube ai` command prefix.
+
+Here are a few examples to get you started:
+
+- `@Botkube ai are my pods in default namespace up and running?`
+- `@Botkube ai how many nodes are there?`
+- `@Botkube ai output a yaml for Kubernetes pod with nginx image`
+- `@Botkube what's the current Botkube status?`
+- `@Botkube ai what's the difference between Botkube sources and executors?`
+- `@Botkube ai what Botkube plugins are available to install? List all of them with one sentence description and link to the docs.`
+- `@Botkube ai who's the Botkube maintainer?`
+
+### AI cluster scan
+
+The assistant can help you troubleshoot the Kubernetes cluster by performing a cluster-wide scan for any potential issues,
+such as failing pods, high resource usage, security, RBAC, networking problems and misconfigurations, or any other anomalies.
+
+To start the scan, use the `@Botkube ai scan` command. Based on the scan results you can ask follow-up questions, like `@Botkube ai how I can fix the missing network policy issue?`).
+
+The AI scan is powered by the [Kubescape](https://kubescape.io/) and kubectl tools.
+
+It has the following capabilities:
+
+- aggregated cluster scan (prompt: `@Botkube ai scan`)
+- container image scan (example prompt: `@Botkube ai scan the nginx:latest image`)
+- workload scan (example prompt: `@Botkube ai scan the foo deployment`)
+- [Kubescape control](https://hub.armosec.io/docs/controls) scan (example prompt: `@Botkube ai scan my cluster for the C-0009 control`; read more about the [C-0009 control](https://hub.armosec.io/docs/c-0009))
+
+## Configuration
+
+The `ai-brain` plugin supports the following configuration:
+
+```yaml
+openAIAssistantID: "..." # OpenAI Assistant ID
+openAIAPIToken: "..." # OpenAI API Token
+openAIBaseURL: https://api.openai.com/v1 # Optional custom URL
+vectorStoreIDForThreads: "..." # Optional Vector Store ID for each thread. This allows file search capabilities for the AI plugin.
+```
+
+The `ai` executor doesn't expose any configuration options.
+
+## Limitations
+
+- The conversation context is stored in-memory and will be cleared on Botkube Agent restart.
