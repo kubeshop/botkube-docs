@@ -87,7 +87,7 @@ rbac:
           verbs: ["get", "watch", "list"]
 ```
 
-See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.13.0/helm/botkube/values.yaml) for more details.
+See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.14.0/helm/botkube/values.yaml) for more details.
 
 #### Defaults for user mapping when group mapping is used
 
@@ -134,7 +134,7 @@ executors:
 This paragraph contains examples of RBAC configuration for different use cases.
 
 :::tip
-You can use `rbac.groups` or `extraObjects` overrides during Botkube installation to create custom RBAC resources. See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.13.0/helm/botkube/values.yaml) for more details.
+You can use `rbac.groups` or `extraObjects` overrides during Botkube installation to create custom RBAC resources. See the [`values.yaml`](https://github.com/kubeshop/botkube/blob/v1.14.0/helm/botkube/values.yaml) for more details.
 :::
 
 ### Kubectl executor with read-only Pod access based on static group mapping

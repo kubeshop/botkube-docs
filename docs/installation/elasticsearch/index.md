@@ -23,7 +23,7 @@ export ELASTICSEARCH_USERNAME={elasticsearch_username}
 export ELASTICSEARCH_PASSWORD={elasticsearch_password}
 export ELASTICSEARCH_INDEX_NAME={elasticsearch_index_name}
 
-botkube install --version v1.13.0 \
+botkube install --version v1.14.0 \
 --set communications.default-group.elasticsearch.enabled=true \
 --set communications.default-group.elasticsearch.server=${ELASTICSEARCH_ADDRESS} \
 --set communications.default-group.elasticsearch.username=${ELASTICSEARCH_USERNAME} \
